@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
-import { ROLES, ROLE_LABELS } from '../../utils/constants';
+import { ROLES, RESTAURANT_IMAGES } from '../../utils/constants';
 import Button from '../../components/common/Button';
 import Input from '../../components/common/Input';
 import { 
@@ -14,7 +14,8 @@ import {
   ChefHat, 
   ConciergeBell, 
   Users, 
-  UserCheck 
+  UserCheck,
+  ArrowLeft
 } from 'lucide-react';
 
 export const LoginPage = () => {
@@ -93,25 +94,47 @@ export const LoginPage = () => {
   };
 
   return (
-    <div className="min-h-[85vh] bg-[#FAF6F0] flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8 bg-white p-8 sm:p-10 rounded-3xl shadow-xl border border-[#D5BFA4]/50">
+    <div className="relative min-h-screen w-full flex items-center justify-center p-4 sm:p-6 overflow-hidden bg-[#170B06]">
+      
+      {/* Heavily Blurred Background Image & Backdrop Filter */}
+      <div className="absolute inset-0 z-0">
+        <img
+          src={RESTAURANT_IMAGES.hero}
+          alt="Aura Mocha Luxury Restaurant"
+          className="w-full h-full object-cover scale-110 filter blur-2xl opacity-40"
+        />
+        <div className="absolute inset-0 bg-[#26160E]/80 backdrop-blur-3xl"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-[#170B06] via-[#26160E]/90 to-[#170B06]"></div>
+      </div>
+
+      {/* Back to Home Button (floating at top left) */}
+      <Link
+        to="/"
+        className="absolute top-6 left-6 z-20 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 hover:bg-white/20 text-[#FAF6F0] text-xs font-semibold backdrop-blur-md border border-white/15 transition-all shadow-lg"
+      >
+        <ArrowLeft className="w-4 h-4 text-[#C89B4A]" />
+        <span>Back to Website</span>
+      </Link>
+
+      {/* Centered Login Card */}
+      <div className="relative z-10 max-w-md w-full space-y-6 bg-white/95 backdrop-blur-md p-8 sm:p-10 rounded-3xl shadow-2xl border border-[#D5BFA4]/60 my-8">
         
         {/* Header Branding */}
-        <div className="text-center space-y-3">
+        <div className="text-center space-y-2">
           <Link to="/" className="inline-flex items-center gap-2">
-            <div className="w-12 h-12 rounded-2xl bg-[#6F4E37] text-white flex items-center justify-center shadow-md">
+            <div className="w-12 h-12 rounded-2xl bg-[#6F4E37] text-white flex items-center justify-center shadow-md shadow-[#6F4E37]/30">
               <UtensilsCrossed className="w-6 h-6 text-[#E6D7C3]" />
             </div>
           </Link>
           <h2 className="font-serif text-3xl font-bold tracking-tight text-[#26160E]">
-            Welcome to Aura Mocha
+            Sign In to Aura Mocha
           </h2>
           <p className="text-xs sm:text-sm text-[#8E5B34]">
-            Sign in to access your portal or reservation account
+            Access your reservation account or portal dashboard
           </p>
         </div>
 
-        {/* Quick Demo Role Selector (Essential for testing all 5 portals effortlessly) */}
+        {/* Quick Demo Role Selector */}
         <div className="p-3.5 bg-[#FAF6F0] rounded-2xl border border-[#D5BFA4]/60 space-y-2">
           <p className="text-[11px] font-bold uppercase tracking-wider text-[#6F4E37] text-center">
             One-Click Portal Testing Access
@@ -163,7 +186,7 @@ export const LoginPage = () => {
         {/* Divider */}
         <div className="relative flex py-1 items-center">
           <div className="flex-grow border-t border-[#D5BFA4]/40"></div>
-          <span className="flex-shrink mx-3 text-xs text-[#8E5B34] uppercase tracking-wider font-semibold">Or Sign In with Credentials</span>
+          <span className="flex-shrink mx-3 text-xs text-[#8E5B34] uppercase tracking-wider font-semibold">Or Credentials</span>
           <div className="flex-grow border-t border-[#D5BFA4]/40"></div>
         </div>
 
@@ -180,7 +203,7 @@ export const LoginPage = () => {
             id="login-email"
             type="text"
             icon={Mail}
-            placeholder="e.g. sophia@example.com"
+            placeholder="e.g. customer@auramocha.com"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required

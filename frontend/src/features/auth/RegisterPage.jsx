@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
-import { ROLES } from '../../utils/constants';
+import { ROLES, RESTAURANT_IMAGES } from '../../utils/constants';
 import Button from '../../components/common/Button';
 import Input from '../../components/common/Input';
-import { UtensilsCrossed, User, Mail, Phone, Lock, CheckCircle2 } from 'lucide-react';
+import { UtensilsCrossed, User, Mail, Phone, Lock, ArrowLeft } from 'lucide-react';
 
 export const RegisterPage = () => {
   const { login } = useAuth();
@@ -56,7 +56,6 @@ export const RegisterPage = () => {
 
     setLoading(true);
     setTimeout(() => {
-      // Create user and auto log in as customer
       login(ROLES.CUSTOMER, {
         name: formData.fullName,
         email: formData.email,
@@ -64,19 +63,40 @@ export const RegisterPage = () => {
         memberSince: "Nov 2026"
       });
       setLoading(false);
-      // Redirect to Home page as specified
       navigate('/');
     }, 600);
   };
 
   return (
-    <div className="min-h-[85vh] bg-[#FAF6F0] flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-6 bg-white p-8 sm:p-10 rounded-3xl shadow-xl border border-[#D5BFA4]/50">
+    <div className="relative min-h-screen w-full flex items-center justify-center p-4 sm:p-6 overflow-hidden bg-[#170B06]">
+      
+      {/* Heavily Blurred Background Image & Backdrop Filter */}
+      <div className="absolute inset-0 z-0">
+        <img
+          src={RESTAURANT_IMAGES.heroAlt}
+          alt="Aura Mocha Luxury Restaurant"
+          className="w-full h-full object-cover scale-110 filter blur-2xl opacity-40"
+        />
+        <div className="absolute inset-0 bg-[#26160E]/80 backdrop-blur-3xl"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-[#170B06] via-[#26160E]/90 to-[#170B06]"></div>
+      </div>
+
+      {/* Back to Website Button */}
+      <Link
+        to="/"
+        className="absolute top-6 left-6 z-20 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 hover:bg-white/20 text-[#FAF6F0] text-xs font-semibold backdrop-blur-md border border-white/15 transition-all shadow-lg"
+      >
+        <ArrowLeft className="w-4 h-4 text-[#C89B4A]" />
+        <span>Back to Website</span>
+      </Link>
+
+      {/* Centered Registration Card */}
+      <div className="relative z-10 max-w-md w-full space-y-5 bg-white/95 backdrop-blur-md p-8 sm:p-10 rounded-3xl shadow-2xl border border-[#D5BFA4]/60 my-8">
         
         {/* Brand */}
         <div className="text-center space-y-2">
           <Link to="/" className="inline-flex items-center gap-2">
-            <div className="w-12 h-12 rounded-2xl bg-[#6F4E37] text-white flex items-center justify-center shadow-md">
+            <div className="w-12 h-12 rounded-2xl bg-[#6F4E37] text-white flex items-center justify-center shadow-md shadow-[#6F4E37]/30">
               <UtensilsCrossed className="w-6 h-6 text-[#E6D7C3]" />
             </div>
           </Link>
@@ -88,7 +108,7 @@ export const RegisterPage = () => {
           </p>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-3.5">
           <Input
             label="Full Name"
             id="register-name"
@@ -157,7 +177,7 @@ export const RegisterPage = () => {
                 className="w-4 h-4 mt-0.5 rounded border-[#D5BFA4] text-[#6F4E37] focus:ring-[#6F4E37]"
               />
               <span>
-                I agree to the <a href="#terms" className="font-semibold text-[#6F4E37] hover:underline">Terms of Hospitality</a> and reservation cancellation policy.
+                I agree to the <a href="#terms" className="font-semibold text-[#6F4E37] hover:underline">Terms of Hospitality</a>.
               </span>
             </label>
             {errors.agreeTerms && (

@@ -48,17 +48,17 @@ const PublicLayout = () => {
 export const AppRoutes = () => {
   return (
     <Routes>
-      {/* 1. Public & Customer Routes with standard luxury layout */}
+      {/* Standalone Auth Routes (No Header & No Footer, full blur immersive background) */}
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="/register" element={<RegisterPage />} />
+
+      {/* 1. Public & Customer Routes with standard luxury layout (Header & Footer) */}
       <Route element={<PublicLayout />}>
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/services" element={<ServicesPage />} />
         <Route path="/menu" element={<MenuPage />} />
         <Route path="/contact" element={<ContactPage />} />
-        
-        {/* Auth routes */}
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
 
         {/* Customer Portal routes (Protected) */}
         <Route
