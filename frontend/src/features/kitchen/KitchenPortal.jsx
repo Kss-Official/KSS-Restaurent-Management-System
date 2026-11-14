@@ -118,15 +118,15 @@ export const KitchenPortal = () => {
           <div className="flex items-center gap-4">
             <button
               onClick={() => setSidebarOpen(true)}
-              className="lg:hidden p-2 rounded-lg text-[#2D2528] hover:bg-[#FAF7F5]"
+              className="lg:hidden p-2 rounded-lg text-[#55352F] hover:bg-[#FAF7F5]"
             >
               <Menu className="w-6 h-6" />
             </button>
             <div>
-              <h2 className="font-serif text-xl font-bold text-[#2D2528] capitalize">
+              <h2 className="font-serif text-xl font-bold text-[#55352F] capitalize">
                 Kitchen Display System (KDS): {navLinks.find(l => l.tabId === activeTab)?.label.replace(/^\d+\.\s*/, '')}
               </h2>
-              <p className="text-xs text-[#873C50]">Live Cooking Stations • Head Chef Marco Pierre</p>
+              <p className="text-xs text-[#754D45]">Live Cooking Stations • Head Chef Marco Pierre</p>
             </div>
           </div>
 
@@ -153,27 +153,27 @@ export const KitchenPortal = () => {
               {/* KDS Counter Cards */}
               <div className="grid grid-cols-2 sm:grid-cols-5 gap-4">
                 <div className="p-5 rounded-2xl bg-white border border-[#E8DDD8]/50 shadow-sm">
-                  <p className="text-xs uppercase font-bold text-[#873C50]">New KOTs</p>
+                  <p className="text-xs uppercase font-bold text-[#754D45]">New KOTs</p>
                   <p className="font-serif text-3xl font-bold text-amber-700 mt-2">{newOrders.length}</p>
-                  <p className="text-[11px] text-[#75696B] mt-1">Awaiting acceptance</p>
+                  <p className="text-[11px] text-[#754D45] mt-1">Awaiting acceptance</p>
                 </div>
                 <div className="p-5 rounded-2xl bg-white border border-[#E8DDD8]/50 shadow-sm">
-                  <p className="text-xs uppercase font-bold text-[#873C50]">Accepted</p>
+                  <p className="text-xs uppercase font-bold text-[#754D45]">Accepted</p>
                   <p className="font-serif text-3xl font-bold text-blue-700 mt-2">{acceptedOrders.length}</p>
-                  <p className="text-[11px] text-[#75696B] mt-1">In station queue</p>
+                  <p className="text-[11px] text-[#754D45] mt-1">In station queue</p>
                 </div>
                 <div className="p-5 rounded-2xl bg-white border border-[#E8DDD8]/50 shadow-sm">
-                  <p className="text-xs uppercase font-bold text-[#873C50]">Preparing</p>
+                  <p className="text-xs uppercase font-bold text-[#754D45]">Preparing</p>
                   <p className="font-serif text-3xl font-bold text-orange-700 mt-2">{preparingOrders.length}</p>
-                  <p className="text-[11px] text-[#75696B] mt-1">At cooking ranges</p>
+                  <p className="text-[11px] text-[#754D45] mt-1">At cooking ranges</p>
                 </div>
                 <div className="p-5 rounded-2xl bg-white border border-[#E8DDD8]/50 shadow-sm">
-                  <p className="text-xs uppercase font-bold text-[#873C50]">Ready to Serve</p>
+                  <p className="text-xs uppercase font-bold text-[#754D45]">Ready to Serve</p>
                   <p className="font-serif text-3xl font-bold text-emerald-800 mt-2">{readyOrders.length}</p>
-                  <p className="text-[11px] text-[#75696B] mt-1">At heated pass</p>
+                  <p className="text-[11px] text-[#754D45] mt-1">At heated pass</p>
                 </div>
                 <div className="p-5 rounded-2xl bg-white border border-[#E8DDD8]/50 shadow-sm col-span-2 sm:col-span-1">
-                  <p className="text-xs uppercase font-bold text-[#873C50]">Delayed (&gt;20m)</p>
+                  <p className="text-xs uppercase font-bold text-[#754D45]">Delayed (&gt;20m)</p>
                   <p className="font-serif text-3xl font-bold text-red-700 mt-2">{delayedOrders.length}</p>
                   <p className="text-[11px] text-red-600 mt-1">Priority rush!</p>
                 </div>
@@ -182,8 +182,8 @@ export const KitchenPortal = () => {
               {/* Master Tickets Board */}
               <div className="space-y-4">
                 <div className="flex justify-between items-center">
-                  <h3 className="font-serif text-xl font-bold text-[#2D2528]">Active Cooking Tickets (KOT)</h3>
-                  <span className="text-xs text-[#873C50] font-medium">Click order tabs to filter by station</span>
+                  <h3 className="font-serif text-xl font-bold text-[#55352F]">Active Cooking Tickets (KOT)</h3>
+                  <span className="text-xs text-[#754D45] font-medium">Click order tabs to filter by station</span>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -194,10 +194,10 @@ export const KitchenPortal = () => {
                     >
                       <div className="bg-[#F4EDE8] p-4 border-b border-[#E8DDD8]/40 flex justify-between items-center">
                         <div>
-                          <span className="font-mono text-xs font-bold text-[#873C50] bg-white px-2 py-0.5 rounded border border-[#E8DDD8]/40">
+                          <span className="font-mono text-xs font-bold text-[#754D45] bg-white px-2 py-0.5 rounded border border-[#E8DDD8]/40">
                             {ord.kotId} • #{ord.sessionId}
                           </span>
-                          <h4 className="font-serif font-bold text-lg text-[#2D2528] mt-1">Table {ord.tableNumber}</h4>
+                          <h4 className="font-serif font-bold text-lg text-[#55352F] mt-1">Table {ord.tableNumber}</h4>
                         </div>
                         <div className="text-right">
                           <span className={`px-2.5 py-0.5 rounded-full text-xs font-bold ${
@@ -207,7 +207,7 @@ export const KitchenPortal = () => {
                           }`}>
                             {ord.status}
                           </span>
-                          <p className="text-[10px] text-[#873C50] mt-1">{ord.time}</p>
+                          <p className="text-[10px] text-[#754D45] mt-1">{ord.time}</p>
                         </div>
                       </div>
 
@@ -215,11 +215,11 @@ export const KitchenPortal = () => {
                         <ul className="space-y-2 text-xs divide-y divide-[#FAF7F5]">
                           {ord.items.map((it, idx) => (
                             <li key={idx} className="pt-2 first:pt-0">
-                              <div className="flex justify-between font-bold text-[#2D2528] text-sm">
+                              <div className="flex justify-between font-bold text-[#55352F] text-sm">
                                 <span>{it.qty} × {it.name}</span>
                               </div>
                               {it.customizations && (
-                                <p className="text-[11px] text-[#873C50] font-semibold mt-0.5">
+                                <p className="text-[11px] text-[#754D45] font-semibold mt-0.5">
                                   Choice: {it.customizations}
                                 </p>
                               )}
@@ -234,7 +234,7 @@ export const KitchenPortal = () => {
                       </div>
 
                       <div className="p-4 bg-[#F4EDE8] border-t border-[#E8DDD8]/40 flex items-center justify-between gap-2">
-                        <span className="text-xs text-[#75696B]">Server: {ord.waiter}</span>
+                        <span className="text-xs text-[#754D45]">Server: {ord.waiter}</span>
                         <div>
                           {ord.status === 'New' && (
                             <div className="flex gap-2">
@@ -293,12 +293,12 @@ export const KitchenPortal = () => {
           {activeTab === 'orders-new' && (
             <div className="bg-white rounded-2xl border border-[#E8DDD8]/50 shadow-sm p-6 space-y-6">
               <div>
-                <h3 className="font-serif text-xl font-bold text-[#2D2528]">Incoming KOTs (Awaiting Acceptance)</h3>
-                <p className="text-xs text-[#75696B]">Review table orders, dietary notes, and accept or decline with reason.</p>
+                <h3 className="font-serif text-xl font-bold text-[#55352F]">Incoming KOTs (Awaiting Acceptance)</h3>
+                <p className="text-xs text-[#754D45]">Review table orders, dietary notes, and accept or decline with reason.</p>
               </div>
 
               {newOrders.length === 0 ? (
-                <div className="text-center py-12 text-[#873C50]">
+                <div className="text-center py-12 text-[#754D45]">
                   <CheckCircle2 className="w-12 h-12 mx-auto text-emerald-600 mb-2" />
                   <p className="font-serif font-bold text-base">All incoming tickets accepted!</p>
                 </div>
@@ -307,13 +307,13 @@ export const KitchenPortal = () => {
                   {newOrders.map((ord) => (
                     <div key={ord.id} className="p-5 rounded-2xl border-2 border-amber-300 bg-amber-50/50 space-y-4">
                       <div className="flex justify-between items-center">
-                        <span className="font-mono text-xs font-bold text-[#873C50] bg-white px-2 py-1 rounded">
+                        <span className="font-mono text-xs font-bold text-[#754D45] bg-white px-2 py-1 rounded">
                           {ord.kotId} • Session #{ord.sessionId}
                         </span>
-                        <span className="font-serif font-bold text-lg text-[#2D2528]">Table {ord.tableNumber}</span>
+                        <span className="font-serif font-bold text-lg text-[#55352F]">Table {ord.tableNumber}</span>
                       </div>
 
-                      <ul className="text-xs text-[#2D2528] space-y-1">
+                      <ul className="text-xs text-[#55352F] space-y-1">
                         {ord.items.map((it, i) => (
                           <li key={i} className="font-bold">• {it.qty} × {it.name} ({it.notes || 'Standard'})</li>
                         ))}
@@ -340,18 +340,18 @@ export const KitchenPortal = () => {
           {activeTab === 'orders-accepted' && (
             <div className="bg-white rounded-2xl border border-[#E8DDD8]/50 shadow-sm p-6 space-y-6">
               <div>
-                <h3 className="font-serif text-xl font-bold text-[#2D2528]">Accepted KOT Queue</h3>
-                <p className="text-xs text-[#75696B]">Order sequence ready to move to cooking ranges.</p>
+                <h3 className="font-serif text-xl font-bold text-[#55352F]">Accepted KOT Queue</h3>
+                <p className="text-xs text-[#754D45]">Order sequence ready to move to cooking ranges.</p>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {acceptedOrders.map((ord) => (
                   <div key={ord.id} className="p-5 rounded-2xl border border-[#E8DDD8]/50 bg-[#F4EDE8] space-y-3">
                     <div className="flex justify-between items-center">
-                      <span className="font-mono text-xs font-bold text-[#873C50]">#{ord.sessionId}</span>
-                      <span className="font-bold text-base text-[#2D2528]">Table {ord.tableNumber}</span>
+                      <span className="font-mono text-xs font-bold text-[#754D45]">#{ord.sessionId}</span>
+                      <span className="font-bold text-base text-[#55352F]">Table {ord.tableNumber}</span>
                     </div>
-                    <ul className="text-xs text-[#75696B] space-y-1">
+                    <ul className="text-xs text-[#754D45] space-y-1">
                       {ord.items.map((it, i) => (
                         <li key={i}>• {it.qty} × {it.name}</li>
                       ))}
@@ -371,19 +371,19 @@ export const KitchenPortal = () => {
           {activeTab === 'orders-preparing' && (
             <div className="bg-white rounded-2xl border border-[#E8DDD8]/50 shadow-sm p-6 space-y-6">
               <div>
-                <h3 className="font-serif text-xl font-bold text-[#2D2528]">Currently at Cooking Ranges</h3>
-                <p className="text-xs text-[#75696B]">Track preparation timers and dispatch to the pass.</p>
+                <h3 className="font-serif text-xl font-bold text-[#55352F]">Currently at Cooking Ranges</h3>
+                <p className="text-xs text-[#754D45]">Track preparation timers and dispatch to the pass.</p>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {preparingOrders.map((ord) => (
                   <div key={ord.id} className="p-5 rounded-2xl border-2 border-orange-300 bg-orange-50/50 space-y-4">
                     <div className="flex justify-between items-center">
-                      <span className="font-mono text-xs font-bold text-[#873C50]">{ord.id}</span>
-                      <span className="font-serif font-bold text-lg text-[#2D2528]">Table {ord.tableNumber}</span>
+                      <span className="font-mono text-xs font-bold text-[#754D45]">{ord.id}</span>
+                      <span className="font-serif font-bold text-lg text-[#55352F]">Table {ord.tableNumber}</span>
                     </div>
 
-                    <ul className="text-xs text-[#2D2528] space-y-1">
+                    <ul className="text-xs text-[#55352F] space-y-1">
                       {ord.items.map((it, i) => (
                         <li key={i} className="font-bold">• {it.qty} × {it.name}</li>
                       ))}
@@ -404,8 +404,8 @@ export const KitchenPortal = () => {
           {activeTab === 'orders-ready' && (
             <div className="bg-white rounded-2xl border border-[#E8DDD8]/50 shadow-sm p-6 space-y-6">
               <div>
-                <h3 className="font-serif text-xl font-bold text-[#2D2528]">Dishes at Heated Pass</h3>
-                <p className="text-xs text-[#75696B]">Orders marked ready; waitstaff notified for immediate table delivery.</p>
+                <h3 className="font-serif text-xl font-bold text-[#55352F]">Dishes at Heated Pass</h3>
+                <p className="text-xs text-[#754D45]">Orders marked ready; waitstaff notified for immediate table delivery.</p>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -413,10 +413,10 @@ export const KitchenPortal = () => {
                   <div key={ord.id} className="p-5 rounded-2xl border-2 border-emerald-400 bg-emerald-50/50 space-y-3">
                     <div className="flex justify-between items-center">
                       <span className="font-mono text-xs font-bold text-emerald-800">{ord.id}</span>
-                      <span className="font-serif font-bold text-base text-[#2D2528]">Table {ord.tableNumber}</span>
+                      <span className="font-serif font-bold text-base text-[#55352F]">Table {ord.tableNumber}</span>
                     </div>
-                    <p className="text-xs text-[#75696B]">Server assigned: <span className="font-bold">{ord.waiter}</span></p>
-                    <ul className="text-xs text-[#2D2528] space-y-1 font-semibold">
+                    <p className="text-xs text-[#754D45]">Server assigned: <span className="font-bold">{ord.waiter}</span></p>
+                    <ul className="text-xs text-[#55352F] space-y-1 font-semibold">
                       {ord.items.map((it, i) => (
                         <li key={i}>• {it.qty} × {it.name}</li>
                       ))}
@@ -437,8 +437,8 @@ export const KitchenPortal = () => {
             <div className="bg-white rounded-2xl border border-[#E8DDD8]/50 shadow-sm p-6 space-y-6">
               <div className="flex justify-between items-center">
                 <div>
-                  <h3 className="font-serif text-xl font-bold text-[#2D2528]">Kitchen Ingredients & Low-Stock Alerts</h3>
-                  <p className="text-xs text-[#75696B]">Track essential meats, truffles, and dairy stock levels.</p>
+                  <h3 className="font-serif text-xl font-bold text-[#55352F]">Kitchen Ingredients & Low-Stock Alerts</h3>
+                  <p className="text-xs text-[#754D45]">Track essential meats, truffles, and dairy stock levels.</p>
                 </div>
                 <Button variant="primary" size="sm" icon={Plus} onClick={() => setStockReqModal(true)}>
                   Submit Requisition
@@ -448,7 +448,7 @@ export const KitchenPortal = () => {
               <div className="overflow-x-auto">
                 <table className="w-full text-left text-sm">
                   <thead>
-                    <tr className="border-b border-[#FAF7F5] text-[#873C50] uppercase text-xs">
+                    <tr className="border-b border-[#FAF7F5] text-[#754D45] uppercase text-xs">
                       <th className="py-3 px-2">Item</th>
                       <th className="py-3 px-2">Current Stock</th>
                       <th className="py-3 px-2">Min Warning</th>
@@ -459,7 +459,7 @@ export const KitchenPortal = () => {
                   <tbody className="divide-y divide-[#FAF7F5]">
                     {inventory.map((inv) => (
                       <tr key={inv.id} className="hover:bg-[#F4EDE8]">
-                        <td className="py-3 px-2 font-bold text-[#2D2528]">{inv.item}</td>
+                        <td className="py-3 px-2 font-bold text-[#55352F]">{inv.item}</td>
                         <td className="py-3 px-2 font-mono">{inv.stock} {inv.unit}</td>
                         <td className="py-3 px-2 text-xs">{inv.minStock} {inv.unit}</td>
                         <td className="py-3 px-2">
@@ -475,7 +475,7 @@ export const KitchenPortal = () => {
                               addNotification("Chef Requisition", `Replenish request for ${inv.item}`);
                               alert(`Requisition for ${inv.item} sent to Manager & Admin.`);
                             }}
-                            className="text-xs font-bold text-[#873C50] hover:underline"
+                            className="text-xs font-bold text-[#754D45] hover:underline"
                           >
                             Request Restock
                           </button>
@@ -493,14 +493,14 @@ export const KitchenPortal = () => {
              ======================================================== */}
           {activeTab === 'notifications' && (
             <div className="bg-white rounded-2xl border border-[#E8DDD8]/50 shadow-sm p-6 space-y-4">
-              <h3 className="font-serif text-xl font-bold text-[#2D2528]">Kitchen Display Notifications</h3>
+              <h3 className="font-serif text-xl font-bold text-[#55352F]">Kitchen Display Notifications</h3>
               <div className="space-y-3">
                 {notifications.map((n) => (
                   <div key={n.id} className="p-4 rounded-xl bg-[#F4EDE8] border border-[#E8DDD8]/40 flex justify-between items-center">
                     <div>
-                      <p className="font-bold text-sm text-[#2D2528]">{n.title}</p>
-                      <p className="text-xs text-[#75696B] mt-0.5">{n.message}</p>
-                      <p className="text-[10px] text-[#873C50] mt-1">{n.time}</p>
+                      <p className="font-bold text-sm text-[#55352F]">{n.title}</p>
+                      <p className="text-xs text-[#754D45] mt-0.5">{n.message}</p>
+                      <p className="text-[10px] text-[#754D45] mt-1">{n.time}</p>
                     </div>
                   </div>
                 ))}
@@ -517,12 +517,12 @@ export const KitchenPortal = () => {
                 <img
                   src={currentUser?.avatar || "https://images.unsplash.com/photo-1577219491135-ce391730fb2c?auto=format&fit=crop&w=300&q=80"}
                   alt={currentUser?.name}
-                  className="w-20 h-20 rounded-full object-cover border-4 border-[#873C50]"
+                  className="w-20 h-20 rounded-full object-cover border-4 border-[#754D45]"
                 />
                 <div>
-                  <h3 className="font-serif text-2xl font-bold text-[#2D2528]">{currentUser?.name}</h3>
-                  <p className="text-xs text-[#873C50] font-semibold">Head Chef - Hot Kitchen & Plating</p>
-                  <p className="text-xs text-[#873C50]">{currentUser?.email}</p>
+                  <h3 className="font-serif text-2xl font-bold text-[#55352F]">{currentUser?.name}</h3>
+                  <p className="text-xs text-[#754D45] font-semibold">Head Chef - Hot Kitchen & Plating</p>
+                  <p className="text-xs text-[#754D45]">{currentUser?.email}</p>
                 </div>
               </div>
 
@@ -545,12 +545,12 @@ export const KitchenPortal = () => {
         <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
           <div className="bg-white rounded-3xl max-w-md w-full p-8 border border-[#E8DDD8] shadow-2xl space-y-4">
             <div className="flex justify-between items-center border-b border-[#FAF7F5] pb-2">
-              <h3 className="font-serif text-xl font-bold text-[#2D2528]">Reject Order #{rejectModalOrder.id}</h3>
-              <button onClick={() => setRejectModalOrder(null)}><X className="w-5 h-5 text-[#873C50]" /></button>
+              <h3 className="font-serif text-xl font-bold text-[#55352F]">Reject Order #{rejectModalOrder.id}</h3>
+              <button onClick={() => setRejectModalOrder(null)}><X className="w-5 h-5 text-[#754D45]" /></button>
             </div>
             <form onSubmit={handleConfirmReject} className="space-y-4 text-xs">
               <div className="space-y-1">
-                <label className="font-bold text-[#2D2528]">Reason for Rejection</label>
+                <label className="font-bold text-[#55352F]">Reason for Rejection</label>
                 <select
                   value={rejectReason}
                   onChange={e => setRejectReason(e.target.value)}
@@ -575,8 +575,8 @@ export const KitchenPortal = () => {
         <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
           <div className="bg-white rounded-3xl max-w-md w-full p-8 border border-[#E8DDD8] shadow-2xl space-y-4">
             <div className="flex justify-between items-center border-b border-[#FAF7F5] pb-2">
-              <h3 className="font-serif text-xl font-bold text-[#2D2528]">Chef Stock Requisition</h3>
-              <button onClick={() => setStockReqModal(false)}><X className="w-5 h-5 text-[#873C50]" /></button>
+              <h3 className="font-serif text-xl font-bold text-[#55352F]">Chef Stock Requisition</h3>
+              <button onClick={() => setStockReqModal(false)}><X className="w-5 h-5 text-[#754D45]" /></button>
             </div>
             <form onSubmit={handleSendStockRequest} className="space-y-4 text-xs">
               <Input label="Ingredient Item" id="req-item" value={reqItem} onChange={e => setReqItem(e.target.value)} required />

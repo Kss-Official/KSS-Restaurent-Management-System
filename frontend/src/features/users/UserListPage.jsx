@@ -16,14 +16,14 @@ export const UserListPage = () => {
     <div className="max-w-5xl mx-auto py-10 px-4 sm:px-6">
       <div className="bg-white rounded-3xl p-8 border border-[#E8DDD8] shadow-md space-y-6">
         <div>
-          <h2 className="font-serif text-2xl font-bold text-[#2D2528]">System Users Directory</h2>
-          <p className="text-xs text-[#873C50]">List of all registered customers and staff members across the restaurant.</p>
+          <h2 className="font-serif text-2xl font-bold text-[#55352F]">System Users Directory</h2>
+          <p className="text-xs text-[#754D45]">List of all registered customers and staff members across the restaurant.</p>
         </div>
 
         <div className="overflow-x-auto">
           <table className="w-full text-left text-sm">
             <thead>
-              <tr className="border-b border-[#FAF7F5] text-[#873C50] uppercase text-xs">
+              <tr className="border-b border-[#FAF7F5] text-[#754D45] uppercase text-xs">
                 <th className="py-3 px-2">Name</th>
                 <th className="py-3 px-2">Email</th>
                 <th className="py-3 px-2">Role</th>
@@ -34,10 +34,10 @@ export const UserListPage = () => {
             <tbody className="divide-y divide-[#FAF7F5]">
               {users.map(u => (
                 <tr key={u.id} className="hover:bg-[#F4EDE8]">
-                  <td className="py-3 px-2 font-bold text-[#2D2528]">{u.name}</td>
-                  <td className="py-3 px-2 text-[#75696B]">{u.email}</td>
-                  <td className="py-3 px-2 font-semibold text-[#873C50]">{u.role}</td>
-                  <td className="py-3 px-2 text-[#75696B]">{u.phone}</td>
+                  <td className="py-3 px-2 font-bold text-[#55352F]">{u.name}</td>
+                  <td className="py-3 px-2 text-[#754D45]">{u.email}</td>
+                  <td className="py-3 px-2 font-semibold text-[#754D45]">{u.role}</td>
+                  <td className="py-3 px-2 text-[#754D45]">{u.phone}</td>
                   <td className="py-3 px-2">
                     <Link to={`/users/${u.id}`}>
                       <Button variant="outline" size="sm" icon={Eye}>View</Button>

@@ -7,23 +7,23 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Exact Reference Brand Color Palette (Burgundy & Champagne)
+        // Exact User 3-Color Palette: #55352F, #754D45, #A2766B
         burgundy: {
-          primary: '#873C50',    // Main brand identity, headings, primary buttons
-          secondary: '#873C50',  // Secondary buttons, active states, primary chart series
-          muted: '#B66A79',      // Highlights, secondary chart series, subtle accents
-          dark: '#873C50',       // Exact Primary Burgundy
+          primary: '#55352F',    // Dark Espresso (#55352F)
+          secondary: '#754D45',  // Medium Terracotta (#754D45)
+          muted: '#A2766B',      // Soft Rose Taupe (#A2766B)
+          dark: '#55352F',       // Primary Deep Dark (#55352F)
         },
         champagne: {
           bg: '#F4EDE8',         // Main page background
-          gold: '#C8A66B',       // Premium highlights & special accents
+          gold: '#A2766B',       // Accent highlight (#A2766B)
           surface: '#FAF7F5',    // Subtle surface
           border: '#E8DDD8',     // Border tone
         },
         neutral: {
-          primary: '#2D2528',    // Primary text
-          secondary: '#75696B',  // Secondary text
-          muted: '#9A8D8F',      // Muted text
+          primary: '#55352F',    // Primary text (#55352F)
+          secondary: '#754D45',  // Secondary text (#754D45)
+          muted: '#A2766B',      // Muted text (#A2766B)
           border: '#E8DDD8',     // Border
           subtle: '#FAF7F5',     // Subtle surface
         },
@@ -39,18 +39,18 @@ export default {
           100: '#F4EDE8',
           200: '#E8DDD8',
           300: '#E8DDD8',
-          400: '#B66A79',
-          500: '#873C50',
-          600: '#873C50',
-          700: '#873C50',
-          800: '#873C50',
-          900: '#2D2528',
-          950: '#873C50',
+          400: '#A2766B',
+          500: '#754D45',
+          600: '#754D45',
+          700: '#55352F',
+          800: '#55352F',
+          900: '#55352F',
+          950: '#55352F',
         },
         gold: {
-          400: '#D8BC86',
-          500: '#C8A66B',
-          600: '#B5955B',
+          400: '#A2766B',
+          500: '#A2766B',
+          600: '#754D45',
         }
       },
       fontFamily: {

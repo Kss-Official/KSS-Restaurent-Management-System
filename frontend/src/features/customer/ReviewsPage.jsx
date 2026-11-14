@@ -50,13 +50,13 @@ export const ReviewsPage = () => {
         
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto space-y-3">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FAF7F5] text-[#873C50] text-xs font-bold uppercase tracking-wider">
-            <Star className="w-3.5 h-3.5 fill-[#C8A66B] text-[#C8A66B]" /> Guest Testimonials & Accolades
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FAF7F5] text-[#754D45] text-xs font-bold uppercase tracking-wider">
+            <Star className="w-3.5 h-3.5 fill-[#A2766B] text-[#A2766B]" /> Guest Testimonials & Accolades
           </div>
-          <h1 className="font-serif text-3xl sm:text-4xl font-bold text-[#2D2528]">
+          <h1 className="font-serif text-3xl sm:text-4xl font-bold text-[#55352F]">
             Patron Reviews & Reflections
           </h1>
-          <p className="text-sm text-[#75696B]">
+          <p className="text-sm text-[#754D45]">
             Read unfiltered impressions from guests who have indulged in our sensory culinary journeys.
           </p>
         </div>
@@ -64,47 +64,47 @@ export const ReviewsPage = () => {
         {/* Rating Breakdown Banner */}
         <div className="bg-white rounded-3xl p-8 border border-[#E8DDD8]/60 shadow-md grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
           <div className="text-center md:border-r border-[#FAF7F5] md:pr-8">
-            <p className="text-xs uppercase font-bold tracking-widest text-[#873C50]">Overall Excellence</p>
-            <div className="font-serif text-5xl font-bold text-[#2D2528] mt-2">4.92</div>
-            <div className="flex justify-center gap-1 text-[#C8A66B] my-2">
+            <p className="text-xs uppercase font-bold tracking-widest text-[#754D45]">Overall Excellence</p>
+            <div className="font-serif text-5xl font-bold text-[#55352F] mt-2">4.92</div>
+            <div className="flex justify-center gap-1 text-[#A2766B] my-2">
               {[...Array(5)].map((_, i) => (
                 <Star key={i} className="w-5 h-5 fill-current" />
               ))}
             </div>
-            <p className="text-xs text-[#873C50]">Based on 380+ Verified Diners</p>
+            <p className="text-xs text-[#754D45]">Based on 380+ Verified Diners</p>
           </div>
 
           <div className="space-y-2 text-xs md:col-span-2">
             <div className="flex items-center gap-3">
-              <span className="w-24 font-bold text-[#2D2528]">Culinary Precision</span>
+              <span className="w-24 font-bold text-[#55352F]">Culinary Precision</span>
               <div className="flex-1 bg-[#F4EDE8] h-2.5 rounded-full overflow-hidden">
-                <div className="bg-[#873C50] h-full rounded-full w-[98%]"></div>
+                <div className="bg-[#754D45] h-full rounded-full w-[98%]"></div>
               </div>
-              <span className="font-mono font-bold text-[#873C50]">4.9 / 5</span>
+              <span className="font-mono font-bold text-[#754D45]">4.9 / 5</span>
             </div>
 
             <div className="flex items-center gap-3">
-              <span className="w-24 font-bold text-[#2D2528]">Floor Hospitality</span>
+              <span className="w-24 font-bold text-[#55352F]">Floor Hospitality</span>
               <div className="flex-1 bg-[#F4EDE8] h-2.5 rounded-full overflow-hidden">
-                <div className="bg-[#873C50] h-full rounded-full w-[96%]"></div>
+                <div className="bg-[#754D45] h-full rounded-full w-[96%]"></div>
               </div>
-              <span className="font-mono font-bold text-[#873C50]">4.8 / 5</span>
+              <span className="font-mono font-bold text-[#754D45]">4.8 / 5</span>
             </div>
 
             <div className="flex items-center gap-3">
-              <span className="w-24 font-bold text-[#2D2528]">Atmosphere</span>
+              <span className="w-24 font-bold text-[#55352F]">Atmosphere</span>
               <div className="flex-1 bg-[#F4EDE8] h-2.5 rounded-full overflow-hidden">
-                <div className="bg-[#873C50] h-full rounded-full w-[99%]"></div>
+                <div className="bg-[#754D45] h-full rounded-full w-[99%]"></div>
               </div>
-              <span className="font-mono font-bold text-[#873C50]">5.0 / 5</span>
+              <span className="font-mono font-bold text-[#754D45]">5.0 / 5</span>
             </div>
 
             <div className="flex items-center gap-3">
-              <span className="w-24 font-bold text-[#2D2528]">Sommelier Pairings</span>
+              <span className="w-24 font-bold text-[#55352F]">Sommelier Pairings</span>
               <div className="flex-1 bg-[#F4EDE8] h-2.5 rounded-full overflow-hidden">
-                <div className="bg-[#873C50] h-full rounded-full w-[95%]"></div>
+                <div className="bg-[#754D45] h-full rounded-full w-[95%]"></div>
               </div>
-              <span className="font-mono font-bold text-[#873C50]">4.8 / 5</span>
+              <span className="font-mono font-bold text-[#754D45]">4.8 / 5</span>
             </div>
           </div>
         </div>
@@ -115,8 +115,8 @@ export const ReviewsPage = () => {
           {/* Submission Form */}
           <div className="bg-white rounded-3xl p-6 sm:p-8 border border-[#E8DDD8]/60 shadow-md space-y-6 h-fit">
             <div>
-              <span className="text-xs font-bold uppercase tracking-wider text-[#873C50]">Share Your Review</span>
-              <h3 className="font-serif text-xl font-bold text-[#2D2528] mt-1">Reflect on Your Dining</h3>
+              <span className="text-xs font-bold uppercase tracking-wider text-[#754D45]">Share Your Review</span>
+              <h3 className="font-serif text-xl font-bold text-[#55352F] mt-1">Reflect on Your Dining</h3>
             </div>
 
             {submitted && (
@@ -128,7 +128,7 @@ export const ReviewsPage = () => {
 
             <form onSubmit={handleSubmitReview} className="space-y-4">
               <div>
-                <label className="text-xs font-bold uppercase text-[#873C50] block mb-1">Your Full Name</label>
+                <label className="text-xs font-bold uppercase text-[#754D45] block mb-1">Your Full Name</label>
                 <input
                   type="text"
                   required
@@ -140,8 +140,8 @@ export const ReviewsPage = () => {
               </div>
 
               <div>
-                <label className="text-xs font-bold uppercase text-[#873C50] block mb-1">Rating</label>
-                <div className="flex gap-2 text-[#C8A66B]">
+                <label className="text-xs font-bold uppercase text-[#754D45] block mb-1">Rating</label>
+                <div className="flex gap-2 text-[#A2766B]">
                   {[1, 2, 3, 4, 5].map((star) => (
                     <button
                       type="button"
@@ -149,14 +149,14 @@ export const ReviewsPage = () => {
                       onClick={() => setRating(star)}
                       className="p-1 focus:outline-none"
                     >
-                      <Star className={`w-6 h-6 ${star <= rating ? 'fill-[#C8A66B]' : 'text-gray-300'}`} />
+                      <Star className={`w-6 h-6 ${star <= rating ? 'fill-[#A2766B]' : 'text-gray-300'}`} />
                     </button>
                   ))}
                 </div>
               </div>
 
               <div>
-                <label className="text-xs font-bold uppercase text-[#873C50] block mb-1">Favorite Dish (Optional)</label>
+                <label className="text-xs font-bold uppercase text-[#754D45] block mb-1">Favorite Dish (Optional)</label>
                 <input
                   type="text"
                   placeholder="e.g. Dry-Aged Wagyu Ribeye"
@@ -167,7 +167,7 @@ export const ReviewsPage = () => {
               </div>
 
               <div>
-                <label className="text-xs font-bold uppercase text-[#873C50] block mb-1">Your Review</label>
+                <label className="text-xs font-bold uppercase text-[#754D45] block mb-1">Your Review</label>
                 <textarea
                   rows={4}
                   required
@@ -192,7 +192,7 @@ export const ReviewsPage = () => {
 
           {/* List of Reviews */}
           <div className="lg:col-span-2 space-y-4">
-            <h3 className="font-serif text-xl font-bold text-[#2D2528]">Recent Guest Reflections</h3>
+            <h3 className="font-serif text-xl font-bold text-[#55352F]">Recent Guest Reflections</h3>
 
             <div className="space-y-4">
               {reviews.map((rev) => (
@@ -202,28 +202,28 @@ export const ReviewsPage = () => {
                 >
                   <div className="flex justify-between items-start">
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-full bg-[#F4EDE8] border border-[#873C50]/30 flex items-center justify-center font-serif font-bold text-[#873C50]">
+                      <div className="w-10 h-10 rounded-full bg-[#F4EDE8] border border-[#754D45]/30 flex items-center justify-center font-serif font-bold text-[#754D45]">
                         {rev.guest[0]}
                       </div>
                       <div>
                         <div className="flex items-center gap-2">
-                          <h4 className="font-serif font-bold text-base text-[#2D2528]">{rev.guest}</h4>
+                          <h4 className="font-serif font-bold text-base text-[#55352F]">{rev.guest}</h4>
                           <span className="inline-flex items-center gap-0.5 text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
                             <CheckCircle2 className="w-3 h-3" /> Verified Diner
                           </span>
                         </div>
-                        <p className="text-[11px] text-[#873C50]">{rev.date}</p>
+                        <p className="text-[11px] text-[#754D45]">{rev.date}</p>
                       </div>
                     </div>
 
-                    <div className="flex gap-1 text-[#C8A66B]">
+                    <div className="flex gap-1 text-[#A2766B]">
                       {[...Array(rev.rating)].map((_, i) => (
                         <Star key={i} className="w-4 h-4 fill-current" />
                       ))}
                     </div>
                   </div>
 
-                  <p className="text-xs text-[#2D2528] leading-relaxed">
+                  <p className="text-xs text-[#55352F] leading-relaxed">
                     "{rev.comment}"
                   </p>
                 </div>

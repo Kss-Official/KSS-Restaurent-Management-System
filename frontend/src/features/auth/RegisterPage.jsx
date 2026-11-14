@@ -68,7 +68,7 @@ export const RegisterPage = () => {
   };
 
   return (
-    <div className="relative min-h-screen w-full flex items-center justify-center p-4 sm:p-6 overflow-hidden bg-gradient-to-b from-[#451423] via-[#602034] to-[#782D42]">
+    <div className="relative min-h-screen w-full flex items-center justify-center p-4 sm:p-6 overflow-hidden bg-gradient-to-b from-[#55352F] via-[#754D45] to-[#55352F]">
       
       {/* Heavily Blurred Background Image & Backdrop Filter */}
       <div className="absolute inset-0 z-0">
@@ -77,33 +77,33 @@ export const RegisterPage = () => {
           alt="Aura Mocha Luxury Restaurant"
           className="w-full h-full object-cover scale-110 filter blur-2xl opacity-20"
         />
-        <div className="absolute inset-0 bg-[#451423]/70 backdrop-blur-3xl"></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-[#451423] via-[#602034]/90 to-[#782D42]"></div>
+        <div className="absolute inset-0 bg-[#55352F]/70 backdrop-blur-3xl"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-[#55352F] via-[#754D45]/90 to-[#55352F]"></div>
       </div>
 
       {/* Back to Website Button */}
       <Link
         to="/"
-        className="absolute top-6 left-6 z-20 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 hover:bg-white/20 text-[#FFFFFF] text-xs font-semibold backdrop-blur-md border border-white/20 transition-all shadow-lg"
+        className="absolute top-6 left-6 z-20 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 hover:bg-white/20 text-[#FFFFFF] text-xs font-semibold backdrop-blur-md border border-[#A2766B]/30 transition-all shadow-lg"
       >
-        <ArrowLeft className="w-4 h-4 text-[#C8A66B]" />
+        <ArrowLeft className="w-4 h-4 text-[#A2766B]" />
         <span>Back to Website</span>
       </Link>
 
       {/* Centered Registration Card */}
-      <div className="relative z-10 max-w-md w-full space-y-5 bg-white/95 backdrop-blur-md p-8 sm:p-10 rounded-3xl shadow-2xl border border-[#E8DDD8] my-8">
+      <div className="relative z-10 max-w-md w-full space-y-5 bg-white/95 backdrop-blur-md p-8 sm:p-10 rounded-3xl shadow-2xl border border-[#A2766B]/30 my-8">
         
         {/* Brand */}
         <div className="text-center space-y-2">
           <Link to="/" className="inline-flex items-center gap-2">
-            <div className="w-12 h-12 rounded-2xl bg-[#873C50] text-white flex items-center justify-center shadow-md shadow-[#873C50]/30">
-              <UtensilsCrossed className="w-6 h-6 text-[#C8A66B]" />
+            <div className="w-12 h-12 rounded-2xl bg-[#55352F] text-white flex items-center justify-center shadow-md shadow-[#55352F]/30">
+              <UtensilsCrossed className="w-6 h-6 text-[#A2766B]" />
             </div>
           </Link>
-          <h2 className="font-serif text-3xl font-bold tracking-tight text-[#873C50]">
+          <h2 className="font-serif text-3xl font-bold tracking-tight text-[#55352F]">
             Join Aura Mocha
           </h2>
-          <p className="text-xs sm:text-sm text-[#75696B]">
+          <p className="text-xs sm:text-sm text-[#754D45]">
             Create your customer account to reserve tables and track dining history
           </p>
         </div>
@@ -169,19 +169,19 @@ export const RegisterPage = () => {
           />
 
           <div className="pt-1">
-            <label className="flex items-start gap-2.5 cursor-pointer text-xs text-[#2D2528]">
+            <label className="flex items-start gap-2.5 cursor-pointer text-xs text-[#55352F]">
               <input
                 type="checkbox"
                 checked={formData.agreeTerms}
                 onChange={(e) => setFormData({ ...formData, agreeTerms: e.target.checked })}
-                className="w-4 h-4 mt-0.5 rounded border-[#E8DDD8] text-[#873C50] focus:ring-[#873C50]"
+                className="w-4 h-4 mt-0.5 rounded border-[#A2766B]/40 text-[#754D45] focus:ring-[#754D45]"
               />
               <span>
-                I agree to the <a href="#terms" className="font-semibold text-[#873C50] hover:underline">Terms of Hospitality</a>.
+                I agree to the <a href="#terms" className="font-semibold text-[#754D45] hover:underline">Terms of Hospitality</a>.
               </span>
             </label>
             {errors.agreeTerms && (
-              <p className="text-xs text-[#C44747] font-medium mt-1">{errors.agreeTerms}</p>
+              <p className="text-xs text-[#754D45] font-medium mt-1">{errors.agreeTerms}</p>
             )}
           </div>
 
@@ -196,9 +196,9 @@ export const RegisterPage = () => {
           </Button>
         </form>
 
-        <div className="text-center pt-2 border-t border-[#E8DDD8] text-xs text-[#75696B]">
+        <div className="text-center pt-2 border-t border-[#A2766B]/30 text-xs text-[#754D45]">
           Already an esteemed guest?{' '}
-          <Link to="/login" className="font-bold text-[#873C50] hover:underline">
+          <Link to="/login" className="font-bold text-[#55352F] hover:underline">
             Sign In here
           </Link>
         </div>

@@ -21,27 +21,27 @@ export const Button = ({
   };
 
   const variantStyles = {
-    // Exact Reference Buttons:
-    // Primary Button with rich Burgundy gradient & pure white text
-    primary: "bg-gradient-to-r from-[#6E2437] via-[#873C50] to-[#782D42] text-[#FFFFFF] font-bold hover:shadow-lg hover:brightness-110 focus:ring-[#C8A66B] border border-transparent shadow-[#873C50]/25",
+    // 3-Color System: #55352F, #754D45, #A2766B
+    // Primary Button with rich #55352F to #754D45 gradient & pure white text
+    primary: "bg-gradient-to-r from-[#55352F] via-[#754D45] to-[#55352F] text-[#FFFFFF] font-bold hover:shadow-lg hover:brightness-110 focus:ring-[#A2766B] border border-[#754D45] shadow-[#55352F]/25",
     
-    // Secondary Button (bg: #FFFFFF, text: #6E2437, border: #E8DDD8)
-    secondary: "bg-[#FFFFFF] text-[#6E2437] hover:bg-[#F4EDE8] focus:ring-[#C8A66B] border border-[#E8DDD8] shadow-xs",
+    // Secondary Button (bg: #FFFFFF, text: #55352F, border: #A2766B/40)
+    secondary: "bg-[#FFFFFF] text-[#55352F] hover:bg-[#754D45]/10 focus:ring-[#A2766B] border border-[#A2766B]/40 shadow-xs",
     
     // Outline Button
-    outline: "border-2 border-[#873C50] text-[#873C50] bg-transparent hover:bg-[#873C50] hover:text-white focus:ring-[#873C50]",
+    outline: "border-2 border-[#754D45] text-[#754D45] bg-transparent hover:bg-[#754D45] hover:text-white focus:ring-[#754D45]",
     
-    // Champagne Gold Accent Button with rich gold gradient
-    gold: "bg-gradient-to-r from-[#D8B97D] via-[#C8A66B] to-[#B5955B] text-[#451423] hover:brightness-105 font-bold focus:ring-[#C8A66B] shadow-md shadow-[#C8A66B]/20",
+    // Accent Button with #754D45 to #A2766B gradient
+    gold: "bg-gradient-to-r from-[#754D45] via-[#A2766B] to-[#754D45] text-[#FFFFFF] hover:brightness-105 font-bold focus:ring-[#A2766B] shadow-md shadow-[#A2766B]/20",
     
-    // Semantic Danger / Error (#C44747)
-    danger: "bg-[#C44747] text-white hover:bg-[#A83737] focus:ring-[#C44747]",
+    // Semantic Danger / Error
+    danger: "bg-[#754D45] text-white hover:bg-[#55352F] focus:ring-[#754D45]",
     
     // Tertiary / Cancel / Ghost Button
-    ghost: "bg-transparent text-[#75696B] hover:bg-[#F4EDE8] hover:text-[#873C50] focus:ring-[#873C50] shadow-none",
+    ghost: "bg-transparent text-[#754D45] hover:bg-[#A2766B]/15 hover:text-[#55352F] focus:ring-[#754D45] shadow-none",
     
-    // Luxury Burgundy Dark Button
-    dark: "bg-gradient-to-r from-[#451423] to-[#602034] text-[#FFFFFF] hover:brightness-110 border border-[#C8A66B]/30"
+    // Dark Button in #55352F
+    dark: "bg-gradient-to-r from-[#55352F] to-[#754D45] text-[#FFFFFF] hover:brightness-110 border border-[#A2766B]/30"
   };
 
   return (

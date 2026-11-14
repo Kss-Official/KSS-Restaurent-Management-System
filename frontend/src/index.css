@@ -3,18 +3,18 @@
 @tailwind utilities;
 
 :root {
-  /* Exact Reference Brand Colors: Burgundy & Champagne */
-  --color-primary-burgundy: #873C50;
-  --color-secondary-burgundy: #873C50;
-  --color-muted-rose: #B66A79;
+  /* Exact User 3-Color Palette: #55352F, #754D45, #A2766B */
+  --color-primary-burgundy: #55352F;
+  --color-secondary-burgundy: #754D45;
+  --color-muted-rose: #A2766B;
   --color-champagne-bg: #F4EDE8;
   --color-white-surface: #FFFFFF;
-  --color-champagne-gold: #C8A66B;
+  --color-champagne-gold: #A2766B;
 
   /* Extended Neutral Colors */
-  --color-text-primary: #2D2528;
-  --color-text-secondary: #75696B;
-  --color-text-muted: #9A8D8F;
+  --color-text-primary: #55352F;
+  --color-text-secondary: #754D45;
+  --color-text-muted: #A2766B;
   --color-border: #E8DDD8;
   --color-subtle-surface: #FAF7F5;
 
@@ -29,7 +29,7 @@ body {
   margin: 0;
   padding: 0;
   background-color: #F4EDE8;
-  color: #2D2528;
+  color: #55352F;
   font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
@@ -38,7 +38,7 @@ h1, h2, h3, h4, .font-serif {
   font-family: 'Playfair Display', Georgia, serif;
 }
 
-/* Custom Burgundy & Champagne scrollbars */
+/* Custom Scrollbars in #55352F, #754D45, #A2766B */
 ::-webkit-scrollbar {
   width: 7px;
   height: 7px;
@@ -49,10 +49,10 @@ h1, h2, h3, h4, .font-serif {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #B66A79;
+  background: #A2766B;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #873C50;
+  background: #754D45;
 }
