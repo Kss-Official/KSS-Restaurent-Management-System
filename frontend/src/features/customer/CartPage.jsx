@@ -125,7 +125,7 @@ export const CartPage = () => {
               <span className="text-xs font-bold uppercase tracking-wider text-[#754D45]">Table Dining Cart</span>
               <Sparkles className="w-4 h-4 text-[#A2766B]" />
             </div>
-            <h1 className="font-serif text-3xl font-bold text-[#55352F]">Your Curated Selection</h1>
+            <h1 className="font-serif text-3xl font-bold text-[#301A18]">Your Curated Selection</h1>
             <p className="text-xs text-[#754D45] mt-1">
               Review your dishes and dispatch them directly to our executive culinary brigade.
             </p>
@@ -143,7 +143,7 @@ export const CartPage = () => {
             <div className="w-16 h-16 rounded-full bg-[#F4EDE8] text-[#754D45] mx-auto flex items-center justify-center">
               <ShoppingBag className="w-8 h-8" />
             </div>
-            <h3 className="font-serif text-2xl font-bold text-[#55352F]">Your Table Order is Empty</h3>
+            <h3 className="font-serif text-2xl font-bold text-[#301A18]">Your Table Order is Empty</h3>
             <p className="text-sm text-[#754D45] max-w-md mx-auto">
               You haven't selected any dishes yet. Browse our exquisite appetizers, signature steaks, and artisan desserts.
             </p>
@@ -162,7 +162,7 @@ export const CartPage = () => {
             <div className="lg:col-span-2 space-y-4">
               <div className="bg-white rounded-3xl p-6 border border-[#E8DDD8]/50 shadow-sm space-y-4">
                 <div className="flex justify-between items-center pb-3 border-b border-[#FAF7F5]">
-                  <h3 className="font-serif text-xl font-bold text-[#55352F]">
+                  <h3 className="font-serif text-xl font-bold text-[#301A18]">
                     Order Items ({cart.reduce((a, b) => a + b.qty, 0)})
                   </h3>
                   <button
@@ -184,7 +184,7 @@ export const CartPage = () => {
                         />
                         <div>
                           <span className="text-[10px] uppercase font-bold text-[#754D45]">{item.category}</span>
-                          <h4 className="font-serif font-bold text-base sm:text-lg text-[#55352F]">
+                          <h4 className="font-serif font-bold text-base sm:text-lg text-[#301A18]">
                             {item.name}
                           </h4>
                           <p className="font-mono text-xs font-bold text-[#754D45] mt-0.5">
@@ -212,7 +212,7 @@ export const CartPage = () => {
                         </div>
 
                         <div className="text-right min-w-[70px]">
-                          <p className="font-mono font-bold text-sm text-[#55352F]">
+                          <p className="font-mono font-bold text-sm text-[#301A18]">
                             {formatCurrency(item.price * item.qty)}
                           </p>
                           <button
@@ -248,7 +248,7 @@ export const CartPage = () => {
               
               {/* Table Selection Card */}
               <div className="bg-white rounded-3xl p-6 border border-[#E8DDD8]/50 shadow-sm space-y-4">
-                <h3 className="font-serif text-lg font-bold text-[#55352F]">Table Delivery Details</h3>
+                <h3 className="font-serif text-lg font-bold text-[#301A18]">Table Delivery Details</h3>
                 
                 <div>
                   <label className="text-xs font-bold uppercase text-[#754D45] block mb-1">
@@ -257,7 +257,7 @@ export const CartPage = () => {
                   <select
                     value={selectedTable}
                     onChange={(e) => setSelectedTable(Number(e.target.value))}
-                    className="w-full p-3 rounded-xl border border-[#E8DDD8] bg-[#F4EDE8] text-xs font-bold text-[#55352F] focus:ring-2 focus:ring-[#754D45]"
+                    className="w-full p-3 rounded-xl border border-[#E8DDD8] bg-[#F4EDE8] text-xs font-bold text-[#301A18] focus:ring-2 focus:ring-[#754D45]"
                   >
                     {tables.map(t => (
                       <option key={t.id} value={t.number}>
@@ -275,7 +275,7 @@ export const CartPage = () => {
 
               {/* Coupon / Promo Card */}
               <div className="bg-white rounded-3xl p-6 border border-[#E8DDD8]/50 shadow-sm space-y-3">
-                <h3 className="font-serif text-lg font-bold text-[#55352F]">Promotional Privilege</h3>
+                <h3 className="font-serif text-lg font-bold text-[#301A18]">Promotional Privilege</h3>
                 
                 {appliedCoupon ? (
                   <div className="p-3 rounded-2xl bg-emerald-50 border border-emerald-300 flex items-center justify-between">
@@ -320,20 +320,20 @@ export const CartPage = () => {
 
               {/* Grand Total Breakdown */}
               <div className="bg-white rounded-3xl p-6 border border-[#E8DDD8]/50 shadow-sm space-y-4">
-                <h3 className="font-serif text-lg font-bold text-[#55352F]">Order Summary</h3>
+                <h3 className="font-serif text-lg font-bold text-[#301A18]">Order Summary</h3>
 
                 <div className="space-y-2 text-xs border-b border-[#FAF7F5] pb-4">
                   <div className="flex justify-between">
                     <span className="text-[#754D45]">Subtotal:</span>
-                    <span className="font-mono font-bold text-[#55352F]">{formatCurrency(subtotal)}</span>
+                    <span className="font-mono font-bold text-[#301A18]">{formatCurrency(subtotal)}</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-[#754D45]">State Dining Tax (9%):</span>
-                    <span className="font-mono font-bold text-[#55352F]">{formatCurrency(tax)}</span>
+                    <span className="font-mono font-bold text-[#301A18]">{formatCurrency(tax)}</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-[#754D45]">Staff Service Gratuity (10%):</span>
-                    <span className="font-mono font-bold text-[#55352F]">{formatCurrency(serviceCharge)}</span>
+                    <span className="font-mono font-bold text-[#301A18]">{formatCurrency(serviceCharge)}</span>
                   </div>
                   {discount > 0 && (
                     <div className="flex justify-between text-emerald-700 font-bold">
@@ -344,7 +344,7 @@ export const CartPage = () => {
                 </div>
 
                 <div className="flex justify-between items-baseline pt-2">
-                  <span className="font-serif text-lg font-bold text-[#55352F]">Grand Total:</span>
+                  <span className="font-serif text-lg font-bold text-[#301A18]">Grand Total:</span>
                   <span className="font-serif text-2xl font-bold text-[#754D45]">{formatCurrency(grandTotal)}</span>
                 </div>
 

@@ -5,7 +5,7 @@ import { RESTAURANT_LOCATIONS } from '../../utils/constants';
 
 export const Footer = () => {
   return (
-    <footer className="relative bg-gradient-to-br from-[#55352F] via-[#754D45] to-[#55352F] text-[#FFFFFF] border-t-2 border-[#A2766B]/60 shadow-2xl overflow-hidden">
+    <footer className="relative bg-gradient-to-br from-[#301A18] via-[#754D45] to-[#301A18] text-[#FFFFFF] border-t-2 border-[#A2766B]/60 shadow-2xl overflow-hidden">
       
       {/* Subtle luxury ambient glow effect */}
       <div className="absolute top-0 right-1/4 w-96 h-96 bg-[#A2766B]/15 rounded-full blur-3xl pointer-events-none"></div>

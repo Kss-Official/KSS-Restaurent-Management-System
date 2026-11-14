@@ -42,7 +42,7 @@ export const MenuPage = () => {
         <span className="text-xs font-bold uppercase tracking-[0.3em] text-[#754D45]">
           Haute Gastronomy
         </span>
-        <h1 className="font-serif text-4xl sm:text-6xl font-bold text-[#55352F]">
+        <h1 className="font-serif text-4xl sm:text-6xl font-bold text-[#301A18]">
           Seasonal À La Carte Menu
         </h1>
         <div className="w-16 h-1 bg-[#754D45] mx-auto rounded-full"></div>
@@ -78,7 +78,7 @@ export const MenuPage = () => {
                 className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
                   selectedCategory === cat
                     ? 'bg-[#754D45] text-white shadow-md'
-                    : 'bg-[#FAF7F5] text-[#55352F] hover:bg-[#F4EDE8]'
+                    : 'bg-[#FAF7F5] text-[#301A18] hover:bg-[#F4EDE8]'
                 }`}
               >
                 {cat}
@@ -94,7 +94,7 @@ export const MenuPage = () => {
               placeholder="Search dishes..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-9 pr-4 py-2 text-sm rounded-xl border border-[#E8DDD8] bg-[#F4EDE8] focus:outline-none focus:ring-2 focus:ring-[#754D45] text-[#55352F]"
+              className="w-full pl-9 pr-4 py-2 text-sm rounded-xl border border-[#E8DDD8] bg-[#F4EDE8] focus:outline-none focus:ring-2 focus:ring-[#754D45] text-[#301A18]"
             />
           </div>
         </div>
@@ -145,14 +145,14 @@ export const MenuPage = () => {
                     <button
                       onClick={() => toggleWishlist(item.id)}
                       className={`absolute top-3 right-3 p-2 rounded-full backdrop-blur-md shadow-md transition-transform hover:scale-110 ${
-                        isWishlisted ? 'bg-white text-red-500' : 'bg-white/80 text-[#55352F] hover:text-red-500'
+                        isWishlisted ? 'bg-white text-red-500' : 'bg-white/80 text-[#301A18] hover:text-red-500'
                       }`}
                       title={isWishlisted ? 'Remove from Wishlist' : 'Add to Wishlist'}
                     >
                       <Heart className={`w-4 h-4 ${isWishlisted ? 'fill-red-500' : ''}`} />
                     </button>
 
-                    <span className="absolute bottom-3 right-3 bg-[#55352F]/90 text-white font-serif font-bold text-sm px-3.5 py-1 rounded-xl backdrop-blur-sm">
+                    <span className="absolute bottom-3 right-3 bg-[#301A18]/90 text-white font-serif font-bold text-sm px-3.5 py-1 rounded-xl backdrop-blur-sm">
                       {formatCurrency(item.price)}
                     </span>
                   </div>
@@ -160,7 +160,7 @@ export const MenuPage = () => {
                   <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
                     <div>
                       <div className="flex items-start justify-between gap-2">
-                        <h3 className="font-serif text-xl font-bold text-[#55352F] group-hover:text-[#754D45] transition-colors">
+                        <h3 className="font-serif text-xl font-bold text-[#301A18] group-hover:text-[#754D45] transition-colors">
                           {item.name}
                         </h3>
                       </div>
@@ -206,7 +206,7 @@ export const MenuPage = () => {
 
       {/* Wine & Pairing Notice */}
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-8">
-        <div className="p-6 rounded-2xl bg-[#FAF7F5] border border-[#E8DDD8] text-[#55352F]">
+        <div className="p-6 rounded-2xl bg-[#FAF7F5] border border-[#E8DDD8] text-[#301A18]">
           <p className="font-serif font-bold text-lg">Wine & Beverage Pairing Available</p>
           <p className="text-xs sm:text-sm mt-1 text-[#754D45]">
             Our in-house sommelier is at your service during dinner service to pair reserve cellar vintages with each course.

@@ -15,7 +15,7 @@ export const AboutPage = () => {
             alt="About Aura Mocha"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-[#55352F]/75 flex flex-col justify-center items-center text-center p-8">
+          <div className="absolute inset-0 bg-[#301A18]/75 flex flex-col justify-center items-center text-center p-8">
             <span className="text-xs font-bold uppercase tracking-[0.3em] text-[#A2766B] mb-3">
               Heritage & Craftsmanship
             </span>
@@ -33,7 +33,7 @@ export const AboutPage = () => {
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div>
-            <h2 className="font-serif text-3xl font-bold text-[#55352F] mb-6">
+            <h2 className="font-serif text-3xl font-bold text-[#301A18] mb-6">
               The Genesis of Aura Mocha
             </h2>
             <p className="text-sm sm:text-base text-[#754D45] leading-relaxed mb-4">
@@ -58,21 +58,21 @@ export const AboutPage = () => {
             <div className="w-12 h-12 rounded-xl bg-[#754D45] text-white flex items-center justify-center mx-auto mb-4">
               <Leaf className="w-6 h-6 text-[#F4EDE8]" />
             </div>
-            <h3 className="font-serif text-lg font-bold text-[#55352F] mb-2">Organic Provenance</h3>
+            <h3 className="font-serif text-lg font-bold text-[#301A18] mb-2">Organic Provenance</h3>
             <p className="text-xs sm:text-sm text-[#754D45]">Direct partnerships with small biodynamic farms guaranteeing sustainable practices.</p>
           </div>
           <div className="bg-white p-8 rounded-2xl border border-[#E8DDD8]/40 shadow-sm text-center">
             <div className="w-12 h-12 rounded-xl bg-[#754D45] text-white flex items-center justify-center mx-auto mb-4">
               <ChefHat className="w-6 h-6 text-[#F4EDE8]" />
             </div>
-            <h3 className="font-serif text-lg font-bold text-[#55352F] mb-2">Michelin Pedigree</h3>
+            <h3 className="font-serif text-lg font-bold text-[#301A18] mb-2">Michelin Pedigree</h3>
             <p className="text-xs sm:text-sm text-[#754D45]">Kitchen leaders trained across prestigious Michelin 3-star institutions worldwide.</p>
           </div>
           <div className="bg-white p-8 rounded-2xl border border-[#E8DDD8]/40 shadow-sm text-center">
             <div className="w-12 h-12 rounded-xl bg-[#754D45] text-white flex items-center justify-center mx-auto mb-4">
               <HeartHandshake className="w-6 h-6 text-[#F4EDE8]" />
             </div>
-            <h3 className="font-serif text-lg font-bold text-[#55352F] mb-2">Unrivaled Hospitality</h3>
+            <h3 className="font-serif text-lg font-bold text-[#301A18] mb-2">Unrivaled Hospitality</h3>
             <p className="text-xs sm:text-sm text-[#754D45]">Discreet, intuitive service dedicated to providing warmth and individualized care.</p>
           </div>
         </div>

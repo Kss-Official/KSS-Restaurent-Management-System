@@ -63,7 +63,7 @@ export const CustomerOrdersPage = () => {
               <span className="text-xs font-bold uppercase tracking-wider text-[#754D45]">Live Dining Tracker</span>
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
             </div>
-            <h1 className="font-serif text-3xl font-bold text-[#55352F]">My Live Table Orders</h1>
+            <h1 className="font-serif text-3xl font-bold text-[#301A18]">My Live Table Orders</h1>
             <p className="text-xs text-[#754D45] mt-1">
               {userSession ? (
                 <>Seated at <strong className="text-[#754D45]">Table {userSession.tableNumber}</strong> • Active Session <strong className="font-mono text-[#754D45]">#{userSession.sessionId}</strong></>
@@ -88,7 +88,7 @@ export const CustomerOrdersPage = () => {
             <div className="w-16 h-16 rounded-full bg-[#F4EDE8] text-[#754D45] mx-auto flex items-center justify-center">
               <ShoppingBag className="w-8 h-8" />
             </div>
-            <h3 className="font-serif text-2xl font-bold text-[#55352F]">No Active Orders Placed</h3>
+            <h3 className="font-serif text-2xl font-bold text-[#301A18]">No Active Orders Placed</h3>
             <p className="text-sm text-[#754D45] max-w-md mx-auto">
               You haven't ordered any dishes for your table yet. Explore our luxury seasonal menu and place an order directly to the kitchen.
             </p>
@@ -128,7 +128,7 @@ export const CustomerOrdersPage = () => {
                           • Placed {order.time || '10 mins ago'}
                         </span>
                       </div>
-                      <h3 className="font-serif text-xl font-bold text-[#55352F] mt-1">
+                      <h3 className="font-serif text-xl font-bold text-[#301A18] mt-1">
                         Table {order.tableNumber} Dining Service
                       </h3>
                     </div>
@@ -162,7 +162,7 @@ export const CustomerOrdersPage = () => {
                               isCurrent
                                 ? 'bg-[#754D45] text-white border-[#754D45] shadow-md scale-105'
                                 : isDone
-                                ? 'bg-[#F4EDE8] text-[#55352F] border-[#E8DDD8]'
+                                ? 'bg-[#F4EDE8] text-[#301A18] border-[#E8DDD8]'
                                 : 'bg-gray-50 text-gray-400 border-gray-200'
                             }`}
                           >
@@ -194,7 +194,7 @@ export const CustomerOrdersPage = () => {
                       {order.items.map((item, idx) => (
                         <div key={idx} className="p-3 rounded-xl bg-[#F4EDE8] flex justify-between items-center text-xs">
                           <div>
-                            <span className="font-bold text-[#55352F]">{item.qty} × {item.name}</span>
+                            <span className="font-bold text-[#301A18]">{item.qty} × {item.name}</span>
                             {item.notes && (
                               <p className="text-[10px] text-[#754D45] italic">Note: {item.notes}</p>
                             )}
@@ -211,10 +211,10 @@ export const CustomerOrdersPage = () => {
                   <div className="pt-4 border-t border-[#FAF7F5] flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 text-xs">
                     <div className="flex items-center gap-2 text-[#754D45]">
                       <ShieldCheck className="w-4 h-4 text-emerald-600" />
-                      <span>Dedicated Waiter: <strong className="text-[#55352F]">{order.waiter || 'Julian Vance'}</strong></span>
+                      <span>Dedicated Waiter: <strong className="text-[#301A18]">{order.waiter || 'Julian Vance'}</strong></span>
                     </div>
 
-                    <div className="font-mono text-sm font-bold text-[#55352F]">
+                    <div className="font-mono text-sm font-bold text-[#301A18]">
                       Ticket Total: <span className="text-[#754D45]">{formatCurrency(
                         order.items.reduce((s, it) => s + (it.price * it.qty), 0)
                       )}</span>

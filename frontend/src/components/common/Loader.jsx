@@ -9,9 +9,9 @@ export const Loader = ({ size = 'md', text = 'Loading luxury experience...' }) =
 
   return (
     <div className="flex flex-col items-center justify-center py-12 px-4 space-y-4">
-      <div className={`${sizeMap[size]} border-[#754D45]/20 border-t-[#55352F] border-r-[#A2766B] rounded-full animate-spin`}></div>
+      <div className={`${sizeMap[size]} border-[#754D45]/20 border-t-[#301A18] border-r-[#A2766B] rounded-full animate-spin`}></div>
       {text && (
-        <p className="text-xs tracking-widest uppercase font-serif text-[#55352F] animate-pulse">
+        <p className="text-xs tracking-widest uppercase font-serif text-[#301A18] animate-pulse">
           {text}
         </p>
       )}

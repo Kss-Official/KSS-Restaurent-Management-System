@@ -56,7 +56,7 @@ export const ServicesPage = () => {
         <span className="text-xs font-bold uppercase tracking-[0.3em] text-[#754D45]">
           Exclusive Offerings
         </span>
-        <h1 className="font-serif text-4xl sm:text-6xl font-bold text-[#55352F]">
+        <h1 className="font-serif text-4xl sm:text-6xl font-bold text-[#301A18]">
           Our Bespoke Services
         </h1>
         <div className="w-16 h-1 bg-[#754D45] mx-auto rounded-full"></div>
@@ -83,14 +83,14 @@ export const ServicesPage = () => {
                   <div className="absolute top-4 left-4 w-10 h-10 rounded-xl bg-[#754D45] text-white flex items-center justify-center shadow-lg">
                     <Icon className="w-5 h-5 text-[#F4EDE8]" />
                   </div>
-                  <span className="absolute bottom-3 right-3 px-3 py-1 bg-[#55352F]/80 backdrop-blur-sm text-white text-xs font-semibold rounded-full">
+                  <span className="absolute bottom-3 right-3 px-3 py-1 bg-[#301A18]/80 backdrop-blur-sm text-white text-xs font-semibold rounded-full">
                     {srv.capacity}
                   </span>
                 </div>
 
                 <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
                   <div>
-                    <h3 className="font-serif text-xl font-bold text-[#55352F] mb-2">
+                    <h3 className="font-serif text-xl font-bold text-[#301A18] mb-2">
                       {srv.title}
                     </h3>
                     <p className="text-xs sm:text-sm text-[#754D45] leading-relaxed">

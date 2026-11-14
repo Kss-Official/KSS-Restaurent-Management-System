@@ -80,7 +80,7 @@ export const ProfilePage = () => {
                 <span className="px-3 py-0.5 rounded-full bg-[#FAF7F5] text-[#754D45] text-[11px] font-bold uppercase tracking-wider">
                   Patron Member
                 </span>
-                <h1 className="font-serif text-2xl sm:text-3xl font-bold text-[#55352F]">
+                <h1 className="font-serif text-2xl sm:text-3xl font-bold text-[#301A18]">
                   {currentUser?.name}
                 </h1>
                 <p className="text-xs text-[#754D45]">
@@ -116,28 +116,28 @@ export const ProfilePage = () => {
                 <p className="text-xs uppercase tracking-wider font-semibold text-[#754D45] flex items-center gap-1.5">
                   <User className="w-3.5 h-3.5 text-[#754D45]" /> Full Name
                 </p>
-                <p className="font-bold text-[#55352F] text-base">{currentUser?.name}</p>
+                <p className="font-bold text-[#301A18] text-base">{currentUser?.name}</p>
               </div>
 
               <div className="p-4 rounded-2xl bg-[#F4EDE8] border border-[#E8DDD8]/40 space-y-1">
                 <p className="text-xs uppercase tracking-wider font-semibold text-[#754D45] flex items-center gap-1.5">
                   <Mail className="w-3.5 h-3.5 text-[#754D45]" /> Email Address
                 </p>
-                <p className="font-bold text-[#55352F] text-base">{currentUser?.email}</p>
+                <p className="font-bold text-[#301A18] text-base">{currentUser?.email}</p>
               </div>
 
               <div className="p-4 rounded-2xl bg-[#F4EDE8] border border-[#E8DDD8]/40 space-y-1">
                 <p className="text-xs uppercase tracking-wider font-semibold text-[#754D45] flex items-center gap-1.5">
                   <Phone className="w-3.5 h-3.5 text-[#754D45]" /> Mobile Number
                 </p>
-                <p className="font-bold text-[#55352F] text-base">{currentUser?.phone}</p>
+                <p className="font-bold text-[#301A18] text-base">{currentUser?.phone}</p>
               </div>
 
               <div className="p-4 rounded-2xl bg-[#F4EDE8] border border-[#E8DDD8]/40 space-y-1">
                 <p className="text-xs uppercase tracking-wider font-semibold text-[#754D45] flex items-center gap-1.5">
                   <ShieldCheck className="w-3.5 h-3.5 text-[#754D45]" /> Privilege Tier
                 </p>
-                <p className="font-bold text-[#55352F] text-base">Black Gold Connoisseur</p>
+                <p className="font-bold text-[#301A18] text-base">Black Gold Connoisseur</p>
               </div>
             </div>
           ) : (
@@ -179,7 +179,7 @@ export const ProfilePage = () => {
           {/* Quick link to reservations */}
           <div className="p-6 rounded-2xl bg-[#FAF7F5] border border-[#E8DDD8] flex flex-col sm:flex-row items-center justify-between gap-4">
             <div>
-              <h3 className="font-serif font-bold text-lg text-[#55352F]">Looking to Dine Soon?</h3>
+              <h3 className="font-serif font-bold text-lg text-[#301A18]">Looking to Dine Soon?</h3>
               <p className="text-xs sm:text-sm text-[#754D45]">View your existing reservations or book a new table.</p>
             </div>
             <div className="flex gap-2">

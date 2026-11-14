@@ -29,7 +29,7 @@ export const WishlistPage = () => {
               <span className="text-xs font-bold uppercase tracking-wider text-[#754D45]">Saved Delicacies</span>
               <Heart className="w-4 h-4 text-red-500 fill-red-500" />
             </div>
-            <h1 className="font-serif text-3xl font-bold text-[#55352F]">My Culinary Wishlist</h1>
+            <h1 className="font-serif text-3xl font-bold text-[#301A18]">My Culinary Wishlist</h1>
             <p className="text-xs text-[#754D45] mt-1">
               Keep track of your favorite signature dishes and order them seamlessly whenever you dine with us.
             </p>
@@ -47,7 +47,7 @@ export const WishlistPage = () => {
             <div className="w-16 h-16 rounded-full bg-[#F4EDE8] text-red-500 mx-auto flex items-center justify-center">
               <Heart className="w-8 h-8" />
             </div>
-            <h3 className="font-serif text-2xl font-bold text-[#55352F]">Your Wishlist is Empty</h3>
+            <h3 className="font-serif text-2xl font-bold text-[#301A18]">Your Wishlist is Empty</h3>
             <p className="text-sm text-[#754D45] max-w-md mx-auto">
               Save dishes you wish to try on your upcoming dining experience. Tap the heart icon on any menu item to save it here.
             </p>
@@ -81,7 +81,7 @@ export const WishlistPage = () => {
                     >
                       <Trash2 className="w-4 h-4" />
                     </button>
-                    <span className="absolute bottom-3 left-3 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-[#55352F]/80 text-white backdrop-blur-sm">
+                    <span className="absolute bottom-3 left-3 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-[#301A18]/80 text-white backdrop-blur-sm">
                       {dish.category}
                     </span>
                   </div>
@@ -89,7 +89,7 @@ export const WishlistPage = () => {
                   {/* Dish Info */}
                   <div className="p-6 space-y-2">
                     <div className="flex justify-between items-start">
-                      <h3 className="font-serif font-bold text-xl text-[#55352F]">
+                      <h3 className="font-serif font-bold text-xl text-[#301A18]">
                         {dish.name}
                       </h3>
                       <span className="font-mono font-bold text-lg text-[#754D45]">

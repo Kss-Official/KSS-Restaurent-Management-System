@@ -16,7 +16,7 @@ export const UserListPage = () => {
     <div className="max-w-5xl mx-auto py-10 px-4 sm:px-6">
       <div className="bg-white rounded-3xl p-8 border border-[#E8DDD8] shadow-md space-y-6">
         <div>
-          <h2 className="font-serif text-2xl font-bold text-[#55352F]">System Users Directory</h2>
+          <h2 className="font-serif text-2xl font-bold text-[#301A18]">System Users Directory</h2>
           <p className="text-xs text-[#754D45]">List of all registered customers and staff members across the restaurant.</p>
         </div>
 
@@ -34,7 +34,7 @@ export const UserListPage = () => {
             <tbody className="divide-y divide-[#FAF7F5]">
               {users.map(u => (
                 <tr key={u.id} className="hover:bg-[#F4EDE8]">
-                  <td className="py-3 px-2 font-bold text-[#55352F]">{u.name}</td>
+                  <td className="py-3 px-2 font-bold text-[#301A18]">{u.name}</td>
                   <td className="py-3 px-2 text-[#754D45]">{u.email}</td>
                   <td className="py-3 px-2 font-semibold text-[#754D45]">{u.role}</td>
                   <td className="py-3 px-2 text-[#754D45]">{u.phone}</td>

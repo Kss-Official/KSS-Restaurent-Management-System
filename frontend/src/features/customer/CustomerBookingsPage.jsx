@@ -94,7 +94,7 @@ export const CustomerBookingsPage = () => {
 
         {/* Section Title */}
         <div>
-          <h1 className="font-serif text-3xl font-bold text-[#55352F]">
+          <h1 className="font-serif text-3xl font-bold text-[#301A18]">
             Reservation & Dining History
           </h1>
           <p className="text-sm text-[#754D45] mt-1">
@@ -106,7 +106,7 @@ export const CustomerBookingsPage = () => {
         {myBookings.length === 0 ? (
           <div className="text-center py-16 bg-white rounded-3xl border border-dashed border-[#E8DDD8] p-8 space-y-4">
             <Calendar className="w-12 h-12 text-[#754D45] mx-auto opacity-60" />
-            <h3 className="font-serif text-xl font-bold text-[#55352F]">No Reservations Yet</h3>
+            <h3 className="font-serif text-xl font-bold text-[#301A18]">No Reservations Yet</h3>
             <p className="text-sm text-[#754D45] max-w-sm mx-auto">
               You haven't scheduled any dining experiences with us. Reserve a table now to taste our signature cuisine.
             </p>
@@ -140,7 +140,7 @@ export const CustomerBookingsPage = () => {
                     <MapPin className="w-4 h-4 text-[#754D45] shrink-0 mt-0.5" />
                     <div>
                       <p className="text-[#754D45] font-medium text-[11px] uppercase">Location</p>
-                      <p className="font-bold text-[#55352F] leading-tight">{booking.location}</p>
+                      <p className="font-bold text-[#301A18] leading-tight">{booking.location}</p>
                     </div>
                   </div>
 
@@ -148,7 +148,7 @@ export const CustomerBookingsPage = () => {
                     <Calendar className="w-4 h-4 text-[#754D45] shrink-0 mt-0.5" />
                     <div>
                       <p className="text-[#754D45] font-medium text-[11px] uppercase">Date & Time</p>
-                      <p className="font-bold text-[#55352F] leading-tight">{formatDate(booking.date)}</p>
+                      <p className="font-bold text-[#301A18] leading-tight">{formatDate(booking.date)}</p>
                       <p className="text-xs text-[#754D45]">{booking.time}</p>
                     </div>
                   </div>
@@ -157,7 +157,7 @@ export const CustomerBookingsPage = () => {
                     <Users className="w-4 h-4 text-[#754D45] shrink-0 mt-0.5" />
                     <div>
                       <p className="text-[#754D45] font-medium text-[11px] uppercase">Party Size</p>
-                      <p className="font-bold text-[#55352F] leading-tight">{booking.guests}</p>
+                      <p className="font-bold text-[#301A18] leading-tight">{booking.guests}</p>
                     </div>
                   </div>
 
@@ -165,7 +165,7 @@ export const CustomerBookingsPage = () => {
                     <FileText className="w-4 h-4 text-[#754D45] shrink-0 mt-0.5" />
                     <div>
                       <p className="text-[#754D45] font-medium text-[11px] uppercase">Guest Name</p>
-                      <p className="font-bold text-[#55352F] leading-tight">{booking.customerName}</p>
+                      <p className="font-bold text-[#301A18] leading-tight">{booking.customerName}</p>
                     </div>
                   </div>
                 </div>
@@ -215,7 +215,7 @@ export const CustomerBookingsPage = () => {
                 <span className="text-xs font-bold uppercase tracking-wider text-[#754D45]">
                   Reservation Voucher
                 </span>
-                <h3 className="font-serif text-2xl font-bold text-[#55352F]">
+                <h3 className="font-serif text-2xl font-bold text-[#301A18]">
                   Booking Reference: {selectedBooking.id}
                 </h3>
               </div>
@@ -227,19 +227,19 @@ export const CustomerBookingsPage = () => {
                 </div>
                 <div className="flex justify-between">
                   <span className="text-[#754D45]">Location</span>
-                  <span className="font-semibold text-[#55352F] text-right">{selectedBooking.location}</span>
+                  <span className="font-semibold text-[#301A18] text-right">{selectedBooking.location}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-[#754D45]">Date</span>
-                  <span className="font-semibold text-[#55352F]">{formatDate(selectedBooking.date)}</span>
+                  <span className="font-semibold text-[#301A18]">{formatDate(selectedBooking.date)}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-[#754D45]">Time</span>
-                  <span className="font-semibold text-[#55352F]">{selectedBooking.time}</span>
+                  <span className="font-semibold text-[#301A18]">{selectedBooking.time}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-[#754D45]">Number of Guests</span>
-                  <span className="font-semibold text-[#55352F]">{selectedBooking.guests}</span>
+                  <span className="font-semibold text-[#301A18]">{selectedBooking.guests}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-[#754D45]">Table Assignment</span>
@@ -247,12 +247,12 @@ export const CustomerBookingsPage = () => {
                 </div>
                 <div className="flex justify-between">
                   <span className="text-[#754D45]">Guest Contact</span>
-                  <span className="font-semibold text-[#55352F]">{selectedBooking.contactNumber}</span>
+                  <span className="font-semibold text-[#301A18]">{selectedBooking.contactNumber}</span>
                 </div>
                 {selectedBooking.specialRequests && (
                   <div className="pt-2 border-t border-[#E8DDD8]/30">
                     <span className="text-[#754D45] text-xs block mb-1">Special Dietary / Requests:</span>
-                    <p className="text-xs italic text-[#55352F] bg-white p-2.5 rounded-lg border border-[#E8DDD8]/30">
+                    <p className="text-xs italic text-[#301A18] bg-white p-2.5 rounded-lg border border-[#E8DDD8]/30">
                       "{selectedBooking.specialRequests}"
                     </p>
                   </div>

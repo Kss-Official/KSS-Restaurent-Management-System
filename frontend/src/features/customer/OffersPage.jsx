@@ -39,7 +39,7 @@ export const OffersPage = () => {
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FAF7F5] text-[#754D45] text-xs font-bold uppercase tracking-wider">
             <Gift className="w-3.5 h-3.5 text-[#A2766B]" /> Exclusive Patron Privileges
           </div>
-          <h1 className="font-serif text-3xl sm:text-4xl font-bold text-[#55352F]">
+          <h1 className="font-serif text-3xl sm:text-4xl font-bold text-[#301A18]">
             Special Offers & Seasonal Vouchers
           </h1>
           <p className="text-sm text-[#754D45]">
@@ -67,7 +67,7 @@ export const OffersPage = () => {
                 <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-[#754D45]">
                   Voucher Code
                 </span>
-                <h3 className="font-serif text-2xl font-bold text-[#55352F] mt-0.5">
+                <h3 className="font-serif text-2xl font-bold text-[#301A18] mt-0.5">
                   {offer.title}
                 </h3>
                 <p className="text-xs text-[#754D45] mt-2 leading-relaxed">
@@ -78,11 +78,11 @@ export const OffersPage = () => {
                 <div className="mt-4 pt-4 border-t border-[#FAF7F5] space-y-1.5 text-xs text-[#754D45]">
                   <div className="flex justify-between">
                     <span>Minimum Spend:</span>
-                    <strong className="text-[#55352F]">{formatCurrency(offer.minSpend)}</strong>
+                    <strong className="text-[#301A18]">{formatCurrency(offer.minSpend)}</strong>
                   </div>
                   <div className="flex justify-between">
                     <span>Valid Until:</span>
-                    <strong className="text-[#55352F]">{offer.validUntil}</strong>
+                    <strong className="text-[#301A18]">{offer.validUntil}</strong>
                   </div>
                   <div className="flex justify-between">
                     <span>Eligible Dining:</span>
@@ -132,8 +132,8 @@ export const OffersPage = () => {
           ))}
         </div>
 
-        {/* VIP Dining Pass Banner with Rich #55352F, #754D45, #A2766B Gradient */}
-        <div className="bg-gradient-to-r from-[#55352F] via-[#754D45] to-[#55352F] text-[#FFFFFF] rounded-3xl p-8 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-6 border-2 border-[#A2766B]/50">
+        {/* VIP Dining Pass Banner with Rich #301A18, #754D45, #A2766B Gradient */}
+        <div className="bg-gradient-to-r from-[#301A18] via-[#754D45] to-[#301A18] text-[#FFFFFF] rounded-3xl p-8 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-6 border-2 border-[#A2766B]/50">
           <div className="space-y-2 text-center md:text-left">
             <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#A2766B]">
               Black Gold Membership

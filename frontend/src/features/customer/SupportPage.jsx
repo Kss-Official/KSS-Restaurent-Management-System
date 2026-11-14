@@ -89,7 +89,7 @@ export const SupportPage = () => {
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FAF7F5] text-[#754D45] text-xs font-bold uppercase tracking-wider">
             <HelpCircle className="w-3.5 h-3.5 text-[#A2766B]" /> Concierge Desk
           </div>
-          <h1 className="font-serif text-3xl sm:text-4xl font-bold text-[#55352F]">
+          <h1 className="font-serif text-3xl sm:text-4xl font-bold text-[#301A18]">
             Guest Services & Inquiries
           </h1>
           <p className="text-sm text-[#754D45]">
@@ -103,7 +103,7 @@ export const SupportPage = () => {
             <div className="w-12 h-12 rounded-2xl bg-[#F4EDE8] text-[#754D45] flex items-center justify-center mx-auto">
               <Phone className="w-6 h-6" />
             </div>
-            <h3 className="font-serif font-bold text-lg text-[#55352F]">Private Concierge Line</h3>
+            <h3 className="font-serif font-bold text-lg text-[#301A18]">Private Concierge Line</h3>
             <p className="text-xs text-[#754D45]">Direct line for instant inquiries</p>
             <p className="font-mono font-bold text-sm text-[#754D45]">+1 (555) 800-4499</p>
           </div>
@@ -112,7 +112,7 @@ export const SupportPage = () => {
             <div className="w-12 h-12 rounded-2xl bg-[#F4EDE8] text-[#754D45] flex items-center justify-center mx-auto">
               <Mail className="w-6 h-6" />
             </div>
-            <h3 className="font-serif font-bold text-lg text-[#55352F]">Email Concierge</h3>
+            <h3 className="font-serif font-bold text-lg text-[#301A18]">Email Concierge</h3>
             <p className="text-xs text-[#754D45]">For event quotes and private bookings</p>
             <p className="font-bold text-xs text-[#754D45]">concierge@auramocha.com</p>
           </div>
@@ -121,9 +121,9 @@ export const SupportPage = () => {
             <div className="w-12 h-12 rounded-2xl bg-[#F4EDE8] text-[#754D45] flex items-center justify-center mx-auto">
               <Clock className="w-6 h-6" />
             </div>
-            <h3 className="font-serif font-bold text-lg text-[#55352F]">Service Hours</h3>
+            <h3 className="font-serif font-bold text-lg text-[#301A18]">Service Hours</h3>
             <p className="text-xs text-[#754D45]">Dining Salon & Front Desk</p>
-            <p className="font-bold text-xs text-[#55352F]">Mon – Sun: 11:30 AM – Midnight</p>
+            <p className="font-bold text-xs text-[#301A18]">Mon – Sun: 11:30 AM – Midnight</p>
           </div>
         </div>
 
@@ -134,7 +134,7 @@ export const SupportPage = () => {
           <div className="bg-white rounded-3xl p-6 sm:p-8 border border-[#E8DDD8]/60 shadow-sm space-y-4">
             <div>
               <span className="text-xs font-bold uppercase tracking-wider text-[#754D45]">Need Assistance?</span>
-              <h3 className="font-serif text-2xl font-bold text-[#55352F] mt-1">Frequently Asked Questions</h3>
+              <h3 className="font-serif text-2xl font-bold text-[#301A18] mt-1">Frequently Asked Questions</h3>
             </div>
 
             <div className="space-y-3 pt-2">
@@ -147,7 +147,7 @@ export const SupportPage = () => {
                     onClick={() => setOpenFaq(openFaq === index ? -1 : index)}
                     className="w-full p-4 text-left flex justify-between items-center bg-[#F4EDE8]/50 hover:bg-[#F4EDE8] transition-colors"
                   >
-                    <span className="font-serif font-bold text-sm text-[#55352F] pr-2">{faq.q}</span>
+                    <span className="font-serif font-bold text-sm text-[#301A18] pr-2">{faq.q}</span>
                     <ChevronDown className={`w-4 h-4 text-[#754D45] transition-transform ${openFaq === index ? 'rotate-180' : ''}`} />
                   </button>
                   {openFaq === index && (
@@ -164,7 +164,7 @@ export const SupportPage = () => {
           <div className="bg-white rounded-3xl p-6 sm:p-8 border border-[#E8DDD8]/60 shadow-sm space-y-6">
             <div>
               <span className="text-xs font-bold uppercase tracking-wider text-[#754D45]">Direct Communication</span>
-              <h3 className="font-serif text-2xl font-bold text-[#55352F] mt-1">Contact Concierge or Raise Query</h3>
+              <h3 className="font-serif text-2xl font-bold text-[#301A18] mt-1">Contact Concierge or Raise Query</h3>
             </div>
 
             {submitted && (

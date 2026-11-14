@@ -18,7 +18,7 @@ export const UserDetailPage = () => {
             U
           </div>
           <div>
-            <h2 className="font-serif text-2xl font-bold text-[#55352F]">User Record #{id}</h2>
+            <h2 className="font-serif text-2xl font-bold text-[#301A18]">User Record #{id}</h2>
             <p className="text-xs text-[#754D45]">Detailed account profile and privileges</p>
           </div>
         </div>
@@ -26,7 +26,7 @@ export const UserDetailPage = () => {
         <div className="space-y-3 text-sm">
           <div className="p-3 bg-[#F4EDE8] rounded-xl flex items-center justify-between">
             <span className="text-[#754D45] flex items-center gap-2"><User className="w-4 h-4 text-[#754D45]" /> Access Tier:</span>
-            <span className="font-bold text-[#55352F]">Verified Member</span>
+            <span className="font-bold text-[#301A18]">Verified Member</span>
           </div>
           <div className="p-3 bg-[#F4EDE8] rounded-xl flex items-center justify-between">
             <span className="text-[#754D45] flex items-center gap-2"><Mail className="w-4 h-4 text-[#754D45]" /> Status:</span>

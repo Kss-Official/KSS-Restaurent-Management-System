@@ -7,12 +7,12 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Exact User 3-Color Palette: #55352F, #754D45, #A2766B
+        // Exact User 3-Color Palette: #301A18, #754D45, #A2766B
         burgundy: {
-          primary: '#55352F',    // Dark Espresso (#55352F)
+          primary: '#301A18',    // Dark Espresso (#301A18)
           secondary: '#754D45',  // Medium Terracotta (#754D45)
           muted: '#A2766B',      // Soft Rose Taupe (#A2766B)
-          dark: '#55352F',       // Primary Deep Dark (#55352F)
+          dark: '#301A18',       // Primary Deep Dark (#301A18)
         },
         champagne: {
           bg: '#F4EDE8',         // Main page background
@@ -21,7 +21,7 @@ export default {
           border: '#E8DDD8',     // Border tone
         },
         neutral: {
-          primary: '#55352F',    // Primary text (#55352F)
+          primary: '#301A18',    // Primary text (#301A18)
           secondary: '#754D45',  // Secondary text (#754D45)
           muted: '#A2766B',      // Muted text (#A2766B)
           border: '#E8DDD8',     // Border
@@ -42,10 +42,10 @@ export default {
           400: '#A2766B',
           500: '#754D45',
           600: '#754D45',
-          700: '#55352F',
-          800: '#55352F',
-          900: '#55352F',
-          950: '#55352F',
+          700: '#301A18',
+          800: '#301A18',
+          900: '#301A18',
+          950: '#301A18',
         },
         gold: {
           400: '#A2766B',

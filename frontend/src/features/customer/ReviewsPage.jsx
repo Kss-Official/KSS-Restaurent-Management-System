@@ -53,7 +53,7 @@ export const ReviewsPage = () => {
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FAF7F5] text-[#754D45] text-xs font-bold uppercase tracking-wider">
             <Star className="w-3.5 h-3.5 fill-[#A2766B] text-[#A2766B]" /> Guest Testimonials & Accolades
           </div>
-          <h1 className="font-serif text-3xl sm:text-4xl font-bold text-[#55352F]">
+          <h1 className="font-serif text-3xl sm:text-4xl font-bold text-[#301A18]">
             Patron Reviews & Reflections
           </h1>
           <p className="text-sm text-[#754D45]">
@@ -65,7 +65,7 @@ export const ReviewsPage = () => {
         <div className="bg-white rounded-3xl p-8 border border-[#E8DDD8]/60 shadow-md grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
           <div className="text-center md:border-r border-[#FAF7F5] md:pr-8">
             <p className="text-xs uppercase font-bold tracking-widest text-[#754D45]">Overall Excellence</p>
-            <div className="font-serif text-5xl font-bold text-[#55352F] mt-2">4.92</div>
+            <div className="font-serif text-5xl font-bold text-[#301A18] mt-2">4.92</div>
             <div className="flex justify-center gap-1 text-[#A2766B] my-2">
               {[...Array(5)].map((_, i) => (
                 <Star key={i} className="w-5 h-5 fill-current" />
@@ -76,7 +76,7 @@ export const ReviewsPage = () => {
 
           <div className="space-y-2 text-xs md:col-span-2">
             <div className="flex items-center gap-3">
-              <span className="w-24 font-bold text-[#55352F]">Culinary Precision</span>
+              <span className="w-24 font-bold text-[#301A18]">Culinary Precision</span>
               <div className="flex-1 bg-[#F4EDE8] h-2.5 rounded-full overflow-hidden">
                 <div className="bg-[#754D45] h-full rounded-full w-[98%]"></div>
               </div>
@@ -84,7 +84,7 @@ export const ReviewsPage = () => {
             </div>
 
             <div className="flex items-center gap-3">
-              <span className="w-24 font-bold text-[#55352F]">Floor Hospitality</span>
+              <span className="w-24 font-bold text-[#301A18]">Floor Hospitality</span>
               <div className="flex-1 bg-[#F4EDE8] h-2.5 rounded-full overflow-hidden">
                 <div className="bg-[#754D45] h-full rounded-full w-[96%]"></div>
               </div>
@@ -92,7 +92,7 @@ export const ReviewsPage = () => {
             </div>
 
             <div className="flex items-center gap-3">
-              <span className="w-24 font-bold text-[#55352F]">Atmosphere</span>
+              <span className="w-24 font-bold text-[#301A18]">Atmosphere</span>
               <div className="flex-1 bg-[#F4EDE8] h-2.5 rounded-full overflow-hidden">
                 <div className="bg-[#754D45] h-full rounded-full w-[99%]"></div>
               </div>
@@ -100,7 +100,7 @@ export const ReviewsPage = () => {
             </div>
 
             <div className="flex items-center gap-3">
-              <span className="w-24 font-bold text-[#55352F]">Sommelier Pairings</span>
+              <span className="w-24 font-bold text-[#301A18]">Sommelier Pairings</span>
               <div className="flex-1 bg-[#F4EDE8] h-2.5 rounded-full overflow-hidden">
                 <div className="bg-[#754D45] h-full rounded-full w-[95%]"></div>
               </div>
@@ -116,7 +116,7 @@ export const ReviewsPage = () => {
           <div className="bg-white rounded-3xl p-6 sm:p-8 border border-[#E8DDD8]/60 shadow-md space-y-6 h-fit">
             <div>
               <span className="text-xs font-bold uppercase tracking-wider text-[#754D45]">Share Your Review</span>
-              <h3 className="font-serif text-xl font-bold text-[#55352F] mt-1">Reflect on Your Dining</h3>
+              <h3 className="font-serif text-xl font-bold text-[#301A18] mt-1">Reflect on Your Dining</h3>
             </div>
 
             {submitted && (
@@ -192,7 +192,7 @@ export const ReviewsPage = () => {
 
           {/* List of Reviews */}
           <div className="lg:col-span-2 space-y-4">
-            <h3 className="font-serif text-xl font-bold text-[#55352F]">Recent Guest Reflections</h3>
+            <h3 className="font-serif text-xl font-bold text-[#301A18]">Recent Guest Reflections</h3>
 
             <div className="space-y-4">
               {reviews.map((rev) => (
@@ -207,7 +207,7 @@ export const ReviewsPage = () => {
                       </div>
                       <div>
                         <div className="flex items-center gap-2">
-                          <h4 className="font-serif font-bold text-base text-[#55352F]">{rev.guest}</h4>
+                          <h4 className="font-serif font-bold text-base text-[#301A18]">{rev.guest}</h4>
                           <span className="inline-flex items-center gap-0.5 text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
                             <CheckCircle2 className="w-3 h-3" /> Verified Diner
                           </span>
@@ -223,7 +223,7 @@ export const ReviewsPage = () => {
                     </div>
                   </div>
 
-                  <p className="text-xs text-[#55352F] leading-relaxed">
+                  <p className="text-xs text-[#301A18] leading-relaxed">
                     "{rev.comment}"
                   </p>
                 </div>
