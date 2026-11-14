@@ -68,7 +68,7 @@ export const RegisterPage = () => {
   };
 
   return (
-    <div className="relative min-h-screen w-full flex items-center justify-center p-4 sm:p-6 overflow-hidden bg-[#542334]">
+    <div className="relative min-h-screen w-full flex items-center justify-center p-4 sm:p-6 overflow-hidden bg-[#873C50]">
       
       {/* Heavily Blurred Background Image & Backdrop Filter */}
       <div className="absolute inset-0 z-0">
@@ -77,8 +77,8 @@ export const RegisterPage = () => {
           alt="Aura Mocha Luxury Restaurant"
           className="w-full h-full object-cover scale-110 filter blur-2xl opacity-35"
         />
-        <div className="absolute inset-0 bg-[#542334]/85 backdrop-blur-3xl"></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-[#542334] via-[#542334]/90 to-[#542334]"></div>
+        <div className="absolute inset-0 bg-[#873C50]/85 backdrop-blur-3xl"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-[#873C50] via-[#873C50]/90 to-[#873C50]"></div>
       </div>
 
       {/* Back to Website Button */}
@@ -96,11 +96,11 @@ export const RegisterPage = () => {
         {/* Brand */}
         <div className="text-center space-y-2">
           <Link to="/" className="inline-flex items-center gap-2">
-            <div className="w-12 h-12 rounded-2xl bg-[#542334] text-white flex items-center justify-center shadow-md shadow-[#542334]/30">
+            <div className="w-12 h-12 rounded-2xl bg-[#873C50] text-white flex items-center justify-center shadow-md shadow-[#873C50]/30">
               <UtensilsCrossed className="w-6 h-6 text-[#C8A66B]" />
             </div>
           </Link>
-          <h2 className="font-serif text-3xl font-bold tracking-tight text-[#542334]">
+          <h2 className="font-serif text-3xl font-bold tracking-tight text-[#873C50]">
             Join Aura Mocha
           </h2>
           <p className="text-xs sm:text-sm text-[#75696B]">
@@ -198,7 +198,7 @@ export const RegisterPage = () => {
 
         <div className="text-center pt-2 border-t border-[#E8DDD8] text-xs text-[#75696B]">
           Already an esteemed guest?{' '}
-          <Link to="/login" className="font-bold text-[#542334] hover:underline">
+          <Link to="/login" className="font-bold text-[#873C50] hover:underline">
             Sign In here
           </Link>
         </div>

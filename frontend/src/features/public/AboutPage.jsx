@@ -55,21 +55,21 @@ export const AboutPage = () => {
         {/* Pillars of Excellence */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-8">
           <div className="bg-white p-8 rounded-2xl border border-[#E8DDD8]/40 shadow-sm text-center">
-            <div className="w-12 h-12 rounded-xl bg-[#542334] text-white flex items-center justify-center mx-auto mb-4">
+            <div className="w-12 h-12 rounded-xl bg-[#873C50] text-white flex items-center justify-center mx-auto mb-4">
               <Leaf className="w-6 h-6 text-[#F4EDE8]" />
             </div>
             <h3 className="font-serif text-lg font-bold text-[#2D2528] mb-2">Organic Provenance</h3>
             <p className="text-xs sm:text-sm text-[#75696B]">Direct partnerships with small biodynamic farms guaranteeing sustainable practices.</p>
           </div>
           <div className="bg-white p-8 rounded-2xl border border-[#E8DDD8]/40 shadow-sm text-center">
-            <div className="w-12 h-12 rounded-xl bg-[#542334] text-white flex items-center justify-center mx-auto mb-4">
+            <div className="w-12 h-12 rounded-xl bg-[#873C50] text-white flex items-center justify-center mx-auto mb-4">
               <ChefHat className="w-6 h-6 text-[#F4EDE8]" />
             </div>
             <h3 className="font-serif text-lg font-bold text-[#2D2528] mb-2">Michelin Pedigree</h3>
             <p className="text-xs sm:text-sm text-[#75696B]">Kitchen leaders trained across prestigious Michelin 3-star institutions worldwide.</p>
           </div>
           <div className="bg-white p-8 rounded-2xl border border-[#E8DDD8]/40 shadow-sm text-center">
-            <div className="w-12 h-12 rounded-xl bg-[#542334] text-white flex items-center justify-center mx-auto mb-4">
+            <div className="w-12 h-12 rounded-xl bg-[#873C50] text-white flex items-center justify-center mx-auto mb-4">
               <HeartHandshake className="w-6 h-6 text-[#F4EDE8]" />
             </div>
             <h3 className="font-serif text-lg font-bold text-[#2D2528] mb-2">Unrivaled Hospitality</h3>
@@ -78,7 +78,7 @@ export const AboutPage = () => {
         </div>
 
         {/* Chef Statement */}
-        <div className="bg-[#542334] text-white rounded-3xl p-8 sm:p-12 shadow-xl flex flex-col sm:flex-row items-center gap-8">
+        <div className="bg-[#873C50] text-white rounded-3xl p-8 sm:p-12 shadow-xl flex flex-col sm:flex-row items-center gap-8">
           <div className="w-28 h-28 rounded-full overflow-hidden shrink-0 border-4 border-[#C8A66B]">
             <img
               src={RESTAURANT_IMAGES.chef}

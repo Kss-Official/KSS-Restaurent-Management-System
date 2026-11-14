@@ -36,7 +36,7 @@ export const OffersPage = () => {
         
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto space-y-3">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FAF7F5] text-[#542334] text-xs font-bold uppercase tracking-wider">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FAF7F5] text-[#873C50] text-xs font-bold uppercase tracking-wider">
             <Gift className="w-3.5 h-3.5 text-[#C8A66B]" /> Exclusive Patron Privileges
           </div>
           <h1 className="font-serif text-3xl sm:text-4xl font-bold text-[#2D2528]">
@@ -52,7 +52,7 @@ export const OffersPage = () => {
           {offers.map((offer) => (
             <div
               key={offer.id}
-              className="bg-white rounded-3xl p-6 border border-[#E8DDD8]/60 shadow-md hover:border-[#542334] hover:shadow-xl transition-all flex flex-col justify-between space-y-6 relative overflow-hidden"
+              className="bg-white rounded-3xl p-6 border border-[#E8DDD8]/60 shadow-md hover:border-[#873C50] hover:shadow-xl transition-all flex flex-col justify-between space-y-6 relative overflow-hidden"
             >
               {/* Gold Ribbon Tag */}
               <div className="absolute top-0 right-0 bg-[#C8A66B] text-white text-[10px] font-bold uppercase tracking-wider py-1 px-4 rounded-bl-xl shadow-sm">
@@ -60,7 +60,7 @@ export const OffersPage = () => {
               </div>
 
               <div>
-                <div className="w-12 h-12 rounded-2xl bg-[#F4EDE8] border border-[#E8DDD8]/40 flex items-center justify-center text-[#542334] mb-4">
+                <div className="w-12 h-12 rounded-2xl bg-[#F4EDE8] border border-[#E8DDD8]/40 flex items-center justify-center text-[#873C50] mb-4">
                   <Tag className="w-6 h-6" />
                 </div>
 
@@ -93,13 +93,13 @@ export const OffersPage = () => {
 
               {/* Action Area with Copyable Code */}
               <div className="space-y-3 pt-4 border-t border-[#FAF7F5]">
-                <div className="p-3 bg-[#F4EDE8] rounded-2xl border border-dashed border-[#542334] flex items-center justify-between">
-                  <span className="font-mono font-bold text-sm text-[#542334] tracking-wider">
+                <div className="p-3 bg-[#F4EDE8] rounded-2xl border border-dashed border-[#873C50] flex items-center justify-between">
+                  <span className="font-mono font-bold text-sm text-[#873C50] tracking-wider">
                     {offer.code}
                   </span>
                   <button
                     onClick={() => handleCopy(offer.code)}
-                    className="flex items-center gap-1 text-xs font-bold text-[#873C50] hover:text-[#542334] transition-colors"
+                    className="flex items-center gap-1 text-xs font-bold text-[#873C50] hover:text-[#873C50] transition-colors"
                   >
                     {copiedCode === offer.code ? (
                       <>
@@ -133,7 +133,7 @@ export const OffersPage = () => {
         </div>
 
         {/* VIP Dining Pass Banner */}
-        <div className="bg-gradient-to-r from-[#2D2528] via-[#2D2528] to-[#542334] rounded-3xl p-8 text-white shadow-xl flex flex-col md:flex-row items-center justify-between gap-6 border border-[#C8A66B]/40">
+        <div className="bg-gradient-to-r from-[#2D2528] via-[#2D2528] to-[#873C50] rounded-3xl p-8 text-white shadow-xl flex flex-col md:flex-row items-center justify-between gap-6 border border-[#C8A66B]/40">
           <div className="space-y-2 text-center md:text-left">
             <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#C8A66B]">
               Black Gold Membership

@@ -166,7 +166,7 @@ export const AdminPortal = () => {
 
   return (
     <div className="min-h-screen bg-[#F4EDE8] flex">
-      {/* Sidebar with Mocha Brown #542334 */}
+      {/* Sidebar with Mocha Brown #873C50 */}
       <Sidebar
         title="Admin Portal"
         subtitle="Executive Control"
@@ -200,7 +200,7 @@ export const AdminPortal = () => {
           <div className="flex items-center gap-3">
             <div className="hidden sm:flex items-center gap-2 bg-[#F4EDE8] px-3 py-1.5 rounded-xl border border-[#E8DDD8]/50 text-xs">
               <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping"></span>
-              <span className="font-semibold text-[#542334]">Live Sync Active</span>
+              <span className="font-semibold text-[#873C50]">Live Sync Active</span>
             </div>
           </div>
         </header>
@@ -227,9 +227,9 @@ export const AdminPortal = () => {
                 <div className="bg-white p-5 rounded-2xl border border-[#E8DDD8]/50 shadow-sm">
                   <div className="flex justify-between items-center text-[#873C50] text-xs uppercase font-bold">
                     <span>Active Dining Sessions</span>
-                    <Layers className="w-4 h-4 text-[#542334]" />
+                    <Layers className="w-4 h-4 text-[#873C50]" />
                   </div>
-                  <p className="font-serif text-3xl font-bold text-[#542334] mt-2">{activeDiningSessions}</p>
+                  <p className="font-serif text-3xl font-bold text-[#873C50] mt-2">{activeDiningSessions}</p>
                   <p className="text-xs text-[#75696B] mt-1">{occupiedTables} tables currently occupied</p>
                 </div>
 
@@ -313,7 +313,7 @@ export const AdminPortal = () => {
                     <tbody className="divide-y divide-[#FAF7F5]">
                       {sessions.map((s) => (
                         <tr key={s.sessionId} className="hover:bg-[#F4EDE8]">
-                          <td className="py-3 px-2 font-mono font-bold text-[#542334]">{s.sessionId}</td>
+                          <td className="py-3 px-2 font-mono font-bold text-[#873C50]">{s.sessionId}</td>
                           <td className="py-3 px-2 font-bold text-[#2D2528]">Table {s.tableNumber}</td>
                           <td className="py-3 px-2">{s.guestName}</td>
                           <td className="py-3 px-2">{s.partySize}p</td>
@@ -328,7 +328,7 @@ export const AdminPortal = () => {
                             </span>
                           </td>
                           <td className="py-3 px-2">
-                            <span className="px-2 py-0.5 rounded-full text-xs font-semibold bg-[#FAF7F5] text-[#542334]">
+                            <span className="px-2 py-0.5 rounded-full text-xs font-semibold bg-[#FAF7F5] text-[#873C50]">
                               {s.status}
                             </span>
                           </td>
@@ -356,7 +356,7 @@ export const AdminPortal = () => {
                   <button
                     onClick={() => setSelectedSubTab('orders')}
                     className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
-                      selectedSubTab === 'orders' ? 'bg-[#542334] text-white' : 'bg-[#F4EDE8] text-[#75696B]'
+                      selectedSubTab === 'orders' ? 'bg-[#873C50] text-white' : 'bg-[#F4EDE8] text-[#75696B]'
                     }`}
                   >
                     All Orders ({orders.length})
@@ -364,7 +364,7 @@ export const AdminPortal = () => {
                   <button
                     onClick={() => setSelectedSubTab('tables')}
                     className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
-                      selectedSubTab === 'tables' ? 'bg-[#542334] text-white' : 'bg-[#F4EDE8] text-[#75696B]'
+                      selectedSubTab === 'tables' ? 'bg-[#873C50] text-white' : 'bg-[#F4EDE8] text-[#75696B]'
                     }`}
                   >
                     Tables ({tables.length})
@@ -372,7 +372,7 @@ export const AdminPortal = () => {
                   <button
                     onClick={() => setSelectedSubTab('reservations')}
                     className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
-                      selectedSubTab === 'reservations' ? 'bg-[#542334] text-white' : 'bg-[#F4EDE8] text-[#75696B]'
+                      selectedSubTab === 'reservations' ? 'bg-[#873C50] text-white' : 'bg-[#F4EDE8] text-[#75696B]'
                     }`}
                   >
                     Reservations ({bookings.length})
@@ -398,7 +398,7 @@ export const AdminPortal = () => {
                     <tbody className="divide-y divide-[#FAF7F5]">
                       {orders.map((ord) => (
                         <tr key={ord.id} className="hover:bg-[#F4EDE8]">
-                          <td className="py-3 px-2 font-mono font-bold text-[#542334]">{ord.id}</td>
+                          <td className="py-3 px-2 font-mono font-bold text-[#873C50]">{ord.id}</td>
                           <td className="py-3 px-2 font-mono font-bold text-[#2D2528]">{ord.sessionId}</td>
                           <td className="py-3 px-2 font-bold text-[#2D2528]">Table {ord.tableNumber}</td>
                           <td className="py-3 px-2">
@@ -465,7 +465,7 @@ export const AdminPortal = () => {
                     <tbody className="divide-y divide-[#FAF7F5]">
                       {bookings.map((b) => (
                         <tr key={b.id} className="hover:bg-[#F4EDE8]">
-                          <td className="py-3 px-2 font-mono font-bold text-[#542334]">{b.id}</td>
+                          <td className="py-3 px-2 font-mono font-bold text-[#873C50]">{b.id}</td>
                           <td className="py-3 px-2 font-bold text-[#2D2528]">{b.customerName}</td>
                           <td className="py-3 px-2 text-[#75696B]">{b.contactNumber}</td>
                           <td className="py-3 px-2">{formatDate(b.date)} at {b.time}</td>
@@ -509,7 +509,7 @@ export const AdminPortal = () => {
                         <div className="flex justify-between items-start">
                           <h4 className="font-serif font-bold text-sm text-[#2D2528]">{item.name}</h4>
                         </div>
-                        <p className="font-mono font-bold text-sm text-[#542334]">{formatCurrency(item.price)}</p>
+                        <p className="font-mono font-bold text-sm text-[#873C50]">{formatCurrency(item.price)}</p>
                         <span className="inline-block text-[10px] uppercase font-bold text-[#873C50] bg-white px-2 py-0.5 rounded border border-[#E8DDD8]/40">
                           {item.category}
                         </span>
@@ -528,7 +528,7 @@ export const AdminPortal = () => {
                         onClick={() => {
                           setMenuItems(prev => prev.map(m => m.id === item.id ? { ...m, available: !m.available } : m));
                         }}
-                        className="font-bold text-[#542334] hover:underline"
+                        className="font-bold text-[#873C50] hover:underline"
                       >
                         Toggle Availability
                       </button>
@@ -574,7 +574,7 @@ export const AdminPortal = () => {
                           <p className="text-xs text-[#873C50]">{s.email}</p>
                         </td>
                         <td className="py-3 px-2">
-                          <span className="px-2.5 py-1 rounded-full text-xs font-semibold bg-[#FAF7F5] text-[#542334]">
+                          <span className="px-2.5 py-1 rounded-full text-xs font-semibold bg-[#FAF7F5] text-[#873C50]">
                             {ROLE_LABELS[s.role] || s.role}
                           </span>
                         </td>
@@ -588,7 +588,7 @@ export const AdminPortal = () => {
                         <td className="py-3 px-2">
                           <button
                             onClick={() => alert(`Permissions modal opened for ${s.name}`)}
-                            className="text-xs font-bold text-[#542334] hover:underline"
+                            className="text-xs font-bold text-[#873C50] hover:underline"
                           >
                             Edit Permissions
                           </button>
@@ -633,7 +633,7 @@ export const AdminPortal = () => {
                   <tbody className="divide-y divide-[#FAF7F5]">
                     {inventory.map((inv) => (
                       <tr key={inv.id} className="hover:bg-[#F4EDE8]">
-                        <td className="py-3 px-2 font-mono text-xs font-bold text-[#542334]">{inv.id}</td>
+                        <td className="py-3 px-2 font-mono text-xs font-bold text-[#873C50]">{inv.id}</td>
                         <td className="py-3 px-2 font-bold text-[#2D2528]">{inv.item}</td>
                         <td className="py-3 px-2 text-xs text-[#873C50]">{inv.category}</td>
                         <td className="py-3 px-2 font-mono font-bold text-[#2D2528]">{inv.stock} {inv.unit}</td>
@@ -650,7 +650,7 @@ export const AdminPortal = () => {
                           <div className="flex items-center gap-1.5">
                             <button
                               onClick={() => updateInventoryStock(inv.id, 5)}
-                              className="px-2 py-0.5 bg-[#542334] text-white rounded text-xs font-bold"
+                              className="px-2 py-0.5 bg-[#873C50] text-white rounded text-xs font-bold"
                               title="Stock In (+5)"
                             >
                               +5
@@ -719,7 +719,7 @@ export const AdminPortal = () => {
                   <tbody className="divide-y divide-[#FAF7F5]">
                     {sessions.map((s) => (
                       <tr key={s.sessionId} className="hover:bg-[#F4EDE8]">
-                        <td className="py-3 px-2 font-mono font-bold text-[#542334]">INV-#{s.sessionId}</td>
+                        <td className="py-3 px-2 font-mono font-bold text-[#873C50]">INV-#{s.sessionId}</td>
                         <td className="py-3 px-2 font-bold text-[#2D2528]">{s.guestName}</td>
                         <td className="py-3 px-2">Table {s.tableNumber}</td>
                         <td className="py-3 px-2 font-mono">{formatCurrency(s.subtotal)}</td>
@@ -735,7 +735,7 @@ export const AdminPortal = () => {
                         <td className="py-3 px-2">
                           <button
                             onClick={() => alert(`Invoice PDF preview generated for Session #${s.sessionId}`)}
-                            className="text-xs font-bold text-[#542334] hover:underline"
+                            className="text-xs font-bold text-[#873C50] hover:underline"
                           >
                             View Invoice
                           </button>
@@ -767,7 +767,7 @@ export const AdminPortal = () => {
                 {offers.map((off) => (
                   <div key={off.id} className="p-5 rounded-2xl border border-[#E8DDD8]/50 bg-[#F4EDE8] space-y-3">
                     <div className="flex justify-between items-start">
-                      <span className="font-mono text-base font-bold bg-[#542334] text-white px-3 py-1 rounded-lg">
+                      <span className="font-mono text-base font-bold bg-[#873C50] text-white px-3 py-1 rounded-lg">
                         {off.code}
                       </span>
                       <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${
@@ -807,7 +807,7 @@ export const AdminPortal = () => {
                   <div key={c.id} className="p-4 rounded-xl border border-[#E8DDD8]/50 bg-[#F4EDE8] flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
                     <div>
                       <div className="flex items-center gap-2">
-                        <span className="font-mono text-xs font-bold text-[#542334]">{c.id}</span>
+                        <span className="font-mono text-xs font-bold text-[#873C50]">{c.id}</span>
                         <span className="font-bold text-sm text-[#2D2528]">{c.guest} ({c.table})</span>
                         <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${
                           c.status === 'Resolved' ? 'bg-[#21845A]/15 text-[#21845A] border border-[#21845A]/30' : 'bg-[#C44747]/15 text-[#C44747] border border-[#C44747]/30'
@@ -874,7 +874,7 @@ export const AdminPortal = () => {
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
                 <div className="p-4 rounded-xl bg-[#F4EDE8] border border-[#E8DDD8]/40 text-center">
                   <p className="text-[11px] font-bold text-[#873C50] uppercase">Average Table Ticket</p>
-                  <p className="font-serif text-2xl font-bold text-[#542334] mt-1">$142.50</p>
+                  <p className="font-serif text-2xl font-bold text-[#873C50] mt-1">$142.50</p>
                 </div>
                 <div className="p-4 rounded-xl bg-[#F4EDE8] border border-[#E8DDD8]/40 text-center">
                   <p className="text-[11px] font-bold text-[#873C50] uppercase">Customer Return Rate</p>
@@ -886,7 +886,7 @@ export const AdminPortal = () => {
                 </div>
                 <div className="p-4 rounded-xl bg-[#F4EDE8] border border-[#E8DDD8]/40 text-center">
                   <p className="text-[11px] font-bold text-[#873C50] uppercase">Beverage to Food Ratio</p>
-                  <p className="font-serif text-2xl font-bold text-[#542334] mt-1">38 : 62</p>
+                  <p className="font-serif text-2xl font-bold text-[#873C50] mt-1">38 : 62</p>
                 </div>
               </div>
             </div>
@@ -909,7 +909,7 @@ export const AdminPortal = () => {
                       <span className="font-serif font-bold text-base text-[#2D2528]">
                         {ROLE_LABELS[roleKey] || roleKey}
                       </span>
-                      <span className="text-[10px] font-bold px-2 py-0.5 bg-[#542334] text-white rounded-full">
+                      <span className="text-[10px] font-bold px-2 py-0.5 bg-[#873C50] text-white rounded-full">
                         Portal Authorized
                       </span>
                     </div>
@@ -936,11 +936,11 @@ export const AdminPortal = () => {
                 <img
                   src={currentUser?.avatar || "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80"}
                   alt={currentUser?.name}
-                  className="w-20 h-20 rounded-full object-cover border-4 border-[#542334]"
+                  className="w-20 h-20 rounded-full object-cover border-4 border-[#873C50]"
                 />
                 <div>
                   <h3 className="font-serif text-2xl font-bold text-[#2D2528]">{currentUser?.name}</h3>
-                  <p className="text-xs text-[#542334] font-semibold">{ROLE_LABELS[currentUser?.role] || 'Administrator'}</p>
+                  <p className="text-xs text-[#873C50] font-semibold">{ROLE_LABELS[currentUser?.role] || 'Administrator'}</p>
                   <p className="text-xs text-[#873C50]">{currentUser?.email}</p>
                 </div>
               </div>

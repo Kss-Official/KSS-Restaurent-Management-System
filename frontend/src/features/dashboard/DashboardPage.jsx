@@ -26,28 +26,28 @@ export const DashboardPage = () => {
         </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-left">
-          <Link to="/login" className="p-4 rounded-xl border border-[#E8DDD8]/60 hover:border-[#542334] bg-[#F4EDE8] transition-colors">
-            <ShieldCheck className="w-6 h-6 text-[#542334] mb-2" />
+          <Link to="/login" className="p-4 rounded-xl border border-[#E8DDD8]/60 hover:border-[#873C50] bg-[#F4EDE8] transition-colors">
+            <ShieldCheck className="w-6 h-6 text-[#873C50] mb-2" />
             <h4 className="font-bold text-[#2D2528]">Admin Portal</h4>
             <p className="text-xs text-[#873C50]">Executive management & reports</p>
           </Link>
-          <Link to="/login" className="p-4 rounded-xl border border-[#E8DDD8]/60 hover:border-[#542334] bg-[#F4EDE8] transition-colors">
-            <Briefcase className="w-6 h-6 text-[#542334] mb-2" />
+          <Link to="/login" className="p-4 rounded-xl border border-[#E8DDD8]/60 hover:border-[#873C50] bg-[#F4EDE8] transition-colors">
+            <Briefcase className="w-6 h-6 text-[#873C50] mb-2" />
             <h4 className="font-bold text-[#2D2528]">Manager Portal</h4>
             <p className="text-xs text-[#873C50]">Operations, floor & inventory oversight</p>
           </Link>
-          <Link to="/login" className="p-4 rounded-xl border border-[#E8DDD8]/60 hover:border-[#542334] bg-[#F4EDE8] transition-colors">
-            <ChefHat className="w-6 h-6 text-[#542334] mb-2" />
+          <Link to="/login" className="p-4 rounded-xl border border-[#E8DDD8]/60 hover:border-[#873C50] bg-[#F4EDE8] transition-colors">
+            <ChefHat className="w-6 h-6 text-[#873C50] mb-2" />
             <h4 className="font-bold text-[#2D2528]">Kitchen Portal</h4>
             <p className="text-xs text-[#873C50]">KDS & live cooking tickets</p>
           </Link>
-          <Link to="/login" className="p-4 rounded-xl border border-[#E8DDD8]/60 hover:border-[#542334] bg-[#F4EDE8] transition-colors">
-            <ConciergeBell className="w-6 h-6 text-[#542334] mb-2" />
+          <Link to="/login" className="p-4 rounded-xl border border-[#E8DDD8]/60 hover:border-[#873C50] bg-[#F4EDE8] transition-colors">
+            <ConciergeBell className="w-6 h-6 text-[#873C50] mb-2" />
             <h4 className="font-bold text-[#2D2528]">Reception Portal</h4>
             <p className="text-xs text-[#873C50]">Front desk, check-in & seating</p>
           </Link>
-          <Link to="/login" className="p-4 rounded-xl border border-[#E8DDD8]/60 hover:border-[#542334] bg-[#F4EDE8] transition-colors">
-            <Users className="w-6 h-6 text-[#542334] mb-2" />
+          <Link to="/login" className="p-4 rounded-xl border border-[#E8DDD8]/60 hover:border-[#873C50] bg-[#F4EDE8] transition-colors">
+            <Users className="w-6 h-6 text-[#873C50] mb-2" />
             <h4 className="font-bold text-[#2D2528]">Waiter Portal</h4>
             <p className="text-xs text-[#873C50]">Table service & order taking</p>
           </Link>

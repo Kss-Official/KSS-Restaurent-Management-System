@@ -5,14 +5,14 @@ import { RESTAURANT_LOCATIONS } from '../../utils/constants';
 
 export const Footer = () => {
   return (
-    <footer className="bg-[#542334] text-[#F4EDE8] border-t border-[#873C50]">
+    <footer className="bg-[#873C50] text-[#F4EDE8] border-t border-[#873C50]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           
           {/* Brand Info */}
           <div className="space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-[#542334] border border-[#873C50] flex items-center justify-center text-white shadow-md">
+              <div className="w-10 h-10 rounded-full bg-white/15 border border-white/25 flex items-center justify-center text-white shadow-md">
                 <UtensilsCrossed className="w-5 h-5 text-[#C8A66B]" />
               </div>
               <span className="font-serif text-2xl font-bold tracking-tight text-white">
@@ -23,21 +23,21 @@ export const Footer = () => {
               Where culinary craftsmanship meets warm Burgundy & Champagne elegance. Experience Michelin-inspired recipes, artisanal roasting, and unforgettable hospitality.
             </p>
             <div className="flex items-center gap-3 pt-2">
-              <a href="#globe" aria-label="Website" className="w-9 h-9 rounded-full bg-[#542334] hover:bg-[#873C50] flex items-center justify-center text-[#E8DDD8] hover:text-white transition-colors border border-[#873C50]/50">
-                <Globe className="w-4 h-4" />
+              <a href="#globe" aria-label="Website" className="w-9 h-9 rounded-full bg-white/15 hover:bg-white/25 flex items-center justify-center text-white transition-colors border border-white/20">
+                <Globe className="w-4 h-4 text-[#C8A66B]" />
               </a>
-              <a href="#social" aria-label="Social Share" className="w-9 h-9 rounded-full bg-[#542334] hover:bg-[#873C50] flex items-center justify-center text-[#E8DDD8] hover:text-white transition-colors border border-[#873C50]/50">
-                <Share2 className="w-4 h-4" />
+              <a href="#social" aria-label="Social Share" className="w-9 h-9 rounded-full bg-white/15 hover:bg-white/25 flex items-center justify-center text-white transition-colors border border-white/20">
+                <Share2 className="w-4 h-4 text-[#C8A66B]" />
               </a>
-              <a href="#messages" aria-label="Messages" className="w-9 h-9 rounded-full bg-[#542334] hover:bg-[#873C50] flex items-center justify-center text-[#E8DDD8] hover:text-white transition-colors border border-[#873C50]/50">
-                <MessageCircle className="w-4 h-4" />
+              <a href="#messages" aria-label="Messages" className="w-9 h-9 rounded-full bg-white/15 hover:bg-white/25 flex items-center justify-center text-white transition-colors border border-white/20">
+                <MessageCircle className="w-4 h-4 text-[#C8A66B]" />
               </a>
             </div>
           </div>
 
           {/* Quick Links */}
           <div className="space-y-4">
-            <h4 className="font-serif text-lg font-semibold text-white tracking-wide border-b border-[#873C50] pb-2">
+            <h4 className="font-serif text-lg font-semibold text-white tracking-wide border-b border-white/20 pb-2">
               Explore
             </h4>
             <ul className="space-y-2 text-sm text-[#E8DDD8]">
@@ -61,7 +61,7 @@ export const Footer = () => {
 
           {/* Hours & Dining */}
           <div className="space-y-4">
-            <h4 className="font-serif text-lg font-semibold text-white tracking-wide border-b border-[#873C50] pb-2">
+            <h4 className="font-serif text-lg font-semibold text-white tracking-wide border-b border-white/20 pb-2">
               Dining Hours
             </h4>
             <div className="space-y-3 text-sm text-[#E8DDD8]">
@@ -91,7 +91,7 @@ export const Footer = () => {
 
           {/* Contact & Flagship */}
           <div className="space-y-4">
-            <h4 className="font-serif text-lg font-semibold text-white tracking-wide border-b border-[#873C50] pb-2">
+            <h4 className="font-serif text-lg font-semibold text-white tracking-wide border-b border-white/20 pb-2">
               Concierge
             </h4>
             <div className="space-y-3 text-sm text-[#E8DDD8]">
@@ -112,7 +112,7 @@ export const Footer = () => {
 
         </div>
 
-        <div className="mt-12 pt-8 border-t border-[#873C50]/60 flex flex-col sm:flex-row items-center justify-between text-xs text-[#B66A79]">
+        <div className="mt-12 pt-8 border-t border-white/20 flex flex-col sm:flex-row items-center justify-between text-xs text-[#E8DDD8]/80">
           <p>© {new Date().getFullYear()} Aura Mocha Haute Cuisine. All Rights Reserved.</p>
           <p className="mt-2 sm:mt-0">Burgundy & Champagne Luxury Design System</p>
         </div>

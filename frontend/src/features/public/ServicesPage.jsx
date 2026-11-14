@@ -59,7 +59,7 @@ export const ServicesPage = () => {
         <h1 className="font-serif text-4xl sm:text-6xl font-bold text-[#2D2528]">
           Our Bespoke Services
         </h1>
-        <div className="w-16 h-1 bg-[#542334] mx-auto rounded-full"></div>
+        <div className="w-16 h-1 bg-[#873C50] mx-auto rounded-full"></div>
         <p className="max-w-2xl mx-auto text-sm sm:text-base text-[#75696B]">
           Beyond our renowned daily dinner services, Aura Mocha creates tailored gastronomic experiences for intimate gatherings, executive events, and connoisseurs.
         </p>
@@ -80,7 +80,7 @@ export const ServicesPage = () => {
                     alt={srv.title}
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                   />
-                  <div className="absolute top-4 left-4 w-10 h-10 rounded-xl bg-[#542334] text-white flex items-center justify-center shadow-lg">
+                  <div className="absolute top-4 left-4 w-10 h-10 rounded-xl bg-[#873C50] text-white flex items-center justify-center shadow-lg">
                     <Icon className="w-5 h-5 text-[#F4EDE8]" />
                   </div>
                   <span className="absolute bottom-3 right-3 px-3 py-1 bg-[#2D2528]/80 backdrop-blur-sm text-white text-xs font-semibold rounded-full">

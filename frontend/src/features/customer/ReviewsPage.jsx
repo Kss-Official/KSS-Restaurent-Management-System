@@ -50,7 +50,7 @@ export const ReviewsPage = () => {
         
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto space-y-3">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FAF7F5] text-[#542334] text-xs font-bold uppercase tracking-wider">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FAF7F5] text-[#873C50] text-xs font-bold uppercase tracking-wider">
             <Star className="w-3.5 h-3.5 fill-[#C8A66B] text-[#C8A66B]" /> Guest Testimonials & Accolades
           </div>
           <h1 className="font-serif text-3xl sm:text-4xl font-bold text-[#2D2528]">
@@ -78,33 +78,33 @@ export const ReviewsPage = () => {
             <div className="flex items-center gap-3">
               <span className="w-24 font-bold text-[#2D2528]">Culinary Precision</span>
               <div className="flex-1 bg-[#F4EDE8] h-2.5 rounded-full overflow-hidden">
-                <div className="bg-[#542334] h-full rounded-full w-[98%]"></div>
+                <div className="bg-[#873C50] h-full rounded-full w-[98%]"></div>
               </div>
-              <span className="font-mono font-bold text-[#542334]">4.9 / 5</span>
+              <span className="font-mono font-bold text-[#873C50]">4.9 / 5</span>
             </div>
 
             <div className="flex items-center gap-3">
               <span className="w-24 font-bold text-[#2D2528]">Floor Hospitality</span>
               <div className="flex-1 bg-[#F4EDE8] h-2.5 rounded-full overflow-hidden">
-                <div className="bg-[#542334] h-full rounded-full w-[96%]"></div>
+                <div className="bg-[#873C50] h-full rounded-full w-[96%]"></div>
               </div>
-              <span className="font-mono font-bold text-[#542334]">4.8 / 5</span>
+              <span className="font-mono font-bold text-[#873C50]">4.8 / 5</span>
             </div>
 
             <div className="flex items-center gap-3">
               <span className="w-24 font-bold text-[#2D2528]">Atmosphere</span>
               <div className="flex-1 bg-[#F4EDE8] h-2.5 rounded-full overflow-hidden">
-                <div className="bg-[#542334] h-full rounded-full w-[99%]"></div>
+                <div className="bg-[#873C50] h-full rounded-full w-[99%]"></div>
               </div>
-              <span className="font-mono font-bold text-[#542334]">5.0 / 5</span>
+              <span className="font-mono font-bold text-[#873C50]">5.0 / 5</span>
             </div>
 
             <div className="flex items-center gap-3">
               <span className="w-24 font-bold text-[#2D2528]">Sommelier Pairings</span>
               <div className="flex-1 bg-[#F4EDE8] h-2.5 rounded-full overflow-hidden">
-                <div className="bg-[#542334] h-full rounded-full w-[95%]"></div>
+                <div className="bg-[#873C50] h-full rounded-full w-[95%]"></div>
               </div>
-              <span className="font-mono font-bold text-[#542334]">4.8 / 5</span>
+              <span className="font-mono font-bold text-[#873C50]">4.8 / 5</span>
             </div>
           </div>
         </div>
@@ -202,7 +202,7 @@ export const ReviewsPage = () => {
                 >
                   <div className="flex justify-between items-start">
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-full bg-[#F4EDE8] border border-[#542334]/30 flex items-center justify-center font-serif font-bold text-[#542334]">
+                      <div className="w-10 h-10 rounded-full bg-[#F4EDE8] border border-[#873C50]/30 flex items-center justify-center font-serif font-bold text-[#873C50]">
                         {rev.guest[0]}
                       </div>
                       <div>

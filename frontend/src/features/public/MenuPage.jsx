@@ -45,7 +45,7 @@ export const MenuPage = () => {
         <h1 className="font-serif text-4xl sm:text-6xl font-bold text-[#2D2528]">
           Seasonal À La Carte Menu
         </h1>
-        <div className="w-16 h-1 bg-[#542334] mx-auto rounded-full"></div>
+        <div className="w-16 h-1 bg-[#873C50] mx-auto rounded-full"></div>
         <p className="max-w-2xl mx-auto text-sm sm:text-base text-[#75696B]">
           Each recipe is an artisanal exploration of textures and aromas, highlighting locally sourced ingredients paired with our distinctive mocha nuances.
         </p>
@@ -55,7 +55,7 @@ export const MenuPage = () => {
           <div className="pt-2">
             <Link 
               to="/cart"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#542334] text-white text-xs font-bold shadow-lg hover:bg-[#75696B] transition-all"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#873C50] text-white text-xs font-bold shadow-lg hover:bg-[#75696B] transition-all"
             >
               <ShoppingBag className="w-4 h-4 text-[#C8A66B]" />
               <span>Table Cart: {cart.reduce((a, b) => a + b.qty, 0)} items ({formatCurrency(cart.reduce((s, it) => s + (it.price * it.qty), 0))})</span>
@@ -77,7 +77,7 @@ export const MenuPage = () => {
                 onClick={() => setSelectedCategory(cat)}
                 className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
                   selectedCategory === cat
-                    ? 'bg-[#542334] text-white shadow-md'
+                    ? 'bg-[#873C50] text-white shadow-md'
                     : 'bg-[#FAF7F5] text-[#2D2528] hover:bg-[#F4EDE8]'
                 }`}
               >
@@ -94,7 +94,7 @@ export const MenuPage = () => {
               placeholder="Search dishes..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-9 pr-4 py-2 text-sm rounded-xl border border-[#E8DDD8] bg-[#F4EDE8] focus:outline-none focus:ring-2 focus:ring-[#542334] text-[#2D2528]"
+              className="w-full pl-9 pr-4 py-2 text-sm rounded-xl border border-[#E8DDD8] bg-[#F4EDE8] focus:outline-none focus:ring-2 focus:ring-[#873C50] text-[#2D2528]"
             />
           </div>
         </div>
@@ -104,11 +104,11 @@ export const MenuPage = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {filteredItems.length === 0 ? (
           <div className="text-center py-16 bg-white rounded-2xl border border-dashed border-[#E8DDD8] max-w-xl mx-auto">
-            <p className="font-serif text-lg text-[#542334] font-semibold">No culinary items match your search.</p>
+            <p className="font-serif text-lg text-[#873C50] font-semibold">No culinary items match your search.</p>
             <p className="text-xs text-[#873C50] mt-1">Try searching for other ingredients or clear filters.</p>
             <button
               onClick={() => { setSelectedCategory('All'); setSearchQuery(''); }}
-              className="mt-4 px-4 py-2 text-xs font-semibold bg-[#542334] text-white rounded-lg"
+              className="mt-4 px-4 py-2 text-xs font-semibold bg-[#873C50] text-white rounded-lg"
             >
               Reset Filters
             </button>
@@ -134,7 +134,7 @@ export const MenuPage = () => {
                     {/* Top tags */}
                     <div className="absolute top-3 left-3 flex items-center gap-2">
                       {item.signature && (
-                        <span className="bg-[#542334] text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-sm flex items-center gap-1">
+                        <span className="bg-[#873C50] text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-sm flex items-center gap-1">
                           <Sparkles className="w-3 h-3 text-[#F4EDE8]" />
                           Signature
                         </span>
@@ -160,7 +160,7 @@ export const MenuPage = () => {
                   <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
                     <div>
                       <div className="flex items-start justify-between gap-2">
-                        <h3 className="font-serif text-xl font-bold text-[#2D2528] group-hover:text-[#542334] transition-colors">
+                        <h3 className="font-serif text-xl font-bold text-[#2D2528] group-hover:text-[#873C50] transition-colors">
                           {item.name}
                         </h3>
                       </div>
@@ -172,7 +172,7 @@ export const MenuPage = () => {
                     <div className="pt-4 border-t border-[#FAF7F5] space-y-3">
                       <div className="flex flex-wrap gap-1.5">
                         {item.tags?.map((tag, i) => (
-                          <span key={i} className="text-[10px] font-semibold px-2 py-0.5 rounded-md bg-[#FAF7F5] text-[#542334]">
+                          <span key={i} className="text-[10px] font-semibold px-2 py-0.5 rounded-md bg-[#FAF7F5] text-[#873C50]">
                             {tag}
                           </span>
                         ))}
@@ -208,7 +208,7 @@ export const MenuPage = () => {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-8">
         <div className="p-6 rounded-2xl bg-[#FAF7F5] border border-[#E8DDD8] text-[#2D2528]">
           <p className="font-serif font-bold text-lg">Wine & Beverage Pairing Available</p>
-          <p className="text-xs sm:text-sm mt-1 text-[#542334]">
+          <p className="text-xs sm:text-sm mt-1 text-[#873C50]">
             Our in-house sommelier is at your service during dinner service to pair reserve cellar vintages with each course.
           </p>
         </div>

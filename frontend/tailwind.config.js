@@ -9,10 +9,10 @@ export default {
       colors: {
         // Exact Reference Brand Color Palette (Burgundy & Champagne)
         burgundy: {
-          primary: '#542334',    // Main brand identity, headings, primary buttons
+          primary: '#873C50',    // Main brand identity, headings, primary buttons
           secondary: '#873C50',  // Secondary buttons, active states, primary chart series
           muted: '#B66A79',      // Highlights, secondary chart series, subtle accents
-          dark: '#542334',       // Exact Primary Burgundy
+          dark: '#873C50',       // Exact Primary Burgundy
         },
         champagne: {
           bg: '#F4EDE8',         // Main page background
@@ -41,11 +41,11 @@ export default {
           300: '#E8DDD8',
           400: '#B66A79',
           500: '#873C50',
-          600: '#542334',
-          700: '#542334',
-          800: '#542334',
+          600: '#873C50',
+          700: '#873C50',
+          800: '#873C50',
           900: '#2D2528',
-          950: '#542334',
+          950: '#873C50',
         },
         gold: {
           400: '#D8BC86',

@@ -66,7 +66,7 @@ export const CustomerOrdersPage = () => {
             <h1 className="font-serif text-3xl font-bold text-[#2D2528]">My Live Table Orders</h1>
             <p className="text-xs text-[#75696B] mt-1">
               {userSession ? (
-                <>Seated at <strong className="text-[#542334]">Table {userSession.tableNumber}</strong> • Active Session <strong className="font-mono text-[#542334]">#{userSession.sessionId}</strong></>
+                <>Seated at <strong className="text-[#873C50]">Table {userSession.tableNumber}</strong> • Active Session <strong className="font-mono text-[#873C50]">#{userSession.sessionId}</strong></>
               ) : (
                 'Real-time order preparation status direct from the executive kitchen'
               )}
@@ -85,7 +85,7 @@ export const CustomerOrdersPage = () => {
         {/* Live Orders Tracker */}
         {customerOrders.length === 0 ? (
           <div className="bg-white rounded-3xl p-12 text-center border border-[#E8DDD8]/50 shadow-sm space-y-4">
-            <div className="w-16 h-16 rounded-full bg-[#F4EDE8] text-[#542334] mx-auto flex items-center justify-center">
+            <div className="w-16 h-16 rounded-full bg-[#F4EDE8] text-[#873C50] mx-auto flex items-center justify-center">
               <ShoppingBag className="w-8 h-8" />
             </div>
             <h3 className="font-serif text-2xl font-bold text-[#2D2528]">No Active Orders Placed</h3>
@@ -118,7 +118,7 @@ export const CustomerOrdersPage = () => {
                   <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pb-4 border-b border-[#FAF7F5]">
                     <div>
                       <div className="flex items-center gap-3">
-                        <span className="font-mono font-bold text-sm bg-[#542334] text-white px-2.5 py-0.5 rounded-lg">
+                        <span className="font-mono font-bold text-sm bg-[#873C50] text-white px-2.5 py-0.5 rounded-lg">
                           {order.id}
                         </span>
                         <span className="font-mono text-xs text-[#873C50]">
@@ -160,7 +160,7 @@ export const CustomerOrdersPage = () => {
                             key={idx} 
                             className={`p-3 rounded-2xl border transition-all text-center flex flex-col justify-between ${
                               isCurrent
-                                ? 'bg-[#542334] text-white border-[#542334] shadow-md scale-105'
+                                ? 'bg-[#873C50] text-white border-[#873C50] shadow-md scale-105'
                                 : isDone
                                 ? 'bg-[#F4EDE8] text-[#2D2528] border-[#E8DDD8]'
                                 : 'bg-gray-50 text-gray-400 border-gray-200'
@@ -187,7 +187,7 @@ export const CustomerOrdersPage = () => {
 
                   {/* Dishes Ordered */}
                   <div className="pt-4 border-t border-[#FAF7F5] space-y-3">
-                    <p className="font-bold text-xs uppercase tracking-wider text-[#542334]">
+                    <p className="font-bold text-xs uppercase tracking-wider text-[#873C50]">
                       Dishes on This Ticket:
                     </p>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -199,7 +199,7 @@ export const CustomerOrdersPage = () => {
                               <p className="text-[10px] text-[#873C50] italic">Note: {item.notes}</p>
                             )}
                           </div>
-                          <span className="font-mono font-bold text-[#542334]">
+                          <span className="font-mono font-bold text-[#873C50]">
                             {formatCurrency(item.price * item.qty)}
                           </span>
                         </div>
@@ -215,7 +215,7 @@ export const CustomerOrdersPage = () => {
                     </div>
 
                     <div className="font-mono text-sm font-bold text-[#2D2528]">
-                      Ticket Total: <span className="text-[#542334]">{formatCurrency(
+                      Ticket Total: <span className="text-[#873C50]">{formatCurrency(
                         order.items.reduce((s, it) => s + (it.price * it.qty), 0)
                       )}</span>
                     </div>

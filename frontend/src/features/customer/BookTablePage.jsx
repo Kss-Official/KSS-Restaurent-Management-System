@@ -34,7 +34,7 @@ export const BookTablePage = () => {
     return (
       <div className="min-h-[70vh] bg-[#F4EDE8] flex items-center justify-center p-4">
         <div className="max-w-md w-full bg-white p-8 rounded-3xl border border-[#E8DDD8] shadow-lg text-center space-y-4">
-          <Calendar className="w-12 h-12 text-[#542334] mx-auto" />
+          <Calendar className="w-12 h-12 text-[#873C50] mx-auto" />
           <h2 className="font-serif text-2xl font-bold text-[#2D2528]">Sign In to Reserve a Table</h2>
           <p className="text-sm text-[#75696B]">
             Table reservations are reserved for registered patrons. Please sign in or create an account to proceed.
@@ -102,12 +102,12 @@ export const BookTablePage = () => {
         {/* If Confirmation UI is active */}
         {confirmedBooking ? (
           <div className="bg-white rounded-3xl p-8 sm:p-12 border border-[#E8DDD8] shadow-xl text-center space-y-8 animate-fadeIn">
-            <div className="w-20 h-20 rounded-full bg-[#542334] text-white flex items-center justify-center mx-auto shadow-xl shadow-[#542334]/30">
+            <div className="w-20 h-20 rounded-full bg-[#873C50] text-white flex items-center justify-center mx-auto shadow-xl shadow-[#873C50]/30">
               <CheckCircle2 className="w-10 h-10 text-[#F4EDE8]" />
             </div>
 
             <div className="space-y-2">
-              <span className="px-3.5 py-1 rounded-full bg-[#FAF7F5] text-[#542334] text-xs font-bold uppercase tracking-wider">
+              <span className="px-3.5 py-1 rounded-full bg-[#FAF7F5] text-[#873C50] text-xs font-bold uppercase tracking-wider">
                 Reservation Confirmed
               </span>
               <h1 className="font-serif text-3xl sm:text-5xl font-bold text-[#2D2528]">
@@ -123,7 +123,7 @@ export const BookTablePage = () => {
               <div className="flex items-center justify-between border-b border-[#E8DDD8]/40 pb-4">
                 <div>
                   <p className="text-[11px] font-bold uppercase tracking-wider text-[#873C50]">Booking Reference</p>
-                  <p className="font-mono text-2xl font-bold text-[#542334]">{confirmedBooking.id}</p>
+                  <p className="font-mono text-2xl font-bold text-[#873C50]">{confirmedBooking.id}</p>
                 </div>
                 <div className="text-right">
                   <p className="text-[11px] font-bold uppercase tracking-wider text-[#873C50]">Status</p>
@@ -197,13 +197,13 @@ export const BookTablePage = () => {
               {/* Location */}
               <div className="space-y-1.5">
                 <label className="text-xs font-semibold uppercase tracking-wider text-[#2D2528] flex items-center gap-2">
-                  <MapPin className="w-4 h-4 text-[#542334]" />
+                  <MapPin className="w-4 h-4 text-[#873C50]" />
                   Restaurant Location <span className="text-red-600">*</span>
                 </label>
                 <select
                   value={formData.location}
                   onChange={(e) => setFormData({ ...formData, location: e.target.value })}
-                  className="w-full text-sm rounded-lg border border-[#E8DDD8] bg-white px-3.5 py-2.5 text-[#2D2528] focus:outline-none focus:ring-2 focus:ring-[#542334]"
+                  className="w-full text-sm rounded-lg border border-[#E8DDD8] bg-white px-3.5 py-2.5 text-[#2D2528] focus:outline-none focus:ring-2 focus:ring-[#873C50]"
                   required
                 >
                   {RESTAURANT_LOCATIONS.map((loc, idx) => (
@@ -216,7 +216,7 @@ export const BookTablePage = () => {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div className="space-y-1.5">
                   <label className="text-xs font-semibold uppercase tracking-wider text-[#2D2528] flex items-center gap-2">
-                    <Calendar className="w-4 h-4 text-[#542334]" />
+                    <Calendar className="w-4 h-4 text-[#873C50]" />
                     Reservation Date <span className="text-red-600">*</span>
                   </label>
                   <input
@@ -225,19 +225,19 @@ export const BookTablePage = () => {
                     value={formData.date}
                     onChange={(e) => setFormData({ ...formData, date: e.target.value })}
                     required
-                    className="w-full text-sm rounded-lg border border-[#E8DDD8] bg-white px-3.5 py-2.5 text-[#2D2528] focus:outline-none focus:ring-2 focus:ring-[#542334]"
+                    className="w-full text-sm rounded-lg border border-[#E8DDD8] bg-white px-3.5 py-2.5 text-[#2D2528] focus:outline-none focus:ring-2 focus:ring-[#873C50]"
                   />
                 </div>
 
                 <div className="space-y-1.5">
                   <label className="text-xs font-semibold uppercase tracking-wider text-[#2D2528] flex items-center gap-2">
-                    <Clock className="w-4 h-4 text-[#542334]" />
+                    <Clock className="w-4 h-4 text-[#873C50]" />
                     Reservation Time Slot <span className="text-red-600">*</span>
                   </label>
                   <select
                     value={formData.time}
                     onChange={(e) => setFormData({ ...formData, time: e.target.value })}
-                    className="w-full text-sm rounded-lg border border-[#E8DDD8] bg-white px-3.5 py-2.5 text-[#2D2528] focus:outline-none focus:ring-2 focus:ring-[#542334]"
+                    className="w-full text-sm rounded-lg border border-[#E8DDD8] bg-white px-3.5 py-2.5 text-[#2D2528] focus:outline-none focus:ring-2 focus:ring-[#873C50]"
                     required
                   >
                     {TIME_SLOTS.map((slot, idx) => (
@@ -250,7 +250,7 @@ export const BookTablePage = () => {
               {/* Guests Selection */}
               <div className="space-y-1.5">
                 <label className="text-xs font-semibold uppercase tracking-wider text-[#2D2528] flex items-center gap-2">
-                  <Users className="w-4 h-4 text-[#542334]" />
+                  <Users className="w-4 h-4 text-[#873C50]" />
                   Number of Guests <span className="text-red-600">*</span>
                 </label>
                 <div className="grid grid-cols-3 gap-3">
@@ -261,7 +261,7 @@ export const BookTablePage = () => {
                       onClick={() => setFormData({ ...formData, guests: opt })}
                       className={`py-3 px-4 rounded-xl text-sm font-semibold border transition-all ${
                         formData.guests === opt
-                          ? 'bg-[#542334] text-white border-[#542334] shadow-md'
+                          ? 'bg-[#873C50] text-white border-[#873C50] shadow-md'
                           : 'bg-[#F4EDE8] text-[#2D2528] border-[#E8DDD8] hover:bg-[#FAF7F5]'
                       }`}
                     >
@@ -297,7 +297,7 @@ export const BookTablePage = () => {
               {/* Special Requests */}
               <div className="space-y-1.5">
                 <label className="text-xs font-semibold uppercase tracking-wider text-[#2D2528] flex items-center gap-2">
-                  <FileText className="w-4 h-4 text-[#542334]" />
+                  <FileText className="w-4 h-4 text-[#873C50]" />
                   Special Requests (Optional)
                 </label>
                 <textarea
@@ -305,7 +305,7 @@ export const BookTablePage = () => {
                   placeholder="Dietary allergies, window booth preference, birthday/anniversary arrangements..."
                   value={formData.specialRequests}
                   onChange={(e) => setFormData({ ...formData, specialRequests: e.target.value })}
-                  className="w-full text-sm rounded-lg border border-[#E8DDD8] bg-white px-3.5 py-2.5 text-[#2D2528] focus:outline-none focus:ring-2 focus:ring-[#542334]"
+                  className="w-full text-sm rounded-lg border border-[#E8DDD8] bg-white px-3.5 py-2.5 text-[#2D2528] focus:outline-none focus:ring-2 focus:ring-[#873C50]"
                 ></textarea>
               </div>
 

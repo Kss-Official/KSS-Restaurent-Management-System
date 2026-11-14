@@ -23,25 +23,25 @@ export const Button = ({
   const variantStyles = {
     // Exact Reference Buttons:
     // Primary Button (bg: #873C50, text: #FFFFFF)
-    primary: "bg-[#873C50] text-white hover:bg-[#542334] focus:ring-[#873C50] border border-transparent shadow-[#873C50]/20",
+    primary: "bg-[#873C50] text-white hover:opacity-90 focus:ring-[#873C50] border border-transparent shadow-[#873C50]/20",
     
-    // Secondary Button (bg: #F4EDE8, text: #542334, border: #E8DDD8)
-    secondary: "bg-[#F4EDE8] text-[#542334] hover:bg-[#E8DDD8] focus:ring-[#873C50] border border-[#E8DDD8]",
+    // Secondary Button (bg: #F4EDE8, text: #873C50, border: #E8DDD8)
+    secondary: "bg-[#F4EDE8] text-[#873C50] hover:bg-[#E8DDD8] focus:ring-[#873C50] border border-[#E8DDD8]",
     
     // Outline Button
-    outline: "border-2 border-[#542334] text-[#542334] bg-transparent hover:bg-[#542334] hover:text-white focus:ring-[#542334]",
+    outline: "border-2 border-[#873C50] text-[#873C50] bg-transparent hover:bg-[#873C50] hover:text-white focus:ring-[#873C50]",
     
     // Champagne Gold Accent Button
-    gold: "bg-[#C8A66B] text-[#542334] hover:bg-[#B5955B] font-bold focus:ring-[#C8A66B] shadow-[#C8A66B]/20",
+    gold: "bg-[#C8A66B] text-[#873C50] hover:bg-[#B5955B] font-bold focus:ring-[#C8A66B] shadow-[#C8A66B]/20",
     
     // Semantic Danger / Error (#C44747)
     danger: "bg-[#C44747] text-white hover:bg-[#A83737] focus:ring-[#C44747]",
     
     // Tertiary / Cancel / Ghost Button
-    ghost: "bg-transparent text-[#75696B] hover:bg-[#F4EDE8] hover:text-[#542334] focus:ring-[#873C50] shadow-none",
+    ghost: "bg-transparent text-[#75696B] hover:bg-[#F4EDE8] hover:text-[#873C50] focus:ring-[#873C50] shadow-none",
     
     // Primary Burgundy Dark Button
-    dark: "bg-[#542334] text-[#F4EDE8] hover:bg-[#873C50] border border-[#542334]"
+    dark: "bg-[#873C50] text-[#F4EDE8] hover:opacity-90 border border-[#873C50]"
   };
 
   return (

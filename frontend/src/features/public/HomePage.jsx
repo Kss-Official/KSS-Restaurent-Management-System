@@ -128,7 +128,7 @@ export const HomePage = () => {
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#2D2528]/90 via-[#2D2528]/75 to-[#2D2528]/85"></div>
           {/* Subtle Mocha accent tint */}
-          <div className="absolute inset-0 bg-[#542334]/25 mix-blend-multiply"></div>
+          <div className="absolute inset-0 bg-[#873C50]/25 mix-blend-multiply"></div>
         </div>
 
         <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white py-24 space-y-8">
@@ -161,7 +161,7 @@ export const HomePage = () => {
               <Button
                 variant="outline"
                 size="lg"
-                className="w-full sm:w-auto border-[#F4EDE8] text-[#F4EDE8] hover:bg-[#F4EDE8] hover:text-[#542334]"
+                className="w-full sm:w-auto border-[#F4EDE8] text-[#F4EDE8] hover:bg-[#F4EDE8] hover:text-[#873C50]"
               >
                 Explore Haute Menu
               </Button>
@@ -199,8 +199,8 @@ export const HomePage = () => {
           <h2 className="font-serif text-3xl sm:text-5xl font-bold text-[#2D2528]">
             Our Signature Creations
           </h2>
-          <div className="w-16 h-1 bg-[#542334] mx-auto rounded-full"></div>
-          <p className="text-sm sm:text-base text-[#542334]/90 leading-relaxed">
+          <div className="w-16 h-1 bg-[#873C50] mx-auto rounded-full"></div>
+          <p className="text-sm sm:text-base text-[#873C50]/90 leading-relaxed">
             Every dish embodies our dedication to earthy depth, artisanal sourcing, and visually captivating presentation.
           </p>
         </div>
@@ -217,7 +217,7 @@ export const HomePage = () => {
                   alt={dish.title}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 />
-                <span className="absolute top-3 left-3 bg-[#542334] text-white text-[11px] font-semibold px-3 py-1 rounded-full uppercase tracking-wider shadow-sm">
+                <span className="absolute top-3 left-3 bg-[#873C50] text-white text-[11px] font-semibold px-3 py-1 rounded-full uppercase tracking-wider shadow-sm">
                   {dish.badge}
                 </span>
                 <span className="absolute bottom-3 right-3 bg-[#2D2528]/90 text-[#F4EDE8] font-serif font-bold text-sm px-3 py-1 rounded-lg backdrop-blur-sm">
@@ -227,7 +227,7 @@ export const HomePage = () => {
 
               <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
                 <div>
-                  <h3 className="font-serif text-xl font-bold text-[#2D2528] group-hover:text-[#542334] transition-colors">
+                  <h3 className="font-serif text-xl font-bold text-[#2D2528] group-hover:text-[#873C50] transition-colors">
                     {dish.title}
                   </h3>
                   <p className="text-xs sm:text-sm text-[#75696B] leading-relaxed mt-2">
@@ -239,7 +239,7 @@ export const HomePage = () => {
                     <Star className="w-3.5 h-3.5 fill-[#C8A66B] text-[#C8A66B]" />
                     4.9 / 5.0 Rating
                   </span>
-                  <Link to="/menu" className="font-semibold text-[#542334] hover:underline flex items-center gap-0.5">
+                  <Link to="/menu" className="font-semibold text-[#873C50] hover:underline flex items-center gap-0.5">
                     Order <ChevronRight className="w-3.5 h-3.5" />
                   </Link>
                 </div>
@@ -278,7 +278,7 @@ export const HomePage = () => {
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="absolute top-6 left-6 bg-[#542334] text-white p-4 rounded-xl shadow-lg max-w-[180px]">
+              <div className="absolute top-6 left-6 bg-[#873C50] text-white p-4 rounded-xl shadow-lg max-w-[180px]">
                 <p className="font-serif text-3xl font-bold">18+</p>
                 <p className="text-xs tracking-wider uppercase text-[#F4EDE8]">Years of Culinary Heritage</p>
               </div>
@@ -295,13 +295,13 @@ export const HomePage = () => {
               <p className="text-base text-[#75696B] leading-relaxed">
                 Founded in the heart of Manhattan, Aura Mocha was conceived with a vision to redefine modern fine dining through rich, earth-inspired elements: aged cuts of meat, organic produce, and deeply satisfying mocha roast notes.
               </p>
-              <p className="text-sm text-[#542334] leading-relaxed">
+              <p className="text-sm text-[#873C50] leading-relaxed">
                 Our kitchen is led by award-winning chefs who balance classic French culinary techniques with avant-garde flavor pairings. Whether you join us for an intimate celebration or a private corporate dinner, our attentive staff ensures every moment is memorable.
               </p>
 
               <div className="grid grid-cols-2 gap-4 pt-4 border-t border-[#E8DDD8]/60">
                 <div className="flex items-start gap-3">
-                  <div className="w-8 h-8 rounded-lg bg-[#542334] text-white flex items-center justify-center shrink-0">
+                  <div className="w-8 h-8 rounded-lg bg-[#873C50] text-white flex items-center justify-center shrink-0">
                     <ShieldCheck className="w-4 h-4" />
                   </div>
                   <div>
@@ -310,7 +310,7 @@ export const HomePage = () => {
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
-                  <div className="w-8 h-8 rounded-lg bg-[#542334] text-white flex items-center justify-center shrink-0">
+                  <div className="w-8 h-8 rounded-lg bg-[#873C50] text-white flex items-center justify-center shrink-0">
                     <Star className="w-4 h-4" />
                   </div>
                   <div>
@@ -342,7 +342,7 @@ export const HomePage = () => {
           <h2 className="font-serif text-3xl sm:text-5xl font-bold text-[#2D2528]">
             Curated Culinary Services
           </h2>
-          <div className="w-16 h-1 bg-[#542334] mx-auto rounded-full"></div>
+          <div className="w-16 h-1 bg-[#873C50] mx-auto rounded-full"></div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -353,10 +353,10 @@ export const HomePage = () => {
                 key={index}
                 className="bg-white p-8 rounded-2xl border border-[#E8DDD8]/50 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group"
               >
-                <div className="w-14 h-14 rounded-2xl bg-[#542334] text-white flex items-center justify-center mb-6 group-hover:bg-[#2D2528] transition-colors shadow-md shadow-[#542334]/20">
+                <div className="w-14 h-14 rounded-2xl bg-[#873C50] text-white flex items-center justify-center mb-6 group-hover:bg-[#2D2528] transition-colors shadow-md shadow-[#873C50]/20">
                   <Icon className="w-7 h-7 text-[#F4EDE8]" />
                 </div>
-                <h3 className="font-serif text-xl font-bold text-[#2D2528] mb-3 group-hover:text-[#542334] transition-colors">
+                <h3 className="font-serif text-xl font-bold text-[#2D2528] mb-3 group-hover:text-[#873C50] transition-colors">
                   {service.title}
                 </h3>
                 <p className="text-sm text-[#75696B] leading-relaxed">
@@ -379,7 +379,7 @@ export const HomePage = () => {
             />
           </div>
           <div className="relative z-10 max-w-2xl space-y-6">
-            <span className="px-3 py-1 rounded-full bg-[#C8A66B] text-[#542334] text-xs font-bold uppercase tracking-wider">
+            <span className="px-3 py-1 rounded-full bg-[#C8A66B] text-[#873C50] text-xs font-bold uppercase tracking-wider">
               Reserve Your Experience
             </span>
             <h2 className="font-serif text-3xl sm:text-5xl font-bold tracking-tight text-white leading-tight">
@@ -421,7 +421,7 @@ export const HomePage = () => {
             <h2 className="font-serif text-3xl sm:text-5xl font-bold text-[#2D2528]">
               What Our Patrons Say
             </h2>
-            <div className="w-16 h-1 bg-[#542334] mx-auto rounded-full"></div>
+            <div className="w-16 h-1 bg-[#873C50] mx-auto rounded-full"></div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -459,7 +459,7 @@ export const HomePage = () => {
           <h2 className="font-serif text-3xl sm:text-5xl font-bold text-[#2D2528]">
             Moments at Aura Mocha
           </h2>
-          <div className="w-16 h-1 bg-[#542334] mx-auto rounded-full"></div>
+          <div className="w-16 h-1 bg-[#873C50] mx-auto rounded-full"></div>
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">

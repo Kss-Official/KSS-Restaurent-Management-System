@@ -37,24 +37,24 @@ export const Sidebar = ({
         />
       )}
 
-      {/* Sidebar container with Exact Primary Burgundy #542334 */}
+      {/* Sidebar container with Exact Burgundy #873C50 */}
       <aside 
-        className={`fixed top-0 bottom-0 left-0 z-50 w-72 bg-[#542334] text-[#F4EDE8] flex flex-col justify-between transition-transform duration-300 shadow-2xl border-r border-[#873C50]/60 lg:translate-x-0 ${
+        className={`fixed top-0 bottom-0 left-0 z-50 w-72 bg-[#873C50] text-[#F4EDE8] flex flex-col justify-between transition-transform duration-300 shadow-2xl border-r border-black/15 lg:translate-x-0 ${
           isOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
         {/* Top header */}
         <div className="flex flex-col flex-1 overflow-hidden">
-          <div className="p-5 border-b border-[#873C50]/60 flex items-center justify-between shrink-0">
+          <div className="p-5 border-b border-white/15 flex items-center justify-between shrink-0">
             <Link to="/" className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-[#F4EDE8] text-[#542334] flex items-center justify-center shadow-inner shrink-0">
+              <div className="w-10 h-10 rounded-xl bg-white text-[#873C50] flex items-center justify-center shadow-inner shrink-0">
                 <UtensilsCrossed className="w-5 h-5 text-[#C8A66B]" />
               </div>
               <div className="overflow-hidden">
                 <h1 className="font-serif text-xl font-bold tracking-tight text-[#F4EDE8] leading-none truncate">
                   Aura Mocha
                 </h1>
-                <p className="text-[10px] font-semibold uppercase tracking-widest text-[#B66A79] mt-1 truncate">
+                <p className="text-[10px] font-semibold uppercase tracking-widest text-[#E8DDD8] mt-1 truncate">
                   {title || 'Management System'}
                 </p>
               </div>
@@ -62,7 +62,7 @@ export const Sidebar = ({
             {onClose && (
               <button 
                 onClick={onClose}
-                className="lg:hidden p-1.5 rounded-lg text-[#F4EDE8] hover:text-white hover:bg-[#873C50]"
+                className="lg:hidden p-1.5 rounded-lg text-[#F4EDE8] hover:text-white hover:bg-white/10"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -70,9 +70,9 @@ export const Sidebar = ({
           </div>
 
           {/* Portal badge */}
-          <div className="px-5 py-3 bg-[#542334] flex items-center justify-between text-xs text-[#F4EDE8] shrink-0 border-b border-[#873C50]/40">
-            <span className="font-semibold uppercase tracking-wider text-[#B66A79] text-[11px]">Active Portal</span>
-            <span className="px-2.5 py-0.5 rounded-full bg-[#873C50] text-[#F4EDE8] font-bold border border-[#B66A79]/40 text-[11px]">
+          <div className="px-5 py-3 bg-black/15 flex items-center justify-between text-xs text-[#F4EDE8] shrink-0 border-b border-white/10">
+            <span className="font-semibold uppercase tracking-wider text-[#E8DDD8] text-[11px]">Active Portal</span>
+            <span className="px-2.5 py-0.5 rounded-full bg-white/20 text-[#F4EDE8] font-bold border border-white/25 text-[11px]">
               {subtitle || (currentUser?.role && ROLE_LABELS[currentUser.role]) || 'Portal'}
             </span>
           </div>
@@ -84,7 +84,7 @@ export const Sidebar = ({
               if (item.isGroup) {
                 return (
                   <div key={idx} className="pt-3 pb-1">
-                    <p className="px-3 text-[10px] font-bold uppercase tracking-widest text-[#B66A79]">
+                    <p className="px-3 text-[10px] font-bold uppercase tracking-widest text-[#E8DDD8]/80">
                       {item.groupTitle}
                     </p>
                     <div className="mt-1 space-y-0.5">
@@ -102,8 +102,8 @@ export const Sidebar = ({
                             }}
                             className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs font-semibold transition-all text-left ${
                               isSubActive
-                                ? 'bg-white text-[#542334] shadow-md font-bold'
-                                : 'text-[#F4EDE8]/90 hover:bg-[#873C50] hover:text-white'
+                                ? 'bg-white text-[#873C50] shadow-md font-bold'
+                                : 'text-[#F4EDE8]/90 hover:bg-white/10 hover:text-white'
                             }`}
                           >
                             <div className="flex items-center gap-2.5 truncate">
@@ -111,7 +111,7 @@ export const Sidebar = ({
                               <span className="truncate">{sub.label}</span>
                             </div>
                             {sub.badge !== undefined && sub.badge > 0 && (
-                              <span className="px-1.5 py-0.2 text-[10px] font-bold rounded-full bg-[#C8A66B] text-[#542334]">
+                              <span className="px-1.5 py-0.2 text-[10px] font-bold rounded-full bg-[#C8A66B] text-[#873C50]">
                                 {sub.badge}
                               </span>
                             )}
@@ -138,8 +138,8 @@ export const Sidebar = ({
                   }}
                   className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-lg text-xs sm:text-sm font-semibold transition-all text-left ${
                     isActive
-                      ? 'bg-white text-[#542334] shadow-md font-bold'
-                      : 'text-[#F4EDE8]/90 hover:bg-[#873C50] hover:text-white'
+                      ? 'bg-white text-[#873C50] shadow-md font-bold'
+                      : 'text-[#F4EDE8]/90 hover:bg-white/10 hover:text-white'
                   }`}
                 >
                   <div className="flex items-center gap-3 truncate">
@@ -147,7 +147,7 @@ export const Sidebar = ({
                     <span className="truncate">{item.label}</span>
                   </div>
                   {item.badge !== undefined && item.badge > 0 && (
-                    <span className="px-2 py-0.5 text-xs font-bold rounded-full bg-[#C8A66B] text-[#542334]">
+                    <span className="px-2 py-0.5 text-xs font-bold rounded-full bg-[#C8A66B] text-[#873C50]">
                       {item.badge}
                     </span>
                   )}
@@ -158,8 +158,8 @@ export const Sidebar = ({
         </div>
 
         {/* Footer Area with user summary and back to public site / logout */}
-        <div className="p-3.5 border-t border-[#873C50]/60 bg-[#542334] space-y-2.5 shrink-0">
-          <div className="flex items-center gap-2.5 p-2 rounded-lg bg-[#542334] border border-[#873C50]/40">
+        <div className="p-3.5 border-t border-white/15 bg-black/15 space-y-2.5 shrink-0">
+          <div className="flex items-center gap-2.5 p-2 rounded-lg bg-white/10 border border-white/15">
             <img 
               src={currentUser?.avatar || "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80"}
               alt={currentUser?.name}
@@ -167,14 +167,14 @@ export const Sidebar = ({
             />
             <div className="overflow-hidden">
               <p className="text-xs font-bold text-[#F4EDE8] truncate">{currentUser?.name || "Staff Member"}</p>
-              <p className="text-[10px] text-[#B66A79] truncate capitalize">{currentUser?.role ? ROLE_LABELS[currentUser.role] : "Staff"}</p>
+              <p className="text-[10px] text-[#E8DDD8] truncate capitalize">{currentUser?.role ? ROLE_LABELS[currentUser.role] : "Staff"}</p>
             </div>
           </div>
 
           <div className="grid grid-cols-2 gap-2">
             <Link
               to="/"
-              className="flex items-center justify-center gap-1.5 py-2 text-xs font-semibold text-[#F4EDE8] bg-[#873C50] hover:bg-[#542334] rounded-lg transition-colors shadow-sm"
+              className="flex items-center justify-center gap-1.5 py-2 text-xs font-semibold text-[#F4EDE8] bg-white/15 hover:bg-white/25 rounded-lg transition-colors shadow-sm border border-white/20"
             >
               <ArrowLeft className="w-3.5 h-3.5" />
               <span>Public Site</span>

@@ -106,7 +106,7 @@ export const ManagerPortal = () => {
 
   return (
     <div className="min-h-screen bg-[#F4EDE8] flex">
-      {/* Sidebar with exact Mocha Brown #542334 */}
+      {/* Sidebar with exact Mocha Brown #873C50 */}
       <Sidebar
         title="Manager Portal"
         subtitle="Operations & Floor Control"
@@ -163,7 +163,7 @@ export const ManagerPortal = () => {
                 <div className="bg-white p-5 rounded-2xl border border-[#E8DDD8]/50 shadow-sm">
                   <p className="text-xs uppercase font-bold text-[#873C50]">Table Breakdown</p>
                   <div className="flex items-baseline gap-2 mt-2">
-                    <span className="font-serif text-3xl font-bold text-[#542334]">
+                    <span className="font-serif text-3xl font-bold text-[#873C50]">
                       {tables.filter(t => t.status === 'Occupied').length}
                     </span>
                     <span className="text-xs text-[#873C50]">
@@ -279,7 +279,7 @@ export const ManagerPortal = () => {
                     {staffRoster.map((s) => (
                       <tr key={s.id} className="hover:bg-[#F4EDE8]">
                         <td className="py-3 px-2 font-bold text-[#2D2528]">{s.name}</td>
-                        <td className="py-3 px-2 font-semibold text-[#542334]">{s.role}</td>
+                        <td className="py-3 px-2 font-semibold text-[#873C50]">{s.role}</td>
                         <td className="py-3 px-2 text-[#75696B]">{s.section}</td>
                         <td className="py-3 px-2 text-xs">{s.shift}</td>
                         <td className="py-3 px-2 font-mono font-bold text-emerald-800">{s.tips}</td>
@@ -294,7 +294,7 @@ export const ManagerPortal = () => {
                               const newStatus = s.status === 'On Duty' ? 'On Break' : 'On Duty';
                               setStaffRoster(prev => prev.map(item => item.id === s.id ? { ...item, status: newStatus } : item));
                             }}
-                            className="text-xs font-bold text-[#542334] hover:underline"
+                            className="text-xs font-bold text-[#873C50] hover:underline"
                           >
                             Toggle Duty
                           </button>
@@ -390,7 +390,7 @@ export const ManagerPortal = () => {
                         <h4 className="font-serif font-bold text-base text-[#2D2528]">{w.name}</h4>
                         <p className="text-xs text-[#873C50]">{w.section}</p>
                       </div>
-                      <span className="text-xs font-bold px-2 py-0.5 bg-[#542334] text-white rounded-full">
+                      <span className="text-xs font-bold px-2 py-0.5 bg-[#873C50] text-white rounded-full">
                         {w.tables.length} Tables
                       </span>
                     </div>
@@ -435,7 +435,7 @@ export const ManagerPortal = () => {
                   <tbody className="divide-y divide-[#FAF7F5]">
                     {orders.map((ord) => (
                       <tr key={ord.id} className="hover:bg-[#F4EDE8]">
-                        <td className="py-3 px-2 font-mono font-bold text-[#542334]">{ord.id}</td>
+                        <td className="py-3 px-2 font-mono font-bold text-[#873C50]">{ord.id}</td>
                         <td className="py-3 px-2 font-mono font-bold text-[#2D2528]">#{ord.sessionId}</td>
                         <td className="py-3 px-2 font-bold text-[#2D2528]">Table {ord.tableNumber}</td>
                         <td className="py-3 px-2 text-xs text-[#75696B]">
@@ -443,7 +443,7 @@ export const ManagerPortal = () => {
                         </td>
                         <td className="py-3 px-2 text-xs">{ord.time}</td>
                         <td className="py-3 px-2">
-                          <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-[#FAF7F5] text-[#542334]">
+                          <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-[#FAF7F5] text-[#873C50]">
                             {ord.status}
                           </span>
                         </td>
@@ -453,7 +453,7 @@ export const ManagerPortal = () => {
                               updateOrderStatus(ord.id, 'Ready to Serve');
                               alert(`Order #${ord.id} expedited and marked Ready to Serve!`);
                             }}
-                            className="text-xs font-bold text-[#542334] hover:underline"
+                            className="text-xs font-bold text-[#873C50] hover:underline"
                           >
                             Expedite Order
                           </button>
@@ -486,7 +486,7 @@ export const ManagerPortal = () => {
                   <div key={vip.id} className="p-5 rounded-2xl border border-[#E8DDD8]/50 bg-[#F4EDE8] space-y-3">
                     <div className="flex justify-between items-center">
                       <h4 className="font-serif font-bold text-base text-[#2D2528]">{vip.name}</h4>
-                      <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#C8A66B] text-[#542334]">
+                      <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#C8A66B] text-[#873C50]">
                         {vip.tier}
                       </span>
                     </div>
@@ -533,11 +533,11 @@ export const ManagerPortal = () => {
                   <tbody className="divide-y divide-[#FAF7F5]">
                     {bookings.map((b) => (
                       <tr key={b.id} className="hover:bg-[#F4EDE8]">
-                        <td className="py-3 px-2 font-mono font-bold text-[#542334]">{b.id}</td>
+                        <td className="py-3 px-2 font-mono font-bold text-[#873C50]">{b.id}</td>
                         <td className="py-3 px-2 font-bold text-[#2D2528]">{b.customerName}</td>
                         <td className="py-3 px-2">{b.guests}</td>
                         <td className="py-3 px-2 text-xs">{formatDate(b.date)} at {b.time}</td>
-                        <td className="py-3 px-2 font-semibold text-[#542334]">{b.tableNo}</td>
+                        <td className="py-3 px-2 font-semibold text-[#873C50]">{b.tableNo}</td>
                         <td className="py-3 px-2 font-mono">{b.sessionId ? `#${b.sessionId}` : 'Pending Check-In'}</td>
                         <td className="py-3 px-2">
                           <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-[#21845A]/15 text-[#21845A] border border-[#21845A]/30">
@@ -566,7 +566,7 @@ export const ManagerPortal = () => {
                 {orders.map((ord) => (
                   <div key={ord.id} className="p-5 rounded-2xl border border-[#E8DDD8]/50 bg-[#F4EDE8] space-y-3">
                     <div className="flex justify-between items-center">
-                      <span className="font-mono text-xs font-bold text-[#542334]">{ord.id} ({ord.kotId})</span>
+                      <span className="font-mono text-xs font-bold text-[#873C50]">{ord.id} ({ord.kotId})</span>
                       <span className={`px-2 py-0.5 rounded-full text-xs font-bold ${
                         ord.status === 'Ready to Serve' ? 'bg-[#21845A]/15 text-[#21845A] border border-[#21845A]/30' : 'bg-[#B7791F]/15 text-[#B7791F] border border-[#B7791F]/30'
                       }`}>
@@ -627,7 +627,7 @@ export const ManagerPortal = () => {
                         <td className="py-3 px-2">
                           <button
                             onClick={() => alert(`Restock requisition for ${inv.item} sent to Admin.`)}
-                            className="text-xs font-bold text-[#542334] hover:underline"
+                            className="text-xs font-bold text-[#873C50] hover:underline"
                           >
                             Request Reorder
                           </button>
@@ -706,7 +706,7 @@ export const ManagerPortal = () => {
                   <tbody className="divide-y divide-[#FAF7F5]">
                     {sessions.map((s) => (
                       <tr key={s.sessionId} className="hover:bg-[#F4EDE8]">
-                        <td className="py-3 px-2 font-mono font-bold text-[#542334]">#{s.sessionId}</td>
+                        <td className="py-3 px-2 font-mono font-bold text-[#873C50]">#{s.sessionId}</td>
                         <td className="py-3 px-2">Table {s.tableNumber}</td>
                         <td className="py-3 px-2 font-bold text-[#2D2528]">{s.guestName}</td>
                         <td className="py-3 px-2 font-mono">{formatCurrency(s.subtotal)}</td>
@@ -736,11 +736,11 @@ export const ManagerPortal = () => {
                 <img
                   src={currentUser?.avatar || "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=300&q=80"}
                   alt={currentUser?.name}
-                  className="w-20 h-20 rounded-full object-cover border-4 border-[#542334]"
+                  className="w-20 h-20 rounded-full object-cover border-4 border-[#873C50]"
                 />
                 <div>
                   <h3 className="font-serif text-2xl font-bold text-[#2D2528]">{currentUser?.name}</h3>
-                  <p className="text-xs text-[#542334] font-semibold">Restaurant General & Floor Manager</p>
+                  <p className="text-xs text-[#873C50] font-semibold">Restaurant General & Floor Manager</p>
                   <p className="text-xs text-[#873C50]">{currentUser?.email}</p>
                 </div>
               </div>

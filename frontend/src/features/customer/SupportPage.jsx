@@ -86,7 +86,7 @@ export const SupportPage = () => {
         
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto space-y-3">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FAF7F5] text-[#542334] text-xs font-bold uppercase tracking-wider">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FAF7F5] text-[#873C50] text-xs font-bold uppercase tracking-wider">
             <HelpCircle className="w-3.5 h-3.5 text-[#C8A66B]" /> Concierge Desk
           </div>
           <h1 className="font-serif text-3xl sm:text-4xl font-bold text-[#2D2528]">
@@ -100,25 +100,25 @@ export const SupportPage = () => {
         {/* Contact Channels */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="bg-white rounded-3xl p-6 border border-[#E8DDD8]/60 shadow-sm text-center space-y-3">
-            <div className="w-12 h-12 rounded-2xl bg-[#F4EDE8] text-[#542334] flex items-center justify-center mx-auto">
+            <div className="w-12 h-12 rounded-2xl bg-[#F4EDE8] text-[#873C50] flex items-center justify-center mx-auto">
               <Phone className="w-6 h-6" />
             </div>
             <h3 className="font-serif font-bold text-lg text-[#2D2528]">Private Concierge Line</h3>
             <p className="text-xs text-[#873C50]">Direct line for instant inquiries</p>
-            <p className="font-mono font-bold text-sm text-[#542334]">+1 (555) 800-4499</p>
+            <p className="font-mono font-bold text-sm text-[#873C50]">+1 (555) 800-4499</p>
           </div>
 
           <div className="bg-white rounded-3xl p-6 border border-[#E8DDD8]/60 shadow-sm text-center space-y-3">
-            <div className="w-12 h-12 rounded-2xl bg-[#F4EDE8] text-[#542334] flex items-center justify-center mx-auto">
+            <div className="w-12 h-12 rounded-2xl bg-[#F4EDE8] text-[#873C50] flex items-center justify-center mx-auto">
               <Mail className="w-6 h-6" />
             </div>
             <h3 className="font-serif font-bold text-lg text-[#2D2528]">Email Concierge</h3>
             <p className="text-xs text-[#873C50]">For event quotes and private bookings</p>
-            <p className="font-bold text-xs text-[#542334]">concierge@auramocha.com</p>
+            <p className="font-bold text-xs text-[#873C50]">concierge@auramocha.com</p>
           </div>
 
           <div className="bg-white rounded-3xl p-6 border border-[#E8DDD8]/60 shadow-sm text-center space-y-3">
-            <div className="w-12 h-12 rounded-2xl bg-[#F4EDE8] text-[#542334] flex items-center justify-center mx-auto">
+            <div className="w-12 h-12 rounded-2xl bg-[#F4EDE8] text-[#873C50] flex items-center justify-center mx-auto">
               <Clock className="w-6 h-6" />
             </div>
             <h3 className="font-serif font-bold text-lg text-[#2D2528]">Service Hours</h3>
@@ -148,7 +148,7 @@ export const SupportPage = () => {
                     className="w-full p-4 text-left flex justify-between items-center bg-[#F4EDE8]/50 hover:bg-[#F4EDE8] transition-colors"
                   >
                     <span className="font-serif font-bold text-sm text-[#2D2528] pr-2">{faq.q}</span>
-                    <ChevronDown className={`w-4 h-4 text-[#542334] transition-transform ${openFaq === index ? 'rotate-180' : ''}`} />
+                    <ChevronDown className={`w-4 h-4 text-[#873C50] transition-transform ${openFaq === index ? 'rotate-180' : ''}`} />
                   </button>
                   {openFaq === index && (
                     <div className="p-4 text-xs text-[#75696B] bg-white leading-relaxed border-t border-[#FAF7F5]">

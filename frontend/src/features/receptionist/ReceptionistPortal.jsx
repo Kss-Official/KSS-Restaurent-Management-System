@@ -197,7 +197,7 @@ export const ReceptionistPortal = () => {
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
                 <div className="bg-white p-5 rounded-2xl border border-[#E8DDD8]/50 shadow-sm">
                   <p className="text-xs uppercase font-bold text-[#873C50]">Today's Arrivals</p>
-                  <p className="font-serif text-3xl font-bold text-[#542334] mt-2">{bookings.length}</p>
+                  <p className="font-serif text-3xl font-bold text-[#873C50] mt-2">{bookings.length}</p>
                   <p className="text-xs text-emerald-700 font-semibold mt-1">
                     {bookings.filter(b => b.status === 'Checked-In').length} already seated
                   </p>
@@ -264,11 +264,11 @@ export const ReceptionistPortal = () => {
                     <tbody className="divide-y divide-[#FAF7F5]">
                       {bookings.map((b) => (
                         <tr key={b.id} className="hover:bg-[#F4EDE8]">
-                          <td className="py-3 px-2 font-mono font-bold text-[#542334]">{b.id}</td>
+                          <td className="py-3 px-2 font-mono font-bold text-[#873C50]">{b.id}</td>
                           <td className="py-3 px-2 font-bold text-[#2D2528]">{b.customerName}</td>
                           <td className="py-3 px-2">{b.guests}</td>
                           <td className="py-3 px-2 text-xs">{formatDate(b.date)} at {b.time}</td>
-                          <td className="py-3 px-2 font-semibold text-[#542334]">{b.tableNo}</td>
+                          <td className="py-3 px-2 font-semibold text-[#873C50]">{b.tableNo}</td>
                           <td className="py-3 px-2">
                             <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-[#21845A]/15 text-[#21845A] border border-[#21845A]/30">
                               {b.status}
@@ -331,12 +331,12 @@ export const ReceptionistPortal = () => {
                   <tbody className="divide-y divide-[#FAF7F5]">
                     {bookings.map((b) => (
                       <tr key={b.id} className="hover:bg-[#F4EDE8]">
-                        <td className="py-3 px-2 font-mono font-bold text-[#542334]">{b.id}</td>
+                        <td className="py-3 px-2 font-mono font-bold text-[#873C50]">{b.id}</td>
                         <td className="py-3 px-2 font-bold text-[#2D2528]">{b.customerName}</td>
                         <td className="py-3 px-2 text-[#75696B]">{b.contactNumber}</td>
                         <td className="py-3 px-2 text-xs">{formatDate(b.date)} at {b.time}</td>
                         <td className="py-3 px-2">{b.guests}</td>
-                        <td className="py-3 px-2 font-semibold text-[#542334]">{b.tableNo}</td>
+                        <td className="py-3 px-2 font-semibold text-[#873C50]">{b.tableNo}</td>
                         <td className="py-3 px-2">
                           <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-[#21845A]/15 text-[#21845A] border border-[#21845A]/30">
                             {b.status}
@@ -346,7 +346,7 @@ export const ReceptionistPortal = () => {
                           <div className="flex items-center gap-2">
                             <button
                               onClick={() => setViewVoucherModal(b)}
-                              className="text-xs font-bold text-[#542334] hover:underline"
+                              className="text-xs font-bold text-[#873C50] hover:underline"
                             >
                               QR Voucher
                             </button>
@@ -388,7 +388,7 @@ export const ReceptionistPortal = () => {
                   <div key={w.id} className="p-5 rounded-2xl border border-[#E8DDD8]/50 bg-[#F4EDE8] space-y-3">
                     <div className="flex justify-between items-start">
                       <div>
-                        <span className="font-mono text-xs font-bold text-[#542334]">{w.id}</span>
+                        <span className="font-mono text-xs font-bold text-[#873C50]">{w.id}</span>
                         <h4 className="font-serif font-bold text-base text-[#2D2528] mt-0.5">{w.name}</h4>
                       </div>
                       <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${
@@ -467,7 +467,7 @@ export const ReceptionistPortal = () => {
                       <tr key={i} className="hover:bg-[#F4EDE8]">
                         <td className="py-3 px-2 font-bold text-[#2D2528]">{g.name}</td>
                         <td className="py-3 px-2 text-[#75696B]">{g.phone}</td>
-                        <td className="py-3 px-2 font-semibold text-[#542334]">{g.tier}</td>
+                        <td className="py-3 px-2 font-semibold text-[#873C50]">{g.tier}</td>
                         <td className="py-3 px-2 font-mono font-bold">{g.visits} visits</td>
                         <td className="py-3 px-2 text-xs text-[#873C50]">{g.last}</td>
                       </tr>
@@ -494,13 +494,13 @@ export const ReceptionistPortal = () => {
 
                 <form onSubmit={handleVerifyQR} className="flex flex-col sm:flex-row gap-3 max-w-xl">
                   <div className="relative flex-1">
-                    <QrCode className="w-5 h-5 text-[#542334] absolute left-3 top-1/2 -translate-y-1/2" />
+                    <QrCode className="w-5 h-5 text-[#873C50] absolute left-3 top-1/2 -translate-y-1/2" />
                     <input
                       type="text"
                       placeholder="e.g. BK-90214 or BK-90214-QR-SOPHIA"
                       value={qrInputCode}
                       onChange={e => setQrInputCode(e.target.value)}
-                      className="w-full text-sm pl-11 pr-4 py-3 rounded-xl border border-[#E8DDD8] bg-[#F4EDE8] focus:ring-2 focus:ring-[#542334]"
+                      className="w-full text-sm pl-11 pr-4 py-3 rounded-xl border border-[#E8DDD8] bg-[#F4EDE8] focus:ring-2 focus:ring-[#873C50]"
                       required
                     />
                   </div>
@@ -513,7 +513,7 @@ export const ReceptionistPortal = () => {
                 {verifiedBooking && (
                   <div className="p-6 rounded-2xl bg-[#FAF7F5] border border-[#E8DDD8] space-y-4 max-w-xl animate-fadeIn">
                     <div className="flex justify-between items-center">
-                      <span className="font-mono text-xs font-bold text-[#542334] bg-white px-2 py-1 rounded">
+                      <span className="font-mono text-xs font-bold text-[#873C50] bg-white px-2 py-1 rounded">
                         {verifiedBooking.id}
                       </span>
                       <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-[#21845A]/15 text-[#21845A] border border-[#21845A]/30">
@@ -579,7 +579,7 @@ export const ReceptionistPortal = () => {
                     <tbody className="divide-y divide-[#FAF7F5]">
                       {sessions.map((s) => (
                         <tr key={s.sessionId} className="hover:bg-[#F4EDE8]">
-                          <td className="py-3 px-2 font-mono font-bold text-[#542334]">#{s.sessionId}</td>
+                          <td className="py-3 px-2 font-mono font-bold text-[#873C50]">#{s.sessionId}</td>
                           <td className="py-3 px-2 font-bold text-[#2D2528]">Table {s.tableNumber}</td>
                           <td className="py-3 px-2">{s.guestName}</td>
                           <td className="py-3 px-2 text-xs">{s.checkInTime}</td>
@@ -596,7 +596,7 @@ export const ReceptionistPortal = () => {
                               {s.paymentStatus !== 'Paid' ? (
                                 <button
                                   onClick={() => settleSessionPayment(s.sessionId, 'Card')}
-                                  className="text-xs font-bold text-[#542334] hover:underline"
+                                  className="text-xs font-bold text-[#873C50] hover:underline"
                                 >
                                   Settle Bill
                                 </button>
@@ -644,7 +644,7 @@ export const ReceptionistPortal = () => {
                   <tbody className="divide-y divide-[#FAF7F5]">
                     {sessions.map((s) => (
                       <tr key={s.sessionId} className="hover:bg-[#F4EDE8]">
-                        <td className="py-3 px-2 font-mono font-bold text-[#542334]">#{s.sessionId}</td>
+                        <td className="py-3 px-2 font-mono font-bold text-[#873C50]">#{s.sessionId}</td>
                         <td className="py-3 px-2 font-bold">{s.guestName}</td>
                         <td className="py-3 px-2">Table {s.tableNumber}</td>
                         <td className="py-3 px-2 font-mono text-emerald-700">-{formatCurrency(s.advancePayment)}</td>
@@ -688,14 +688,14 @@ export const ReceptionistPortal = () => {
                   <tbody className="divide-y divide-[#FAF7F5]">
                     {orders.map((ord) => (
                       <tr key={ord.id} className="hover:bg-[#F4EDE8]">
-                        <td className="py-3 px-2 font-mono font-bold text-[#542334]">{ord.id}</td>
+                        <td className="py-3 px-2 font-mono font-bold text-[#873C50]">{ord.id}</td>
                         <td className="py-3 px-2 font-mono font-bold">#{ord.sessionId}</td>
                         <td className="py-3 px-2 font-bold">Table {ord.tableNumber}</td>
                         <td className="py-3 px-2 text-xs">
                           {ord.items.map(it => `${it.qty}x ${it.name}`).join(', ')}
                         </td>
                         <td className="py-3 px-2">
-                          <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-[#FAF7F5] text-[#542334]">
+                          <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-[#FAF7F5] text-[#873C50]">
                             {ord.status}
                           </span>
                         </td>
@@ -789,7 +789,7 @@ export const ReceptionistPortal = () => {
               <div className="space-y-3">
                 {notifications.map((n) => (
                   <div key={n.id} className={`p-4 rounded-xl border flex items-center justify-between ${
-                    n.unread ? 'bg-[#FAF7F5] border-[#542334]' : 'bg-[#F4EDE8] border-[#E8DDD8]/40'
+                    n.unread ? 'bg-[#FAF7F5] border-[#873C50]' : 'bg-[#F4EDE8] border-[#E8DDD8]/40'
                   }`}>
                     <div>
                       <p className="font-bold text-sm text-[#2D2528]">{n.title}</p>
@@ -799,7 +799,7 @@ export const ReceptionistPortal = () => {
                     {n.unread && (
                       <button
                         onClick={() => markNotificationRead(n.id)}
-                        className="text-xs font-bold text-[#542334] hover:underline"
+                        className="text-xs font-bold text-[#873C50] hover:underline"
                       >
                         Mark Read
                       </button>
@@ -819,11 +819,11 @@ export const ReceptionistPortal = () => {
                 <img
                   src={currentUser?.avatar || "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=300&q=80"}
                   alt={currentUser?.name}
-                  className="w-20 h-20 rounded-full object-cover border-4 border-[#542334]"
+                  className="w-20 h-20 rounded-full object-cover border-4 border-[#873C50]"
                 />
                 <div>
                   <h3 className="font-serif text-2xl font-bold text-[#2D2528]">{currentUser?.name}</h3>
-                  <p className="text-xs text-[#542334] font-semibold">Front Desk & Reservations Concierge</p>
+                  <p className="text-xs text-[#873C50] font-semibold">Front Desk & Reservations Concierge</p>
                   <p className="text-xs text-[#873C50]">{currentUser?.email}</p>
                 </div>
               </div>
@@ -861,7 +861,7 @@ export const ReceptionistPortal = () => {
                 className="w-48 h-48 rounded-xl object-contain"
               />
             </div>
-            <p className="text-xs font-mono font-bold text-[#542334]">{viewVoucherModal.qrCode}</p>
+            <p className="text-xs font-mono font-bold text-[#873C50]">{viewVoucherModal.qrCode}</p>
           </div>
         </div>
       )}

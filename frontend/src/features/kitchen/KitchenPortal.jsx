@@ -194,7 +194,7 @@ export const KitchenPortal = () => {
                     >
                       <div className="bg-[#F4EDE8] p-4 border-b border-[#E8DDD8]/40 flex justify-between items-center">
                         <div>
-                          <span className="font-mono text-xs font-bold text-[#542334] bg-white px-2 py-0.5 rounded border border-[#E8DDD8]/40">
+                          <span className="font-mono text-xs font-bold text-[#873C50] bg-white px-2 py-0.5 rounded border border-[#E8DDD8]/40">
                             {ord.kotId} • #{ord.sessionId}
                           </span>
                           <h4 className="font-serif font-bold text-lg text-[#2D2528] mt-1">Table {ord.tableNumber}</h4>
@@ -219,7 +219,7 @@ export const KitchenPortal = () => {
                                 <span>{it.qty} × {it.name}</span>
                               </div>
                               {it.customizations && (
-                                <p className="text-[11px] text-[#542334] font-semibold mt-0.5">
+                                <p className="text-[11px] text-[#873C50] font-semibold mt-0.5">
                                   Choice: {it.customizations}
                                 </p>
                               )}
@@ -307,7 +307,7 @@ export const KitchenPortal = () => {
                   {newOrders.map((ord) => (
                     <div key={ord.id} className="p-5 rounded-2xl border-2 border-amber-300 bg-amber-50/50 space-y-4">
                       <div className="flex justify-between items-center">
-                        <span className="font-mono text-xs font-bold text-[#542334] bg-white px-2 py-1 rounded">
+                        <span className="font-mono text-xs font-bold text-[#873C50] bg-white px-2 py-1 rounded">
                           {ord.kotId} • Session #{ord.sessionId}
                         </span>
                         <span className="font-serif font-bold text-lg text-[#2D2528]">Table {ord.tableNumber}</span>
@@ -348,7 +348,7 @@ export const KitchenPortal = () => {
                 {acceptedOrders.map((ord) => (
                   <div key={ord.id} className="p-5 rounded-2xl border border-[#E8DDD8]/50 bg-[#F4EDE8] space-y-3">
                     <div className="flex justify-between items-center">
-                      <span className="font-mono text-xs font-bold text-[#542334]">#{ord.sessionId}</span>
+                      <span className="font-mono text-xs font-bold text-[#873C50]">#{ord.sessionId}</span>
                       <span className="font-bold text-base text-[#2D2528]">Table {ord.tableNumber}</span>
                     </div>
                     <ul className="text-xs text-[#75696B] space-y-1">
@@ -379,7 +379,7 @@ export const KitchenPortal = () => {
                 {preparingOrders.map((ord) => (
                   <div key={ord.id} className="p-5 rounded-2xl border-2 border-orange-300 bg-orange-50/50 space-y-4">
                     <div className="flex justify-between items-center">
-                      <span className="font-mono text-xs font-bold text-[#542334]">{ord.id}</span>
+                      <span className="font-mono text-xs font-bold text-[#873C50]">{ord.id}</span>
                       <span className="font-serif font-bold text-lg text-[#2D2528]">Table {ord.tableNumber}</span>
                     </div>
 
@@ -475,7 +475,7 @@ export const KitchenPortal = () => {
                               addNotification("Chef Requisition", `Replenish request for ${inv.item}`);
                               alert(`Requisition for ${inv.item} sent to Manager & Admin.`);
                             }}
-                            className="text-xs font-bold text-[#542334] hover:underline"
+                            className="text-xs font-bold text-[#873C50] hover:underline"
                           >
                             Request Restock
                           </button>
@@ -517,11 +517,11 @@ export const KitchenPortal = () => {
                 <img
                   src={currentUser?.avatar || "https://images.unsplash.com/photo-1577219491135-ce391730fb2c?auto=format&fit=crop&w=300&q=80"}
                   alt={currentUser?.name}
-                  className="w-20 h-20 rounded-full object-cover border-4 border-[#542334]"
+                  className="w-20 h-20 rounded-full object-cover border-4 border-[#873C50]"
                 />
                 <div>
                   <h3 className="font-serif text-2xl font-bold text-[#2D2528]">{currentUser?.name}</h3>
-                  <p className="text-xs text-[#542334] font-semibold">Head Chef - Hot Kitchen & Plating</p>
+                  <p className="text-xs text-[#873C50] font-semibold">Head Chef - Hot Kitchen & Plating</p>
                   <p className="text-xs text-[#873C50]">{currentUser?.email}</p>
                 </div>
               </div>

@@ -36,7 +36,7 @@ export const UserListPage = () => {
                 <tr key={u.id} className="hover:bg-[#F4EDE8]">
                   <td className="py-3 px-2 font-bold text-[#2D2528]">{u.name}</td>
                   <td className="py-3 px-2 text-[#75696B]">{u.email}</td>
-                  <td className="py-3 px-2 font-semibold text-[#542334]">{u.role}</td>
+                  <td className="py-3 px-2 font-semibold text-[#873C50]">{u.role}</td>
                   <td className="py-3 px-2 text-[#75696B]">{u.phone}</td>
                   <td className="py-3 px-2">
                     <Link to={`/users/${u.id}`}>

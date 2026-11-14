@@ -79,7 +79,7 @@ export const CustomerBookingsPage = () => {
             </Link>
             <Link
               to="/customer/bookings"
-              className="px-4 py-2 rounded-xl bg-[#542334] text-white text-sm font-semibold shadow-sm"
+              className="px-4 py-2 rounded-xl bg-[#873C50] text-white text-sm font-semibold shadow-sm"
             >
               My Bookings ({myBookings.length})
             </Link>
@@ -105,7 +105,7 @@ export const CustomerBookingsPage = () => {
         {/* Bookings List */}
         {myBookings.length === 0 ? (
           <div className="text-center py-16 bg-white rounded-3xl border border-dashed border-[#E8DDD8] p-8 space-y-4">
-            <Calendar className="w-12 h-12 text-[#542334] mx-auto opacity-60" />
+            <Calendar className="w-12 h-12 text-[#873C50] mx-auto opacity-60" />
             <h3 className="font-serif text-xl font-bold text-[#2D2528]">No Reservations Yet</h3>
             <p className="text-sm text-[#75696B] max-w-sm mx-auto">
               You haven't scheduled any dining experiences with us. Reserve a table now to taste our signature cuisine.
@@ -123,7 +123,7 @@ export const CustomerBookingsPage = () => {
               >
                 <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-4 border-b border-[#FAF7F5]">
                   <div className="flex items-center gap-3">
-                    <span className="font-mono text-base font-bold text-[#542334] bg-[#F4EDE8] px-3 py-1 rounded-lg border border-[#E8DDD8]/40">
+                    <span className="font-mono text-base font-bold text-[#873C50] bg-[#F4EDE8] px-3 py-1 rounded-lg border border-[#E8DDD8]/40">
                       {booking.id}
                     </span>
                     <span className="text-xs font-semibold text-[#873C50]">
@@ -137,7 +137,7 @@ export const CustomerBookingsPage = () => {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 py-4 text-xs sm:text-sm">
                   <div className="flex items-start gap-2">
-                    <MapPin className="w-4 h-4 text-[#542334] shrink-0 mt-0.5" />
+                    <MapPin className="w-4 h-4 text-[#873C50] shrink-0 mt-0.5" />
                     <div>
                       <p className="text-[#873C50] font-medium text-[11px] uppercase">Location</p>
                       <p className="font-bold text-[#2D2528] leading-tight">{booking.location}</p>
@@ -145,7 +145,7 @@ export const CustomerBookingsPage = () => {
                   </div>
 
                   <div className="flex items-start gap-2">
-                    <Calendar className="w-4 h-4 text-[#542334] shrink-0 mt-0.5" />
+                    <Calendar className="w-4 h-4 text-[#873C50] shrink-0 mt-0.5" />
                     <div>
                       <p className="text-[#873C50] font-medium text-[11px] uppercase">Date & Time</p>
                       <p className="font-bold text-[#2D2528] leading-tight">{formatDate(booking.date)}</p>
@@ -154,7 +154,7 @@ export const CustomerBookingsPage = () => {
                   </div>
 
                   <div className="flex items-start gap-2">
-                    <Users className="w-4 h-4 text-[#542334] shrink-0 mt-0.5" />
+                    <Users className="w-4 h-4 text-[#873C50] shrink-0 mt-0.5" />
                     <div>
                       <p className="text-[#873C50] font-medium text-[11px] uppercase">Party Size</p>
                       <p className="font-bold text-[#2D2528] leading-tight">{booking.guests}</p>
@@ -162,7 +162,7 @@ export const CustomerBookingsPage = () => {
                   </div>
 
                   <div className="flex items-start gap-2">
-                    <FileText className="w-4 h-4 text-[#542334] shrink-0 mt-0.5" />
+                    <FileText className="w-4 h-4 text-[#873C50] shrink-0 mt-0.5" />
                     <div>
                       <p className="text-[#873C50] font-medium text-[11px] uppercase">Guest Name</p>
                       <p className="font-bold text-[#2D2528] leading-tight">{booking.customerName}</p>
@@ -243,7 +243,7 @@ export const CustomerBookingsPage = () => {
                 </div>
                 <div className="flex justify-between">
                   <span className="text-[#873C50]">Table Assignment</span>
-                  <span className="font-semibold text-[#542334]">{selectedBooking.tableNo || 'Table 12 (Reserved)'}</span>
+                  <span className="font-semibold text-[#873C50]">{selectedBooking.tableNo || 'Table 12 (Reserved)'}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-[#873C50]">Guest Contact</span>

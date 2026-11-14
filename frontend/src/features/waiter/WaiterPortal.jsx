@@ -146,7 +146,7 @@ export const WaiterPortal = () => {
 
   return (
     <div className="min-h-screen bg-[#F4EDE8] flex">
-      {/* Sidebar with exact Mocha Brown #542334 */}
+      {/* Sidebar with exact Mocha Brown #873C50 */}
       <Sidebar
         title="Waiter Portal"
         subtitle="Floor Service & Orders"
@@ -203,7 +203,7 @@ export const WaiterPortal = () => {
             </Button>
             <button 
               onClick={() => setActiveTab('notifications')}
-              className="relative p-2.5 rounded-xl border border-[#E8DDD8]/60 bg-[#F4EDE8] text-[#542334] hover:bg-[#FAF7F5] transition-colors"
+              className="relative p-2.5 rounded-xl border border-[#E8DDD8]/60 bg-[#F4EDE8] text-[#873C50] hover:bg-[#FAF7F5] transition-colors"
             >
               <Bell className="w-5 h-5" />
               {readyOrders.length > 0 && (
@@ -220,7 +220,7 @@ export const WaiterPortal = () => {
           
           {/* Urgent Food Ready Alert Banner */}
           {readyOrders.length > 0 && (
-            <div className="p-4 rounded-2xl bg-gradient-to-r from-[#542334] to-[#873C50] text-white shadow-xl flex flex-wrap items-center justify-between gap-4 border border-[#C8A66B]">
+            <div className="p-4 rounded-2xl bg-gradient-to-r from-[#873C50] to-[#873C50] text-white shadow-xl flex flex-wrap items-center justify-between gap-4 border border-[#C8A66B]">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-full bg-[#F4EDE8]/20 flex items-center justify-center animate-pulse">
                   <Bell className="w-6 h-6 text-[#C8A66B]" />
@@ -254,10 +254,10 @@ export const WaiterPortal = () => {
             <div className="space-y-8">
               {/* Metric Cards */}
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div className="bg-white p-5 rounded-2xl border border-[#E8DDD8]/50 shadow-sm hover:border-[#542334] transition-all">
+                <div className="bg-white p-5 rounded-2xl border border-[#E8DDD8]/50 shadow-sm hover:border-[#873C50] transition-all">
                   <div className="flex justify-between items-center text-[#873C50]">
                     <span className="text-xs font-bold uppercase tracking-wider">Assigned Tables</span>
-                    <Layers className="w-5 h-5 text-[#542334]" />
+                    <Layers className="w-5 h-5 text-[#873C50]" />
                   </div>
                   <p className="font-serif text-3xl font-bold text-[#2D2528] mt-2">{myTables.length}</p>
                   <p className="text-xs text-[#873C50] mt-1">
@@ -265,16 +265,16 @@ export const WaiterPortal = () => {
                   </p>
                 </div>
 
-                <div className="bg-white p-5 rounded-2xl border border-[#E8DDD8]/50 shadow-sm hover:border-[#542334] transition-all">
+                <div className="bg-white p-5 rounded-2xl border border-[#E8DDD8]/50 shadow-sm hover:border-[#873C50] transition-all">
                   <div className="flex justify-between items-center text-[#873C50]">
                     <span className="text-xs font-bold uppercase tracking-wider">Active Orders</span>
-                    <UtensilsCrossed className="w-5 h-5 text-[#542334]" />
+                    <UtensilsCrossed className="w-5 h-5 text-[#873C50]" />
                   </div>
                   <p className="font-serif text-3xl font-bold text-[#2D2528] mt-2">{activeOrders.length}</p>
                   <p className="text-xs text-[#873C50] mt-1">In kitchen production</p>
                 </div>
 
-                <div className="bg-white p-5 rounded-2xl border border-[#E8DDD8]/50 shadow-sm hover:border-[#542334] transition-all">
+                <div className="bg-white p-5 rounded-2xl border border-[#E8DDD8]/50 shadow-sm hover:border-[#873C50] transition-all">
                   <div className="flex justify-between items-center text-[#873C50]">
                     <span className="text-xs font-bold uppercase tracking-wider">Ready to Serve</span>
                     <Bell className="w-5 h-5 text-[#C8A66B]" />
@@ -283,7 +283,7 @@ export const WaiterPortal = () => {
                   <p className="text-xs text-[#873C50] mt-1">Awaiting floor delivery</p>
                 </div>
 
-                <div className="bg-white p-5 rounded-2xl border border-[#E8DDD8]/50 shadow-sm hover:border-[#542334] transition-all">
+                <div className="bg-white p-5 rounded-2xl border border-[#E8DDD8]/50 shadow-sm hover:border-[#873C50] transition-all">
                   <div className="flex justify-between items-center text-[#873C50]">
                     <span className="text-xs font-bold uppercase tracking-wider">Served Today</span>
                     <CheckCheck className="w-5 h-5 text-emerald-600" />
@@ -322,8 +322,8 @@ export const WaiterPortal = () => {
                       let statusBadge = 'bg-[#21845A]/15 text-[#21845A] border border-[#21845A]/30';
 
                       if (t.status === 'Occupied') {
-                        statusBg = hasReady ? 'bg-amber-50 border-[#C8A66B]' : 'bg-[#F4EDE8] border-[#542334]';
-                        statusBadge = 'bg-[#542334] text-white';
+                        statusBg = hasReady ? 'bg-amber-50 border-[#C8A66B]' : 'bg-[#F4EDE8] border-[#873C50]';
+                        statusBadge = 'bg-[#873C50] text-white';
                       } else if (t.status === 'Cleaning') {
                         statusBg = 'bg-blue-50 border-blue-200';
                         statusBadge = 'bg-[#3976B8]/15 text-[#3976B8] border border-[#3976B8]/30';
@@ -348,7 +348,7 @@ export const WaiterPortal = () => {
                             {activeSession ? (
                               <div className="mt-2 text-[11px] space-y-0.5">
                                 <p className="font-semibold text-[#2D2528] truncate">{activeSession.guestName}</p>
-                                <p className="font-mono text-[#542334] text-[10px]">Session #{activeSession.sessionId}</p>
+                                <p className="font-mono text-[#873C50] text-[10px]">Session #{activeSession.sessionId}</p>
                               </div>
                             ) : (
                               <p className="text-[11px] text-[#873C50]/70 italic mt-2">No active party</p>
@@ -362,7 +362,7 @@ export const WaiterPortal = () => {
                                   setSelectedTableNumber(t.number);
                                   setOrderModalOpen(true);
                                 }}
-                                className="text-[11px] font-bold text-[#542334] hover:underline flex items-center gap-1"
+                                className="text-[11px] font-bold text-[#873C50] hover:underline flex items-center gap-1"
                               >
                                 <PlusCircle className="w-3.5 h-3.5" /> Order
                               </button>
@@ -387,12 +387,12 @@ export const WaiterPortal = () => {
                 <div className="bg-white rounded-3xl p-6 border border-[#E8DDD8]/50 shadow-sm space-y-4">
                   <div className="flex items-center justify-between">
                     <h3 className="font-serif text-lg font-bold text-[#2D2528]">Waiter Floor Tasks</h3>
-                    <Coffee className="w-5 h-5 text-[#542334]" />
+                    <Coffee className="w-5 h-5 text-[#873C50]" />
                   </div>
                   
                   <div className="space-y-3">
                     <div className="p-3 rounded-xl bg-[#F4EDE8] border border-[#E8DDD8]/40 flex items-start gap-3">
-                      <input type="checkbox" className="mt-1 accent-[#542334] rounded" defaultChecked />
+                      <input type="checkbox" className="mt-1 accent-[#873C50] rounded" defaultChecked />
                       <div className="text-xs">
                         <p className="font-bold text-[#2D2528]">Pre-shift Station Prep</p>
                         <p className="text-[#873C50]">Sanitize tables 1-8, check salt & pepper grinders.</p>
@@ -400,7 +400,7 @@ export const WaiterPortal = () => {
                     </div>
 
                     <div className="p-3 rounded-xl bg-[#F4EDE8] border border-[#E8DDD8]/40 flex items-start gap-3">
-                      <input type="checkbox" className="mt-1 accent-[#542334] rounded" />
+                      <input type="checkbox" className="mt-1 accent-[#873C50] rounded" />
                       <div className="text-xs">
                         <p className="font-bold text-[#2D2528]">Table 2 Wine Presentation</p>
                         <p className="text-[#873C50]">Deliver 2018 Bordeaux Chateau Margaux to Sophia M.</p>
@@ -408,7 +408,7 @@ export const WaiterPortal = () => {
                     </div>
 
                     <div className="p-3 rounded-xl bg-[#F4EDE8] border border-[#E8DDD8]/40 flex items-start gap-3">
-                      <input type="checkbox" className="mt-1 accent-[#542334] rounded" />
+                      <input type="checkbox" className="mt-1 accent-[#873C50] rounded" />
                       <div className="text-xs">
                         <p className="font-bold text-[#2D2528]">Check on Table 7</p>
                         <p className="text-[#873C50]">Lamb cutlets served 10 mins ago. Ensure guest satisfaction.</p>
@@ -416,7 +416,7 @@ export const WaiterPortal = () => {
                     </div>
 
                     <div className="p-3 rounded-xl bg-[#F4EDE8] border border-[#E8DDD8]/40 flex items-start gap-3">
-                      <input type="checkbox" className="mt-1 accent-[#542334] rounded" />
+                      <input type="checkbox" className="mt-1 accent-[#873C50] rounded" />
                       <div className="text-xs">
                         <p className="font-bold text-[#2D2528]">Reset Table 4</p>
                         <p className="text-[#873C50]">Table 4 marked Cleaning. Prepare linen for incoming reservation.</p>
@@ -472,7 +472,7 @@ export const WaiterPortal = () => {
                         <div>
                           <div className="flex justify-between items-start">
                             <div>
-                              <span className="text-[10px] font-mono font-bold bg-[#542334] text-white px-2 py-0.5 rounded">
+                              <span className="text-[10px] font-mono font-bold bg-[#873C50] text-white px-2 py-0.5 rounded">
                                 {order.id}
                               </span>
                               <h4 className="font-serif font-bold text-lg text-[#2D2528] mt-1">
@@ -546,7 +546,7 @@ export const WaiterPortal = () => {
                   return (
                     <div 
                       key={table.id}
-                      className="bg-white rounded-3xl p-6 border border-[#E8DDD8]/50 shadow-sm flex flex-col justify-between hover:border-[#542334] transition-all"
+                      className="bg-white rounded-3xl p-6 border border-[#E8DDD8]/50 shadow-sm flex flex-col justify-between hover:border-[#873C50] transition-all"
                     >
                       <div>
                         {/* Header */}
@@ -558,7 +558,7 @@ export const WaiterPortal = () => {
                             </h4>
                           </div>
                           <span className={`px-2.5 py-1 rounded-full text-xs font-bold ${
-                            table.status === 'Occupied' ? 'bg-[#542334] text-white' :
+                            table.status === 'Occupied' ? 'bg-[#873C50] text-white' :
                             table.status === 'Reserved' ? 'bg-[#873C50]/15 text-[#873C50] border border-[#873C50]/30' :
                             table.status === 'Cleaning' ? 'bg-[#3976B8]/15 text-[#3976B8] border border-[#3976B8]/30' :
                             'bg-[#21845A]/15 text-[#21845A] border border-[#21845A]/30'
@@ -575,14 +575,14 @@ export const WaiterPortal = () => {
                           </div>
                           <div className="flex justify-between">
                             <span className="text-[#873C50]">Assigned Waiter:</span>
-                            <span className="font-semibold text-[#542334]">{table.waiter || waiterProfile.name}</span>
+                            <span className="font-semibold text-[#873C50]">{table.waiter || waiterProfile.name}</span>
                           </div>
 
                           {activeSession ? (
                             <div className="p-3 rounded-xl bg-[#F4EDE8] border border-[#E8DDD8]/40 space-y-1.5 mt-2">
                               <div className="flex justify-between items-center">
                                 <span className="text-[#873C50] text-[11px]">Daily Session:</span>
-                                <span className="font-mono font-bold text-[#542334] bg-white px-1.5 py-0.5 rounded border border-[#E8DDD8]/40 text-[11px]">
+                                <span className="font-mono font-bold text-[#873C50] bg-white px-1.5 py-0.5 rounded border border-[#E8DDD8]/40 text-[11px]">
                                   #{activeSession.sessionId}
                                 </span>
                               </div>
@@ -596,7 +596,7 @@ export const WaiterPortal = () => {
                               </div>
                               <div className="flex justify-between">
                                 <span className="text-[#873C50] text-[11px]">Current Total:</span>
-                                <span className="font-bold text-[#542334]">{formatCurrency(activeSession.total || 0)}</span>
+                                <span className="font-bold text-[#873C50]">{formatCurrency(activeSession.total || 0)}</span>
                               </div>
                             </div>
                           ) : (
@@ -685,7 +685,7 @@ export const WaiterPortal = () => {
                       onClick={() => setOrderStatusFilter(st)}
                       className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${
                         orderStatusFilter === st
-                          ? 'bg-[#542334] text-white shadow-sm'
+                          ? 'bg-[#873C50] text-white shadow-sm'
                           : 'bg-[#FAF7F5] text-[#2D2528] hover:bg-[#E8DDD8]/50'
                       }`}
                     >
@@ -725,7 +725,7 @@ export const WaiterPortal = () => {
                           <div className="flex justify-between items-start">
                             <div>
                               <div className="flex items-center gap-2">
-                                <span className="font-mono text-xs font-bold text-[#542334] bg-[#F4EDE8] px-2 py-0.5 rounded border border-[#E8DDD8]/50">
+                                <span className="font-mono text-xs font-bold text-[#873C50] bg-[#F4EDE8] px-2 py-0.5 rounded border border-[#E8DDD8]/50">
                                   {order.id}
                                 </span>
                                 <span className="font-mono text-[10px] text-[#873C50]">
@@ -755,7 +755,7 @@ export const WaiterPortal = () => {
 
                           {/* Order Items */}
                           <div className="mt-3 space-y-2 text-xs">
-                            <p className="font-bold text-[#542334] uppercase tracking-wider text-[10px]">Ordered Items:</p>
+                            <p className="font-bold text-[#873C50] uppercase tracking-wider text-[10px]">Ordered Items:</p>
                             <ul className="space-y-1.5 divide-y divide-[#FAF7F5]">
                               {order.items.map((item, idx) => (
                                 <li key={idx} className="pt-1.5 first:pt-0 flex justify-between items-center">
@@ -765,7 +765,7 @@ export const WaiterPortal = () => {
                                       <p className="text-[10px] text-[#873C50] italic">Note: {item.notes}</p>
                                     )}
                                   </div>
-                                  <span className="font-mono text-[#542334]">{formatCurrency(item.price * item.qty)}</span>
+                                  <span className="font-mono text-[#873C50]">{formatCurrency(item.price * item.qty)}</span>
                                 </li>
                               ))}
                             </ul>
@@ -813,7 +813,7 @@ export const WaiterPortal = () => {
                   <p className="text-xs text-[#873C50]">Past served orders, table-wise and session-wise historical logs</p>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="text-xs font-bold px-3 py-1 bg-[#F4EDE8] rounded-xl border border-[#E8DDD8] text-[#542334]">
+                  <span className="text-xs font-bold px-3 py-1 bg-[#F4EDE8] rounded-xl border border-[#E8DDD8] text-[#873C50]">
                     Total Orders: {orders.length}
                   </span>
                 </div>
@@ -838,7 +838,7 @@ export const WaiterPortal = () => {
                         const total = ord.items.reduce((s, it) => s + (it.price * it.qty), 0);
                         return (
                           <tr key={ord.id} className="hover:bg-[#F4EDE8]/60 transition-colors">
-                            <td className="py-4 px-6 font-mono font-bold text-[#542334]">
+                            <td className="py-4 px-6 font-mono font-bold text-[#873C50]">
                               <div>{ord.id}</div>
                               <span className="text-[10px] text-[#873C50]">{ord.kotId}</span>
                             </td>
@@ -896,19 +896,19 @@ export const WaiterPortal = () => {
                     key={notif.id}
                     className={`p-5 rounded-2xl border transition-all flex items-start justify-between gap-4 ${
                       notif.unread
-                        ? 'bg-white border-[#542334] shadow-md'
+                        ? 'bg-white border-[#873C50] shadow-md'
                         : 'bg-[#F4EDE8] border-[#E8DDD8]/40'
                     }`}
                   >
                     <div className="flex items-start gap-3">
-                      <div className="w-10 h-10 rounded-xl bg-[#FAF7F5] text-[#542334] flex items-center justify-center shrink-0">
+                      <div className="w-10 h-10 rounded-xl bg-[#FAF7F5] text-[#873C50] flex items-center justify-center shrink-0">
                         <Bell className="w-5 h-5" />
                       </div>
                       <div>
                         <div className="flex items-center gap-2">
                           <h4 className="font-bold text-sm text-[#2D2528]">{notif.title}</h4>
                           {notif.unread && (
-                            <span className="w-2 h-2 rounded-full bg-[#542334]"></span>
+                            <span className="w-2 h-2 rounded-full bg-[#873C50]"></span>
                           )}
                         </div>
                         <p className="text-xs text-[#75696B] mt-1">{notif.message}</p>
@@ -935,14 +935,14 @@ export const WaiterPortal = () => {
                   <img
                     src={waiterProfile.avatar}
                     alt={waiterProfile.name}
-                    className="w-24 h-24 rounded-full object-cover border-4 border-[#542334] shadow-lg"
+                    className="w-24 h-24 rounded-full object-cover border-4 border-[#873C50] shadow-lg"
                   />
                   <div className="text-center sm:text-left space-y-1">
                     <span className="text-xs font-bold uppercase tracking-wider text-[#873C50]">Floor Service Specialist</span>
                     <h3 className="font-serif text-3xl font-bold text-[#2D2528]">{waiterProfile.name}</h3>
                     <p className="text-sm text-[#75696B]">{waiterProfile.email} | {waiterProfile.phone}</p>
                     <div className="pt-2 flex flex-wrap gap-2">
-                      <span className="px-3 py-1 rounded-full text-xs font-bold bg-[#FAF7F5] text-[#542334]">
+                      <span className="px-3 py-1 rounded-full text-xs font-bold bg-[#FAF7F5] text-[#873C50]">
                         Section: Floor A (Tables 1 - 8)
                       </span>
                       <span className="px-3 py-1 rounded-full text-xs font-bold bg-[#21845A]/15 text-[#21845A] border border-[#21845A]/30">
@@ -1017,7 +1017,7 @@ export const WaiterPortal = () => {
               </div>
               <button
                 onClick={() => setOrderModalOpen(false)}
-                className="p-2 rounded-xl bg-[#FAF7F5] text-[#542334] hover:bg-[#E8DDD8]/40"
+                className="p-2 rounded-xl bg-[#FAF7F5] text-[#873C50] hover:bg-[#E8DDD8]/40"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -1032,7 +1032,7 @@ export const WaiterPortal = () => {
                   <select
                     value={selectedTableNumber}
                     onChange={(e) => setSelectedTableNumber(Number(e.target.value))}
-                    className="w-full p-3 rounded-xl border border-[#E8DDD8] bg-white text-xs font-bold text-[#2D2528] focus:ring-2 focus:ring-[#542334]"
+                    className="w-full p-3 rounded-xl border border-[#E8DDD8] bg-white text-xs font-bold text-[#2D2528] focus:ring-2 focus:ring-[#873C50]"
                   >
                     {tables.map(t => (
                       <option key={t.id} value={t.number}>
@@ -1080,7 +1080,7 @@ export const WaiterPortal = () => {
                         <button
                           type="button"
                           onClick={() => handleAddDish(item)}
-                          className="px-3 py-1.5 rounded-xl bg-[#542334] text-white font-bold text-xs hover:bg-[#75696B] transition-colors"
+                          className="px-3 py-1.5 rounded-xl bg-[#873C50] text-white font-bold text-xs hover:bg-[#75696B] transition-colors"
                         >
                           + Add
                         </button>
@@ -1092,7 +1092,7 @@ export const WaiterPortal = () => {
               {/* Selected Items Ticket */}
               <div className="p-4 bg-[#F4EDE8] rounded-2xl border border-[#E8DDD8]/60 space-y-3">
                 <div className="flex justify-between items-center">
-                  <span className="font-bold text-xs text-[#542334] uppercase tracking-wider">
+                  <span className="font-bold text-xs text-[#873C50] uppercase tracking-wider">
                     Current Order Ticket ({selectedMenuItems.length} dishes)
                   </span>
                   <span className="font-mono font-bold text-sm text-[#2D2528]">
@@ -1113,7 +1113,7 @@ export const WaiterPortal = () => {
                           <button
                             type="button"
                             onClick={() => handleUpdateItemQty(item.id, -1)}
-                            className="w-6 h-6 rounded bg-[#FAF7F5] font-bold text-[#542334] flex items-center justify-center"
+                            className="w-6 h-6 rounded bg-[#FAF7F5] font-bold text-[#873C50] flex items-center justify-center"
                           >
                             -
                           </button>
@@ -1121,11 +1121,11 @@ export const WaiterPortal = () => {
                           <button
                             type="button"
                             onClick={() => handleUpdateItemQty(item.id, 1)}
-                            className="w-6 h-6 rounded bg-[#FAF7F5] font-bold text-[#542334] flex items-center justify-center"
+                            className="w-6 h-6 rounded bg-[#FAF7F5] font-bold text-[#873C50] flex items-center justify-center"
                           >
                             +
                           </button>
-                          <span className="font-mono font-bold text-[#542334] ml-2">
+                          <span className="font-mono font-bold text-[#873C50] ml-2">
                             {formatCurrency(item.price * item.qty)}
                           </span>
                         </div>
@@ -1143,7 +1143,7 @@ export const WaiterPortal = () => {
                   placeholder="e.g. Medium rare, nut allergy, dressing on the side..."
                   value={orderNotes}
                   onChange={(e) => setOrderNotes(e.target.value)}
-                  className="w-full text-xs p-3 rounded-xl border border-[#E8DDD8] focus:ring-2 focus:ring-[#542334]"
+                  className="w-full text-xs p-3 rounded-xl border border-[#E8DDD8] focus:ring-2 focus:ring-[#873C50]"
                 ></textarea>
               </div>
 
@@ -1175,7 +1175,7 @@ export const WaiterPortal = () => {
               </div>
               <button
                 onClick={() => setViewSessionModal(null)}
-                className="p-2 rounded-xl bg-[#FAF7F5] text-[#542334]"
+                className="p-2 rounded-xl bg-[#FAF7F5] text-[#873C50]"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -1184,7 +1184,7 @@ export const WaiterPortal = () => {
             <div className="space-y-3 text-xs">
               <div className="flex justify-between">
                 <span className="text-[#873C50]">Daily 6-Digit Session:</span>
-                <span className="font-mono font-bold text-[#542334]">#{viewSessionModal.sessionId}</span>
+                <span className="font-mono font-bold text-[#873C50]">#{viewSessionModal.sessionId}</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-[#873C50]">Guest Name:</span>
@@ -1220,7 +1220,7 @@ export const WaiterPortal = () => {
                 )}
                 <div className="flex justify-between font-serif text-base font-bold text-[#2D2528] pt-2 border-t border-[#FAF7F5]">
                   <span>Total Due:</span>
-                  <span className="text-[#542334]">{formatCurrency(viewSessionModal.total || 0)}</span>
+                  <span className="text-[#873C50]">{formatCurrency(viewSessionModal.total || 0)}</span>
                 </div>
               </div>
             </div>

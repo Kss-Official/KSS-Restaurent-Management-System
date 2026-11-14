@@ -140,7 +140,7 @@ export const CartPage = () => {
 
         {cart.length === 0 ? (
           <div className="bg-white rounded-3xl p-12 text-center border border-[#E8DDD8]/50 shadow-sm space-y-4">
-            <div className="w-16 h-16 rounded-full bg-[#F4EDE8] text-[#542334] mx-auto flex items-center justify-center">
+            <div className="w-16 h-16 rounded-full bg-[#F4EDE8] text-[#873C50] mx-auto flex items-center justify-center">
               <ShoppingBag className="w-8 h-8" />
             </div>
             <h3 className="font-serif text-2xl font-bold text-[#2D2528]">Your Table Order is Empty</h3>
@@ -187,7 +187,7 @@ export const CartPage = () => {
                           <h4 className="font-serif font-bold text-base sm:text-lg text-[#2D2528]">
                             {item.name}
                           </h4>
-                          <p className="font-mono text-xs font-bold text-[#542334] mt-0.5">
+                          <p className="font-mono text-xs font-bold text-[#873C50] mt-0.5">
                             {formatCurrency(item.price)} each
                           </p>
                         </div>
@@ -198,14 +198,14 @@ export const CartPage = () => {
                         <div className="flex items-center border border-[#E8DDD8] rounded-xl bg-[#F4EDE8] p-1">
                           <button
                             onClick={() => updateCartQty(item.id, item.qty - 1)}
-                            className="p-1 rounded-lg hover:bg-white text-[#542334] transition-colors"
+                            className="p-1 rounded-lg hover:bg-white text-[#873C50] transition-colors"
                           >
                             <Minus className="w-3.5 h-3.5" />
                           </button>
                           <span className="font-mono font-bold text-xs px-3">{item.qty}</span>
                           <button
                             onClick={() => updateCartQty(item.id, item.qty + 1)}
-                            className="p-1 rounded-lg hover:bg-white text-[#542334] transition-colors"
+                            className="p-1 rounded-lg hover:bg-white text-[#873C50] transition-colors"
                           >
                             <Plus className="w-3.5 h-3.5" />
                           </button>
@@ -238,7 +238,7 @@ export const CartPage = () => {
                   value={orderNotes}
                   onChange={(e) => setOrderNotes(e.target.value)}
                   placeholder="e.g. Please bring appetizers together, gluten-free preparation, dressing on the side..."
-                  className="w-full text-xs p-3 rounded-xl border border-[#E8DDD8] focus:ring-2 focus:ring-[#542334]"
+                  className="w-full text-xs p-3 rounded-xl border border-[#E8DDD8] focus:ring-2 focus:ring-[#873C50]"
                 ></textarea>
               </div>
             </div>
@@ -257,7 +257,7 @@ export const CartPage = () => {
                   <select
                     value={selectedTable}
                     onChange={(e) => setSelectedTable(Number(e.target.value))}
-                    className="w-full p-3 rounded-xl border border-[#E8DDD8] bg-[#F4EDE8] text-xs font-bold text-[#2D2528] focus:ring-2 focus:ring-[#542334]"
+                    className="w-full p-3 rounded-xl border border-[#E8DDD8] bg-[#F4EDE8] text-xs font-bold text-[#2D2528] focus:ring-2 focus:ring-[#873C50]"
                   >
                     {tables.map(t => (
                       <option key={t.id} value={t.number}>
@@ -345,7 +345,7 @@ export const CartPage = () => {
 
                 <div className="flex justify-between items-baseline pt-2">
                   <span className="font-serif text-lg font-bold text-[#2D2528]">Grand Total:</span>
-                  <span className="font-serif text-2xl font-bold text-[#542334]">{formatCurrency(grandTotal)}</span>
+                  <span className="font-serif text-2xl font-bold text-[#873C50]">{formatCurrency(grandTotal)}</span>
                 </div>
 
                 <Button

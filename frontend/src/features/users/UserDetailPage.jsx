@@ -9,12 +9,12 @@ export const UserDetailPage = () => {
   return (
     <div className="max-w-2xl mx-auto py-12 px-4 sm:px-6">
       <div className="bg-white rounded-3xl p-8 border border-[#E8DDD8] shadow-md space-y-6">
-        <Link to="/users" className="inline-flex items-center gap-1.5 text-xs font-bold text-[#542334] hover:underline">
+        <Link to="/users" className="inline-flex items-center gap-1.5 text-xs font-bold text-[#873C50] hover:underline">
           <ArrowLeft className="w-3.5 h-3.5" /> Back to Users Directory
         </Link>
 
         <div className="flex items-center gap-4 border-b border-[#FAF7F5] pb-6">
-          <div className="w-16 h-16 rounded-2xl bg-[#542334] text-white flex items-center justify-center font-serif text-2xl font-bold">
+          <div className="w-16 h-16 rounded-2xl bg-[#873C50] text-white flex items-center justify-center font-serif text-2xl font-bold">
             U
           </div>
           <div>
@@ -25,11 +25,11 @@ export const UserDetailPage = () => {
 
         <div className="space-y-3 text-sm">
           <div className="p-3 bg-[#F4EDE8] rounded-xl flex items-center justify-between">
-            <span className="text-[#873C50] flex items-center gap-2"><User className="w-4 h-4 text-[#542334]" /> Access Tier:</span>
+            <span className="text-[#873C50] flex items-center gap-2"><User className="w-4 h-4 text-[#873C50]" /> Access Tier:</span>
             <span className="font-bold text-[#2D2528]">Verified Member</span>
           </div>
           <div className="p-3 bg-[#F4EDE8] rounded-xl flex items-center justify-between">
-            <span className="text-[#873C50] flex items-center gap-2"><Mail className="w-4 h-4 text-[#542334]" /> Status:</span>
+            <span className="text-[#873C50] flex items-center gap-2"><Mail className="w-4 h-4 text-[#873C50]" /> Status:</span>
             <span className="font-bold text-emerald-700">Active</span>
           </div>
         </div>

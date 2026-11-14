@@ -100,13 +100,13 @@ export const Navbar = ({ onOpenBookingModal }) => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           
-          {/* Brand Logo - Primary Burgundy #542334 */}
+          {/* Brand Logo - Primary Burgundy #873C50 */}
           <Link to="/" className="flex items-center gap-3 group">
-            <div className="w-11 h-11 rounded-full bg-[#542334] flex items-center justify-center text-[#F4EDE8] shadow-md group-hover:bg-[#873C50] transition-colors">
+            <div className="w-11 h-11 rounded-full bg-[#873C50] flex items-center justify-center text-[#F4EDE8] shadow-md group-hover:bg-[#873C50] transition-colors">
               <UtensilsCrossed className="w-5 h-5 text-[#C8A66B]" />
             </div>
             <div className="flex flex-col">
-              <span className="font-serif text-2xl font-bold tracking-tight text-[#542334] group-hover:text-[#873C50] transition-colors">
+              <span className="font-serif text-2xl font-bold tracking-tight text-[#873C50] group-hover:text-[#873C50] transition-colors">
                 Aura Mocha
               </span>
               <span className="text-[10px] uppercase tracking-[0.2em] font-semibold text-[#873C50]">
@@ -125,8 +125,8 @@ export const Navbar = ({ onOpenBookingModal }) => {
                   to={link.path}
                   className={`px-3.5 py-2 rounded-lg text-sm font-semibold transition-all ${
                     isActive
-                      ? 'text-[#542334] bg-[#FFFFFF] shadow-sm border border-[#E8DDD8]'
-                      : 'text-[#2D2528] hover:text-[#542334] hover:bg-[#FAF7F5]'
+                      ? 'text-[#873C50] bg-[#FFFFFF] shadow-sm border border-[#E8DDD8]'
+                      : 'text-[#2D2528] hover:text-[#873C50] hover:bg-[#FAF7F5]'
                   }`}
                 >
                   {link.label}
@@ -141,7 +141,7 @@ export const Navbar = ({ onOpenBookingModal }) => {
             {/* Wishlist Button */}
             <Link 
               to="/wishlist" 
-              className="relative p-2.5 rounded-xl border border-[#E8DDD8] bg-white hover:bg-[#FAF7F5] text-[#542334] transition-colors shadow-sm"
+              className="relative p-2.5 rounded-xl border border-[#E8DDD8] bg-white hover:bg-[#FAF7F5] text-[#873C50] transition-colors shadow-sm"
               title="Culinary Wishlist"
             >
               <Heart className="w-4 h-4" />
@@ -155,12 +155,12 @@ export const Navbar = ({ onOpenBookingModal }) => {
             {/* Cart Button */}
             <Link 
               to="/cart" 
-              className="relative p-2.5 rounded-xl border border-[#E8DDD8] bg-white hover:bg-[#FAF7F5] text-[#542334] transition-colors shadow-sm"
+              className="relative p-2.5 rounded-xl border border-[#E8DDD8] bg-white hover:bg-[#FAF7F5] text-[#873C50] transition-colors shadow-sm"
               title="Table Order Cart"
             >
               <ShoppingBag className="w-4 h-4" />
               {cartTotalItems > 0 && (
-                <span className="absolute -top-1 -right-1 w-4 h-4 bg-[#542334] text-white rounded-full text-[9px] font-bold flex items-center justify-center">
+                <span className="absolute -top-1 -right-1 w-4 h-4 bg-[#873C50] text-white rounded-full text-[9px] font-bold flex items-center justify-center">
                   {cartTotalItems}
                 </span>
               )}
@@ -233,42 +233,42 @@ export const Navbar = ({ onOpenBookingModal }) => {
                       <div className="py-1.5 text-xs">
                         <Link
                           to="/customer/profile"
-                          className="flex items-center gap-3 px-4 py-2 text-[#2D2528] hover:bg-[#FAF7F5] hover:text-[#542334] transition-colors"
+                          className="flex items-center gap-3 px-4 py-2 text-[#2D2528] hover:bg-[#FAF7F5] hover:text-[#873C50] transition-colors"
                         >
                           <User className="w-4 h-4 text-[#873C50]" />
                           <span>My Profile</span>
                         </Link>
                         <Link
                           to="/customer/bookings"
-                          className="flex items-center gap-3 px-4 py-2 text-[#2D2528] hover:bg-[#FAF7F5] hover:text-[#542334] transition-colors"
+                          className="flex items-center gap-3 px-4 py-2 text-[#2D2528] hover:bg-[#FAF7F5] hover:text-[#873C50] transition-colors"
                         >
                           <Calendar className="w-4 h-4 text-[#873C50]" />
                           <span>My Bookings</span>
                         </Link>
                         <Link
                           to="/customer/orders"
-                          className="flex items-center gap-3 px-4 py-2 text-[#2D2528] hover:bg-[#FAF7F5] hover:text-[#542334] transition-colors"
+                          className="flex items-center gap-3 px-4 py-2 text-[#2D2528] hover:bg-[#FAF7F5] hover:text-[#873C50] transition-colors"
                         >
                           <Clock className="w-4 h-4 text-[#873C50]" />
                           <span>Live Table Orders</span>
                         </Link>
                         <Link
                           to="/wishlist"
-                          className="flex items-center gap-3 px-4 py-2 text-[#2D2528] hover:bg-[#FAF7F5] hover:text-[#542334] transition-colors"
+                          className="flex items-center gap-3 px-4 py-2 text-[#2D2528] hover:bg-[#FAF7F5] hover:text-[#873C50] transition-colors"
                         >
                           <Heart className="w-4 h-4 text-[#873C50]" />
                           <span>Culinary Wishlist ({wishlistCount})</span>
                         </Link>
                         <Link
                           to="/offers"
-                          className="flex items-center gap-3 px-4 py-2 text-[#2D2528] hover:bg-[#FAF7F5] hover:text-[#542334] transition-colors"
+                          className="flex items-center gap-3 px-4 py-2 text-[#2D2528] hover:bg-[#FAF7F5] hover:text-[#873C50] transition-colors"
                         >
                           <Tag className="w-4 h-4 text-[#873C50]" />
                           <span>Special Offers & Vouchers</span>
                         </Link>
                         <Link
                           to="/support"
-                          className="flex items-center gap-3 px-4 py-2 text-[#2D2528] hover:bg-[#FAF7F5] hover:text-[#542334] transition-colors"
+                          className="flex items-center gap-3 px-4 py-2 text-[#2D2528] hover:bg-[#FAF7F5] hover:text-[#873C50] transition-colors"
                         >
                           <HelpCircle className="w-4 h-4 text-[#873C50]" />
                           <span>Concierge Support</span>
@@ -294,10 +294,10 @@ export const Navbar = ({ onOpenBookingModal }) => {
 
           {/* Mobile Hamburger Button */}
           <div className="flex md:hidden items-center gap-2">
-            <Link to="/cart" className="relative p-2 text-[#542334]">
+            <Link to="/cart" className="relative p-2 text-[#873C50]">
               <ShoppingBag className="w-5 h-5" />
               {cartTotalItems > 0 && (
-                <span className="absolute top-0 right-0 w-4 h-4 bg-[#542334] text-white rounded-full text-[9px] font-bold flex items-center justify-center">
+                <span className="absolute top-0 right-0 w-4 h-4 bg-[#873C50] text-white rounded-full text-[9px] font-bold flex items-center justify-center">
                   {cartTotalItems}
                 </span>
               )}
@@ -307,7 +307,7 @@ export const Navbar = ({ onOpenBookingModal }) => {
                 <img
                   src={currentUser?.avatar}
                   alt={currentUser?.name}
-                  className="w-8 h-8 rounded-full object-cover border border-[#542334]"
+                  className="w-8 h-8 rounded-full object-cover border border-[#873C50]"
                 />
               </Link>
             )}
@@ -333,7 +333,7 @@ export const Navbar = ({ onOpenBookingModal }) => {
                 to={link.path}
                 className={`px-3 py-2 rounded-lg text-base font-semibold ${
                   location.pathname === link.path
-                    ? 'bg-[#542334] text-white'
+                    ? 'bg-[#873C50] text-white'
                     : 'text-[#2D2528] hover:bg-[#FAF7F5]'
                 }`}
               >

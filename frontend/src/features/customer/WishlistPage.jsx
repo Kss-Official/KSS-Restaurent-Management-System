@@ -64,7 +64,7 @@ export const WishlistPage = () => {
             {savedItems.map((dish) => (
               <div
                 key={dish.id}
-                className="bg-white rounded-3xl overflow-hidden border border-[#E8DDD8]/60 shadow-md hover:border-[#542334] transition-all flex flex-col justify-between group"
+                className="bg-white rounded-3xl overflow-hidden border border-[#E8DDD8]/60 shadow-md hover:border-[#873C50] transition-all flex flex-col justify-between group"
               >
                 <div>
                   {/* Dish Image */}
@@ -92,7 +92,7 @@ export const WishlistPage = () => {
                       <h3 className="font-serif font-bold text-xl text-[#2D2528]">
                         {dish.name}
                       </h3>
-                      <span className="font-mono font-bold text-lg text-[#542334]">
+                      <span className="font-mono font-bold text-lg text-[#873C50]">
                         {formatCurrency(dish.price)}
                       </span>
                     </div>
