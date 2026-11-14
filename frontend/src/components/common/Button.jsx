@@ -22,17 +22,17 @@ export const Button = ({
 
   const variantStyles = {
     // Exact Reference Buttons:
-    // Primary Button (bg: #873C50, text: #FFFFFF)
-    primary: "bg-[#873C50] text-white hover:opacity-90 focus:ring-[#873C50] border border-transparent shadow-[#873C50]/20",
+    // Primary Button with rich Burgundy gradient & pure white text
+    primary: "bg-gradient-to-r from-[#6E2437] via-[#873C50] to-[#782D42] text-[#FFFFFF] font-bold hover:shadow-lg hover:brightness-110 focus:ring-[#C8A66B] border border-transparent shadow-[#873C50]/25",
     
-    // Secondary Button (bg: #F4EDE8, text: #873C50, border: #E8DDD8)
-    secondary: "bg-[#F4EDE8] text-[#873C50] hover:bg-[#E8DDD8] focus:ring-[#873C50] border border-[#E8DDD8]",
+    // Secondary Button (bg: #FFFFFF, text: #6E2437, border: #E8DDD8)
+    secondary: "bg-[#FFFFFF] text-[#6E2437] hover:bg-[#F4EDE8] focus:ring-[#C8A66B] border border-[#E8DDD8] shadow-xs",
     
     // Outline Button
     outline: "border-2 border-[#873C50] text-[#873C50] bg-transparent hover:bg-[#873C50] hover:text-white focus:ring-[#873C50]",
     
-    // Champagne Gold Accent Button
-    gold: "bg-[#C8A66B] text-[#873C50] hover:bg-[#B5955B] font-bold focus:ring-[#C8A66B] shadow-[#C8A66B]/20",
+    // Champagne Gold Accent Button with rich gold gradient
+    gold: "bg-gradient-to-r from-[#D8B97D] via-[#C8A66B] to-[#B5955B] text-[#451423] hover:brightness-105 font-bold focus:ring-[#C8A66B] shadow-md shadow-[#C8A66B]/20",
     
     // Semantic Danger / Error (#C44747)
     danger: "bg-[#C44747] text-white hover:bg-[#A83737] focus:ring-[#C44747]",
@@ -40,8 +40,8 @@ export const Button = ({
     // Tertiary / Cancel / Ghost Button
     ghost: "bg-transparent text-[#75696B] hover:bg-[#F4EDE8] hover:text-[#873C50] focus:ring-[#873C50] shadow-none",
     
-    // Primary Burgundy Dark Button
-    dark: "bg-[#873C50] text-[#F4EDE8] hover:opacity-90 border border-[#873C50]"
+    // Luxury Burgundy Dark Button
+    dark: "bg-gradient-to-r from-[#451423] to-[#602034] text-[#FFFFFF] hover:brightness-110 border border-[#C8A66B]/30"
   };
 
   return (

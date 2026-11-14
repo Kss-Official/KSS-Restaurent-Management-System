@@ -126,23 +126,23 @@ export const HomePage = () => {
             alt="Aura Mocha Luxury Restaurant Dining"
             className="w-full h-full object-cover object-center scale-105 animate-pulse duration-[10000ms]"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#2D2528]/90 via-[#2D2528]/75 to-[#2D2528]/85"></div>
-          {/* Subtle Mocha accent tint */}
-          <div className="absolute inset-0 bg-[#873C50]/25 mix-blend-multiply"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-[#3D1220]/92 via-[#542030]/80 to-[#3D1220]/88"></div>
+          {/* Subtle Burgundy accent tint */}
+          <div className="absolute inset-0 bg-[#873C50]/20 mix-blend-multiply"></div>
         </div>
 
         <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white py-24 space-y-8">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#F4EDE8]/10 backdrop-blur-md border border-[#F4EDE8]/30 text-[#F4EDE8] text-xs font-semibold tracking-widest uppercase">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-[#C8A66B]/40 text-[#FFFFFF] text-xs font-semibold tracking-widest uppercase shadow-md">
             <Award className="w-4 h-4 text-[#C8A66B]" />
             <span>Michelin Recommended 2026</span>
           </div>
 
-          <h1 className="font-serif text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-[#F4EDE8] leading-tight">
+          <h1 className="font-serif text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-[#FFFFFF] leading-tight drop-shadow-md">
             Culinary Artistry in <br />
-            <span className="italic font-normal text-[#F4EDE8]">Mocha Elegance</span>
+            <span className="italic font-normal text-[#C8A66B]">Burgundy Elegance</span>
           </h1>
 
-          <p className="max-w-2xl mx-auto text-base sm:text-xl text-[#FAF7F5]/90 font-light leading-relaxed">
+          <p className="max-w-2xl mx-auto text-base sm:text-xl text-[#FFFFFF] opacity-95 font-light leading-relaxed">
             Where prime dry-aged meats, handcrafted pastas, and artisanal roasted coffee harmoniously meet luxury contemporary hospitality.
           </p>
 
@@ -278,9 +278,9 @@ export const HomePage = () => {
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="absolute top-6 left-6 bg-[#873C50] text-white p-4 rounded-xl shadow-lg max-w-[180px]">
-                <p className="font-serif text-3xl font-bold">18+</p>
-                <p className="text-xs tracking-wider uppercase text-[#F4EDE8]">Years of Culinary Heritage</p>
+              <div className="absolute top-6 left-6 bg-gradient-to-br from-[#451423] via-[#602034] to-[#873C50] text-[#FFFFFF] p-5 rounded-2xl shadow-2xl max-w-[190px] border border-[#C8A66B]/40">
+                <p className="font-serif text-3xl font-bold text-[#C8A66B]">18+</p>
+                <p className="text-[11px] font-medium tracking-wider uppercase text-[#FFFFFF] mt-0.5">Years of Culinary Heritage</p>
               </div>
             </div>
 
@@ -370,8 +370,8 @@ export const HomePage = () => {
 
       {/* 5. Special Call to Action: Book a Table Banner */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="relative rounded-3xl overflow-hidden shadow-2xl bg-[#2D2528] text-white p-8 sm:p-16">
-          <div className="absolute inset-0 z-0 opacity-20">
+        <div className="relative rounded-3xl overflow-hidden shadow-2xl bg-gradient-to-r from-[#451423] via-[#602034] to-[#782D42] border-2 border-[#C8A66B]/40 text-[#FFFFFF] p-8 sm:p-16">
+          <div className="absolute inset-0 z-0 opacity-25">
             <img
               src={RESTAURANT_IMAGES.privateDining}
               alt="Dining Room Table"
@@ -379,13 +379,13 @@ export const HomePage = () => {
             />
           </div>
           <div className="relative z-10 max-w-2xl space-y-6">
-            <span className="px-3 py-1 rounded-full bg-[#C8A66B] text-[#873C50] text-xs font-bold uppercase tracking-wider">
+            <span className="px-3 py-1 rounded-full bg-[#C8A66B] text-[#451423] text-xs font-bold uppercase tracking-wider shadow-sm">
               Reserve Your Experience
             </span>
-            <h2 className="font-serif text-3xl sm:text-5xl font-bold tracking-tight text-white leading-tight">
+            <h2 className="font-serif text-3xl sm:text-5xl font-bold tracking-tight text-[#FFFFFF] leading-tight">
               An Evening of Tasteful Distinction Awaits You
             </h2>
-            <p className="text-sm sm:text-base text-[#F4EDE8] leading-relaxed">
+            <p className="text-sm sm:text-base text-[#FFFFFF] opacity-95 leading-relaxed">
               Tables at Aura Mocha are in high demand during dinner services. Reserve your table in advance to guarantee an intimate dining experience with our dedicated sommelier.
             </p>
             <div className="pt-2 flex flex-col sm:flex-row gap-4">
@@ -401,7 +401,7 @@ export const HomePage = () => {
                 <Button
                   variant="outline"
                   size="lg"
-                  className="border-[#F4EDE8] text-[#F4EDE8] hover:bg-[#F4EDE8] hover:text-[#2D2528]"
+                  className="border-[#FFFFFF] text-[#FFFFFF] hover:bg-white hover:text-[#451423]"
                 >
                   Contact Concierge
                 </Button>
@@ -473,8 +473,8 @@ export const HomePage = () => {
                 alt={img.alt}
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#2D2528]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                <p className="font-serif text-white font-medium text-sm">{img.alt}</p>
+              <div className="absolute inset-0 bg-gradient-to-t from-[#451423]/90 via-[#602034]/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                <p className="font-serif text-[#FFFFFF] font-medium text-sm drop-shadow">{img.alt}</p>
               </div>
             </div>
           ))}

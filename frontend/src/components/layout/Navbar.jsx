@@ -100,13 +100,13 @@ export const Navbar = ({ onOpenBookingModal }) => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           
-          {/* Brand Logo - Primary Burgundy #873C50 */}
+          {/* Brand Logo - Luxury Burgundy Gradient & Champagne Gold */}
           <Link to="/" className="flex items-center gap-3 group">
-            <div className="w-11 h-11 rounded-full bg-[#873C50] flex items-center justify-center text-[#F4EDE8] shadow-md group-hover:bg-[#873C50] transition-colors">
+            <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-[#6E2437] to-[#873C50] flex items-center justify-center text-[#FFFFFF] shadow-md group-hover:scale-105 transition-all border border-[#C8A66B]/30">
               <UtensilsCrossed className="w-5 h-5 text-[#C8A66B]" />
             </div>
             <div className="flex flex-col">
-              <span className="font-serif text-2xl font-bold tracking-tight text-[#873C50] group-hover:text-[#873C50] transition-colors">
+              <span className="font-serif text-2xl font-bold tracking-tight text-[#6E2437] group-hover:text-[#873C50] transition-colors">
                 Aura Mocha
               </span>
               <span className="text-[10px] uppercase tracking-[0.2em] font-semibold text-[#873C50]">

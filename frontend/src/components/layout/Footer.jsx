@@ -1,35 +1,45 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { UtensilsCrossed, Phone, Mail, MapPin, Clock, Globe, Share2, MessageCircle } from 'lucide-react';
+import { UtensilsCrossed, Phone, Mail, MapPin, Clock, Globe, Share2, MessageCircle, Sparkles } from 'lucide-react';
 import { RESTAURANT_LOCATIONS } from '../../utils/constants';
 
 export const Footer = () => {
   return (
-    <footer className="bg-[#873C50] text-[#F4EDE8] border-t border-[#873C50]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <footer className="relative bg-gradient-to-br from-[#451423] via-[#602034] to-[#873C50] text-[#FFFFFF] border-t-2 border-[#C8A66B]/60 shadow-2xl overflow-hidden">
+      
+      {/* Subtle luxury ambient glow effect */}
+      <div className="absolute top-0 right-1/4 w-96 h-96 bg-[#C8A66B]/10 rounded-full blur-3xl pointer-events-none"></div>
+      <div className="absolute bottom-0 left-10 w-80 h-80 bg-[#873C50]/20 rounded-full blur-2xl pointer-events-none"></div>
+
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           
           {/* Brand Info */}
           <div className="space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-white/15 border border-white/25 flex items-center justify-center text-white shadow-md">
+              <div className="w-11 h-11 rounded-2xl bg-white/15 border border-[#C8A66B]/40 flex items-center justify-center text-white shadow-lg backdrop-blur-sm">
                 <UtensilsCrossed className="w-5 h-5 text-[#C8A66B]" />
               </div>
-              <span className="font-serif text-2xl font-bold tracking-tight text-white">
-                Aura Mocha
-              </span>
+              <div className="flex flex-col">
+                <span className="font-serif text-2xl font-bold tracking-tight text-[#FFFFFF]">
+                  Aura Mocha
+                </span>
+                <span className="text-[10px] uppercase tracking-[0.2em] font-semibold text-[#C8A66B]">
+                  Haute Cuisine & Lounge
+                </span>
+              </div>
             </div>
-            <p className="text-sm text-[#E8DDD8] leading-relaxed">
-              Where culinary craftsmanship meets warm Burgundy & Champagne elegance. Experience Michelin-inspired recipes, artisanal roasting, and unforgettable hospitality.
+            <p className="text-sm text-[#FFFFFF] leading-relaxed font-normal opacity-95">
+              Where culinary craftsmanship meets warm Burgundy & Champagne elegance. Experience Michelin-inspired tasting menus, artisanal espresso roasting, and unforgettable hospitality.
             </p>
             <div className="flex items-center gap-3 pt-2">
-              <a href="#globe" aria-label="Website" className="w-9 h-9 rounded-full bg-white/15 hover:bg-white/25 flex items-center justify-center text-white transition-colors border border-white/20">
+              <a href="#globe" aria-label="Website" className="w-9 h-9 rounded-full bg-white/15 hover:bg-white/25 flex items-center justify-center text-white transition-all border border-white/20 hover:scale-105 shadow-sm">
                 <Globe className="w-4 h-4 text-[#C8A66B]" />
               </a>
-              <a href="#social" aria-label="Social Share" className="w-9 h-9 rounded-full bg-white/15 hover:bg-white/25 flex items-center justify-center text-white transition-colors border border-white/20">
+              <a href="#social" aria-label="Social Share" className="w-9 h-9 rounded-full bg-white/15 hover:bg-white/25 flex items-center justify-center text-white transition-all border border-white/20 hover:scale-105 shadow-sm">
                 <Share2 className="w-4 h-4 text-[#C8A66B]" />
               </a>
-              <a href="#messages" aria-label="Messages" className="w-9 h-9 rounded-full bg-white/15 hover:bg-white/25 flex items-center justify-center text-white transition-colors border border-white/20">
+              <a href="#messages" aria-label="Messages" className="w-9 h-9 rounded-full bg-white/15 hover:bg-white/25 flex items-center justify-center text-white transition-all border border-white/20 hover:scale-105 shadow-sm">
                 <MessageCircle className="w-4 h-4 text-[#C8A66B]" />
               </a>
             </div>
@@ -37,53 +47,70 @@ export const Footer = () => {
 
           {/* Quick Links */}
           <div className="space-y-4">
-            <h4 className="font-serif text-lg font-semibold text-white tracking-wide border-b border-white/20 pb-2">
-              Explore
+            <h4 className="font-serif text-lg font-bold text-[#FFFFFF] tracking-wide border-b border-[#C8A66B]/30 pb-2.5 flex items-center gap-2">
+              <span>Explore</span>
+              <Sparkles className="w-3.5 h-3.5 text-[#C8A66B]" />
             </h4>
-            <ul className="space-y-2 text-sm text-[#E8DDD8]">
+            <ul className="space-y-2.5 text-sm text-[#FFFFFF]">
               <li>
-                <Link to="/" className="hover:text-white transition-colors">Home Experience</Link>
+                <Link to="/" className="text-[#FFFFFF] opacity-90 hover:opacity-100 hover:text-[#C8A66B] transition-colors flex items-center gap-1.5 font-medium">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#C8A66B]"></span>
+                  <span>Home Experience</span>
+                </Link>
               </li>
               <li>
-                <Link to="/about" className="hover:text-white transition-colors">Our Culinary Story</Link>
+                <Link to="/about" className="text-[#FFFFFF] opacity-90 hover:opacity-100 hover:text-[#C8A66B] transition-colors flex items-center gap-1.5 font-medium">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#C8A66B]"></span>
+                  <span>Our Culinary Story</span>
+                </Link>
               </li>
               <li>
-                <Link to="/menu" className="hover:text-white transition-colors">Seasonal Haute Menu</Link>
+                <Link to="/menu" className="text-[#FFFFFF] opacity-90 hover:opacity-100 hover:text-[#C8A66B] transition-colors flex items-center gap-1.5 font-medium">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#C8A66B]"></span>
+                  <span>Seasonal Haute Menu</span>
+                </Link>
               </li>
               <li>
-                <Link to="/services" className="hover:text-white transition-colors">Private Dining & Events</Link>
+                <Link to="/services" className="text-[#FFFFFF] opacity-90 hover:opacity-100 hover:text-[#C8A66B] transition-colors flex items-center gap-1.5 font-medium">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#C8A66B]"></span>
+                  <span>Private Dining & Salons</span>
+                </Link>
               </li>
               <li>
-                <Link to="/contact" className="hover:text-white transition-colors">Reservations & Contact</Link>
+                <Link to="/contact" className="text-[#FFFFFF] opacity-90 hover:opacity-100 hover:text-[#C8A66B] transition-colors flex items-center gap-1.5 font-medium">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#C8A66B]"></span>
+                  <span>Reservations & Concierge</span>
+                </Link>
               </li>
             </ul>
           </div>
 
           {/* Hours & Dining */}
           <div className="space-y-4">
-            <h4 className="font-serif text-lg font-semibold text-white tracking-wide border-b border-white/20 pb-2">
-              Dining Hours
+            <h4 className="font-serif text-lg font-bold text-[#FFFFFF] tracking-wide border-b border-[#C8A66B]/30 pb-2.5 flex items-center gap-2">
+              <span>Dining Hours</span>
+              <Clock className="w-3.5 h-3.5 text-[#C8A66B]" />
             </h4>
-            <div className="space-y-3 text-sm text-[#E8DDD8]">
-              <div className="flex items-start gap-2.5">
+            <div className="space-y-3 text-sm text-[#FFFFFF]">
+              <div className="flex items-start gap-2.5 p-2 rounded-xl bg-white/10 backdrop-blur-xs border border-white/10">
                 <Clock className="w-4 h-4 text-[#C8A66B] mt-0.5 shrink-0" />
                 <div>
-                  <p className="font-medium text-white">Lunch Service</p>
-                  <p className="text-xs text-[#E8DDD8]/80">Mon – Sun: 11:30 AM – 03:00 PM</p>
+                  <p className="font-bold text-[#FFFFFF]">Lunch Service</p>
+                  <p className="text-xs text-[#FFFFFF] opacity-90">Mon – Sun: 11:30 AM – 03:00 PM</p>
                 </div>
               </div>
-              <div className="flex items-start gap-2.5">
+              <div className="flex items-start gap-2.5 p-2 rounded-xl bg-white/10 backdrop-blur-xs border border-white/10">
                 <Clock className="w-4 h-4 text-[#C8A66B] mt-0.5 shrink-0" />
                 <div>
-                  <p className="font-medium text-white">Dinner Service</p>
-                  <p className="text-xs text-[#E8DDD8]/80">Mon – Sun: 05:30 PM – 11:00 PM</p>
+                  <p className="font-bold text-[#FFFFFF]">Dinner Service</p>
+                  <p className="text-xs text-[#FFFFFF] opacity-90">Mon – Sun: 05:30 PM – 11:00 PM</p>
                 </div>
               </div>
-              <div className="flex items-start gap-2.5">
+              <div className="flex items-start gap-2.5 p-2 rounded-xl bg-white/10 backdrop-blur-xs border border-white/10">
                 <Clock className="w-4 h-4 text-[#C8A66B] mt-0.5 shrink-0" />
                 <div>
-                  <p className="font-medium text-white">Lounge & Espresso Bar</p>
-                  <p className="text-xs text-[#E8DDD8]/80">Fri & Sat: Until 01:00 AM</p>
+                  <p className="font-bold text-[#FFFFFF]">Lounge & Espresso Bar</p>
+                  <p className="text-xs text-[#FFFFFF] opacity-90">Fri & Sat: Until 01:00 AM</p>
                 </div>
               </div>
             </div>
@@ -91,30 +118,42 @@ export const Footer = () => {
 
           {/* Contact & Flagship */}
           <div className="space-y-4">
-            <h4 className="font-serif text-lg font-semibold text-white tracking-wide border-b border-white/20 pb-2">
-              Concierge
+            <h4 className="font-serif text-lg font-bold text-[#FFFFFF] tracking-wide border-b border-[#C8A66B]/30 pb-2.5 flex items-center gap-2">
+              <span>Concierge Desk</span>
+              <MapPin className="w-3.5 h-3.5 text-[#C8A66B]" />
             </h4>
-            <div className="space-y-3 text-sm text-[#E8DDD8]">
+            <div className="space-y-3 text-sm text-[#FFFFFF]">
               <div className="flex items-start gap-2.5">
                 <MapPin className="w-4 h-4 text-[#C8A66B] mt-0.5 shrink-0" />
-                <span>{RESTAURANT_LOCATIONS[0]}</span>
+                <span className="font-medium text-[#FFFFFF]">{RESTAURANT_LOCATIONS[0]}</span>
               </div>
               <div className="flex items-center gap-2.5">
                 <Phone className="w-4 h-4 text-[#C8A66B] shrink-0" />
-                <span>+1 (555) 800-4499</span>
+                <span className="font-mono font-bold text-[#FFFFFF]">+1 (555) 800-4499</span>
               </div>
               <div className="flex items-center gap-2.5">
                 <Mail className="w-4 h-4 text-[#C8A66B] shrink-0" />
-                <span>concierge@auramocha.com</span>
+                <span className="text-[#FFFFFF] font-medium">concierge@auramocha.com</span>
+              </div>
+              <div className="pt-2">
+                <Link
+                  to="/customer/book-table"
+                  className="inline-flex items-center justify-center gap-2 w-full py-2.5 px-4 rounded-xl bg-[#C8A66B] hover:bg-[#B5955B] text-[#451423] font-bold text-xs uppercase tracking-wider transition-all shadow-md hover:scale-[1.02]"
+                >
+                  Reserve Table Online
+                </Link>
               </div>
             </div>
           </div>
 
         </div>
 
-        <div className="mt-12 pt-8 border-t border-white/20 flex flex-col sm:flex-row items-center justify-between text-xs text-[#E8DDD8]/80">
+        <div className="mt-12 pt-8 border-t border-white/20 flex flex-col sm:flex-row items-center justify-between text-xs text-[#FFFFFF] font-medium">
           <p>© {new Date().getFullYear()} Aura Mocha Haute Cuisine. All Rights Reserved.</p>
-          <p className="mt-2 sm:mt-0">Burgundy & Champagne Luxury Design System</p>
+          <p className="mt-2 sm:mt-0 flex items-center gap-1.5 text-[#C8A66B]">
+            <Sparkles className="w-3.5 h-3.5" />
+            <span>Burgundy & Champagne Gold Luxury Aesthetic</span>
+          </p>
         </div>
       </div>
     </footer>

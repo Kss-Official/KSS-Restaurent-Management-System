@@ -68,23 +68,23 @@ export const RegisterPage = () => {
   };
 
   return (
-    <div className="relative min-h-screen w-full flex items-center justify-center p-4 sm:p-6 overflow-hidden bg-[#873C50]">
+    <div className="relative min-h-screen w-full flex items-center justify-center p-4 sm:p-6 overflow-hidden bg-gradient-to-b from-[#451423] via-[#602034] to-[#782D42]">
       
       {/* Heavily Blurred Background Image & Backdrop Filter */}
       <div className="absolute inset-0 z-0">
         <img
           src={RESTAURANT_IMAGES.heroAlt}
           alt="Aura Mocha Luxury Restaurant"
-          className="w-full h-full object-cover scale-110 filter blur-2xl opacity-35"
+          className="w-full h-full object-cover scale-110 filter blur-2xl opacity-20"
         />
-        <div className="absolute inset-0 bg-[#873C50]/85 backdrop-blur-3xl"></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-[#873C50] via-[#873C50]/90 to-[#873C50]"></div>
+        <div className="absolute inset-0 bg-[#451423]/70 backdrop-blur-3xl"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-[#451423] via-[#602034]/90 to-[#782D42]"></div>
       </div>
 
       {/* Back to Website Button */}
       <Link
         to="/"
-        className="absolute top-6 left-6 z-20 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/15 hover:bg-white/25 text-[#F4EDE8] text-xs font-semibold backdrop-blur-md border border-white/20 transition-all shadow-lg"
+        className="absolute top-6 left-6 z-20 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 hover:bg-white/20 text-[#FFFFFF] text-xs font-semibold backdrop-blur-md border border-white/20 transition-all shadow-lg"
       >
         <ArrowLeft className="w-4 h-4 text-[#C8A66B]" />
         <span>Back to Website</span>

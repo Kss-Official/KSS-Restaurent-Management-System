@@ -220,16 +220,16 @@ export const WaiterPortal = () => {
           
           {/* Urgent Food Ready Alert Banner */}
           {readyOrders.length > 0 && (
-            <div className="p-4 rounded-2xl bg-gradient-to-r from-[#873C50] to-[#873C50] text-white shadow-xl flex flex-wrap items-center justify-between gap-4 border border-[#C8A66B]">
+            <div className="p-4 rounded-2xl bg-gradient-to-r from-[#451423] via-[#602034] to-[#782D42] text-[#FFFFFF] shadow-xl flex flex-wrap items-center justify-between gap-4 border-2 border-[#C8A66B]">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-[#F4EDE8]/20 flex items-center justify-center animate-pulse">
+                <div className="w-10 h-10 rounded-full bg-white/15 flex items-center justify-center animate-pulse border border-[#C8A66B]/50">
                   <Bell className="w-6 h-6 text-[#C8A66B]" />
                 </div>
                 <div>
-                  <p className="font-bold text-sm tracking-wide">
+                  <p className="font-bold text-sm tracking-wide text-[#FFFFFF]">
                     {readyOrders.length} Order(s) Ready for Table Delivery!
                   </p>
-                  <p className="text-xs text-[#F4EDE8]">
+                  <p className="text-xs text-[#FFFFFF] opacity-90">
                     Kitchen chef has plated the dishes. Please collect at pass immediately.
                   </p>
                 </div>

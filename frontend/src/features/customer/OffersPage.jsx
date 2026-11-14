@@ -132,16 +132,16 @@ export const OffersPage = () => {
           ))}
         </div>
 
-        {/* VIP Dining Pass Banner */}
-        <div className="bg-gradient-to-r from-[#2D2528] via-[#2D2528] to-[#873C50] rounded-3xl p-8 text-white shadow-xl flex flex-col md:flex-row items-center justify-between gap-6 border border-[#C8A66B]/40">
+        {/* VIP Dining Pass Banner with Rich Burgundy & Champagne Gradient */}
+        <div className="bg-gradient-to-r from-[#451423] via-[#602034] to-[#782D42] text-[#FFFFFF] rounded-3xl p-8 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-6 border-2 border-[#C8A66B]/50">
           <div className="space-y-2 text-center md:text-left">
             <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#C8A66B]">
               Black Gold Membership
             </span>
-            <h3 className="font-serif text-2xl sm:text-3xl font-bold">
+            <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#FFFFFF]">
               Unlock Complimentary Sommelier Pairings
             </h3>
-            <p className="text-xs text-[#F4EDE8] max-w-xl">
+            <p className="text-xs text-[#FFFFFF] opacity-95 max-w-xl">
               Patrons with more than 5 reservations receive exclusive table priority, complimentary chef amuses-bouches, and invitations to private vintner dinners.
             </p>
           </div>
