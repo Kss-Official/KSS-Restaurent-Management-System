@@ -76,8 +76,8 @@ export const DEMO_USERS = {
 const AppContext = createContext(null);
 
 export const AppProvider = ({ children }) => {
-  // 1. Current Authenticated User
-  const [currentUser, setCurrentUser] = useState(() => getStoredItem('aura_user', null));
+  // 1. Current Authenticated User (Default to DEMO_USERS.admin for testing)
+  const [currentUser, setCurrentUser] = useState(() => getStoredItem('aura_user', DEMO_USERS.admin));
 
   // 2. Physical Tables
   const [tables, setTables] = useState(() => getStoredItem('aura_tables', INITIAL_TABLES));

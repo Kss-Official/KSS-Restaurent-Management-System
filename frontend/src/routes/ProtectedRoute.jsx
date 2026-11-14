@@ -14,9 +14,7 @@ export const ProtectedRoute = ({ children, allowedRoles = [] }) => {
 
   // If specific roles are required, verify access
   if (allowedRoles.length > 0 && !allowedRoles.includes(role)) {
-    // If a customer tries to access staff portals, or staff tries to access unauthorized sections
-    alert(`Access Denied: Your current role (${role}) does not have permission to access this portal.`);
-    return <Navigate to="/" replace />;
+    return <Navigate to={`/login?redirect=${encodeURIComponent(location.pathname)}`} replace />;
   }
 
   return children;
