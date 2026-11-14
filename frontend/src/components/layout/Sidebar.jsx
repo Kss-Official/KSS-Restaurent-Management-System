@@ -32,29 +32,29 @@ export const Sidebar = ({
       {/* Mobile backdrop */}
       {isOpen && (
         <div 
-          className="fixed inset-0 bg-black/50 z-40 lg:hidden backdrop-blur-sm"
+          className="fixed inset-0 bg-black/60 z-40 lg:hidden backdrop-blur-sm"
           onClick={onClose}
         />
       )}
 
-      {/* Sidebar container with featured Mocha Brown #6F4E37 */}
+      {/* Sidebar container with Exact Primary Burgundy #542334 */}
       <aside 
-        className={`fixed top-0 bottom-0 left-0 z-50 w-72 bg-[#6F4E37] text-[#FAF6F0] flex flex-col justify-between transition-transform duration-300 shadow-2xl border-r border-[#563B29] lg:translate-x-0 ${
+        className={`fixed top-0 bottom-0 left-0 z-50 w-72 bg-[#542334] text-[#F4EDE8] flex flex-col justify-between transition-transform duration-300 shadow-2xl border-r border-[#873C50]/60 lg:translate-x-0 ${
           isOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
         {/* Top header */}
         <div className="flex flex-col flex-1 overflow-hidden">
-          <div className="p-5 border-b border-[#563B29] flex items-center justify-between shrink-0">
+          <div className="p-5 border-b border-[#873C50]/60 flex items-center justify-between shrink-0">
             <Link to="/" className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-[#FAF6F0] text-[#6F4E37] flex items-center justify-center shadow-inner shrink-0">
-                <UtensilsCrossed className="w-5 h-5" />
+              <div className="w-10 h-10 rounded-xl bg-[#F4EDE8] text-[#542334] flex items-center justify-center shadow-inner shrink-0">
+                <UtensilsCrossed className="w-5 h-5 text-[#C8A66B]" />
               </div>
               <div className="overflow-hidden">
-                <h1 className="font-serif text-xl font-bold tracking-tight text-[#FAF6F0] leading-none truncate">
+                <h1 className="font-serif text-xl font-bold tracking-tight text-[#F4EDE8] leading-none truncate">
                   Aura Mocha
                 </h1>
-                <p className="text-[10px] font-medium uppercase tracking-widest text-[#E6D7C3] mt-1 truncate">
+                <p className="text-[10px] font-semibold uppercase tracking-widest text-[#B66A79] mt-1 truncate">
                   {title || 'Management System'}
                 </p>
               </div>
@@ -62,7 +62,7 @@ export const Sidebar = ({
             {onClose && (
               <button 
                 onClick={onClose}
-                className="lg:hidden p-1.5 rounded-lg text-[#E6D7C3] hover:text-white hover:bg-[#563B29]"
+                className="lg:hidden p-1.5 rounded-lg text-[#F4EDE8] hover:text-white hover:bg-[#873C50]"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -70,9 +70,9 @@ export const Sidebar = ({
           </div>
 
           {/* Portal badge */}
-          <div className="px-5 py-3 bg-[#563B29]/70 flex items-center justify-between text-xs text-[#FAF6F0] shrink-0">
-            <span className="font-semibold uppercase tracking-wider text-[#E6D7C3] text-[11px]">Active Portal</span>
-            <span className="px-2.5 py-0.5 rounded-full bg-[#3E271A] text-[#FAF6F0] font-medium border border-[#8E5B34]/50 text-[11px]">
+          <div className="px-5 py-3 bg-[#3A1421]/60 flex items-center justify-between text-xs text-[#F4EDE8] shrink-0 border-b border-[#873C50]/40">
+            <span className="font-semibold uppercase tracking-wider text-[#B66A79] text-[11px]">Active Portal</span>
+            <span className="px-2.5 py-0.5 rounded-full bg-[#873C50] text-[#F4EDE8] font-bold border border-[#B66A79]/40 text-[11px]">
               {subtitle || (currentUser?.role && ROLE_LABELS[currentUser.role]) || 'Portal'}
             </span>
           </div>
@@ -84,7 +84,7 @@ export const Sidebar = ({
               if (item.isGroup) {
                 return (
                   <div key={idx} className="pt-3 pb-1">
-                    <p className="px-3 text-[10px] font-bold uppercase tracking-widest text-[#E6D7C3]/75">
+                    <p className="px-3 text-[10px] font-bold uppercase tracking-widest text-[#B66A79]">
                       {item.groupTitle}
                     </p>
                     <div className="mt-1 space-y-0.5">
@@ -100,10 +100,10 @@ export const Sidebar = ({
                               if (onTabChange && sub.tabId) onTabChange(sub.tabId);
                               if (onClose) onClose();
                             }}
-                            className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs font-medium transition-all text-left ${
+                            className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs font-semibold transition-all text-left ${
                               isSubActive
-                                ? 'bg-[#FAF6F0] text-[#6F4E37] shadow-sm font-bold'
-                                : 'text-[#FAF6F0]/90 hover:bg-[#563B29] hover:text-white'
+                                ? 'bg-white text-[#542334] shadow-md font-bold'
+                                : 'text-[#F4EDE8]/90 hover:bg-[#873C50] hover:text-white'
                             }`}
                           >
                             <div className="flex items-center gap-2.5 truncate">
@@ -111,7 +111,7 @@ export const Sidebar = ({
                               <span className="truncate">{sub.label}</span>
                             </div>
                             {sub.badge !== undefined && sub.badge > 0 && (
-                              <span className="px-1.5 py-0.2 text-[10px] font-bold rounded-full bg-[#C89B4A] text-[#170B06]">
+                              <span className="px-1.5 py-0.2 text-[10px] font-bold rounded-full bg-[#C8A66B] text-[#542334]">
                                 {sub.badge}
                               </span>
                             )}
@@ -136,10 +136,10 @@ export const Sidebar = ({
                     if (onTabChange && item.tabId) onTabChange(item.tabId);
                     if (onClose) onClose();
                   }}
-                  className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-lg text-xs sm:text-sm font-medium transition-all text-left ${
+                  className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-lg text-xs sm:text-sm font-semibold transition-all text-left ${
                     isActive
-                      ? 'bg-[#FAF6F0] text-[#6F4E37] shadow-md font-semibold'
-                      : 'text-[#FAF6F0]/90 hover:bg-[#563B29] hover:text-white'
+                      ? 'bg-white text-[#542334] shadow-md font-bold'
+                      : 'text-[#F4EDE8]/90 hover:bg-[#873C50] hover:text-white'
                   }`}
                 >
                   <div className="flex items-center gap-3 truncate">
@@ -147,7 +147,7 @@ export const Sidebar = ({
                     <span className="truncate">{item.label}</span>
                   </div>
                   {item.badge !== undefined && item.badge > 0 && (
-                    <span className="px-2 py-0.5 text-xs font-bold rounded-full bg-[#C89B4A] text-[#170B06]">
+                    <span className="px-2 py-0.5 text-xs font-bold rounded-full bg-[#C8A66B] text-[#542334]">
                       {item.badge}
                     </span>
                   )}
@@ -158,30 +158,30 @@ export const Sidebar = ({
         </div>
 
         {/* Footer Area with user summary and back to public site / logout */}
-        <div className="p-3.5 border-t border-[#563B29] bg-[#563B29]/40 space-y-2.5 shrink-0">
-          <div className="flex items-center gap-2.5 p-2 rounded-lg bg-[#3E271A]/50">
+        <div className="p-3.5 border-t border-[#873C50]/60 bg-[#3A1421]/50 space-y-2.5 shrink-0">
+          <div className="flex items-center gap-2.5 p-2 rounded-lg bg-[#542334] border border-[#873C50]/40">
             <img 
               src={currentUser?.avatar || "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80"}
               alt={currentUser?.name}
-              className="w-8 h-8 rounded-full object-cover border border-[#C89B4A] shrink-0"
+              className="w-8 h-8 rounded-full object-cover border border-[#C8A66B] shrink-0"
             />
             <div className="overflow-hidden">
-              <p className="text-xs font-bold text-[#FAF6F0] truncate">{currentUser?.name || "Staff Member"}</p>
-              <p className="text-[10px] text-[#E6D7C3] truncate capitalize">{currentUser?.role ? ROLE_LABELS[currentUser.role] : "Staff"}</p>
+              <p className="text-xs font-bold text-[#F4EDE8] truncate">{currentUser?.name || "Staff Member"}</p>
+              <p className="text-[10px] text-[#B66A79] truncate capitalize">{currentUser?.role ? ROLE_LABELS[currentUser.role] : "Staff"}</p>
             </div>
           </div>
 
           <div className="grid grid-cols-2 gap-2">
             <Link
               to="/"
-              className="flex items-center justify-center gap-1.5 py-2 text-xs font-medium text-[#FAF6F0] bg-[#563B29] hover:bg-[#3E271A] rounded-lg transition-colors"
+              className="flex items-center justify-center gap-1.5 py-2 text-xs font-semibold text-[#F4EDE8] bg-[#873C50] hover:bg-[#3A1421] rounded-lg transition-colors shadow-sm"
             >
               <ArrowLeft className="w-3.5 h-3.5" />
               <span>Public Site</span>
             </Link>
             <button
               onClick={handleLogout}
-              className="flex items-center justify-center gap-1.5 py-2 text-xs font-medium text-red-200 bg-red-900/40 hover:bg-red-900/60 rounded-lg transition-colors"
+              className="flex items-center justify-center gap-1.5 py-2 text-xs font-semibold text-white bg-[#C44747]/80 hover:bg-[#C44747] rounded-lg transition-colors shadow-sm"
             >
               <LogOut className="w-3.5 h-3.5" />
               <span>Logout</span>

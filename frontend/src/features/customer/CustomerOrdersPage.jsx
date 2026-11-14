@@ -53,20 +53,20 @@ export const CustomerOrdersPage = () => {
   };
 
   return (
-    <div className="py-12 bg-[#FAF6F0] min-h-[85vh]">
+    <div className="py-12 bg-[#F4EDE8] min-h-[85vh]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         
         {/* Header */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 bg-white p-6 sm:p-8 rounded-3xl border border-[#D5BFA4]/50 shadow-sm">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 bg-white p-6 sm:p-8 rounded-3xl border border-[#E8DDD8]/50 shadow-sm">
           <div>
             <div className="flex items-center gap-2 mb-1">
-              <span className="text-xs font-bold uppercase tracking-wider text-[#8E5B34]">Live Dining Tracker</span>
+              <span className="text-xs font-bold uppercase tracking-wider text-[#873C50]">Live Dining Tracker</span>
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
             </div>
-            <h1 className="font-serif text-3xl font-bold text-[#26160E]">My Live Table Orders</h1>
-            <p className="text-xs text-[#563B29] mt-1">
+            <h1 className="font-serif text-3xl font-bold text-[#2D2528]">My Live Table Orders</h1>
+            <p className="text-xs text-[#75696B] mt-1">
               {userSession ? (
-                <>Seated at <strong className="text-[#6F4E37]">Table {userSession.tableNumber}</strong> • Active Session <strong className="font-mono text-[#6F4E37]">#{userSession.sessionId}</strong></>
+                <>Seated at <strong className="text-[#542334]">Table {userSession.tableNumber}</strong> • Active Session <strong className="font-mono text-[#542334]">#{userSession.sessionId}</strong></>
               ) : (
                 'Real-time order preparation status direct from the executive kitchen'
               )}
@@ -84,12 +84,12 @@ export const CustomerOrdersPage = () => {
 
         {/* Live Orders Tracker */}
         {customerOrders.length === 0 ? (
-          <div className="bg-white rounded-3xl p-12 text-center border border-[#D5BFA4]/50 shadow-sm space-y-4">
-            <div className="w-16 h-16 rounded-full bg-[#FAF6F0] text-[#6F4E37] mx-auto flex items-center justify-center">
+          <div className="bg-white rounded-3xl p-12 text-center border border-[#E8DDD8]/50 shadow-sm space-y-4">
+            <div className="w-16 h-16 rounded-full bg-[#F4EDE8] text-[#542334] mx-auto flex items-center justify-center">
               <ShoppingBag className="w-8 h-8" />
             </div>
-            <h3 className="font-serif text-2xl font-bold text-[#26160E]">No Active Orders Placed</h3>
-            <p className="text-sm text-[#563B29] max-w-md mx-auto">
+            <h3 className="font-serif text-2xl font-bold text-[#2D2528]">No Active Orders Placed</h3>
+            <p className="text-sm text-[#75696B] max-w-md mx-auto">
               You haven't ordered any dishes for your table yet. Explore our luxury seasonal menu and place an order directly to the kitchen.
             </p>
             <div className="pt-2">
@@ -111,34 +111,34 @@ export const CustomerOrdersPage = () => {
                 <div 
                   key={order.id} 
                   className={`bg-white rounded-3xl p-6 sm:p-8 border-2 shadow-md space-y-6 transition-all ${
-                    isReady ? 'border-[#C89B4A] bg-amber-50/20' : 'border-[#D5BFA4]/50'
+                    isReady ? 'border-[#C8A66B] bg-amber-50/20' : 'border-[#E8DDD8]/50'
                   }`}
                 >
                   {/* Order Top Bar */}
-                  <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pb-4 border-b border-[#F4ECE1]">
+                  <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pb-4 border-b border-[#FAF7F5]">
                     <div>
                       <div className="flex items-center gap-3">
-                        <span className="font-mono font-bold text-sm bg-[#6F4E37] text-white px-2.5 py-0.5 rounded-lg">
+                        <span className="font-mono font-bold text-sm bg-[#542334] text-white px-2.5 py-0.5 rounded-lg">
                           {order.id}
                         </span>
-                        <span className="font-mono text-xs text-[#8E5B34]">
+                        <span className="font-mono text-xs text-[#873C50]">
                           KOT Ticket: {order.kotId}
                         </span>
-                        <span className="text-xs text-[#563B29]">
+                        <span className="text-xs text-[#75696B]">
                           • Placed {order.time || '10 mins ago'}
                         </span>
                       </div>
-                      <h3 className="font-serif text-xl font-bold text-[#26160E] mt-1">
+                      <h3 className="font-serif text-xl font-bold text-[#2D2528] mt-1">
                         Table {order.tableNumber} Dining Service
                       </h3>
                     </div>
 
                     <div className="flex items-center gap-2">
                       <span className={`px-3 py-1 rounded-full text-xs font-bold ${
-                        isReady ? 'bg-emerald-100 text-emerald-800 border border-emerald-300 animate-pulse' :
+                        isReady ? 'bg-[#21845A]/15 text-[#21845A] border border-[#21845A]/30 border border-emerald-300 animate-pulse' :
                         isServed ? 'bg-gray-100 text-gray-800' :
                         order.status === 'Preparing' ? 'bg-orange-100 text-orange-800' :
-                        'bg-blue-100 text-blue-800'
+                        'bg-[#3976B8]/15 text-[#3976B8] border border-[#3976B8]/30'
                       }`}>
                         {order.status === 'Ready to Serve' ? 'Ready at Pass – Waiter En Route' : order.status}
                       </span>
@@ -147,7 +147,7 @@ export const CustomerOrdersPage = () => {
 
                   {/* 5-Stage Stepper */}
                   <div className="py-2">
-                    <p className="text-xs font-bold uppercase tracking-wider text-[#8E5B34] mb-4">
+                    <p className="text-xs font-bold uppercase tracking-wider text-[#873C50] mb-4">
                       Real-Time Kitchen Progress
                     </p>
                     <div className="grid grid-cols-2 sm:grid-cols-5 gap-2 sm:gap-4 relative">
@@ -160,9 +160,9 @@ export const CustomerOrdersPage = () => {
                             key={idx} 
                             className={`p-3 rounded-2xl border transition-all text-center flex flex-col justify-between ${
                               isCurrent
-                                ? 'bg-[#6F4E37] text-white border-[#6F4E37] shadow-md scale-105'
+                                ? 'bg-[#542334] text-white border-[#542334] shadow-md scale-105'
                                 : isDone
-                                ? 'bg-[#FAF6F0] text-[#3E271A] border-[#D5BFA4]'
+                                ? 'bg-[#F4EDE8] text-[#2D2528] border-[#E8DDD8]'
                                 : 'bg-gray-50 text-gray-400 border-gray-200'
                             }`}
                           >
@@ -170,13 +170,13 @@ export const CustomerOrdersPage = () => {
                               {isDone && !isCurrent ? (
                                 <CheckCircle2 className="w-5 h-5 text-emerald-600" />
                               ) : isCurrent ? (
-                                <ChefHat className="w-5 h-5 text-[#C89B4A] animate-bounce" />
+                                <ChefHat className="w-5 h-5 text-[#C8A66B] animate-bounce" />
                               ) : (
                                 <Clock className="w-5 h-5 text-gray-300" />
                               )}
                             </div>
                             <span className="font-bold text-xs">{step.label}</span>
-                            <span className={`text-[10px] mt-0.5 ${isCurrent ? 'text-[#F4ECE1]' : 'text-[#8E5B34]'}`}>
+                            <span className={`text-[10px] mt-0.5 ${isCurrent ? 'text-[#FAF7F5]' : 'text-[#873C50]'}`}>
                               {step.desc}
                             </span>
                           </div>
@@ -186,20 +186,20 @@ export const CustomerOrdersPage = () => {
                   </div>
 
                   {/* Dishes Ordered */}
-                  <div className="pt-4 border-t border-[#F4ECE1] space-y-3">
-                    <p className="font-bold text-xs uppercase tracking-wider text-[#6F4E37]">
+                  <div className="pt-4 border-t border-[#FAF7F5] space-y-3">
+                    <p className="font-bold text-xs uppercase tracking-wider text-[#542334]">
                       Dishes on This Ticket:
                     </p>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       {order.items.map((item, idx) => (
-                        <div key={idx} className="p-3 rounded-xl bg-[#FAF6F0] flex justify-between items-center text-xs">
+                        <div key={idx} className="p-3 rounded-xl bg-[#F4EDE8] flex justify-between items-center text-xs">
                           <div>
-                            <span className="font-bold text-[#26160E]">{item.qty} × {item.name}</span>
+                            <span className="font-bold text-[#2D2528]">{item.qty} × {item.name}</span>
                             {item.notes && (
-                              <p className="text-[10px] text-[#8E5B34] italic">Note: {item.notes}</p>
+                              <p className="text-[10px] text-[#873C50] italic">Note: {item.notes}</p>
                             )}
                           </div>
-                          <span className="font-mono font-bold text-[#6F4E37]">
+                          <span className="font-mono font-bold text-[#542334]">
                             {formatCurrency(item.price * item.qty)}
                           </span>
                         </div>
@@ -208,14 +208,14 @@ export const CustomerOrdersPage = () => {
                   </div>
 
                   {/* Summary Footer */}
-                  <div className="pt-4 border-t border-[#F4ECE1] flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 text-xs">
-                    <div className="flex items-center gap-2 text-[#8E5B34]">
+                  <div className="pt-4 border-t border-[#FAF7F5] flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 text-xs">
+                    <div className="flex items-center gap-2 text-[#873C50]">
                       <ShieldCheck className="w-4 h-4 text-emerald-600" />
-                      <span>Dedicated Waiter: <strong className="text-[#26160E]">{order.waiter || 'Julian Vance'}</strong></span>
+                      <span>Dedicated Waiter: <strong className="text-[#2D2528]">{order.waiter || 'Julian Vance'}</strong></span>
                     </div>
 
-                    <div className="font-mono text-sm font-bold text-[#26160E]">
-                      Ticket Total: <span className="text-[#6F4E37]">{formatCurrency(
+                    <div className="font-mono text-sm font-bold text-[#2D2528]">
+                      Ticket Total: <span className="text-[#542334]">{formatCurrency(
                         order.items.reduce((s, it) => s + (it.price * it.qty), 0)
                       )}</span>
                     </div>

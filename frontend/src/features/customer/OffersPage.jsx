@@ -31,18 +31,18 @@ export const OffersPage = () => {
   };
 
   return (
-    <div className="py-12 bg-[#FAF6F0] min-h-[85vh]">
+    <div className="py-12 bg-[#F4EDE8] min-h-[85vh]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto space-y-3">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#F4ECE1] text-[#6F4E37] text-xs font-bold uppercase tracking-wider">
-            <Gift className="w-3.5 h-3.5 text-[#C89B4A]" /> Exclusive Patron Privileges
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FAF7F5] text-[#542334] text-xs font-bold uppercase tracking-wider">
+            <Gift className="w-3.5 h-3.5 text-[#C8A66B]" /> Exclusive Patron Privileges
           </div>
-          <h1 className="font-serif text-3xl sm:text-4xl font-bold text-[#26160E]">
+          <h1 className="font-serif text-3xl sm:text-4xl font-bold text-[#2D2528]">
             Special Offers & Seasonal Vouchers
           </h1>
-          <p className="text-sm text-[#563B29]">
+          <p className="text-sm text-[#75696B]">
             Enhance your dining affair at Aura Mocha with our signature culinary rewards and private dining privileges.
           </p>
         </div>
@@ -52,37 +52,37 @@ export const OffersPage = () => {
           {offers.map((offer) => (
             <div
               key={offer.id}
-              className="bg-white rounded-3xl p-6 border border-[#D5BFA4]/60 shadow-md hover:border-[#6F4E37] hover:shadow-xl transition-all flex flex-col justify-between space-y-6 relative overflow-hidden"
+              className="bg-white rounded-3xl p-6 border border-[#E8DDD8]/60 shadow-md hover:border-[#542334] hover:shadow-xl transition-all flex flex-col justify-between space-y-6 relative overflow-hidden"
             >
               {/* Gold Ribbon Tag */}
-              <div className="absolute top-0 right-0 bg-[#C89B4A] text-white text-[10px] font-bold uppercase tracking-wider py-1 px-4 rounded-bl-xl shadow-sm">
+              <div className="absolute top-0 right-0 bg-[#C8A66B] text-white text-[10px] font-bold uppercase tracking-wider py-1 px-4 rounded-bl-xl shadow-sm">
                 {offer.discountPercent}% OFF
               </div>
 
               <div>
-                <div className="w-12 h-12 rounded-2xl bg-[#FAF6F0] border border-[#D5BFA4]/40 flex items-center justify-center text-[#6F4E37] mb-4">
+                <div className="w-12 h-12 rounded-2xl bg-[#F4EDE8] border border-[#E8DDD8]/40 flex items-center justify-center text-[#542334] mb-4">
                   <Tag className="w-6 h-6" />
                 </div>
 
-                <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-[#8E5B34]">
+                <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-[#873C50]">
                   Voucher Code
                 </span>
-                <h3 className="font-serif text-2xl font-bold text-[#26160E] mt-0.5">
+                <h3 className="font-serif text-2xl font-bold text-[#2D2528] mt-0.5">
                   {offer.title}
                 </h3>
-                <p className="text-xs text-[#563B29] mt-2 leading-relaxed">
+                <p className="text-xs text-[#75696B] mt-2 leading-relaxed">
                   {offer.description}
                 </p>
 
                 {/* Offer Details */}
-                <div className="mt-4 pt-4 border-t border-[#F4ECE1] space-y-1.5 text-xs text-[#8E5B34]">
+                <div className="mt-4 pt-4 border-t border-[#FAF7F5] space-y-1.5 text-xs text-[#873C50]">
                   <div className="flex justify-between">
                     <span>Minimum Spend:</span>
-                    <strong className="text-[#26160E]">{formatCurrency(offer.minSpend)}</strong>
+                    <strong className="text-[#2D2528]">{formatCurrency(offer.minSpend)}</strong>
                   </div>
                   <div className="flex justify-between">
                     <span>Valid Until:</span>
-                    <strong className="text-[#26160E]">{offer.validUntil}</strong>
+                    <strong className="text-[#2D2528]">{offer.validUntil}</strong>
                   </div>
                   <div className="flex justify-between">
                     <span>Eligible Dining:</span>
@@ -92,14 +92,14 @@ export const OffersPage = () => {
               </div>
 
               {/* Action Area with Copyable Code */}
-              <div className="space-y-3 pt-4 border-t border-[#F4ECE1]">
-                <div className="p-3 bg-[#FAF6F0] rounded-2xl border border-dashed border-[#6F4E37] flex items-center justify-between">
-                  <span className="font-mono font-bold text-sm text-[#6F4E37] tracking-wider">
+              <div className="space-y-3 pt-4 border-t border-[#FAF7F5]">
+                <div className="p-3 bg-[#F4EDE8] rounded-2xl border border-dashed border-[#542334] flex items-center justify-between">
+                  <span className="font-mono font-bold text-sm text-[#542334] tracking-wider">
                     {offer.code}
                   </span>
                   <button
                     onClick={() => handleCopy(offer.code)}
-                    className="flex items-center gap-1 text-xs font-bold text-[#8E5B34] hover:text-[#6F4E37] transition-colors"
+                    className="flex items-center gap-1 text-xs font-bold text-[#873C50] hover:text-[#542334] transition-colors"
                   >
                     {copiedCode === offer.code ? (
                       <>
@@ -133,15 +133,15 @@ export const OffersPage = () => {
         </div>
 
         {/* VIP Dining Pass Banner */}
-        <div className="bg-gradient-to-r from-[#26160E] via-[#3E271A] to-[#6F4E37] rounded-3xl p-8 text-white shadow-xl flex flex-col md:flex-row items-center justify-between gap-6 border border-[#C89B4A]/40">
+        <div className="bg-gradient-to-r from-[#2D2528] via-[#2D2528] to-[#542334] rounded-3xl p-8 text-white shadow-xl flex flex-col md:flex-row items-center justify-between gap-6 border border-[#C8A66B]/40">
           <div className="space-y-2 text-center md:text-left">
-            <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#C89B4A]">
+            <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#C8A66B]">
               Black Gold Membership
             </span>
             <h3 className="font-serif text-2xl sm:text-3xl font-bold">
               Unlock Complimentary Sommelier Pairings
             </h3>
-            <p className="text-xs text-[#E6D7C3] max-w-xl">
+            <p className="text-xs text-[#F4EDE8] max-w-xl">
               Patrons with more than 5 reservations receive exclusive table priority, complimentary chef amuses-bouches, and invitations to private vintner dinners.
             </p>
           </div>

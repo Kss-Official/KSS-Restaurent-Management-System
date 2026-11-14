@@ -146,7 +146,7 @@ export const ReceptionistPortal = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#FAF6F0] flex">
+    <div className="min-h-screen bg-[#F4EDE8] flex">
       {/* Sidebar */}
       <Sidebar
         title="Reception Portal"
@@ -161,24 +161,24 @@ export const ReceptionistPortal = () => {
       <div className="flex-1 lg:pl-72 flex flex-col min-h-screen">
         
         {/* Top Header */}
-        <header className="h-20 bg-white border-b border-[#D5BFA4]/40 px-6 flex items-center justify-between sticky top-0 z-30 shadow-sm">
+        <header className="h-20 bg-white border-b border-[#E8DDD8]/40 px-6 flex items-center justify-between sticky top-0 z-30 shadow-sm">
           <div className="flex items-center gap-4">
             <button
               onClick={() => setSidebarOpen(true)}
-              className="lg:hidden p-2 rounded-lg text-[#3E271A] hover:bg-[#F4ECE1]"
+              className="lg:hidden p-2 rounded-lg text-[#2D2528] hover:bg-[#FAF7F5]"
             >
               <Menu className="w-6 h-6" />
             </button>
             <div>
-              <h2 className="font-serif text-xl font-bold text-[#26160E] capitalize">
+              <h2 className="font-serif text-xl font-bold text-[#2D2528] capitalize">
                 Front Desk: {navLinks.find(l => l.tabId === activeTab)?.label.replace(/^\d+\.\s*/, '')}
               </h2>
-              <p className="text-xs text-[#8E5B34]">Guest Arrivals, Table Check-In & Concierge Operations</p>
+              <p className="text-xs text-[#873C50]">Guest Arrivals, Table Check-In & Concierge Operations</p>
             </div>
           </div>
 
           <div className="flex items-center gap-2">
-            <span className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-semibold">
+            <span className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#21845A]/15 text-[#21845A] border border-[#21845A]/30 text-xs font-semibold">
               <span className="w-2 h-2 rounded-full bg-emerald-600 animate-pulse"></span>
               Concierge Active
             </span>
@@ -195,34 +195,34 @@ export const ReceptionistPortal = () => {
             <div className="space-y-8">
               {/* Stats Bar */}
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-                <div className="bg-white p-5 rounded-2xl border border-[#D5BFA4]/50 shadow-sm">
-                  <p className="text-xs uppercase font-bold text-[#8E5B34]">Today's Arrivals</p>
-                  <p className="font-serif text-3xl font-bold text-[#6F4E37] mt-2">{bookings.length}</p>
+                <div className="bg-white p-5 rounded-2xl border border-[#E8DDD8]/50 shadow-sm">
+                  <p className="text-xs uppercase font-bold text-[#873C50]">Today's Arrivals</p>
+                  <p className="font-serif text-3xl font-bold text-[#542334] mt-2">{bookings.length}</p>
                   <p className="text-xs text-emerald-700 font-semibold mt-1">
                     {bookings.filter(b => b.status === 'Checked-In').length} already seated
                   </p>
                 </div>
 
-                <div className="bg-white p-5 rounded-2xl border border-[#D5BFA4]/50 shadow-sm">
-                  <p className="text-xs uppercase font-bold text-[#8E5B34]">Waiting List Queue</p>
+                <div className="bg-white p-5 rounded-2xl border border-[#E8DDD8]/50 shadow-sm">
+                  <p className="text-xs uppercase font-bold text-[#873C50]">Waiting List Queue</p>
                   <p className="font-serif text-3xl font-bold text-amber-700 mt-2">{waitingList.length}</p>
-                  <p className="text-xs text-[#563B29] mt-1">Walk-in parties in lounge</p>
+                  <p className="text-xs text-[#75696B] mt-1">Walk-in parties in lounge</p>
                 </div>
 
-                <div className="bg-white p-5 rounded-2xl border border-[#D5BFA4]/50 shadow-sm">
-                  <p className="text-xs uppercase font-bold text-[#8E5B34]">Available Tables</p>
-                  <p className="font-serif text-3xl font-bold text-[#26160E] mt-2">
+                <div className="bg-white p-5 rounded-2xl border border-[#E8DDD8]/50 shadow-sm">
+                  <p className="text-xs uppercase font-bold text-[#873C50]">Available Tables</p>
+                  <p className="font-serif text-3xl font-bold text-[#2D2528] mt-2">
                     {tables.filter(t => t.status === 'Available').length} / {tables.length}
                   </p>
                   <p className="text-xs text-emerald-700 font-semibold mt-1">Ready for seating</p>
                 </div>
 
-                <div className="bg-white p-5 rounded-2xl border border-[#D5BFA4]/50 shadow-sm">
-                  <p className="text-xs uppercase font-bold text-[#8E5B34]">Active Table Sessions</p>
-                  <p className="font-serif text-3xl font-bold text-[#26160E] mt-2">
+                <div className="bg-white p-5 rounded-2xl border border-[#E8DDD8]/50 shadow-sm">
+                  <p className="text-xs uppercase font-bold text-[#873C50]">Active Table Sessions</p>
+                  <p className="font-serif text-3xl font-bold text-[#2D2528] mt-2">
                     {sessions.filter(s => s.status === 'Active').length}
                   </p>
-                  <p className="text-xs text-[#563B29] mt-1">With 6-digit session codes</p>
+                  <p className="text-xs text-[#75696B] mt-1">With 6-digit session codes</p>
                 </div>
               </div>
 
@@ -240,9 +240,9 @@ export const ReceptionistPortal = () => {
               </div>
 
               {/* Today's Expected Bookings List */}
-              <div className="bg-white rounded-2xl border border-[#D5BFA4]/50 shadow-sm p-6 space-y-4">
+              <div className="bg-white rounded-2xl border border-[#E8DDD8]/50 shadow-sm p-6 space-y-4">
                 <div className="flex justify-between items-center">
-                  <h3 className="font-serif text-xl font-bold text-[#26160E]">Today's Expected Reservations</h3>
+                  <h3 className="font-serif text-xl font-bold text-[#2D2528]">Today's Expected Reservations</h3>
                   <Button variant="outline" size="sm" onClick={() => setActiveTab('reservations')}>
                     View All ({bookings.length})
                   </Button>
@@ -251,7 +251,7 @@ export const ReceptionistPortal = () => {
                 <div className="overflow-x-auto">
                   <table className="w-full text-left text-sm">
                     <thead>
-                      <tr className="border-b border-[#F4ECE1] text-[#8E5B34] uppercase text-xs">
+                      <tr className="border-b border-[#FAF7F5] text-[#873C50] uppercase text-xs">
                         <th className="py-3 px-2">Booking ID</th>
                         <th className="py-3 px-2">Guest Name</th>
                         <th className="py-3 px-2">Party</th>
@@ -261,16 +261,16 @@ export const ReceptionistPortal = () => {
                         <th className="py-3 px-2">Fast Check-In</th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-[#F4ECE1]">
+                    <tbody className="divide-y divide-[#FAF7F5]">
                       {bookings.map((b) => (
-                        <tr key={b.id} className="hover:bg-[#FAF6F0]">
-                          <td className="py-3 px-2 font-mono font-bold text-[#6F4E37]">{b.id}</td>
-                          <td className="py-3 px-2 font-bold text-[#26160E]">{b.customerName}</td>
+                        <tr key={b.id} className="hover:bg-[#F4EDE8]">
+                          <td className="py-3 px-2 font-mono font-bold text-[#542334]">{b.id}</td>
+                          <td className="py-3 px-2 font-bold text-[#2D2528]">{b.customerName}</td>
                           <td className="py-3 px-2">{b.guests}</td>
                           <td className="py-3 px-2 text-xs">{formatDate(b.date)} at {b.time}</td>
-                          <td className="py-3 px-2 font-semibold text-[#6F4E37]">{b.tableNo}</td>
+                          <td className="py-3 px-2 font-semibold text-[#542334]">{b.tableNo}</td>
                           <td className="py-3 px-2">
-                            <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800">
+                            <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-[#21845A]/15 text-[#21845A] border border-[#21845A]/30">
                               {b.status}
                             </span>
                           </td>
@@ -303,11 +303,11 @@ export const ReceptionistPortal = () => {
               2. RESERVATIONS MANAGEMENT
              ======================================================== */}
           {activeTab === 'reservations' && (
-            <div className="bg-white rounded-2xl border border-[#D5BFA4]/50 shadow-sm p-6 space-y-6">
+            <div className="bg-white rounded-2xl border border-[#E8DDD8]/50 shadow-sm p-6 space-y-6">
               <div className="flex justify-between items-center">
                 <div>
-                  <h3 className="font-serif text-xl font-bold text-[#26160E]">Reservations Master Registry</h3>
-                  <p className="text-xs text-[#563B29]">Review, create, modify bookings, and preview customer QR codes.</p>
+                  <h3 className="font-serif text-xl font-bold text-[#2D2528]">Reservations Master Registry</h3>
+                  <p className="text-xs text-[#75696B]">Review, create, modify bookings, and preview customer QR codes.</p>
                 </div>
                 <Button variant="primary" size="sm" icon={Plus} onClick={() => setNewReservationModal(true)}>
                   New Reservation
@@ -317,7 +317,7 @@ export const ReceptionistPortal = () => {
               <div className="overflow-x-auto">
                 <table className="w-full text-left text-sm">
                   <thead>
-                    <tr className="border-b border-[#F4ECE1] text-[#8E5B34] uppercase text-xs">
+                    <tr className="border-b border-[#FAF7F5] text-[#873C50] uppercase text-xs">
                       <th className="py-3 px-2">ID</th>
                       <th className="py-3 px-2">Guest Name</th>
                       <th className="py-3 px-2">Phone</th>
@@ -328,17 +328,17 @@ export const ReceptionistPortal = () => {
                       <th className="py-3 px-2">Actions</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-[#F4ECE1]">
+                  <tbody className="divide-y divide-[#FAF7F5]">
                     {bookings.map((b) => (
-                      <tr key={b.id} className="hover:bg-[#FAF6F0]">
-                        <td className="py-3 px-2 font-mono font-bold text-[#6F4E37]">{b.id}</td>
-                        <td className="py-3 px-2 font-bold text-[#26160E]">{b.customerName}</td>
-                        <td className="py-3 px-2 text-[#563B29]">{b.contactNumber}</td>
+                      <tr key={b.id} className="hover:bg-[#F4EDE8]">
+                        <td className="py-3 px-2 font-mono font-bold text-[#542334]">{b.id}</td>
+                        <td className="py-3 px-2 font-bold text-[#2D2528]">{b.customerName}</td>
+                        <td className="py-3 px-2 text-[#75696B]">{b.contactNumber}</td>
                         <td className="py-3 px-2 text-xs">{formatDate(b.date)} at {b.time}</td>
                         <td className="py-3 px-2">{b.guests}</td>
-                        <td className="py-3 px-2 font-semibold text-[#6F4E37]">{b.tableNo}</td>
+                        <td className="py-3 px-2 font-semibold text-[#542334]">{b.tableNo}</td>
                         <td className="py-3 px-2">
-                          <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800">
+                          <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-[#21845A]/15 text-[#21845A] border border-[#21845A]/30">
                             {b.status}
                           </span>
                         </td>
@@ -346,7 +346,7 @@ export const ReceptionistPortal = () => {
                           <div className="flex items-center gap-2">
                             <button
                               onClick={() => setViewVoucherModal(b)}
-                              className="text-xs font-bold text-[#6F4E37] hover:underline"
+                              className="text-xs font-bold text-[#542334] hover:underline"
                             >
                               QR Voucher
                             </button>
@@ -372,11 +372,11 @@ export const ReceptionistPortal = () => {
               3. WAITING LIST QUEUE
              ======================================================== */}
           {activeTab === 'waiting-list' && (
-            <div className="bg-white rounded-2xl border border-[#D5BFA4]/50 shadow-sm p-6 space-y-6">
+            <div className="bg-white rounded-2xl border border-[#E8DDD8]/50 shadow-sm p-6 space-y-6">
               <div className="flex justify-between items-center">
                 <div>
-                  <h3 className="font-serif text-xl font-bold text-[#26160E]">Walk-In Waiting Queue</h3>
-                  <p className="text-xs text-[#563B29]">Track guest waiting time, notify patrons by SMS/Call, and assign ready tables.</p>
+                  <h3 className="font-serif text-xl font-bold text-[#2D2528]">Walk-In Waiting Queue</h3>
+                  <p className="text-xs text-[#75696B]">Track guest waiting time, notify patrons by SMS/Call, and assign ready tables.</p>
                 </div>
                 <Button variant="primary" size="sm" icon={Plus} onClick={() => setNewWaitModal(true)}>
                   Add Walk-In Guest
@@ -385,27 +385,27 @@ export const ReceptionistPortal = () => {
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {waitingList.map((w) => (
-                  <div key={w.id} className="p-5 rounded-2xl border border-[#D5BFA4]/50 bg-[#FAF6F0] space-y-3">
+                  <div key={w.id} className="p-5 rounded-2xl border border-[#E8DDD8]/50 bg-[#F4EDE8] space-y-3">
                     <div className="flex justify-between items-start">
                       <div>
-                        <span className="font-mono text-xs font-bold text-[#6F4E37]">{w.id}</span>
-                        <h4 className="font-serif font-bold text-base text-[#26160E] mt-0.5">{w.name}</h4>
+                        <span className="font-mono text-xs font-bold text-[#542334]">{w.id}</span>
+                        <h4 className="font-serif font-bold text-base text-[#2D2528] mt-0.5">{w.name}</h4>
                       </div>
                       <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${
-                        w.status === 'Notified' ? 'bg-blue-100 text-blue-800' : 'bg-amber-100 text-amber-800'
+                        w.status === 'Notified' ? 'bg-[#3976B8]/15 text-[#3976B8] border border-[#3976B8]/30' : 'bg-[#B7791F]/15 text-[#B7791F] border border-[#B7791F]/30'
                       }`}>
                         {w.status}
                       </span>
                     </div>
 
-                    <div className="text-xs text-[#563B29] space-y-1">
+                    <div className="text-xs text-[#75696B] space-y-1">
                       <p><span className="font-bold">Party Size:</span> {w.guests}</p>
                       <p><span className="font-bold">Contact:</span> {w.phone}</p>
                       <p><span className="font-bold">Estimated Wait:</span> {w.waitTime}</p>
                       <p><span className="font-bold">Queued At:</span> {w.addedAt}</p>
                     </div>
 
-                    <div className="pt-2 border-t border-[#D5BFA4]/30 flex gap-2">
+                    <div className="pt-2 border-t border-[#E8DDD8]/30 flex gap-2">
                       <Button
                         variant="primary"
                         size="sm"
@@ -428,20 +428,20 @@ export const ReceptionistPortal = () => {
               4. CUSTOMER DIRECTORY
              ======================================================== */}
           {activeTab === 'customers' && (
-            <div className="bg-white rounded-2xl border border-[#D5BFA4]/50 shadow-sm p-6 space-y-6">
+            <div className="bg-white rounded-2xl border border-[#E8DDD8]/50 shadow-sm p-6 space-y-6">
               <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                 <div>
-                  <h3 className="font-serif text-xl font-bold text-[#26160E]">Patron & Guest Directory</h3>
-                  <p className="text-xs text-[#563B29]">Search guest history, lifetime reservations, and dining preferences.</p>
+                  <h3 className="font-serif text-xl font-bold text-[#2D2528]">Patron & Guest Directory</h3>
+                  <p className="text-xs text-[#75696B]">Search guest history, lifetime reservations, and dining preferences.</p>
                 </div>
                 <div className="relative w-64">
-                  <Search className="w-4 h-4 text-[#8E5B34] absolute left-3 top-1/2 -translate-y-1/2" />
+                  <Search className="w-4 h-4 text-[#873C50] absolute left-3 top-1/2 -translate-y-1/2" />
                   <input
                     type="text"
                     placeholder="Search by name or phone..."
                     value={guestSearch}
                     onChange={e => setGuestSearch(e.target.value)}
-                    className="w-full text-xs pl-9 pr-3 py-2 rounded-lg border border-[#D5BFA4] bg-[#FAF6F0]"
+                    className="w-full text-xs pl-9 pr-3 py-2 rounded-lg border border-[#E8DDD8] bg-[#F4EDE8]"
                   />
                 </div>
               </div>
@@ -449,7 +449,7 @@ export const ReceptionistPortal = () => {
               <div className="overflow-x-auto">
                 <table className="w-full text-left text-sm">
                   <thead>
-                    <tr className="border-b border-[#F4ECE1] text-[#8E5B34] uppercase text-xs">
+                    <tr className="border-b border-[#FAF7F5] text-[#873C50] uppercase text-xs">
                       <th className="py-3 px-2">Guest Name</th>
                       <th className="py-3 px-2">Phone</th>
                       <th className="py-3 px-2">Privilege Tier</th>
@@ -457,19 +457,19 @@ export const ReceptionistPortal = () => {
                       <th className="py-3 px-2">Last Visit</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-[#F4ECE1]">
+                  <tbody className="divide-y divide-[#FAF7F5]">
                     {[
                       { name: "Sophia Montgomery", phone: "+1 (555) 392-8819", tier: "Black Gold Connoisseur", visits: 18, last: "Today (Session #000001)" },
                       { name: "Lord Alistair Sterling", phone: "+1 (555) 890-1122", tier: "Platinum Member", visits: 12, last: "Today (Session #000002)" },
                       { name: "Victoria Kensington", phone: "+1 (555) 442-9901", tier: "Gold Member", visits: 9, last: "Today (Session #000003)" },
                       { name: "Dr. Jonathan Crane", phone: "+1 (555) 123-9988", tier: "Gold Member", visits: 5, last: "Nov 08, 2026" },
                     ].map((g, i) => (
-                      <tr key={i} className="hover:bg-[#FAF6F0]">
-                        <td className="py-3 px-2 font-bold text-[#26160E]">{g.name}</td>
-                        <td className="py-3 px-2 text-[#563B29]">{g.phone}</td>
-                        <td className="py-3 px-2 font-semibold text-[#6F4E37]">{g.tier}</td>
+                      <tr key={i} className="hover:bg-[#F4EDE8]">
+                        <td className="py-3 px-2 font-bold text-[#2D2528]">{g.name}</td>
+                        <td className="py-3 px-2 text-[#75696B]">{g.phone}</td>
+                        <td className="py-3 px-2 font-semibold text-[#542334]">{g.tier}</td>
                         <td className="py-3 px-2 font-mono font-bold">{g.visits} visits</td>
-                        <td className="py-3 px-2 text-xs text-[#8E5B34]">{g.last}</td>
+                        <td className="py-3 px-2 text-xs text-[#873C50]">{g.last}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -484,23 +484,23 @@ export const ReceptionistPortal = () => {
           {activeTab === 'checkin-sessions' && (
             <div className="space-y-8">
               {/* QR Scanner / Input Box */}
-              <div className="bg-white rounded-2xl border border-[#D5BFA4]/50 shadow-sm p-6 space-y-6">
+              <div className="bg-white rounded-2xl border border-[#E8DDD8]/50 shadow-sm p-6 space-y-6">
                 <div>
-                  <h3 className="font-serif text-xl font-bold text-[#26160E]">Scan or Enter Booking QR Code</h3>
-                  <p className="text-xs text-[#563B29]">
+                  <h3 className="font-serif text-xl font-bold text-[#2D2528]">Scan or Enter Booking QR Code</h3>
+                  <p className="text-xs text-[#75696B]">
                     Verify arrival, assign physical table, and generate the daily six-digit Table Session ID (000001, 000002...).
                   </p>
                 </div>
 
                 <form onSubmit={handleVerifyQR} className="flex flex-col sm:flex-row gap-3 max-w-xl">
                   <div className="relative flex-1">
-                    <QrCode className="w-5 h-5 text-[#6F4E37] absolute left-3 top-1/2 -translate-y-1/2" />
+                    <QrCode className="w-5 h-5 text-[#542334] absolute left-3 top-1/2 -translate-y-1/2" />
                     <input
                       type="text"
                       placeholder="e.g. BK-90214 or BK-90214-QR-SOPHIA"
                       value={qrInputCode}
                       onChange={e => setQrInputCode(e.target.value)}
-                      className="w-full text-sm pl-11 pr-4 py-3 rounded-xl border border-[#D5BFA4] bg-[#FAF6F0] focus:ring-2 focus:ring-[#6F4E37]"
+                      className="w-full text-sm pl-11 pr-4 py-3 rounded-xl border border-[#E8DDD8] bg-[#F4EDE8] focus:ring-2 focus:ring-[#542334]"
                       required
                     />
                   </div>
@@ -511,17 +511,17 @@ export const ReceptionistPortal = () => {
 
                 {/* Verified Details Card & Table Allocation */}
                 {verifiedBooking && (
-                  <div className="p-6 rounded-2xl bg-[#F4ECE1] border border-[#D5BFA4] space-y-4 max-w-xl animate-fadeIn">
+                  <div className="p-6 rounded-2xl bg-[#FAF7F5] border border-[#E8DDD8] space-y-4 max-w-xl animate-fadeIn">
                     <div className="flex justify-between items-center">
-                      <span className="font-mono text-xs font-bold text-[#6F4E37] bg-white px-2 py-1 rounded">
+                      <span className="font-mono text-xs font-bold text-[#542334] bg-white px-2 py-1 rounded">
                         {verifiedBooking.id}
                       </span>
-                      <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800">
+                      <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-[#21845A]/15 text-[#21845A] border border-[#21845A]/30">
                         {verifiedBooking.status}
                       </span>
                     </div>
 
-                    <div className="text-xs text-[#3E271A] space-y-1">
+                    <div className="text-xs text-[#2D2528] space-y-1">
                       <p><span className="font-bold">Guest:</span> {verifiedBooking.customerName}</p>
                       <p><span className="font-bold">Contact:</span> {verifiedBooking.contactNumber}</p>
                       <p><span className="font-bold">Party Size:</span> {verifiedBooking.guests}</p>
@@ -529,12 +529,12 @@ export const ReceptionistPortal = () => {
                     </div>
 
                     {/* Table Assignment Selector */}
-                    <div className="space-y-1.5 pt-2 border-t border-[#D5BFA4]/40">
-                      <label className="text-xs font-bold uppercase text-[#8E5B34]">Assign Physical Table</label>
+                    <div className="space-y-1.5 pt-2 border-t border-[#E8DDD8]/40">
+                      <label className="text-xs font-bold uppercase text-[#873C50]">Assign Physical Table</label>
                       <select
                         value={selectedTableNumber}
                         onChange={e => setSelectedTableNumber(parseInt(e.target.value))}
-                        className="w-full text-xs p-2.5 rounded-lg border border-[#D5BFA4] bg-white"
+                        className="w-full text-xs p-2.5 rounded-lg border border-[#E8DDD8] bg-white"
                       >
                         {tables.map(t => (
                           <option key={t.id} value={t.number}>
@@ -557,16 +557,16 @@ export const ReceptionistPortal = () => {
               </div>
 
               {/* Active Sessions List */}
-              <div className="bg-white rounded-2xl border border-[#D5BFA4]/50 shadow-sm p-6 space-y-4">
+              <div className="bg-white rounded-2xl border border-[#E8DDD8]/50 shadow-sm p-6 space-y-4">
                 <div className="flex justify-between items-center">
-                  <h3 className="font-serif text-xl font-bold text-[#26160E]">Active Table Sessions & Fast Checkout</h3>
-                  <p className="text-xs text-[#563B29]">Daily 6-digit session codes synced across all portals.</p>
+                  <h3 className="font-serif text-xl font-bold text-[#2D2528]">Active Table Sessions & Fast Checkout</h3>
+                  <p className="text-xs text-[#75696B]">Daily 6-digit session codes synced across all portals.</p>
                 </div>
 
                 <div className="overflow-x-auto">
                   <table className="w-full text-left text-sm">
                     <thead>
-                      <tr className="border-b border-[#F4ECE1] text-[#8E5B34] uppercase text-xs">
+                      <tr className="border-b border-[#FAF7F5] text-[#873C50] uppercase text-xs">
                         <th className="py-3 px-2">Session ID</th>
                         <th className="py-3 px-2">Table</th>
                         <th className="py-3 px-2">Guest</th>
@@ -576,17 +576,17 @@ export const ReceptionistPortal = () => {
                         <th className="py-3 px-2">Actions</th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-[#F4ECE1]">
+                    <tbody className="divide-y divide-[#FAF7F5]">
                       {sessions.map((s) => (
-                        <tr key={s.sessionId} className="hover:bg-[#FAF6F0]">
-                          <td className="py-3 px-2 font-mono font-bold text-[#6F4E37]">#{s.sessionId}</td>
-                          <td className="py-3 px-2 font-bold text-[#26160E]">Table {s.tableNumber}</td>
+                        <tr key={s.sessionId} className="hover:bg-[#F4EDE8]">
+                          <td className="py-3 px-2 font-mono font-bold text-[#542334]">#{s.sessionId}</td>
+                          <td className="py-3 px-2 font-bold text-[#2D2528]">Table {s.tableNumber}</td>
                           <td className="py-3 px-2">{s.guestName}</td>
                           <td className="py-3 px-2 text-xs">{s.checkInTime}</td>
                           <td className="py-3 px-2 font-mono font-bold">{formatCurrency(s.total)}</td>
                           <td className="py-3 px-2">
                             <span className={`px-2 py-0.5 rounded-full text-xs font-bold ${
-                              s.paymentStatus === 'Paid' ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'
+                              s.paymentStatus === 'Paid' ? 'bg-[#21845A]/15 text-[#21845A] border border-[#21845A]/30' : 'bg-[#B7791F]/15 text-[#B7791F] border border-[#B7791F]/30'
                             }`}>
                               {s.paymentStatus}
                             </span>
@@ -596,7 +596,7 @@ export const ReceptionistPortal = () => {
                               {s.paymentStatus !== 'Paid' ? (
                                 <button
                                   onClick={() => settleSessionPayment(s.sessionId, 'Card')}
-                                  className="text-xs font-bold text-[#6F4E37] hover:underline"
+                                  className="text-xs font-bold text-[#542334] hover:underline"
                                 >
                                   Settle Bill
                                 </button>
@@ -623,16 +623,16 @@ export const ReceptionistPortal = () => {
               6. PAYMENT STATUS
              ======================================================== */}
           {activeTab === 'payments' && (
-            <div className="bg-white rounded-2xl border border-[#D5BFA4]/50 shadow-sm p-6 space-y-6">
+            <div className="bg-white rounded-2xl border border-[#E8DDD8]/50 shadow-sm p-6 space-y-6">
               <div>
-                <h3 className="font-serif text-xl font-bold text-[#26160E]">Billing & Advance Payment Audits</h3>
-                <p className="text-xs text-[#563B29]">Reconcile deposit advances and view session settlement receipts.</p>
+                <h3 className="font-serif text-xl font-bold text-[#2D2528]">Billing & Advance Payment Audits</h3>
+                <p className="text-xs text-[#75696B]">Reconcile deposit advances and view session settlement receipts.</p>
               </div>
 
               <div className="overflow-x-auto">
                 <table className="w-full text-left text-sm">
                   <thead>
-                    <tr className="border-b border-[#F4ECE1] text-[#8E5B34] uppercase text-xs">
+                    <tr className="border-b border-[#FAF7F5] text-[#873C50] uppercase text-xs">
                       <th className="py-3 px-2">Session</th>
                       <th className="py-3 px-2">Guest</th>
                       <th className="py-3 px-2">Table</th>
@@ -641,17 +641,17 @@ export const ReceptionistPortal = () => {
                       <th className="py-3 px-2">Payment Status</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-[#F4ECE1]">
+                  <tbody className="divide-y divide-[#FAF7F5]">
                     {sessions.map((s) => (
-                      <tr key={s.sessionId} className="hover:bg-[#FAF6F0]">
-                        <td className="py-3 px-2 font-mono font-bold text-[#6F4E37]">#{s.sessionId}</td>
+                      <tr key={s.sessionId} className="hover:bg-[#F4EDE8]">
+                        <td className="py-3 px-2 font-mono font-bold text-[#542334]">#{s.sessionId}</td>
                         <td className="py-3 px-2 font-bold">{s.guestName}</td>
                         <td className="py-3 px-2">Table {s.tableNumber}</td>
                         <td className="py-3 px-2 font-mono text-emerald-700">-{formatCurrency(s.advancePayment)}</td>
                         <td className="py-3 px-2 font-mono font-bold">{formatCurrency(s.total)}</td>
                         <td className="py-3 px-2">
                           <span className={`px-2.5 py-0.5 rounded-full text-xs font-bold ${
-                            s.paymentStatus === 'Paid' ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'
+                            s.paymentStatus === 'Paid' ? 'bg-[#21845A]/15 text-[#21845A] border border-[#21845A]/30' : 'bg-[#B7791F]/15 text-[#B7791F] border border-[#B7791F]/30'
                           }`}>
                             {s.paymentStatus}
                           </span>
@@ -668,16 +668,16 @@ export const ReceptionistPortal = () => {
               7. ORDERS OVERVIEW
              ======================================================== */}
           {activeTab === 'orders-view' && (
-            <div className="bg-white rounded-2xl border border-[#D5BFA4]/50 shadow-sm p-6 space-y-6">
+            <div className="bg-white rounded-2xl border border-[#E8DDD8]/50 shadow-sm p-6 space-y-6">
               <div>
-                <h3 className="font-serif text-xl font-bold text-[#26160E]">Table-Wise & Session-Wise Orders</h3>
-                <p className="text-xs text-[#563B29]">Track dining orders dispatched to the kitchen per table session.</p>
+                <h3 className="font-serif text-xl font-bold text-[#2D2528]">Table-Wise & Session-Wise Orders</h3>
+                <p className="text-xs text-[#75696B]">Track dining orders dispatched to the kitchen per table session.</p>
               </div>
 
               <div className="overflow-x-auto">
                 <table className="w-full text-left text-sm">
                   <thead>
-                    <tr className="border-b border-[#F4ECE1] text-[#8E5B34] uppercase text-xs">
+                    <tr className="border-b border-[#FAF7F5] text-[#873C50] uppercase text-xs">
                       <th className="py-3 px-2">Order ID</th>
                       <th className="py-3 px-2">Session ID</th>
                       <th className="py-3 px-2">Table</th>
@@ -685,17 +685,17 @@ export const ReceptionistPortal = () => {
                       <th className="py-3 px-2">Status</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-[#F4ECE1]">
+                  <tbody className="divide-y divide-[#FAF7F5]">
                     {orders.map((ord) => (
-                      <tr key={ord.id} className="hover:bg-[#FAF6F0]">
-                        <td className="py-3 px-2 font-mono font-bold text-[#6F4E37]">{ord.id}</td>
+                      <tr key={ord.id} className="hover:bg-[#F4EDE8]">
+                        <td className="py-3 px-2 font-mono font-bold text-[#542334]">{ord.id}</td>
                         <td className="py-3 px-2 font-mono font-bold">#{ord.sessionId}</td>
                         <td className="py-3 px-2 font-bold">Table {ord.tableNumber}</td>
                         <td className="py-3 px-2 text-xs">
                           {ord.items.map(it => `${it.qty}x ${it.name}`).join(', ')}
                         </td>
                         <td className="py-3 px-2">
-                          <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-[#F4ECE1] text-[#6F4E37]">
+                          <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-[#FAF7F5] text-[#542334]">
                             {ord.status}
                           </span>
                         </td>
@@ -711,16 +711,16 @@ export const ReceptionistPortal = () => {
               8. CANCELLATIONS
              ======================================================== */}
           {activeTab === 'cancellations' && (
-            <div className="bg-white rounded-2xl border border-[#D5BFA4]/50 shadow-sm p-6 space-y-6">
+            <div className="bg-white rounded-2xl border border-[#E8DDD8]/50 shadow-sm p-6 space-y-6">
               <div>
-                <h3 className="font-serif text-xl font-bold text-[#26160E]">Cancellation & Refund Requests</h3>
-                <p className="text-xs text-[#563B29]">Process customer cancellations according to restaurant reservation policies.</p>
+                <h3 className="font-serif text-xl font-bold text-[#2D2528]">Cancellation & Refund Requests</h3>
+                <p className="text-xs text-[#75696B]">Process customer cancellations according to restaurant reservation policies.</p>
               </div>
 
               <div className="overflow-x-auto">
                 <table className="w-full text-left text-sm">
                   <thead>
-                    <tr className="border-b border-[#F4ECE1] text-[#8E5B34] uppercase text-xs">
+                    <tr className="border-b border-[#FAF7F5] text-[#873C50] uppercase text-xs">
                       <th className="py-3 px-2">Booking ID</th>
                       <th className="py-3 px-2">Guest Name</th>
                       <th className="py-3 px-2">Reason</th>
@@ -728,15 +728,15 @@ export const ReceptionistPortal = () => {
                       <th className="py-3 px-2">Refund Status</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-[#F4ECE1]">
+                  <tbody className="divide-y divide-[#FAF7F5]">
                     {bookings.filter(b => b.status === 'Cancelled').map((b) => (
-                      <tr key={b.id} className="hover:bg-[#FAF6F0]">
+                      <tr key={b.id} className="hover:bg-[#F4EDE8]">
                         <td className="py-3 px-2 font-mono font-bold text-red-700">{b.id}</td>
                         <td className="py-3 px-2 font-bold">{b.customerName}</td>
                         <td className="py-3 px-2 text-xs italic">{b.cancelReason || 'Customer requested cancellation'}</td>
                         <td className="py-3 px-2 font-mono text-emerald-800">{formatCurrency(b.advancePaid || 50)}</td>
                         <td className="py-3 px-2">
-                          <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-purple-100 text-purple-800">
+                          <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-[#873C50]/15 text-[#873C50] border border-[#873C50]/30">
                             Refund Approved
                           </span>
                         </td>
@@ -752,11 +752,11 @@ export const ReceptionistPortal = () => {
               9. FEEDBACK & COMPLAINTS
              ======================================================== */}
           {activeTab === 'complaints' && (
-            <div className="bg-white rounded-2xl border border-[#D5BFA4]/50 shadow-sm p-6 space-y-6">
+            <div className="bg-white rounded-2xl border border-[#E8DDD8]/50 shadow-sm p-6 space-y-6">
               <div className="flex justify-between items-center">
                 <div>
-                  <h3 className="font-serif text-xl font-bold text-[#26160E]">Register Guest Feedback / Complaints</h3>
-                  <p className="text-xs text-[#563B29]">Log front-desk guest concerns and forward directly to Floor Manager.</p>
+                  <h3 className="font-serif text-xl font-bold text-[#2D2528]">Register Guest Feedback / Complaints</h3>
+                  <p className="text-xs text-[#75696B]">Log front-desk guest concerns and forward directly to Floor Manager.</p>
                 </div>
                 <Button variant="primary" size="sm" icon={Plus} onClick={() => setComplaintModal(true)}>
                   Log Front-Desk Complaint
@@ -765,14 +765,14 @@ export const ReceptionistPortal = () => {
 
               <div className="space-y-4">
                 {complaints.map((c) => (
-                  <div key={c.id} className="p-4 rounded-xl border border-[#D5BFA4]/50 bg-[#FAF6F0] space-y-1">
+                  <div key={c.id} className="p-4 rounded-xl border border-[#E8DDD8]/50 bg-[#F4EDE8] space-y-1">
                     <div className="flex justify-between items-center">
-                      <span className="font-bold text-sm text-[#26160E]">{c.guest} ({c.table})</span>
-                      <span className="text-[10px] font-bold px-2 py-0.5 bg-emerald-100 text-emerald-800 rounded-full">
+                      <span className="font-bold text-sm text-[#2D2528]">{c.guest} ({c.table})</span>
+                      <span className="text-[10px] font-bold px-2 py-0.5 bg-[#21845A]/15 text-[#21845A] border border-[#21845A]/30 rounded-full">
                         {c.status}
                       </span>
                     </div>
-                    <p className="text-xs text-[#563B29] italic">"{c.issue}"</p>
+                    <p className="text-xs text-[#75696B] italic">"{c.issue}"</p>
                     {c.resolution && <p className="text-xs text-emerald-700 font-semibold">Resolution: {c.resolution}</p>}
                   </div>
                 ))}
@@ -784,22 +784,22 @@ export const ReceptionistPortal = () => {
               10. NOTIFICATIONS
              ======================================================== */}
           {activeTab === 'notifications' && (
-            <div className="bg-white rounded-2xl border border-[#D5BFA4]/50 shadow-sm p-6 space-y-4">
-              <h3 className="font-serif text-xl font-bold text-[#26160E]">Live Operational Alerts</h3>
+            <div className="bg-white rounded-2xl border border-[#E8DDD8]/50 shadow-sm p-6 space-y-4">
+              <h3 className="font-serif text-xl font-bold text-[#2D2528]">Live Operational Alerts</h3>
               <div className="space-y-3">
                 {notifications.map((n) => (
                   <div key={n.id} className={`p-4 rounded-xl border flex items-center justify-between ${
-                    n.unread ? 'bg-[#F4ECE1] border-[#6F4E37]' : 'bg-[#FAF6F0] border-[#D5BFA4]/40'
+                    n.unread ? 'bg-[#FAF7F5] border-[#542334]' : 'bg-[#F4EDE8] border-[#E8DDD8]/40'
                   }`}>
                     <div>
-                      <p className="font-bold text-sm text-[#26160E]">{n.title}</p>
-                      <p className="text-xs text-[#563B29] mt-0.5">{n.message}</p>
-                      <p className="text-[10px] text-[#8E5B34] mt-1">{n.time}</p>
+                      <p className="font-bold text-sm text-[#2D2528]">{n.title}</p>
+                      <p className="text-xs text-[#75696B] mt-0.5">{n.message}</p>
+                      <p className="text-[10px] text-[#873C50] mt-1">{n.time}</p>
                     </div>
                     {n.unread && (
                       <button
                         onClick={() => markNotificationRead(n.id)}
-                        className="text-xs font-bold text-[#6F4E37] hover:underline"
+                        className="text-xs font-bold text-[#542334] hover:underline"
                       >
                         Mark Read
                       </button>
@@ -814,17 +814,17 @@ export const ReceptionistPortal = () => {
               11. MY PROFILE
              ======================================================== */}
           {activeTab === 'profile' && (
-            <div className="bg-white rounded-2xl border border-[#D5BFA4]/50 shadow-sm p-8 space-y-6 max-w-2xl">
-              <div className="flex items-center gap-6 border-b border-[#F4ECE1] pb-6">
+            <div className="bg-white rounded-2xl border border-[#E8DDD8]/50 shadow-sm p-8 space-y-6 max-w-2xl">
+              <div className="flex items-center gap-6 border-b border-[#FAF7F5] pb-6">
                 <img
                   src={currentUser?.avatar || "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=300&q=80"}
                   alt={currentUser?.name}
-                  className="w-20 h-20 rounded-full object-cover border-4 border-[#6F4E37]"
+                  className="w-20 h-20 rounded-full object-cover border-4 border-[#542334]"
                 />
                 <div>
-                  <h3 className="font-serif text-2xl font-bold text-[#26160E]">{currentUser?.name}</h3>
-                  <p className="text-xs text-[#6F4E37] font-semibold">Front Desk & Reservations Concierge</p>
-                  <p className="text-xs text-[#8E5B34]">{currentUser?.email}</p>
+                  <h3 className="font-serif text-2xl font-bold text-[#2D2528]">{currentUser?.name}</h3>
+                  <p className="text-xs text-[#542334] font-semibold">Front Desk & Reservations Concierge</p>
+                  <p className="text-xs text-[#873C50]">{currentUser?.email}</p>
                 </div>
               </div>
 
@@ -846,22 +846,22 @@ export const ReceptionistPortal = () => {
       {/* Modal: View QR Voucher */}
       {viewVoucherModal && (
         <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="bg-white rounded-3xl max-w-md w-full p-8 border border-[#D5BFA4] shadow-2xl text-center space-y-4">
-            <div className="flex justify-between items-center border-b border-[#F4ECE1] pb-2">
-              <span className="text-xs font-bold uppercase text-[#8E5B34]">Booking QR Code</span>
-              <button onClick={() => setViewVoucherModal(null)}><X className="w-5 h-5 text-[#8E5B34]" /></button>
+          <div className="bg-white rounded-3xl max-w-md w-full p-8 border border-[#E8DDD8] shadow-2xl text-center space-y-4">
+            <div className="flex justify-between items-center border-b border-[#FAF7F5] pb-2">
+              <span className="text-xs font-bold uppercase text-[#873C50]">Booking QR Code</span>
+              <button onClick={() => setViewVoucherModal(null)}><X className="w-5 h-5 text-[#873C50]" /></button>
             </div>
-            <h3 className="font-serif text-2xl font-bold text-[#26160E]">{viewVoucherModal.id}</h3>
-            <p className="text-xs text-[#563B29]">{viewVoucherModal.customerName} • {viewVoucherModal.guests}</p>
+            <h3 className="font-serif text-2xl font-bold text-[#2D2528]">{viewVoucherModal.id}</h3>
+            <p className="text-xs text-[#75696B]">{viewVoucherModal.customerName} • {viewVoucherModal.guests}</p>
             
-            <div className="p-4 bg-[#FAF6F0] rounded-2xl border border-[#D5BFA4]/50 flex justify-center">
+            <div className="p-4 bg-[#F4EDE8] rounded-2xl border border-[#E8DDD8]/50 flex justify-center">
               <img
                 src={getQrCodeUrl(viewVoucherModal.qrCode || viewVoucherModal.id)}
                 alt="Booking QR Code"
                 className="w-48 h-48 rounded-xl object-contain"
               />
             </div>
-            <p className="text-xs font-mono font-bold text-[#6F4E37]">{viewVoucherModal.qrCode}</p>
+            <p className="text-xs font-mono font-bold text-[#542334]">{viewVoucherModal.qrCode}</p>
           </div>
         </div>
       )}
@@ -869,10 +869,10 @@ export const ReceptionistPortal = () => {
       {/* Modal: New Reservation */}
       {newReservationModal && (
         <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="bg-white rounded-3xl max-w-lg w-full p-8 border border-[#D5BFA4] shadow-2xl space-y-4">
-            <div className="flex justify-between items-center border-b border-[#F4ECE1] pb-2">
-              <h3 className="font-serif text-xl font-bold text-[#26160E]">Log New Reservation</h3>
-              <button onClick={() => setNewReservationModal(false)}><X className="w-5 h-5 text-[#8E5B34]" /></button>
+          <div className="bg-white rounded-3xl max-w-lg w-full p-8 border border-[#E8DDD8] shadow-2xl space-y-4">
+            <div className="flex justify-between items-center border-b border-[#FAF7F5] pb-2">
+              <h3 className="font-serif text-xl font-bold text-[#2D2528]">Log New Reservation</h3>
+              <button onClick={() => setNewReservationModal(false)}><X className="w-5 h-5 text-[#873C50]" /></button>
             </div>
             <form onSubmit={handleCreateReservation} className="space-y-4 text-xs">
               <Input label="Customer Full Name" id="r-name" value={resForm.customerName} onChange={e => setResForm({ ...resForm, customerName: e.target.value })} required />
@@ -880,8 +880,8 @@ export const ReceptionistPortal = () => {
               <div className="grid grid-cols-2 gap-3">
                 <Input label="Date" id="r-date" type="date" value={resForm.date} onChange={e => setResForm({ ...resForm, date: e.target.value })} required />
                 <div className="space-y-1">
-                  <label className="font-bold text-[#3E271A]">Time Slot</label>
-                  <select value={resForm.time} onChange={e => setResForm({ ...resForm, time: e.target.value })} className="w-full p-2.5 rounded-lg border border-[#D5BFA4]">
+                  <label className="font-bold text-[#2D2528]">Time Slot</label>
+                  <select value={resForm.time} onChange={e => setResForm({ ...resForm, time: e.target.value })} className="w-full p-2.5 rounded-lg border border-[#E8DDD8]">
                     <option>06:00 PM</option>
                     <option>06:30 PM</option>
                     <option>07:00 PM</option>
@@ -892,8 +892,8 @@ export const ReceptionistPortal = () => {
                 </div>
               </div>
               <div className="space-y-1">
-                <label className="font-bold text-[#3E271A]">Party Size</label>
-                <select value={resForm.guests} onChange={e => setResForm({ ...resForm, guests: e.target.value })} className="w-full p-2.5 rounded-lg border border-[#D5BFA4]">
+                <label className="font-bold text-[#2D2528]">Party Size</label>
+                <select value={resForm.guests} onChange={e => setResForm({ ...resForm, guests: e.target.value })} className="w-full p-2.5 rounded-lg border border-[#E8DDD8]">
                   <option>2 People</option>
                   <option>4 People</option>
                   <option>6 People</option>
@@ -909,18 +909,18 @@ export const ReceptionistPortal = () => {
       {/* Modal: New Walk-In */}
       {newWaitModal && (
         <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="bg-white rounded-3xl max-w-md w-full p-8 border border-[#D5BFA4] shadow-2xl space-y-4">
-            <div className="flex justify-between items-center border-b border-[#F4ECE1] pb-2">
-              <h3 className="font-serif text-xl font-bold text-[#26160E]">Add Walk-In Guest to Waitlist</h3>
-              <button onClick={() => setNewWaitModal(false)}><X className="w-5 h-5 text-[#8E5B34]" /></button>
+          <div className="bg-white rounded-3xl max-w-md w-full p-8 border border-[#E8DDD8] shadow-2xl space-y-4">
+            <div className="flex justify-between items-center border-b border-[#FAF7F5] pb-2">
+              <h3 className="font-serif text-xl font-bold text-[#2D2528]">Add Walk-In Guest to Waitlist</h3>
+              <button onClick={() => setNewWaitModal(false)}><X className="w-5 h-5 text-[#873C50]" /></button>
             </div>
             <form onSubmit={handleAddWaitGuest} className="space-y-4 text-xs">
               <Input label="Guest Name" id="w-name" value={waitForm.name} onChange={e => setWaitForm({ ...waitForm, name: e.target.value })} required />
               <Input label="Phone Number" id="w-phone" value={waitForm.phone} onChange={e => setWaitForm({ ...waitForm, phone: e.target.value })} required />
               <div className="grid grid-cols-2 gap-3">
                 <div className="space-y-1">
-                  <label className="font-bold text-[#3E271A]">Party Size</label>
-                  <select value={waitForm.guests} onChange={e => setWaitForm({ ...waitForm, guests: e.target.value })} className="w-full p-2.5 rounded-lg border border-[#D5BFA4]">
+                  <label className="font-bold text-[#2D2528]">Party Size</label>
+                  <select value={waitForm.guests} onChange={e => setWaitForm({ ...waitForm, guests: e.target.value })} className="w-full p-2.5 rounded-lg border border-[#E8DDD8]">
                     <option>2 People</option>
                     <option>4 People</option>
                     <option>6 People</option>

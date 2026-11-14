@@ -29,7 +29,7 @@ export const generateSessionId = (currentCount = 0) => {
 
 // Generates QR Code data URL using lightweight standard QR API or inline SVG representation
 export const getQrCodeUrl = (code) => {
-  return `https://api.qrserver.com/v1/create-qr-code/?size=220x220&color=6F4E37&bgcolor=FAF6F0&data=${encodeURIComponent(code)}`;
+  return `https://api.qrserver.com/v1/create-qr-code/?size=220x220&color=542334&bgcolor=F4EDE8&data=${encodeURIComponent(code)}`;
 };
 
 export const getStoredItem = (key, fallback) => {

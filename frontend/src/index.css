@@ -3,41 +3,56 @@
 @tailwind utilities;
 
 :root {
-  --color-mocha-primary: #6F4E37;
-  --color-mocha-dark: #3E271A;
-  --color-mocha-deep: #26160E;
-  --color-mocha-light: #F4ECE1;
-  --color-mocha-cream: #FAF6F0;
-  --color-gold-accent: #C89B4A;
+  /* Exact Reference Brand Colors: Burgundy & Champagne */
+  --color-primary-burgundy: #542334;
+  --color-secondary-burgundy: #873C50;
+  --color-muted-rose: #B66A79;
+  --color-champagne-bg: #F4EDE8;
+  --color-white-surface: #FFFFFF;
+  --color-champagne-gold: #C8A66B;
+
+  /* Extended Neutral Colors */
+  --color-text-primary: #2D2528;
+  --color-text-secondary: #75696B;
+  --color-text-muted: #9A8D8F;
+  --color-border: #E8DDD8;
+  --color-subtle-surface: #FAF7F5;
+
+  /* Semantic Status Colors */
+  --color-success: #21845A;
+  --color-warning: #B7791F;
+  --color-error: #C44747;
+  --color-info: #3976B8;
 }
 
 body {
   margin: 0;
   padding: 0;
-  background-color: #FAF6F0;
-  color: #26160E;
-  font-family: 'Plus Jakarta Sans', sans-serif;
+  background-color: #F4EDE8;
+  color: #2D2528;
+  font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 
-h1, h2, h3, .font-serif {
+h1, h2, h3, h4, .font-serif {
   font-family: 'Playfair Display', Georgia, serif;
 }
 
-/* Custom scrollbars */
+/* Custom Burgundy & Champagne scrollbars */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 7px;
+  height: 7px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #FAF6F0;
+  background: #F4EDE8;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #6F4E37;
+  background: #B66A79;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #563B29;
+  background: #873C50;
 }

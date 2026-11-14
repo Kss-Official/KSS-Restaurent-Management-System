@@ -5,31 +5,31 @@ import { RESTAURANT_LOCATIONS } from '../../utils/constants';
 
 export const Footer = () => {
   return (
-    <footer className="bg-[#26160E] text-[#F4ECE1] border-t border-[#3E271A]">
+    <footer className="bg-[#3A1421] text-[#F4EDE8] border-t border-[#873C50]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           
           {/* Brand Info */}
           <div className="space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-[#6F4E37] flex items-center justify-center text-white shadow-md">
-                <UtensilsCrossed className="w-5 h-5" />
+              <div className="w-10 h-10 rounded-full bg-[#542334] border border-[#873C50] flex items-center justify-center text-white shadow-md">
+                <UtensilsCrossed className="w-5 h-5 text-[#C8A66B]" />
               </div>
               <span className="font-serif text-2xl font-bold tracking-tight text-white">
                 Aura Mocha
               </span>
             </div>
-            <p className="text-sm text-[#D5BFA4] leading-relaxed">
-              Where culinary craftsmanship meets warm mocha elegance. Experience Michelin-inspired recipes, artisanal roasting, and unforgettable hospitality.
+            <p className="text-sm text-[#E8DDD8] leading-relaxed">
+              Where culinary craftsmanship meets warm Burgundy & Champagne elegance. Experience Michelin-inspired recipes, artisanal roasting, and unforgettable hospitality.
             </p>
             <div className="flex items-center gap-3 pt-2">
-              <a href="#globe" aria-label="Website" className="w-9 h-9 rounded-full bg-[#3E271A] hover:bg-[#6F4E37] flex items-center justify-center text-[#D5BFA4] hover:text-white transition-colors">
+              <a href="#globe" aria-label="Website" className="w-9 h-9 rounded-full bg-[#542334] hover:bg-[#873C50] flex items-center justify-center text-[#E8DDD8] hover:text-white transition-colors border border-[#873C50]/50">
                 <Globe className="w-4 h-4" />
               </a>
-              <a href="#social" aria-label="Social Share" className="w-9 h-9 rounded-full bg-[#3E271A] hover:bg-[#6F4E37] flex items-center justify-center text-[#D5BFA4] hover:text-white transition-colors">
+              <a href="#social" aria-label="Social Share" className="w-9 h-9 rounded-full bg-[#542334] hover:bg-[#873C50] flex items-center justify-center text-[#E8DDD8] hover:text-white transition-colors border border-[#873C50]/50">
                 <Share2 className="w-4 h-4" />
               </a>
-              <a href="#messages" aria-label="Messages" className="w-9 h-9 rounded-full bg-[#3E271A] hover:bg-[#6F4E37] flex items-center justify-center text-[#D5BFA4] hover:text-white transition-colors">
+              <a href="#messages" aria-label="Messages" className="w-9 h-9 rounded-full bg-[#542334] hover:bg-[#873C50] flex items-center justify-center text-[#E8DDD8] hover:text-white transition-colors border border-[#873C50]/50">
                 <MessageCircle className="w-4 h-4" />
               </a>
             </div>
@@ -37,10 +37,10 @@ export const Footer = () => {
 
           {/* Quick Links */}
           <div className="space-y-4">
-            <h4 className="font-serif text-lg font-semibold text-white tracking-wide border-b border-[#3E271A] pb-2">
+            <h4 className="font-serif text-lg font-semibold text-white tracking-wide border-b border-[#873C50] pb-2">
               Explore
             </h4>
-            <ul className="space-y-2 text-sm text-[#D5BFA4]">
+            <ul className="space-y-2 text-sm text-[#E8DDD8]">
               <li>
                 <Link to="/" className="hover:text-white transition-colors">Home Experience</Link>
               </li>
@@ -61,29 +61,29 @@ export const Footer = () => {
 
           {/* Hours & Dining */}
           <div className="space-y-4">
-            <h4 className="font-serif text-lg font-semibold text-white tracking-wide border-b border-[#3E271A] pb-2">
+            <h4 className="font-serif text-lg font-semibold text-white tracking-wide border-b border-[#873C50] pb-2">
               Dining Hours
             </h4>
-            <div className="space-y-3 text-sm text-[#D5BFA4]">
+            <div className="space-y-3 text-sm text-[#E8DDD8]">
               <div className="flex items-start gap-2.5">
-                <Clock className="w-4 h-4 text-[#C89B4A] mt-0.5 shrink-0" />
+                <Clock className="w-4 h-4 text-[#C8A66B] mt-0.5 shrink-0" />
                 <div>
                   <p className="font-medium text-white">Lunch Service</p>
-                  <p className="text-xs">Mon – Sun: 11:30 AM – 03:00 PM</p>
+                  <p className="text-xs text-[#E8DDD8]/80">Mon – Sun: 11:30 AM – 03:00 PM</p>
                 </div>
               </div>
               <div className="flex items-start gap-2.5">
-                <Clock className="w-4 h-4 text-[#C89B4A] mt-0.5 shrink-0" />
+                <Clock className="w-4 h-4 text-[#C8A66B] mt-0.5 shrink-0" />
                 <div>
                   <p className="font-medium text-white">Dinner Service</p>
-                  <p className="text-xs">Mon – Sun: 05:30 PM – 11:00 PM</p>
+                  <p className="text-xs text-[#E8DDD8]/80">Mon – Sun: 05:30 PM – 11:00 PM</p>
                 </div>
               </div>
               <div className="flex items-start gap-2.5">
-                <Clock className="w-4 h-4 text-[#C89B4A] mt-0.5 shrink-0" />
+                <Clock className="w-4 h-4 text-[#C8A66B] mt-0.5 shrink-0" />
                 <div>
                   <p className="font-medium text-white">Lounge & Espresso Bar</p>
-                  <p className="text-xs">Fri & Sat: Until 01:00 AM</p>
+                  <p className="text-xs text-[#E8DDD8]/80">Fri & Sat: Until 01:00 AM</p>
                 </div>
               </div>
             </div>
@@ -91,39 +91,30 @@ export const Footer = () => {
 
           {/* Contact & Flagship */}
           <div className="space-y-4">
-            <h4 className="font-serif text-lg font-semibold text-white tracking-wide border-b border-[#3E271A] pb-2">
+            <h4 className="font-serif text-lg font-semibold text-white tracking-wide border-b border-[#873C50] pb-2">
               Concierge
             </h4>
-            <div className="space-y-3 text-sm text-[#D5BFA4]">
+            <div className="space-y-3 text-sm text-[#E8DDD8]">
               <div className="flex items-start gap-2.5">
-                <MapPin className="w-4 h-4 text-[#C89B4A] mt-0.5 shrink-0" />
+                <MapPin className="w-4 h-4 text-[#C8A66B] mt-0.5 shrink-0" />
                 <span>{RESTAURANT_LOCATIONS[0]}</span>
               </div>
               <div className="flex items-center gap-2.5">
-                <Phone className="w-4 h-4 text-[#C89B4A] shrink-0" />
-                <span>+1 (555) 782-9900</span>
+                <Phone className="w-4 h-4 text-[#C8A66B] shrink-0" />
+                <span>+1 (555) 800-4499</span>
               </div>
               <div className="flex items-center gap-2.5">
-                <Mail className="w-4 h-4 text-[#C89B4A] shrink-0" />
-                <span>reservations@auramocha.com</span>
-              </div>
-              <div className="pt-2">
-                <span className="inline-block px-3 py-1 rounded bg-[#6F4E37]/40 text-[#D5BFA4] text-xs border border-[#6F4E37]">
-                  Valet Parking Available
-                </span>
+                <Mail className="w-4 h-4 text-[#C8A66B] shrink-0" />
+                <span>concierge@auramocha.com</span>
               </div>
             </div>
           </div>
 
         </div>
 
-        <div className="mt-12 pt-8 border-t border-[#3E271A] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#D5BFA4]/60">
-          <p>© {new Date().getFullYear()} Aura Mocha Restaurant Group. All rights reserved.</p>
-          <div className="flex items-center space-x-6">
-            <a href="#privacy" className="hover:text-white transition-colors">Privacy Policy</a>
-            <a href="#terms" className="hover:text-white transition-colors">Terms of Hospitality</a>
-            <a href="#safety" className="hover:text-white transition-colors">Health & Safety</a>
-          </div>
+        <div className="mt-12 pt-8 border-t border-[#873C50]/60 flex flex-col sm:flex-row items-center justify-between text-xs text-[#B66A79]">
+          <p>© {new Date().getFullYear()} Aura Mocha Haute Cuisine. All Rights Reserved.</p>
+          <p className="mt-2 sm:mt-0">Burgundy & Champagne Luxury Design System</p>
         </div>
       </div>
     </footer>

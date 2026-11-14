@@ -7,28 +7,56 @@ export default {
   theme: {
     extend: {
       colors: {
+        // Exact Reference Brand Color Palette (Burgundy & Champagne)
+        burgundy: {
+          primary: '#542334',    // Main brand identity, headings, primary buttons
+          secondary: '#873C50',  // Secondary buttons, active states, primary chart series
+          muted: '#B66A79',      // Highlights, secondary chart series, subtle accents
+          dark: '#3A1421',       // Deep dark wine
+        },
+        champagne: {
+          bg: '#F4EDE8',         // Main page background
+          gold: '#C8A66B',       // Premium highlights & special accents
+          surface: '#FAF7F5',    // Subtle surface
+          border: '#E8DDD8',     // Border tone
+        },
+        neutral: {
+          primary: '#2D2528',    // Primary text
+          secondary: '#75696B',  // Secondary text
+          muted: '#9A8D8F',      // Muted text
+          border: '#E8DDD8',     // Border
+          subtle: '#FAF7F5',     // Subtle surface
+        },
+        semantic: {
+          success: '#21845A',    // Completed, paid, available
+          warning: '#B7791F',    // Pending, low stock, attention
+          error: '#C44747',      // Cancelled, failed, overdue
+          info: '#3976B8',       // Processing, informational
+        },
+        // Mapped aliases ensuring zero breakage across existing code
         mocha: {
-          50: '#FAF6F0',
-          100: '#F4ECE1',
-          200: '#E6D7C3',
-          300: '#D5BFA4',
-          400: '#B88B5C',
-          500: '#8E5B34',
-          600: '#6F4E37', // Official Mocha Brown from reference
-          700: '#563B29',
-          800: '#3E271A',
-          900: '#26160E',
-          950: '#170B06',
+          50: '#FAF7F5',
+          100: '#F4EDE8',
+          200: '#E8DDD8',
+          300: '#E8DDD8',
+          400: '#B66A79',
+          500: '#873C50',
+          600: '#542334',
+          700: '#461B2B',
+          800: '#3A1421',
+          900: '#2D2528',
+          950: '#1D0D14',
         },
         gold: {
-          400: '#E4BE75',
-          500: '#C89B4A',
-          600: '#A97C2F',
+          400: '#D8BC86',
+          500: '#C8A66B',
+          600: '#B5955B',
         }
       },
       fontFamily: {
+        sans: ['"Manrope"', '"Plus Jakarta Sans"', 'Inter', 'sans-serif'],
         serif: ['"Playfair Display"', 'Georgia', 'serif'],
-        sans: ['"Plus Jakarta Sans"', 'Inter', 'sans-serif'],
+        manrope: ['"Manrope"', 'sans-serif']
       }
     },
   },

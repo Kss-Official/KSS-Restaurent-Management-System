@@ -3,7 +3,7 @@ import React from 'react';
 export const Button = ({
   children,
   type = 'button',
-  variant = 'primary', // 'primary', 'secondary', 'outline', 'gold', 'danger', 'ghost'
+  variant = 'primary', // 'primary', 'secondary', 'outline', 'gold', 'danger', 'ghost', 'dark'
   size = 'md', // 'sm', 'md', 'lg'
   disabled = false,
   loading = false,
@@ -12,7 +12,7 @@ export const Button = ({
   onClick,
   ...props
 }) => {
-  const baseStyles = "inline-flex items-center justify-center font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer shadow-sm active:scale-[0.98]";
+  const baseStyles = "inline-flex items-center justify-center font-semibold rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer shadow-sm active:scale-[0.98]";
 
   const sizeStyles = {
     sm: "px-3 py-1.5 text-xs gap-1.5",
@@ -21,14 +21,27 @@ export const Button = ({
   };
 
   const variantStyles = {
-    // Exact Mocha Brown #6F4E37 as primary
-    primary: "bg-[#6F4E37] text-white hover:bg-[#563B29] focus:ring-[#6F4E37] border border-transparent shadow-[#6F4E37]/20",
-    secondary: "bg-[#F4ECE1] text-[#3E271A] hover:bg-[#E6D7C3] focus:ring-[#B88B5C] border border-[#D5BFA4]/40",
-    outline: "border-2 border-[#6F4E37] text-[#6F4E37] bg-transparent hover:bg-[#6F4E37] hover:text-white focus:ring-[#6F4E37]",
-    gold: "bg-gradient-to-r from-[#D4AF37] to-[#C89B4A] text-[#170B06] hover:from-[#C89B4A] hover:to-[#B58532] font-semibold focus:ring-[#D4AF37] shadow-gold-500/20",
-    danger: "bg-red-700 text-white hover:bg-red-800 focus:ring-red-600",
-    ghost: "bg-transparent text-[#6F4E37] hover:bg-[#F4ECE1]/60 focus:ring-[#6F4E37] shadow-none",
-    dark: "bg-[#26160E] text-[#F4ECE1] hover:bg-[#170B06] border border-[#3E271A]"
+    // Exact Reference Buttons:
+    // Primary Button (bg: #873C50, text: #FFFFFF)
+    primary: "bg-[#873C50] text-white hover:bg-[#542334] focus:ring-[#873C50] border border-transparent shadow-[#873C50]/20",
+    
+    // Secondary Button (bg: #F4EDE8, text: #542334, border: #E8DDD8)
+    secondary: "bg-[#F4EDE8] text-[#542334] hover:bg-[#E8DDD8] focus:ring-[#873C50] border border-[#E8DDD8]",
+    
+    // Outline Button
+    outline: "border-2 border-[#542334] text-[#542334] bg-transparent hover:bg-[#542334] hover:text-white focus:ring-[#542334]",
+    
+    // Champagne Gold Accent Button
+    gold: "bg-[#C8A66B] text-[#542334] hover:bg-[#B5955B] font-bold focus:ring-[#C8A66B] shadow-[#C8A66B]/20",
+    
+    // Semantic Danger / Error (#C44747)
+    danger: "bg-[#C44747] text-white hover:bg-[#A83737] focus:ring-[#C44747]",
+    
+    // Tertiary / Cancel / Ghost Button
+    ghost: "bg-transparent text-[#75696B] hover:bg-[#F4EDE8] hover:text-[#542334] focus:ring-[#873C50] shadow-none",
+    
+    // Primary Burgundy Dark Button
+    dark: "bg-[#542334] text-[#F4EDE8] hover:bg-[#3A1421] border border-[#542334]"
   };
 
   return (
