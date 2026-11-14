@@ -23,6 +23,7 @@ import CustomerBookingsPage from '../features/customer/CustomerBookingsPage';
 
 // Portals
 import AdminPortal from '../features/admin/AdminPortal';
+import ManagerPortal from '../features/manager/ManagerPortal';
 import KitchenPortal from '../features/kitchen/KitchenPortal';
 import ReceptionistPortal from '../features/receptionist/ReceptionistPortal';
 import WaiterPortal from '../features/waiter/WaiterPortal';
@@ -112,6 +113,15 @@ export const AppRoutes = () => {
         element={
           <ProtectedRoute allowedRoles={[ROLES.ADMIN]}>
             <AdminPortal />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/manager/*"
+        element={
+          <ProtectedRoute allowedRoles={[ROLES.MANAGER, ROLES.ADMIN]}>
+            <ManagerPortal />
           </ProtectedRoute>
         }
       />

@@ -23,6 +23,7 @@ export const RESTAURANT_IMAGES = {
 
 export const ROLES = {
   ADMIN: "admin",
+  MANAGER: "manager",
   CUSTOMER: "customer",
   KITCHEN: "kitchen",
   RECEPTIONIST: "receptionist",
@@ -31,6 +32,7 @@ export const ROLES = {
 
 export const ROLE_LABELS = {
   [ROLES.ADMIN]: "Admin",
+  [ROLES.MANAGER]: "Restaurant Manager",
   [ROLES.CUSTOMER]: "Customer",
   [ROLES.KITCHEN]: "Kitchen Staff",
   [ROLES.RECEPTIONIST]: "Receptionist",

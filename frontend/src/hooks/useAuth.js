@@ -7,6 +7,7 @@ export const useAuth = () => {
   const isAuthenticated = Boolean(currentUser);
   const isCustomer = currentUser?.role === ROLES.CUSTOMER;
   const isAdmin = currentUser?.role === ROLES.ADMIN;
+  const isManager = currentUser?.role === ROLES.MANAGER;
   const isKitchen = currentUser?.role === ROLES.KITCHEN;
   const isReceptionist = currentUser?.role === ROLES.RECEPTIONIST;
   const isWaiter = currentUser?.role === ROLES.WAITER;
@@ -17,6 +18,7 @@ export const useAuth = () => {
     isAuthenticated,
     isCustomer,
     isAdmin,
+    isManager,
     isKitchen,
     isReceptionist,
     isWaiter,

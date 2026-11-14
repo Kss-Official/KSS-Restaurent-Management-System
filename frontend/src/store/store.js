@@ -22,6 +22,15 @@ export const DEMO_USERS = {
     avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80",
     department: "Executive Operations"
   },
+  manager: {
+    id: "mgr-1",
+    name: "Harrison Blake",
+    email: "manager@auramocha.com",
+    role: ROLES.MANAGER,
+    phone: "+1 (555) 300-8800",
+    avatar: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=300&q=80",
+    department: "General Operations & Floor Management"
+  },
   kitchen: {
     id: "kitchen-1",
     name: "Chef Marco Pierre",

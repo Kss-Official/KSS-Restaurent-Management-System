@@ -3,12 +3,13 @@ import { useAuth } from '../../hooks/useAuth';
 import { ROLES, ROLE_LABELS } from '../../utils/constants';
 import { Link, Navigate } from 'react-router-dom';
 import Button from '../../components/common/Button';
-import { ShieldCheck, ChefHat, ConciergeBell, Users, User } from 'lucide-react';
+import { ShieldCheck, ChefHat, ConciergeBell, Users, User, Briefcase } from 'lucide-react';
 
 export const DashboardPage = () => {
   const { currentUser, role } = useAuth();
 
   if (role === ROLES.ADMIN) return <Navigate to="/admin" replace />;
+  if (role === ROLES.MANAGER) return <Navigate to="/manager" replace />;
   if (role === ROLES.KITCHEN) return <Navigate to="/kitchen" replace />;
   if (role === ROLES.RECEPTIONIST) return <Navigate to="/receptionist" replace />;
   if (role === ROLES.WAITER) return <Navigate to="/waiter" replace />;
@@ -29,6 +30,11 @@ export const DashboardPage = () => {
             <ShieldCheck className="w-6 h-6 text-[#6F4E37] mb-2" />
             <h4 className="font-bold text-[#26160E]">Admin Portal</h4>
             <p className="text-xs text-[#8E5B34]">Executive management & reports</p>
+          </Link>
+          <Link to="/login" className="p-4 rounded-xl border border-[#D5BFA4]/60 hover:border-[#6F4E37] bg-[#FAF6F0] transition-colors">
+            <Briefcase className="w-6 h-6 text-[#6F4E37] mb-2" />
+            <h4 className="font-bold text-[#26160E]">Manager Portal</h4>
+            <p className="text-xs text-[#8E5B34]">Operations, floor & inventory oversight</p>
           </Link>
           <Link to="/login" className="p-4 rounded-xl border border-[#D5BFA4]/60 hover:border-[#6F4E37] bg-[#FAF6F0] transition-colors">
             <ChefHat className="w-6 h-6 text-[#6F4E37] mb-2" />

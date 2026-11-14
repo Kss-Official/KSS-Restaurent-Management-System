@@ -15,7 +15,8 @@ import {
   ConciergeBell, 
   Users, 
   UserCheck,
-  ArrowLeft
+  ArrowLeft,
+  Briefcase
 } from 'lucide-react';
 
 export const LoginPage = () => {
@@ -48,6 +49,7 @@ export const LoginPage = () => {
       // Determine role from email domain or fallback to customer
       let role = ROLES.CUSTOMER;
       if (email.includes('admin')) role = ROLES.ADMIN;
+      else if (email.includes('manager')) role = ROLES.MANAGER;
       else if (email.includes('kitchen')) role = ROLES.KITCHEN;
       else if (email.includes('reception')) role = ROLES.RECEPTIONIST;
       else if (email.includes('waiter')) role = ROLES.WAITER;
@@ -76,6 +78,9 @@ export const LoginPage = () => {
     switch (role) {
       case ROLES.ADMIN:
         navigate('/admin');
+        break;
+      case ROLES.MANAGER:
+        navigate('/manager');
         break;
       case ROLES.KITCHEN:
         navigate('/kitchen');
@@ -158,6 +163,14 @@ export const LoginPage = () => {
             </button>
             <button
               type="button"
+              onClick={() => handleQuickRoleLogin(ROLES.MANAGER)}
+              className="px-2.5 py-1.5 rounded-lg bg-white hover:bg-[#6F4E37] hover:text-white text-[#26160E] border border-[#D5BFA4]/40 font-medium transition-colors flex items-center justify-center gap-1"
+            >
+              <Briefcase className="w-3.5 h-3.5 text-[#C89B4A]" />
+              <span>Manager</span>
+            </button>
+            <button
+              type="button"
               onClick={() => handleQuickRoleLogin(ROLES.KITCHEN)}
               className="px-2.5 py-1.5 rounded-lg bg-white hover:bg-[#6F4E37] hover:text-white text-[#26160E] border border-[#D5BFA4]/40 font-medium transition-colors flex items-center justify-center gap-1"
             >
@@ -175,7 +188,7 @@ export const LoginPage = () => {
             <button
               type="button"
               onClick={() => handleQuickRoleLogin(ROLES.WAITER)}
-              className="px-2.5 py-1.5 rounded-lg bg-white hover:bg-[#6F4E37] hover:text-white text-[#26160E] border border-[#D5BFA4]/40 font-medium transition-colors flex items-center justify-center gap-1 col-span-2 sm:col-span-1"
+              className="px-2.5 py-1.5 rounded-lg bg-white hover:bg-[#6F4E37] hover:text-white text-[#26160E] border border-[#D5BFA4]/40 font-medium transition-colors flex items-center justify-center gap-1"
             >
               <Users className="w-3.5 h-3.5 text-[#C89B4A]" />
               <span>Waiter</span>

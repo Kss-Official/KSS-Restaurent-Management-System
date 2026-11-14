@@ -15,7 +15,8 @@ import {
   Compass, 
   ChefHat, 
   ConciergeBell, 
-  Users 
+  Users,
+  Briefcase 
 } from 'lucide-react';
 
 export const Navbar = ({ onOpenBookingModal }) => {
@@ -59,6 +60,7 @@ export const Navbar = ({ onOpenBookingModal }) => {
   const getPortalRoute = () => {
     switch (role) {
       case ROLES.ADMIN: return '/admin';
+      case ROLES.MANAGER: return '/manager';
       case ROLES.KITCHEN: return '/kitchen';
       case ROLES.RECEPTIONIST: return '/receptionist';
       case ROLES.WAITER: return '/waiter';
@@ -70,6 +72,7 @@ export const Navbar = ({ onOpenBookingModal }) => {
   const getPortalIcon = () => {
     switch (role) {
       case ROLES.ADMIN: return ShieldAlert;
+      case ROLES.MANAGER: return Briefcase;
       case ROLES.KITCHEN: return ChefHat;
       case ROLES.RECEPTIONIST: return ConciergeBell;
       case ROLES.WAITER: return Users;
