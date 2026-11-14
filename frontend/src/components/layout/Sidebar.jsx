@@ -15,7 +15,9 @@ export const Sidebar = ({
   links = [], 
   isOpen = true, 
   onClose,
-  portalRole
+  portalRole,
+  activeTab,
+  onTabChange
 }) => {
   const { currentUser, logout } = useAuth();
   const navigate = useNavigate();
@@ -42,17 +44,17 @@ export const Sidebar = ({
         }`}
       >
         {/* Top header */}
-        <div>
-          <div className="p-6 border-b border-[#563B29] flex items-center justify-between">
+        <div className="flex flex-col flex-1 overflow-hidden">
+          <div className="p-5 border-b border-[#563B29] flex items-center justify-between shrink-0">
             <Link to="/" className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-[#FAF6F0] text-[#6F4E37] flex items-center justify-center shadow-inner">
+              <div className="w-10 h-10 rounded-xl bg-[#FAF6F0] text-[#6F4E37] flex items-center justify-center shadow-inner shrink-0">
                 <UtensilsCrossed className="w-5 h-5" />
               </div>
-              <div>
-                <h1 className="font-serif text-xl font-bold tracking-tight text-[#FAF6F0] leading-none">
+              <div className="overflow-hidden">
+                <h1 className="font-serif text-xl font-bold tracking-tight text-[#FAF6F0] leading-none truncate">
                   Aura Mocha
                 </h1>
-                <p className="text-[11px] font-medium uppercase tracking-widest text-[#E6D7C3] mt-1">
+                <p className="text-[10px] font-medium uppercase tracking-widest text-[#E6D7C3] mt-1 truncate">
                   {title || 'Management System'}
                 </p>
               </div>
@@ -68,57 +70,104 @@ export const Sidebar = ({
           </div>
 
           {/* Portal badge */}
-          <div className="px-6 py-3.5 bg-[#563B29]/70 flex items-center justify-between text-xs text-[#FAF6F0]">
-            <span className="font-semibold uppercase tracking-wider text-[#E6D7C3]">Active Portal</span>
-            <span className="px-2.5 py-0.5 rounded-full bg-[#3E271A] text-[#FAF6F0] font-medium border border-[#8E5B34]/50">
+          <div className="px-5 py-3 bg-[#563B29]/70 flex items-center justify-between text-xs text-[#FAF6F0] shrink-0">
+            <span className="font-semibold uppercase tracking-wider text-[#E6D7C3] text-[11px]">Active Portal</span>
+            <span className="px-2.5 py-0.5 rounded-full bg-[#3E271A] text-[#FAF6F0] font-medium border border-[#8E5B34]/50 text-[11px]">
               {subtitle || (currentUser?.role && ROLE_LABELS[currentUser.role]) || 'Portal'}
             </span>
           </div>
 
-          {/* Navigation Links */}
-          <nav className="p-4 space-y-1 overflow-y-auto max-h-[calc(100vh-270px)]">
-            {links.map((link, idx) => {
-              const Icon = link.icon;
-              return (
-                <NavLink
-                  key={idx}
-                  to={link.path}
-                  end={link.end ?? true}
-                  onClick={() => onClose && onClose()}
-                  className={({ isActive }) =>
-                    `flex items-center justify-between px-3.5 py-2.5 rounded-lg text-sm font-medium transition-all ${
-                      isActive
-                        ? 'bg-[#FAF6F0] text-[#6F4E37] shadow-md font-semibold'
-                        : 'text-[#FAF6F0]/90 hover:bg-[#563B29] hover:text-white'
-                    }`
-                  }
-                >
-                  <div className="flex items-center gap-3">
-                    {Icon && <Icon className="w-4 h-4 shrink-0" />}
-                    <span>{link.label}</span>
+          {/* Navigation Links with Group Support */}
+          <nav className="p-3 space-y-1.5 overflow-y-auto flex-1 custom-scrollbar">
+            {links.map((item, idx) => {
+              // If item is a group header
+              if (item.isGroup) {
+                return (
+                  <div key={idx} className="pt-3 pb-1">
+                    <p className="px-3 text-[10px] font-bold uppercase tracking-widest text-[#E6D7C3]/75">
+                      {item.groupTitle}
+                    </p>
+                    <div className="mt-1 space-y-0.5">
+                      {item.children?.map((sub, sIdx) => {
+                        const SubIcon = sub.icon;
+                        const isSubActive = sub.isActive || activeTab === sub.tabId;
+                        return (
+                          <button
+                            key={sIdx}
+                            type="button"
+                            onClick={() => {
+                              if (sub.onClick) sub.onClick();
+                              if (onTabChange && sub.tabId) onTabChange(sub.tabId);
+                              if (onClose) onClose();
+                            }}
+                            className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs font-medium transition-all text-left ${
+                              isSubActive
+                                ? 'bg-[#FAF6F0] text-[#6F4E37] shadow-sm font-bold'
+                                : 'text-[#FAF6F0]/90 hover:bg-[#563B29] hover:text-white'
+                            }`}
+                          >
+                            <div className="flex items-center gap-2.5 truncate">
+                              {SubIcon && <SubIcon className="w-4 h-4 shrink-0" />}
+                              <span className="truncate">{sub.label}</span>
+                            </div>
+                            {sub.badge !== undefined && sub.badge > 0 && (
+                              <span className="px-1.5 py-0.2 text-[10px] font-bold rounded-full bg-[#C89B4A] text-[#170B06]">
+                                {sub.badge}
+                              </span>
+                            )}
+                          </button>
+                        );
+                      })}
+                    </div>
                   </div>
-                  {link.badge !== undefined && (
+                );
+              }
+
+              // Normal single item
+              const Icon = item.icon;
+              const isActive = item.isActive || activeTab === item.tabId;
+
+              return (
+                <button
+                  key={idx}
+                  type="button"
+                  onClick={() => {
+                    if (item.onClick) item.onClick();
+                    if (onTabChange && item.tabId) onTabChange(item.tabId);
+                    if (onClose) onClose();
+                  }}
+                  className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-lg text-xs sm:text-sm font-medium transition-all text-left ${
+                    isActive
+                      ? 'bg-[#FAF6F0] text-[#6F4E37] shadow-md font-semibold'
+                      : 'text-[#FAF6F0]/90 hover:bg-[#563B29] hover:text-white'
+                  }`}
+                >
+                  <div className="flex items-center gap-3 truncate">
+                    {Icon && <Icon className="w-4 h-4 shrink-0" />}
+                    <span className="truncate">{item.label}</span>
+                  </div>
+                  {item.badge !== undefined && item.badge > 0 && (
                     <span className="px-2 py-0.5 text-xs font-bold rounded-full bg-[#C89B4A] text-[#170B06]">
-                      {link.badge}
+                      {item.badge}
                     </span>
                   )}
-                </NavLink>
+                </button>
               );
             })}
           </nav>
         </div>
 
         {/* Footer Area with user summary and back to public site / logout */}
-        <div className="p-4 border-t border-[#563B29] bg-[#563B29]/40 space-y-3">
-          <div className="flex items-center gap-3 p-2 rounded-lg bg-[#3E271A]/50">
+        <div className="p-3.5 border-t border-[#563B29] bg-[#563B29]/40 space-y-2.5 shrink-0">
+          <div className="flex items-center gap-2.5 p-2 rounded-lg bg-[#3E271A]/50">
             <img 
               src={currentUser?.avatar || "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80"}
               alt={currentUser?.name}
-              className="w-9 h-9 rounded-full object-cover border border-[#C89B4A]"
+              className="w-8 h-8 rounded-full object-cover border border-[#C89B4A] shrink-0"
             />
             <div className="overflow-hidden">
-              <p className="text-sm font-semibold text-[#FAF6F0] truncate">{currentUser?.name || "Staff Member"}</p>
-              <p className="text-xs text-[#E6D7C3] truncate capitalize">{currentUser?.role || "Authorized"}</p>
+              <p className="text-xs font-bold text-[#FAF6F0] truncate">{currentUser?.name || "Staff Member"}</p>
+              <p className="text-[10px] text-[#E6D7C3] truncate capitalize">{currentUser?.role ? ROLE_LABELS[currentUser.role] : "Staff"}</p>
             </div>
           </div>
 

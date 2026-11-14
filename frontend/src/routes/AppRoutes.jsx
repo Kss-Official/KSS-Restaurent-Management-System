@@ -20,6 +20,12 @@ import RegisterPage from '../features/auth/RegisterPage';
 import BookTablePage from '../features/customer/BookTablePage';
 import ProfilePage from '../features/customer/ProfilePage';
 import CustomerBookingsPage from '../features/customer/CustomerBookingsPage';
+import CustomerOrdersPage from '../features/customer/CustomerOrdersPage';
+import CartPage from '../features/customer/CartPage';
+import OffersPage from '../features/customer/OffersPage';
+import WishlistPage from '../features/customer/WishlistPage';
+import ReviewsPage from '../features/customer/ReviewsPage';
+import SupportPage from '../features/customer/SupportPage';
 
 // Portals
 import AdminPortal from '../features/admin/AdminPortal';
@@ -61,6 +67,13 @@ export const AppRoutes = () => {
         <Route path="/menu" element={<MenuPage />} />
         <Route path="/contact" element={<ContactPage />} />
 
+        {/* Public / Customer accessible features */}
+        <Route path="/cart" element={<CartPage />} />
+        <Route path="/offers" element={<OffersPage />} />
+        <Route path="/wishlist" element={<WishlistPage />} />
+        <Route path="/reviews" element={<ReviewsPage />} />
+        <Route path="/support" element={<SupportPage />} />
+
         {/* Customer Portal routes (Protected) */}
         <Route
           path="/customer/book-table"
@@ -85,6 +98,34 @@ export const AppRoutes = () => {
               <CustomerBookingsPage />
             </ProtectedRoute>
           }
+        />
+        <Route
+          path="/customer/orders"
+          element={
+            <ProtectedRoute allowedRoles={[ROLES.CUSTOMER, ROLES.ADMIN]}>
+              <CustomerOrdersPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/customer/cart"
+          element={<CartPage />}
+        />
+        <Route
+          path="/customer/offers"
+          element={<OffersPage />}
+        />
+        <Route
+          path="/customer/wishlist"
+          element={<WishlistPage />}
+        />
+        <Route
+          path="/customer/reviews"
+          element={<ReviewsPage />}
+        />
+        <Route
+          path="/customer/support"
+          element={<SupportPage />}
         />
 
         {/* General Dashboard & Users */}

@@ -3,12 +3,22 @@ import { useAppStore } from '../../store/store';
 import { formatCurrency } from '../../utils/helpers';
 import Button from '../../components/common/Button';
 import { Link } from 'react-router-dom';
-import { Search, Sparkles, Calendar, Star, Filter } from 'lucide-react';
+import { 
+  Search, 
+  Sparkles, 
+  Calendar, 
+  Star, 
+  Heart, 
+  ShoppingBag, 
+  Check, 
+  UtensilsCrossed 
+} from 'lucide-react';
 
 export const MenuPage = () => {
-  const { menuItems } = useAppStore();
+  const { menuItems, cart, addToCart, wishlist, toggleWishlist } = useAppStore();
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
+  const [addedItem, setAddedItem] = useState(null);
 
   const categories = ['All', 'Appetizers', 'Mains', 'Desserts', 'Beverages'];
 
@@ -18,6 +28,12 @@ export const MenuPage = () => {
                           item.description.toLowerCase().includes(searchQuery.toLowerCase());
     return matchesCat && matchesSearch;
   });
+
+  const handleAddToCart = (item) => {
+    addToCart(item);
+    setAddedItem(item.id);
+    setTimeout(() => setAddedItem(null), 2000);
+  };
 
   return (
     <div className="bg-[#FAF6F0] py-16 space-y-12">
@@ -33,6 +49,20 @@ export const MenuPage = () => {
         <p className="max-w-2xl mx-auto text-sm sm:text-base text-[#563B29]">
           Each recipe is an artisanal exploration of textures and aromas, highlighting locally sourced ingredients paired with our distinctive mocha nuances.
         </p>
+
+        {/* Quick Cart Pill */}
+        {cart && cart.length > 0 && (
+          <div className="pt-2">
+            <Link 
+              to="/cart"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#6F4E37] text-white text-xs font-bold shadow-lg hover:bg-[#563B29] transition-all"
+            >
+              <ShoppingBag className="w-4 h-4 text-[#C89B4A]" />
+              <span>Table Cart: {cart.reduce((a, b) => a + b.qty, 0)} items ({formatCurrency(cart.reduce((s, it) => s + (it.price * it.qty), 0))})</span>
+              <span className="underline ml-1">Review & Order →</span>
+            </Link>
+          </div>
+        )}
       </div>
 
       {/* Filter and Search Bar */}
@@ -85,57 +115,91 @@ export const MenuPage = () => {
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredItems.map((item) => (
-              <div
-                key={item.id}
-                className="bg-white rounded-2xl overflow-hidden border border-[#D5BFA4]/40 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group"
-              >
-                <div className="relative h-60 overflow-hidden">
-                  <img
-                    src={item.image}
-                    alt={item.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                  {item.signature && (
-                    <span className="absolute top-3 left-3 bg-[#6F4E37] text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-sm flex items-center gap-1">
-                      <Sparkles className="w-3 h-3 text-[#E6D7C3]" />
-                      Signature
-                    </span>
-                  )}
-                  <span className="absolute bottom-3 right-3 bg-[#26160E]/90 text-white font-serif font-bold text-sm px-3.5 py-1 rounded-lg backdrop-blur-sm">
-                    {formatCurrency(item.price)}
-                  </span>
-                </div>
+            {filteredItems.map((item) => {
+              const isWishlisted = wishlist?.includes(item.id);
+              const isAdded = addedItem === item.id;
 
-                <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
-                  <div>
-                    <div className="flex items-start justify-between gap-2">
-                      <h3 className="font-serif text-xl font-bold text-[#26160E] group-hover:text-[#6F4E37] transition-colors">
-                        {item.name}
-                      </h3>
-                    </div>
-                    <p className="text-xs sm:text-sm text-[#563B29] leading-relaxed mt-2">
-                      {item.description}
-                    </p>
-                  </div>
-
-                  <div className="pt-4 border-t border-[#F4ECE1] flex items-center justify-between">
-                    <div className="flex flex-wrap gap-1.5">
-                      {item.tags?.map((tag, i) => (
-                        <span key={i} className="text-[10px] font-semibold px-2 py-0.5 rounded-md bg-[#F4ECE1] text-[#6F4E37]">
-                          {tag}
+              return (
+                <div
+                  key={item.id}
+                  className="bg-white rounded-3xl overflow-hidden border border-[#D5BFA4]/40 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group"
+                >
+                  <div className="relative h-60 overflow-hidden">
+                    <img
+                      src={item.image}
+                      alt={item.name}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    
+                    {/* Top tags */}
+                    <div className="absolute top-3 left-3 flex items-center gap-2">
+                      {item.signature && (
+                        <span className="bg-[#6F4E37] text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-sm flex items-center gap-1">
+                          <Sparkles className="w-3 h-3 text-[#E6D7C3]" />
+                          Signature
                         </span>
-                      ))}
+                      )}
                     </div>
-                    <Link to="/customer/book-table">
-                      <Button variant="primary" size="sm" icon={Calendar}>
-                        Taste This
-                      </Button>
-                    </Link>
+
+                    {/* Wishlist toggle heart */}
+                    <button
+                      onClick={() => toggleWishlist(item.id)}
+                      className={`absolute top-3 right-3 p-2 rounded-full backdrop-blur-md shadow-md transition-transform hover:scale-110 ${
+                        isWishlisted ? 'bg-white text-red-500' : 'bg-white/80 text-[#3E271A] hover:text-red-500'
+                      }`}
+                      title={isWishlisted ? 'Remove from Wishlist' : 'Add to Wishlist'}
+                    >
+                      <Heart className={`w-4 h-4 ${isWishlisted ? 'fill-red-500' : ''}`} />
+                    </button>
+
+                    <span className="absolute bottom-3 right-3 bg-[#26160E]/90 text-white font-serif font-bold text-sm px-3.5 py-1 rounded-xl backdrop-blur-sm">
+                      {formatCurrency(item.price)}
+                    </span>
+                  </div>
+
+                  <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
+                    <div>
+                      <div className="flex items-start justify-between gap-2">
+                        <h3 className="font-serif text-xl font-bold text-[#26160E] group-hover:text-[#6F4E37] transition-colors">
+                          {item.name}
+                        </h3>
+                      </div>
+                      <p className="text-xs sm:text-sm text-[#563B29] leading-relaxed mt-2">
+                        {item.description}
+                      </p>
+                    </div>
+
+                    <div className="pt-4 border-t border-[#F4ECE1] space-y-3">
+                      <div className="flex flex-wrap gap-1.5">
+                        {item.tags?.map((tag, i) => (
+                          <span key={i} className="text-[10px] font-semibold px-2 py-0.5 rounded-md bg-[#F4ECE1] text-[#6F4E37]">
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+
+                      <div className="flex items-center gap-2">
+                        <Button
+                          variant={isAdded ? "dark" : "primary"}
+                          size="sm"
+                          className="flex-1 shadow-sm"
+                          icon={isAdded ? Check : ShoppingBag}
+                          onClick={() => handleAddToCart(item)}
+                        >
+                          {isAdded ? "Added to Cart!" : "Add to Order"}
+                        </Button>
+
+                        <Link to="/customer/book-table">
+                          <Button variant="outline" size="sm" icon={Calendar} title="Reserve Table">
+                            Book
+                          </Button>
+                        </Link>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         )}
       </div>

@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
+import { useAppStore } from '../../store/store';
 import { ROLES, ROLE_LABELS } from '../../utils/constants';
 import Button from '../common/Button';
 import { 
@@ -16,16 +17,26 @@ import {
   ChefHat, 
   ConciergeBell, 
   Users,
-  Briefcase 
+  Briefcase,
+  ShoppingBag,
+  Heart,
+  Tag,
+  Clock,
+  Star,
+  HelpCircle
 } from 'lucide-react';
 
 export const Navbar = ({ onOpenBookingModal }) => {
   const { currentUser, isAuthenticated, isCustomer, logout, role } = useAuth();
+  const { cart, wishlist } = useAppStore();
   const [profileDropdownOpen, setProfileDropdownOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
   const dropdownRef = useRef(null);
+
+  const cartTotalItems = cart ? cart.reduce((sum, item) => sum + item.qty, 0) : 0;
+  const wishlistCount = wishlist ? wishlist.length : 0;
 
   // Close dropdown on click outside
   useEffect(() => {
@@ -49,6 +60,8 @@ export const Navbar = ({ onOpenBookingModal }) => {
     { label: 'About', path: '/about' },
     { label: 'Services', path: '/services' },
     { label: 'Menu', path: '/menu' },
+    { label: 'Offers', path: '/offers' },
+    { label: 'Reviews', path: '/reviews' },
     { label: 'Contact', path: '/contact' },
   ];
 
@@ -110,7 +123,7 @@ export const Navbar = ({ onOpenBookingModal }) => {
                 <Link
                   key={link.path}
                   to={link.path}
-                  className={`px-3.5 py-2 rounded-md text-sm font-medium transition-all ${
+                  className={`px-3 py-2 rounded-md text-sm font-medium transition-all ${
                     isActive
                       ? 'text-[#6F4E37] font-semibold bg-[#F4ECE1]'
                       : 'text-[#3E271A] hover:text-[#6F4E37] hover:bg-[#F4ECE1]/50'
@@ -125,6 +138,34 @@ export const Navbar = ({ onOpenBookingModal }) => {
           {/* Right Action Area */}
           <div className="hidden md:flex items-center gap-3">
             
+            {/* Wishlist Button */}
+            <Link 
+              to="/wishlist" 
+              className="relative p-2.5 rounded-xl border border-[#D5BFA4]/50 bg-white hover:bg-[#FAF6F0] text-[#6F4E37] transition-colors"
+              title="Culinary Wishlist"
+            >
+              <Heart className="w-4 h-4" />
+              {wishlistCount > 0 && (
+                <span className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 text-white rounded-full text-[9px] font-bold flex items-center justify-center">
+                  {wishlistCount}
+                </span>
+              )}
+            </Link>
+
+            {/* Cart Button */}
+            <Link 
+              to="/cart" 
+              className="relative p-2.5 rounded-xl border border-[#D5BFA4]/50 bg-white hover:bg-[#FAF6F0] text-[#6F4E37] transition-colors"
+              title="Table Order Cart"
+            >
+              <ShoppingBag className="w-4 h-4" />
+              {cartTotalItems > 0 && (
+                <span className="absolute -top-1 -right-1 w-4 h-4 bg-[#6F4E37] text-white rounded-full text-[9px] font-bold flex items-center justify-center">
+                  {cartTotalItems}
+                </span>
+              )}
+            </Link>
+
             {/* If Not Authenticated -> Show Login Button */}
             {!isAuthenticated && (
               <Link to="/login">
@@ -182,37 +223,65 @@ export const Navbar = ({ onOpenBookingModal }) => {
 
                   {/* Dropdown Menu */}
                   {profileDropdownOpen && (
-                    <div className="absolute right-0 mt-2 w-56 rounded-xl bg-white shadow-xl border border-[#D5BFA4]/40 py-2 z-50 animate-fadeIn">
-                      <div className="px-4 py-2.5 border-b border-[#F4ECE1]">
-                        <p className="text-xs text-[#8E5B34] font-medium uppercase tracking-wider">Signed in as</p>
+                    <div className="absolute right-0 mt-2 w-64 rounded-2xl bg-white shadow-xl border border-[#D5BFA4]/40 py-2 z-50 animate-fadeIn divide-y divide-[#F4ECE1]">
+                      <div className="px-4 py-2.5">
+                        <p className="text-[10px] text-[#8E5B34] font-bold uppercase tracking-wider">Patron Account</p>
                         <p className="text-sm font-bold text-[#26160E] truncate">{currentUser?.name}</p>
                         <p className="text-xs text-[#6F4E37]/70 truncate">{currentUser?.email}</p>
                       </div>
 
-                      <div className="py-1">
+                      <div className="py-1.5 text-xs">
                         <Link
                           to="/customer/profile"
-                          className="flex items-center gap-3 px-4 py-2.5 text-sm text-[#3E271A] hover:bg-[#F4ECE1] hover:text-[#6F4E37] transition-colors"
+                          className="flex items-center gap-3 px-4 py-2 text-[#3E271A] hover:bg-[#F4ECE1] hover:text-[#6F4E37] transition-colors"
                         >
                           <User className="w-4 h-4 text-[#6F4E37]" />
                           <span>My Profile</span>
                         </Link>
                         <Link
                           to="/customer/bookings"
-                          className="flex items-center gap-3 px-4 py-2.5 text-sm text-[#3E271A] hover:bg-[#F4ECE1] hover:text-[#6F4E37] transition-colors"
+                          className="flex items-center gap-3 px-4 py-2 text-[#3E271A] hover:bg-[#F4ECE1] hover:text-[#6F4E37] transition-colors"
                         >
                           <Calendar className="w-4 h-4 text-[#6F4E37]" />
                           <span>My Bookings</span>
                         </Link>
+                        <Link
+                          to="/customer/orders"
+                          className="flex items-center gap-3 px-4 py-2 text-[#3E271A] hover:bg-[#F4ECE1] hover:text-[#6F4E37] transition-colors"
+                        >
+                          <Clock className="w-4 h-4 text-[#6F4E37]" />
+                          <span>Live Table Orders</span>
+                        </Link>
+                        <Link
+                          to="/wishlist"
+                          className="flex items-center gap-3 px-4 py-2 text-[#3E271A] hover:bg-[#F4ECE1] hover:text-[#6F4E37] transition-colors"
+                        >
+                          <Heart className="w-4 h-4 text-[#6F4E37]" />
+                          <span>Culinary Wishlist ({wishlistCount})</span>
+                        </Link>
+                        <Link
+                          to="/offers"
+                          className="flex items-center gap-3 px-4 py-2 text-[#3E271A] hover:bg-[#F4ECE1] hover:text-[#6F4E37] transition-colors"
+                        >
+                          <Tag className="w-4 h-4 text-[#6F4E37]" />
+                          <span>Special Offers & Vouchers</span>
+                        </Link>
+                        <Link
+                          to="/support"
+                          className="flex items-center gap-3 px-4 py-2 text-[#3E271A] hover:bg-[#F4ECE1] hover:text-[#6F4E37] transition-colors"
+                        >
+                          <HelpCircle className="w-4 h-4 text-[#6F4E37]" />
+                          <span>Concierge Support</span>
+                        </Link>
                       </div>
 
-                      <div className="border-t border-[#F4ECE1] pt-1">
+                      <div className="pt-1">
                         <button
                           onClick={handleLogout}
-                          className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-red-700 hover:bg-red-50 transition-colors text-left"
+                          className="w-full flex items-center gap-3 px-4 py-2.5 text-xs font-semibold text-red-700 hover:bg-red-50 transition-colors text-left"
                         >
                           <LogOut className="w-4 h-4" />
-                          <span>Logout</span>
+                          <span>Sign Out</span>
                         </button>
                       </div>
                     </div>
@@ -225,6 +294,14 @@ export const Navbar = ({ onOpenBookingModal }) => {
 
           {/* Mobile Hamburger Button */}
           <div className="flex md:hidden items-center gap-2">
+            <Link to="/cart" className="relative p-2 text-[#6F4E37]">
+              <ShoppingBag className="w-5 h-5" />
+              {cartTotalItems > 0 && (
+                <span className="absolute 0 right-0 w-4 h-4 bg-[#6F4E37] text-white rounded-full text-[9px] font-bold flex items-center justify-center">
+                  {cartTotalItems}
+                </span>
+              )}
+            </Link>
             {isAuthenticated && isCustomer && (
               <Link to="/customer/profile" className="p-1">
                 <img
@@ -279,14 +356,29 @@ export const Navbar = ({ onOpenBookingModal }) => {
                     Book a Table
                   </Button>
                 </Link>
-                <Link to="/customer/profile" className="w-full">
-                  <Button variant="secondary" className="w-full" size="md" icon={User}>
-                    My Profile
+                <Link to="/customer/orders" className="w-full">
+                  <Button variant="secondary" className="w-full" size="md" icon={Clock}>
+                    Live Table Orders
+                  </Button>
+                </Link>
+                <Link to="/cart" className="w-full">
+                  <Button variant="secondary" className="w-full" size="md" icon={ShoppingBag}>
+                    Table Cart ({cartTotalItems})
                   </Button>
                 </Link>
                 <Link to="/customer/bookings" className="w-full">
                   <Button variant="secondary" className="w-full" size="md" icon={Calendar}>
                     My Bookings
+                  </Button>
+                </Link>
+                <Link to="/wishlist" className="w-full">
+                  <Button variant="secondary" className="w-full" size="md" icon={Heart}>
+                    Wishlist ({wishlistCount})
+                  </Button>
+                </Link>
+                <Link to="/customer/profile" className="w-full">
+                  <Button variant="secondary" className="w-full" size="md" icon={User}>
+                    My Profile
                   </Button>
                 </Link>
                 <Button variant="ghost" className="w-full justify-start text-red-700" onClick={handleLogout} icon={LogOut}>

@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import Sidebar from '../../components/layout/Sidebar';
-import { useAppStore } from '../../store/store';
+import { useAppStore, DEMO_USERS } from '../../store/store';
 import { formatCurrency } from '../../utils/helpers';
 import Button from '../../components/common/Button';
+import Input from '../../components/common/Input';
 import { 
   Users, 
   Layers, 
@@ -13,44 +14,134 @@ import {
   Menu, 
   Send, 
   Bell, 
-  Check 
+  Check, 
+  History, 
+  User, 
+  AlertTriangle, 
+  Coffee, 
+  ShieldCheck, 
+  Sparkles, 
+  Search, 
+  DollarSign, 
+  X, 
+  ChevronRight,
+  Printer,
+  CheckCheck
 } from 'lucide-react';
 
 export const WaiterPortal = () => {
   const [activeTab, setActiveTab] = useState('dashboard');
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const { tables, kitchenOrders, updateKitchenStatus, menuItems, createTableOrder } = useAppStore();
+  
+  const { 
+    tables, 
+    sessions, 
+    orders, 
+    menuItems, 
+    placeOrder, 
+    updateOrderStatus, 
+    updateTableStatus,
+    notifications,
+    currentUser,
+    logout
+  } = useAppStore();
 
-  const [selectedTable, setSelectedTable] = useState(tables[1]); // Table 2
+  const waiterProfile = currentUser || DEMO_USERS.waiter;
+
+  // Filter tables assigned to Julian Vance or Floor A
+  const myTables = tables.filter(t => !t.waiter || t.waiter === waiterProfile.name || t.number <= 8);
+
+  // Ready to serve orders
+  const readyOrders = orders.filter(o => o.status === 'Ready to Serve' || o.status === 'Ready');
+  const activeOrders = orders.filter(o => o.status !== 'Served' && o.status !== 'Cancelled');
+  const servedOrders = orders.filter(o => o.status === 'Served');
+
+  // Order taking state
   const [orderModalOpen, setOrderModalOpen] = useState(false);
-  const [selectedItems, setSelectedItems] = useState([
-    { ...menuItems[0], qty: 1 }
-  ]);
+  const [selectedTableNumber, setSelectedTableNumber] = useState(myTables[0]?.number || 1);
+  const [selectedMenuItems, setSelectedMenuItems] = useState([]);
   const [orderNotes, setOrderNotes] = useState('');
+  const [menuSearch, setMenuSearch] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('All');
 
-  // Orders that are Ready to be served to tables
-  const readyOrders = kitchenOrders.filter(o => o.status === 'Ready');
+  // Table details modal
+  const [viewSessionModal, setViewSessionModal] = useState(null);
 
+  // Status Filter for Order Management
+  const [orderStatusFilter, setOrderStatusFilter] = useState('All');
+
+  // Navigation Links
   const navLinks = [
     { label: 'Waiter Dashboard', icon: Users, path: '#dashboard', onClick: () => setActiveTab('dashboard') },
-    { label: 'Assigned Tables', icon: Layers, path: '#tables', onClick: () => setActiveTab('tables'), badge: tables.length },
-    { label: 'View Table Orders', icon: UtensilsCrossed, path: '#orders', onClick: () => setActiveTab('orders'), badge: kitchenOrders.length },
-    { label: 'Create Orders', icon: PlusCircle, path: '#create', onClick: () => { setOrderModalOpen(true); } },
-    { label: 'Serve Ready Orders', icon: Bell, path: '#ready', onClick: () => setActiveTab('ready'), badge: readyOrders.length },
+    { label: 'My Assigned Tables', icon: Layers, path: '#tables', onClick: () => setActiveTab('tables'), badge: myTables.length },
+    { label: 'Order Management', icon: UtensilsCrossed, path: '#orders', onClick: () => setActiveTab('orders'), badge: readyOrders.length > 0 ? `${readyOrders.length} Ready` : activeOrders.length },
+    { label: 'Order History', icon: History, path: '#history', onClick: () => setActiveTab('history'), badge: servedOrders.length },
+    { label: 'Notifications', icon: Bell, path: '#notifications', onClick: () => setActiveTab('notifications'), badge: notifications.filter(n => n.unread).length },
+    { label: 'My Profile', icon: User, path: '#profile', onClick: () => setActiveTab('profile') },
   ];
 
-  const handleCreateOrderSubmit = (e) => {
-    e.preventDefault();
-    if (selectedItems.length === 0) return;
-    createTableOrder(selectedTable.number, selectedItems, orderNotes);
-    setOrderModalOpen(false);
-    setOrderNotes('');
-    alert(`Order dispatched directly to Kitchen Display System for Table ${selectedTable.number}!`);
+  // Quick dish toggle for new order
+  const handleAddDish = (item) => {
+    setSelectedMenuItems(prev => {
+      const existing = prev.find(i => i.id === item.id);
+      if (existing) {
+        return prev.map(i => i.id === item.id ? { ...i, qty: i.qty + 1 } : i);
+      }
+      return [...prev, { ...item, qty: 1, notes: '' }];
+    });
   };
 
-  const handleServeOrder = (orderId) => {
-    updateKitchenStatus(orderId, 'Completed');
-    alert(`Order ${orderId} marked as served to guests.`);
+  const handleUpdateItemQty = (id, delta) => {
+    setSelectedMenuItems(prev => prev.map(item => {
+      if (item.id === id) {
+        const newQty = item.qty + delta;
+        return newQty > 0 ? { ...item, qty: newQty } : null;
+      }
+      return item;
+    }).filter(Boolean));
+  };
+
+  // Submit order to shared store & KDS
+  const handleCreateOrderSubmit = (e) => {
+    e.preventDefault();
+    if (selectedMenuItems.length === 0) {
+      alert('Please add at least one dish to the order ticket.');
+      return;
+    }
+
+    // Find active session for selected table
+    const tableObj = tables.find(t => t.number === Number(selectedTableNumber));
+    let targetSessionId = tableObj?.activeSessionId;
+
+    if (!targetSessionId) {
+      const activeSession = sessions.find(s => s.tableNumber === Number(selectedTableNumber) && s.status === 'Active');
+      targetSessionId = activeSession ? activeSession.sessionId : '000001';
+    }
+
+    const orderId = placeOrder({
+      sessionId: targetSessionId,
+      tableNumber: Number(selectedTableNumber),
+      items: selectedMenuItems.map(m => ({
+        id: m.id,
+        name: m.name,
+        price: m.price,
+        qty: m.qty,
+        notes: m.notes || orderNotes
+      })),
+      placedBy: `Waiter (${waiterProfile.name})`,
+      waiter: waiterProfile.name
+    });
+
+    // Reset form
+    setSelectedMenuItems([]);
+    setOrderNotes('');
+    setOrderModalOpen(false);
+    alert(`Order #${orderId} successfully dispatched to Kitchen Display System for Table ${selectedTableNumber}!`);
+  };
+
+  // Serve food action
+  const handleMarkServed = (orderId) => {
+    updateOrderStatus(orderId, 'Served');
   };
 
   return (
@@ -64,7 +155,13 @@ export const WaiterPortal = () => {
         links={navLinks.map(l => ({
           ...l,
           path: `/waiter#${activeTab}`,
-          end: activeTab === l.label.toLowerCase().split(' ')[0] || (activeTab === 'dashboard' && l.label.includes('Dashboard'))
+          end: activeTab === l.label.toLowerCase().split(' ')[0] || 
+               (activeTab === 'dashboard' && l.label.includes('Dashboard')) ||
+               (activeTab === 'tables' && l.label.includes('Tables')) ||
+               (activeTab === 'orders' && l.label.includes('Orders')) ||
+               (activeTab === 'history' && l.label.includes('History')) ||
+               (activeTab === 'notifications' && l.label.includes('Notifications')) ||
+               (activeTab === 'profile' && l.label.includes('Profile'))
         }))}
       />
 
@@ -80,10 +177,18 @@ export const WaiterPortal = () => {
               <Menu className="w-6 h-6" />
             </button>
             <div>
-              <h2 className="font-serif text-xl font-bold text-[#26160E]">
-                Floor Service & Table Management
-              </h2>
-              <p className="text-xs text-[#8E5B34]">Section: Floor A (Tables 1 - 8)</p>
+              <div className="flex items-center gap-2">
+                <h2 className="font-serif text-xl font-bold text-[#26160E]">
+                  Floor Service & Waiter Terminal
+                </h2>
+                <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 mr-1 animate-pulse"></span>
+                  Active on Floor
+                </span>
+              </div>
+              <p className="text-xs text-[#8E5B34]">
+                Staff: <span className="font-semibold text-[#26160E]">{waiterProfile.name}</span> | Assigned: Floor A (Tables 1 - 8)
+              </p>
             </div>
           </div>
 
@@ -96,181 +201,949 @@ export const WaiterPortal = () => {
             >
               Take New Table Order
             </Button>
+            <button 
+              onClick={() => setActiveTab('notifications')}
+              className="relative p-2.5 rounded-xl border border-[#D5BFA4]/60 bg-[#FAF6F0] text-[#6F4E37] hover:bg-[#F4ECE1] transition-colors"
+            >
+              <Bell className="w-5 h-5" />
+              {readyOrders.length > 0 && (
+                <span className="absolute -top-1 -right-1 w-5 h-5 bg-[#C89B4A] text-white rounded-full text-[10px] font-bold flex items-center justify-center animate-bounce">
+                  {readyOrders.length}
+                </span>
+              )}
+            </button>
           </div>
         </header>
 
-        {/* Content */}
-        <main className="p-6 sm:p-8 flex-1 space-y-8">
+        {/* Content Area */}
+        <main className="p-6 sm:p-8 flex-1 space-y-8 max-w-7xl">
           
-          {/* Ready to Serve Notification Banner */}
+          {/* Urgent Food Ready Alert Banner */}
           {readyOrders.length > 0 && (
-            <div className="p-4 rounded-2xl bg-gradient-to-r from-[#6F4E37] to-[#8E5B34] text-white shadow-lg flex items-center justify-between gap-4 animate-bounce duration-1000">
+            <div className="p-4 rounded-2xl bg-gradient-to-r from-[#6F4E37] to-[#8E5B34] text-white shadow-xl flex flex-wrap items-center justify-between gap-4 border border-[#C89B4A]">
               <div className="flex items-center gap-3">
-                <Bell className="w-6 h-6 text-[#E6D7C3]" />
+                <div className="w-10 h-10 rounded-full bg-[#FAF6F0]/20 flex items-center justify-center animate-pulse">
+                  <Bell className="w-6 h-6 text-[#C89B4A]" />
+                </div>
                 <div>
-                  <p className="font-bold text-sm">Dishes Ready for Pickup!</p>
-                  <p className="text-xs text-[#E6D7C3]">{readyOrders.length} order(s) waiting at the pass.</p>
+                  <p className="font-bold text-sm tracking-wide">
+                    {readyOrders.length} Order(s) Ready for Table Delivery!
+                  </p>
+                  <p className="text-xs text-[#E6D7C3]">
+                    Kitchen chef has plated the dishes. Please collect at pass immediately.
+                  </p>
                 </div>
               </div>
-              <Button
-                variant="gold"
-                size="sm"
-                onClick={() => setActiveTab('ready')}
-              >
-                View Ready Orders
-              </Button>
+              <div className="flex items-center gap-2">
+                <Button
+                  variant="gold"
+                  size="sm"
+                  onClick={() => {
+                    setActiveTab('orders');
+                    setOrderStatusFilter('Ready to Serve');
+                  }}
+                >
+                  View & Serve Now ({readyOrders.length})
+                </Button>
+              </div>
             </div>
           )}
 
-          {/* Assigned Tables Grid */}
-          <div className="bg-white rounded-2xl p-6 border border-[#D5BFA4]/50 shadow-sm space-y-4">
-            <h3 className="font-serif text-xl font-bold text-[#26160E]">My Assigned Tables</h3>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-              {tables.map((table) => (
-                <div
-                  key={table.id}
-                  onClick={() => setSelectedTable(table)}
-                  className={`p-5 rounded-2xl border-2 transition-all cursor-pointer ${
-                    selectedTable.id === table.id
-                      ? 'border-[#6F4E37] bg-[#FAF6F0] shadow-md'
-                      : 'border-[#D5BFA4]/40 hover:border-[#8E5B34] bg-white'
-                  }`}
-                >
-                  <div className="flex justify-between items-center">
-                    <span className="font-serif font-bold text-lg text-[#26160E]">Table {table.number}</span>
-                    <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${
-                      table.status === 'Occupied' ? 'bg-red-100 text-red-800' : 'bg-emerald-100 text-emerald-800'
-                    }`}>
-                      {table.status}
-                    </span>
+          {/* TAB 1: DASHBOARD */}
+          {activeTab === 'dashboard' && (
+            <div className="space-y-8">
+              {/* Metric Cards */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div className="bg-white p-5 rounded-2xl border border-[#D5BFA4]/50 shadow-sm hover:border-[#6F4E37] transition-all">
+                  <div className="flex justify-between items-center text-[#8E5B34]">
+                    <span className="text-xs font-bold uppercase tracking-wider">Assigned Tables</span>
+                    <Layers className="w-5 h-5 text-[#6F4E37]" />
                   </div>
-                  <p className="text-xs text-[#8E5B34] mt-2">Capacity: {table.capacity} Guests</p>
-                  <p className="text-xs text-[#563B29] mt-1 truncate">
-                    {table.currentOrder ? `Order: ${table.currentOrder}` : 'No active order'}
+                  <p className="font-serif text-3xl font-bold text-[#26160E] mt-2">{myTables.length}</p>
+                  <p className="text-xs text-[#8E5B34] mt-1">
+                    {myTables.filter(t => t.status === 'Occupied').length} Currently Occupied
                   </p>
                 </div>
-              ))}
-            </div>
-          </div>
 
-          {/* Active Orders List */}
-          <div className="bg-white rounded-2xl p-6 border border-[#D5BFA4]/50 shadow-sm space-y-4">
-            <div className="flex justify-between items-center">
-              <h3 className="font-serif text-xl font-bold text-[#26160E]">
-                {activeTab === 'ready' ? 'Orders Ready to Serve' : 'Live Table Orders'}
-              </h3>
-            </div>
+                <div className="bg-white p-5 rounded-2xl border border-[#D5BFA4]/50 shadow-sm hover:border-[#6F4E37] transition-all">
+                  <div className="flex justify-between items-center text-[#8E5B34]">
+                    <span className="text-xs font-bold uppercase tracking-wider">Active Orders</span>
+                    <UtensilsCrossed className="w-5 h-5 text-[#6F4E37]" />
+                  </div>
+                  <p className="font-serif text-3xl font-bold text-[#26160E] mt-2">{activeOrders.length}</p>
+                  <p className="text-xs text-[#8E5B34] mt-1">In kitchen production</p>
+                </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {(activeTab === 'ready' ? readyOrders : kitchenOrders).map((order) => (
-                <div
-                  key={order.id}
-                  className="p-5 rounded-2xl border border-[#D5BFA4]/60 bg-[#FAF6F0] flex flex-col justify-between space-y-4"
-                >
-                  <div>
-                    <div className="flex justify-between items-start">
-                      <div>
-                        <span className="font-mono text-xs font-bold text-[#6F4E37]">{order.id}</span>
-                        <h4 className="font-serif font-bold text-lg text-[#26160E]">{order.table}</h4>
-                      </div>
-                      <span className={`px-2.5 py-0.5 rounded-full text-xs font-bold ${
-                        order.status === 'Ready' ? 'bg-emerald-100 text-emerald-800 border border-emerald-300' :
-                        order.status === 'Preparing' ? 'bg-orange-100 text-orange-800' : 'bg-amber-100 text-amber-800'
-                      }`}>
-                        {order.status}
-                      </span>
+                <div className="bg-white p-5 rounded-2xl border border-[#D5BFA4]/50 shadow-sm hover:border-[#6F4E37] transition-all">
+                  <div className="flex justify-between items-center text-[#8E5B34]">
+                    <span className="text-xs font-bold uppercase tracking-wider">Ready to Serve</span>
+                    <Bell className="w-5 h-5 text-[#C89B4A]" />
+                  </div>
+                  <p className="font-serif text-3xl font-bold text-[#C89B4A] mt-2">{readyOrders.length}</p>
+                  <p className="text-xs text-[#8E5B34] mt-1">Awaiting floor delivery</p>
+                </div>
+
+                <div className="bg-white p-5 rounded-2xl border border-[#D5BFA4]/50 shadow-sm hover:border-[#6F4E37] transition-all">
+                  <div className="flex justify-between items-center text-[#8E5B34]">
+                    <span className="text-xs font-bold uppercase tracking-wider">Served Today</span>
+                    <CheckCheck className="w-5 h-5 text-emerald-600" />
+                  </div>
+                  <p className="font-serif text-3xl font-bold text-emerald-700 mt-2">{servedOrders.length}</p>
+                  <p className="text-xs text-[#8E5B34] mt-1">Completed orders</p>
+                </div>
+              </div>
+
+              {/* Quick Actions & Live Floor Map */}
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                
+                {/* Active Floor Tables Snapshot */}
+                <div className="lg:col-span-2 bg-white rounded-3xl p-6 border border-[#D5BFA4]/50 shadow-sm space-y-4">
+                  <div className="flex justify-between items-center">
+                    <div>
+                      <h3 className="font-serif text-xl font-bold text-[#26160E]">Floor A - My Section Overview</h3>
+                      <p className="text-xs text-[#8E5B34]">Real-time occupancy & active dining sessions</p>
                     </div>
-
-                    <ul className="mt-3 space-y-1.5 text-xs text-[#26160E]">
-                      {order.items.map((it, idx) => (
-                        <li key={idx} className="flex justify-between">
-                          <span className="font-medium">{it.qty} × {it.name}</span>
-                        </li>
-                      ))}
-                    </ul>
+                    <Button 
+                      variant="outline" 
+                      size="sm"
+                      onClick={() => setActiveTab('tables')}
+                    >
+                      View All Tables
+                    </Button>
                   </div>
 
-                  <div className="pt-3 border-t border-[#D5BFA4]/40 flex justify-end">
-                    {order.status === 'Ready' ? (
-                      <Button
-                        variant="gold"
-                        size="sm"
-                        icon={Check}
-                        onClick={() => handleServeOrder(order.id)}
-                      >
-                        Serve to Table
-                      </Button>
-                    ) : (
-                      <span className="text-xs text-[#8E5B34] italic">In Kitchen Production</span>
-                    )}
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                    {myTables.map((t) => {
+                      const activeSession = sessions.find(s => s.tableNumber === t.number && s.status === 'Active');
+                      const tableOrders = orders.filter(o => o.tableNumber === t.number && o.status !== 'Served');
+                      const hasReady = tableOrders.some(o => o.status === 'Ready to Serve');
+
+                      let statusBg = 'bg-white border-[#D5BFA4]/50';
+                      let statusBadge = 'bg-emerald-100 text-emerald-800';
+
+                      if (t.status === 'Occupied') {
+                        statusBg = hasReady ? 'bg-amber-50 border-[#C89B4A]' : 'bg-[#FAF6F0] border-[#6F4E37]';
+                        statusBadge = 'bg-[#6F4E37] text-white';
+                      } else if (t.status === 'Cleaning') {
+                        statusBg = 'bg-blue-50 border-blue-200';
+                        statusBadge = 'bg-blue-100 text-blue-800';
+                      } else if (t.status === 'Reserved') {
+                        statusBg = 'bg-purple-50 border-purple-200';
+                        statusBadge = 'bg-purple-100 text-purple-800';
+                      }
+
+                      return (
+                        <div
+                          key={t.id}
+                          className={`p-4 rounded-2xl border-2 transition-all flex flex-col justify-between ${statusBg}`}
+                        >
+                          <div>
+                            <div className="flex justify-between items-center mb-1">
+                              <span className="font-serif font-bold text-base text-[#26160E]">Table {t.number}</span>
+                              <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${statusBadge}`}>
+                                {t.status}
+                              </span>
+                            </div>
+                            <p className="text-[11px] text-[#8E5B34]">Cap: {t.capacity} Guests</p>
+                            {activeSession ? (
+                              <div className="mt-2 text-[11px] space-y-0.5">
+                                <p className="font-semibold text-[#26160E] truncate">{activeSession.guestName}</p>
+                                <p className="font-mono text-[#6F4E37] text-[10px]">Session #{activeSession.sessionId}</p>
+                              </div>
+                            ) : (
+                              <p className="text-[11px] text-[#8E5B34]/70 italic mt-2">No active party</p>
+                            )}
+                          </div>
+
+                          <div className="mt-3 pt-2 border-t border-[#D5BFA4]/30 flex justify-between items-center">
+                            {t.status === 'Occupied' ? (
+                              <button
+                                onClick={() => {
+                                  setSelectedTableNumber(t.number);
+                                  setOrderModalOpen(true);
+                                }}
+                                className="text-[11px] font-bold text-[#6F4E37] hover:underline flex items-center gap-1"
+                              >
+                                <PlusCircle className="w-3.5 h-3.5" /> Order
+                              </button>
+                            ) : t.status === 'Cleaning' ? (
+                              <button
+                                onClick={() => updateTableStatus(t.number, 'Available')}
+                                className="text-[11px] font-bold text-blue-700 hover:underline"
+                              >
+                                Done Cleaning
+                              </button>
+                            ) : (
+                              <span className="text-[10px] text-emerald-700 font-bold">Ready to Seat</span>
+                            )}
+                          </div>
+                        </div>
+                      );
+                    })}
                   </div>
                 </div>
-              ))}
+
+                {/* Floor Task Checklist & Service Requests */}
+                <div className="bg-white rounded-3xl p-6 border border-[#D5BFA4]/50 shadow-sm space-y-4">
+                  <div className="flex items-center justify-between">
+                    <h3 className="font-serif text-lg font-bold text-[#26160E]">Waiter Floor Tasks</h3>
+                    <Coffee className="w-5 h-5 text-[#6F4E37]" />
+                  </div>
+                  
+                  <div className="space-y-3">
+                    <div className="p-3 rounded-xl bg-[#FAF6F0] border border-[#D5BFA4]/40 flex items-start gap-3">
+                      <input type="checkbox" className="mt-1 accent-[#6F4E37] rounded" defaultChecked />
+                      <div className="text-xs">
+                        <p className="font-bold text-[#26160E]">Pre-shift Station Prep</p>
+                        <p className="text-[#8E5B34]">Sanitize tables 1-8, check salt & pepper grinders.</p>
+                      </div>
+                    </div>
+
+                    <div className="p-3 rounded-xl bg-[#FAF6F0] border border-[#D5BFA4]/40 flex items-start gap-3">
+                      <input type="checkbox" className="mt-1 accent-[#6F4E37] rounded" />
+                      <div className="text-xs">
+                        <p className="font-bold text-[#26160E]">Table 2 Wine Presentation</p>
+                        <p className="text-[#8E5B34]">Deliver 2018 Bordeaux Chateau Margaux to Sophia M.</p>
+                      </div>
+                    </div>
+
+                    <div className="p-3 rounded-xl bg-[#FAF6F0] border border-[#D5BFA4]/40 flex items-start gap-3">
+                      <input type="checkbox" className="mt-1 accent-[#6F4E37] rounded" />
+                      <div className="text-xs">
+                        <p className="font-bold text-[#26160E]">Check on Table 7</p>
+                        <p className="text-[#8E5B34]">Lamb cutlets served 10 mins ago. Ensure guest satisfaction.</p>
+                      </div>
+                    </div>
+
+                    <div className="p-3 rounded-xl bg-[#FAF6F0] border border-[#D5BFA4]/40 flex items-start gap-3">
+                      <input type="checkbox" className="mt-1 accent-[#6F4E37] rounded" />
+                      <div className="text-xs">
+                        <p className="font-bold text-[#26160E]">Reset Table 4</p>
+                        <p className="text-[#8E5B34]">Table 4 marked Cleaning. Prepare linen for incoming reservation.</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="pt-2">
+                    <Button
+                      variant="primary"
+                      size="sm"
+                      className="w-full"
+                      onClick={() => setOrderModalOpen(true)}
+                      icon={PlusCircle}
+                    >
+                      Take New Order
+                    </Button>
+                  </div>
+                </div>
+
+              </div>
+
+              {/* Ready Orders Urgent Section */}
+              <div className="bg-white rounded-3xl p-6 border border-[#D5BFA4]/50 shadow-sm space-y-4">
+                <div className="flex justify-between items-center">
+                  <div>
+                    <h3 className="font-serif text-xl font-bold text-[#26160E]">
+                      Live Kitchen Pass – Ready to Serve ({readyOrders.length})
+                    </h3>
+                    <p className="text-xs text-[#8E5B34]">Dishes waiting for waiter pickup and presentation</p>
+                  </div>
+                  <Button 
+                    variant="ghost" 
+                    size="sm"
+                    onClick={() => setActiveTab('orders')}
+                  >
+                    View Order Details
+                  </Button>
+                </div>
+
+                {readyOrders.length === 0 ? (
+                  <div className="text-center py-8 text-[#8E5B34] text-xs">
+                    <CheckCircle2 className="w-8 h-8 text-emerald-600 mx-auto mb-2 opacity-50" />
+                    All prepared dishes have been served to guests. No orders currently waiting at the pass.
+                  </div>
+                ) : (
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {readyOrders.map(order => (
+                      <div 
+                        key={order.id} 
+                        className="p-5 rounded-2xl border-2 border-[#C89B4A] bg-[#FAF6F0] shadow-md flex flex-col justify-between space-y-4 animate-pulse"
+                      >
+                        <div>
+                          <div className="flex justify-between items-start">
+                            <div>
+                              <span className="text-[10px] font-mono font-bold bg-[#6F4E37] text-white px-2 py-0.5 rounded">
+                                {order.id}
+                              </span>
+                              <h4 className="font-serif font-bold text-lg text-[#26160E] mt-1">
+                                Table {order.tableNumber}
+                              </h4>
+                            </div>
+                            <span className="text-xs font-bold px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-300">
+                              READY FOR PICKUP
+                            </span>
+                          </div>
+
+                          <div className="mt-3 text-xs space-y-1">
+                            <p className="font-mono text-[#8E5B34]">Session: #{order.sessionId}</p>
+                            <p className="text-[#3E271A] font-medium">Items to Serve:</p>
+                            <ul className="space-y-1 pl-2">
+                              {order.items.map((it, idx) => (
+                                <li key={idx} className="font-semibold text-[#26160E]">
+                                  • {it.qty} × {it.name}
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        </div>
+
+                        <Button
+                          variant="gold"
+                          size="sm"
+                          icon={Check}
+                          onClick={() => handleMarkServed(order.id)}
+                          className="w-full shadow-md"
+                        >
+                          Confirm Pickup & Mark Served
+                        </Button>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+
             </div>
-          </div>
+          )}
+
+          {/* TAB 2: MY ASSIGNED TABLES */}
+          {activeTab === 'tables' && (
+            <div className="space-y-6">
+              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-white p-6 rounded-3xl border border-[#D5BFA4]/50 shadow-sm">
+                <div>
+                  <h3 className="font-serif text-2xl font-bold text-[#26160E]">My Assigned Tables (Floor A)</h3>
+                  <p className="text-xs text-[#8E5B34]">
+                    Monitor real-time table statuses, dining duration, and 6-digit session links
+                  </p>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Button 
+                    variant="primary" 
+                    size="sm" 
+                    icon={PlusCircle}
+                    onClick={() => setOrderModalOpen(true)}
+                  >
+                    Take Order for Table
+                  </Button>
+                </div>
+              </div>
+
+              {/* Grid of Tables */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                {myTables.map((table) => {
+                  const activeSession = sessions.find(s => s.tableNumber === table.number && s.status === 'Active');
+                  const tableOrders = orders.filter(o => o.tableNumber === table.number && o.status !== 'Served');
+
+                  return (
+                    <div 
+                      key={table.id}
+                      className="bg-white rounded-3xl p-6 border border-[#D5BFA4]/50 shadow-sm flex flex-col justify-between hover:border-[#6F4E37] transition-all"
+                    >
+                      <div>
+                        {/* Header */}
+                        <div className="flex justify-between items-start">
+                          <div>
+                            <span className="text-xs font-mono font-bold text-[#8E5B34]">T-0{table.number}</span>
+                            <h4 className="font-serif text-2xl font-bold text-[#26160E]">
+                              Table {table.number}
+                            </h4>
+                          </div>
+                          <span className={`px-2.5 py-1 rounded-full text-xs font-bold ${
+                            table.status === 'Occupied' ? 'bg-[#6F4E37] text-white' :
+                            table.status === 'Reserved' ? 'bg-purple-100 text-purple-800' :
+                            table.status === 'Cleaning' ? 'bg-blue-100 text-blue-800' :
+                            'bg-emerald-100 text-emerald-800'
+                          }`}>
+                            {table.status}
+                          </span>
+                        </div>
+
+                        {/* Specs */}
+                        <div className="mt-4 pt-3 border-t border-[#F4ECE1] space-y-2 text-xs">
+                          <div className="flex justify-between">
+                            <span className="text-[#8E5B34]">Capacity:</span>
+                            <span className="font-bold text-[#26160E]">{table.capacity} Guests</span>
+                          </div>
+                          <div className="flex justify-between">
+                            <span className="text-[#8E5B34]">Assigned Waiter:</span>
+                            <span className="font-semibold text-[#6F4E37]">{table.waiter || waiterProfile.name}</span>
+                          </div>
+
+                          {activeSession ? (
+                            <div className="p-3 rounded-xl bg-[#FAF6F0] border border-[#D5BFA4]/40 space-y-1.5 mt-2">
+                              <div className="flex justify-between items-center">
+                                <span className="text-[#8E5B34] text-[11px]">Daily Session:</span>
+                                <span className="font-mono font-bold text-[#6F4E37] bg-white px-1.5 py-0.5 rounded border border-[#D5BFA4]/40 text-[11px]">
+                                  #{activeSession.sessionId}
+                                </span>
+                              </div>
+                              <div className="flex justify-between">
+                                <span className="text-[#8E5B34] text-[11px]">Guest:</span>
+                                <span className="font-bold text-[#26160E] truncate max-w-[120px]">{activeSession.guestName}</span>
+                              </div>
+                              <div className="flex justify-between">
+                                <span className="text-[#8E5B34] text-[11px]">Seated At:</span>
+                                <span className="font-medium text-[#26160E]">{activeSession.checkInTime || '19:15'}</span>
+                              </div>
+                              <div className="flex justify-between">
+                                <span className="text-[#8E5B34] text-[11px]">Current Total:</span>
+                                <span className="font-bold text-[#6F4E37]">{formatCurrency(activeSession.total || 0)}</span>
+                              </div>
+                            </div>
+                          ) : (
+                            <div className="p-3 rounded-xl bg-[#FAF6F0]/50 text-center text-[#8E5B34] text-xs mt-2">
+                              No active dining session
+                            </div>
+                          )}
+
+                          {tableOrders.length > 0 && (
+                            <div className="text-[11px] text-[#C89B4A] font-bold flex items-center gap-1 mt-1">
+                              <Clock className="w-3.5 h-3.5" /> {tableOrders.length} active order(s) in kitchen
+                            </div>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* Actions */}
+                      <div className="mt-6 pt-3 border-t border-[#F4ECE1] flex gap-2">
+                        {table.status === 'Occupied' ? (
+                          <>
+                            <Button
+                              variant="primary"
+                              size="sm"
+                              className="flex-1"
+                              onClick={() => {
+                                setSelectedTableNumber(table.number);
+                                setOrderModalOpen(true);
+                              }}
+                            >
+                              + Punch Order
+                            </Button>
+                            {activeSession && (
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                onClick={() => setViewSessionModal(activeSession)}
+                              >
+                                View Bill
+                              </Button>
+                            )}
+                          </>
+                        ) : table.status === 'Cleaning' ? (
+                          <Button
+                            variant="secondary"
+                            size="sm"
+                            className="w-full"
+                            onClick={() => updateTableStatus(table.number, 'Available')}
+                          >
+                            Mark Cleaning Complete
+                          </Button>
+                        ) : (
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            className="w-full text-emerald-800 border-emerald-300"
+                            onClick={() => {
+                              setSelectedTableNumber(table.number);
+                              setOrderModalOpen(true);
+                            }}
+                          >
+                            Seat & Take Order
+                          </Button>
+                        )}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+
+          {/* TAB 3: ORDER MANAGEMENT */}
+          {activeTab === 'orders' && (
+            <div className="space-y-6">
+              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-white p-6 rounded-3xl border border-[#D5BFA4]/50 shadow-sm">
+                <div>
+                  <h3 className="font-serif text-2xl font-bold text-[#26160E]">Order Management & Kitchen Status</h3>
+                  <p className="text-xs text-[#8E5B34]">
+                    Real-time status tracking: New → Accepted → Preparing → Ready to Serve → Served
+                  </p>
+                </div>
+                <div className="flex flex-wrap items-center gap-2">
+                  {['All', 'Ready to Serve', 'Preparing', 'Accepted', 'New'].map(st => (
+                    <button
+                      key={st}
+                      onClick={() => setOrderStatusFilter(st)}
+                      className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${
+                        orderStatusFilter === st
+                          ? 'bg-[#6F4E37] text-white shadow-sm'
+                          : 'bg-[#F4ECE1] text-[#3E271A] hover:bg-[#D5BFA4]/50'
+                      }`}
+                    >
+                      {st}
+                    </button>
+                  ))}
+                  <Button
+                    variant="primary"
+                    size="sm"
+                    icon={PlusCircle}
+                    onClick={() => setOrderModalOpen(true)}
+                  >
+                    Take New Order
+                  </Button>
+                </div>
+              </div>
+
+              {/* Filtered Orders List */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {orders
+                  .filter(o => orderStatusFilter === 'All' ? true : o.status === orderStatusFilter)
+                  .map((order) => {
+                    const isReady = order.status === 'Ready to Serve' || order.status === 'Ready';
+                    const isServed = order.status === 'Served';
+
+                    return (
+                      <div
+                        key={order.id}
+                        className={`rounded-3xl p-6 border-2 flex flex-col justify-between space-y-4 shadow-sm transition-all ${
+                          isReady ? 'bg-amber-50/60 border-[#C89B4A]' :
+                          isServed ? 'bg-white border-[#D5BFA4]/40 opacity-80' :
+                          'bg-white border-[#D5BFA4]/60'
+                        }`}
+                      >
+                        <div>
+                          {/* Order Card Header */}
+                          <div className="flex justify-between items-start">
+                            <div>
+                              <div className="flex items-center gap-2">
+                                <span className="font-mono text-xs font-bold text-[#6F4E37] bg-[#FAF6F0] px-2 py-0.5 rounded border border-[#D5BFA4]/50">
+                                  {order.id}
+                                </span>
+                                <span className="font-mono text-[10px] text-[#8E5B34]">
+                                  {order.kotId}
+                                </span>
+                              </div>
+                              <h4 className="font-serif font-bold text-xl text-[#26160E] mt-1">
+                                Table {order.tableNumber}
+                              </h4>
+                            </div>
+                            <span className={`px-2.5 py-1 rounded-full text-xs font-bold ${
+                              isReady ? 'bg-emerald-100 text-emerald-800 border border-emerald-300 animate-pulse' :
+                              order.status === 'Preparing' ? 'bg-orange-100 text-orange-800 border border-orange-300' :
+                              order.status === 'Accepted' ? 'bg-blue-100 text-blue-800' :
+                              isServed ? 'bg-gray-100 text-gray-700' :
+                              'bg-amber-100 text-amber-800'
+                            }`}>
+                              {order.status}
+                            </span>
+                          </div>
+
+                          {/* Metadata */}
+                          <div className="mt-3 flex items-center justify-between text-xs text-[#8E5B34] border-b border-[#F4ECE1] pb-2">
+                            <span>Session: <strong className="text-[#26160E]">#{order.sessionId}</strong></span>
+                            <span>Time: <strong className="text-[#26160E]">{order.time || '10 mins ago'}</strong></span>
+                          </div>
+
+                          {/* Order Items */}
+                          <div className="mt-3 space-y-2 text-xs">
+                            <p className="font-bold text-[#6F4E37] uppercase tracking-wider text-[10px]">Ordered Items:</p>
+                            <ul className="space-y-1.5 divide-y divide-[#F4ECE1]">
+                              {order.items.map((item, idx) => (
+                                <li key={idx} className="pt-1.5 first:pt-0 flex justify-between items-center">
+                                  <div>
+                                    <span className="font-bold text-[#26160E]">{item.qty} × {item.name}</span>
+                                    {item.notes && (
+                                      <p className="text-[10px] text-[#8E5B34] italic">Note: {item.notes}</p>
+                                    )}
+                                  </div>
+                                  <span className="font-mono text-[#6F4E37]">{formatCurrency(item.price * item.qty)}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        </div>
+
+                        {/* Order Actions */}
+                        <div className="pt-4 border-t border-[#F4ECE1]">
+                          {isReady ? (
+                            <Button
+                              variant="gold"
+                              size="md"
+                              className="w-full shadow-lg"
+                              icon={Check}
+                              onClick={() => handleMarkServed(order.id)}
+                            >
+                              Confirm Pickup & Serve
+                            </Button>
+                          ) : isServed ? (
+                            <div className="flex items-center justify-center gap-1 text-xs font-bold text-emerald-700 py-1">
+                              <CheckCheck className="w-4 h-4" /> Served to Table
+                            </div>
+                          ) : (
+                            <div className="flex items-center justify-between text-xs text-[#8E5B34]">
+                              <span className="flex items-center gap-1">
+                                <Clock className="w-3.5 h-3.5 text-orange-600 animate-spin" /> In Preparation
+                              </span>
+                              <span className="font-medium text-[#26160E]">{order.placedBy || 'Julian Vance'}</span>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    );
+                  })}
+              </div>
+            </div>
+          )}
+
+          {/* TAB 4: ORDER HISTORY */}
+          {activeTab === 'history' && (
+            <div className="space-y-6">
+              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-white p-6 rounded-3xl border border-[#D5BFA4]/50 shadow-sm">
+                <div>
+                  <h3 className="font-serif text-2xl font-bold text-[#26160E]">Order History & Table Logs</h3>
+                  <p className="text-xs text-[#8E5B34]">Past served orders, table-wise and session-wise historical logs</p>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-xs font-bold px-3 py-1 bg-[#FAF6F0] rounded-xl border border-[#D5BFA4] text-[#6F4E37]">
+                    Total Orders: {orders.length}
+                  </span>
+                </div>
+              </div>
+
+              {/* Table of Orders */}
+              <div className="bg-white rounded-3xl border border-[#D5BFA4]/50 shadow-sm overflow-hidden">
+                <div className="overflow-x-auto">
+                  <table className="w-full text-left text-xs text-[#26160E]">
+                    <thead className="bg-[#FAF6F0] text-[#8E5B34] font-bold uppercase tracking-wider border-b border-[#D5BFA4]/50">
+                      <tr>
+                        <th className="py-4 px-6">Order / KOT</th>
+                        <th className="py-4 px-6">Table & Session</th>
+                        <th className="py-4 px-6">Items Summary</th>
+                        <th className="py-4 px-6">Timestamp</th>
+                        <th className="py-4 px-6">Status</th>
+                        <th className="py-4 px-6 text-right">Total</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-[#F4ECE1]">
+                      {orders.map((ord) => {
+                        const total = ord.items.reduce((s, it) => s + (it.price * it.qty), 0);
+                        return (
+                          <tr key={ord.id} className="hover:bg-[#FAF6F0]/60 transition-colors">
+                            <td className="py-4 px-6 font-mono font-bold text-[#6F4E37]">
+                              <div>{ord.id}</div>
+                              <span className="text-[10px] text-[#8E5B34]">{ord.kotId}</span>
+                            </td>
+                            <td className="py-4 px-6">
+                              <p className="font-bold text-[#26160E]">Table {ord.tableNumber}</p>
+                              <p className="font-mono text-[10px] text-[#8E5B34]">Session #{ord.sessionId}</p>
+                            </td>
+                            <td className="py-4 px-6">
+                              <p className="font-semibold text-[#26160E]">
+                                {ord.items.map(i => `${i.qty}× ${i.name}`).join(', ')}
+                              </p>
+                              <p className="text-[10px] text-[#8E5B34]">Punched by {ord.placedBy}</p>
+                            </td>
+                            <td className="py-4 px-6 text-[#563B29]">
+                              {ord.time || 'Today'}
+                            </td>
+                            <td className="py-4 px-6">
+                              <span className={`px-2.5 py-0.5 rounded-full text-[11px] font-bold ${
+                                ord.status === 'Served' ? 'bg-emerald-100 text-emerald-800' :
+                                ord.status === 'Ready to Serve' ? 'bg-amber-100 text-amber-800' :
+                                'bg-blue-100 text-blue-800'
+                              }`}>
+                                {ord.status}
+                              </span>
+                            </td>
+                            <td className="py-4 px-6 text-right font-mono font-bold text-[#26160E]">
+                              {formatCurrency(total)}
+                            </td>
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* TAB 5: NOTIFICATIONS */}
+          {activeTab === 'notifications' && (
+            <div className="space-y-6">
+              <div className="bg-white p-6 rounded-3xl border border-[#D5BFA4]/50 shadow-sm flex justify-between items-center">
+                <div>
+                  <h3 className="font-serif text-2xl font-bold text-[#26160E]">Floor Alerts & Service Requests</h3>
+                  <p className="text-xs text-[#8E5B34]">Real-time table calls, ready dish pings, and kitchen updates</p>
+                </div>
+                <Button variant="outline" size="sm" onClick={() => alert('All alerts marked as viewed.')}>
+                  Mark All Read
+                </Button>
+              </div>
+
+              <div className="space-y-4">
+                {notifications.map((notif) => (
+                  <div
+                    key={notif.id}
+                    className={`p-5 rounded-2xl border transition-all flex items-start justify-between gap-4 ${
+                      notif.unread
+                        ? 'bg-white border-[#6F4E37] shadow-md'
+                        : 'bg-[#FAF6F0] border-[#D5BFA4]/40'
+                    }`}
+                  >
+                    <div className="flex items-start gap-3">
+                      <div className="w-10 h-10 rounded-xl bg-[#F4ECE1] text-[#6F4E37] flex items-center justify-center shrink-0">
+                        <Bell className="w-5 h-5" />
+                      </div>
+                      <div>
+                        <div className="flex items-center gap-2">
+                          <h4 className="font-bold text-sm text-[#26160E]">{notif.title}</h4>
+                          {notif.unread && (
+                            <span className="w-2 h-2 rounded-full bg-[#6F4E37]"></span>
+                          )}
+                        </div>
+                        <p className="text-xs text-[#563B29] mt-1">{notif.message}</p>
+                        <p className="text-[10px] text-[#8E5B34] mt-2 flex items-center gap-1">
+                          <Clock className="w-3 h-3" /> {notif.time}
+                        </p>
+                      </div>
+                    </div>
+
+                    <Button variant="ghost" size="sm">
+                      Dismiss
+                    </Button>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* TAB 6: MY PROFILE */}
+          {activeTab === 'profile' && (
+            <div className="max-w-4xl space-y-6">
+              <div className="bg-white rounded-3xl p-8 border border-[#D5BFA4]/50 shadow-sm space-y-6">
+                <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6 pb-6 border-b border-[#F4ECE1]">
+                  <img
+                    src={waiterProfile.avatar}
+                    alt={waiterProfile.name}
+                    className="w-24 h-24 rounded-full object-cover border-4 border-[#6F4E37] shadow-lg"
+                  />
+                  <div className="text-center sm:text-left space-y-1">
+                    <span className="text-xs font-bold uppercase tracking-wider text-[#8E5B34]">Floor Service Specialist</span>
+                    <h3 className="font-serif text-3xl font-bold text-[#26160E]">{waiterProfile.name}</h3>
+                    <p className="text-sm text-[#563B29]">{waiterProfile.email} | {waiterProfile.phone}</p>
+                    <div className="pt-2 flex flex-wrap gap-2">
+                      <span className="px-3 py-1 rounded-full text-xs font-bold bg-[#F4ECE1] text-[#6F4E37]">
+                        Section: Floor A (Tables 1 - 8)
+                      </span>
+                      <span className="px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800">
+                        Shift: Evening Service (16:00 - 00:00)
+                      </span>
+                      <span className="px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-800">
+                        Rating: ★ 4.95 / 5.0
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Account Details & Settings */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4">
+                  <div className="space-y-4">
+                    <h4 className="font-serif text-lg font-bold text-[#26160E]">Service Information</h4>
+                    <div className="space-y-2 text-xs">
+                      <div className="p-3 rounded-xl bg-[#FAF6F0] flex justify-between">
+                        <span className="text-[#8E5B34]">Employee ID:</span>
+                        <span className="font-mono font-bold text-[#26160E]">EMP-WTR-8921</span>
+                      </div>
+                      <div className="p-3 rounded-xl bg-[#FAF6F0] flex justify-between">
+                        <span className="text-[#8E5B34]">Joined Aura Mocha:</span>
+                        <span className="font-bold text-[#26160E]">March 2023</span>
+                      </div>
+                      <div className="p-3 rounded-xl bg-[#FAF6F0] flex justify-between">
+                        <span className="text-[#8E5B34]">POS Terminal Privileges:</span>
+                        <span className="font-bold text-emerald-700">Full Table Dispatch</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="space-y-4">
+                    <h4 className="font-serif text-lg font-bold text-[#26160E]">Security & Credentials</h4>
+                    <form onSubmit={(e) => { e.preventDefault(); alert('Password updated successfully.'); }} className="space-y-3">
+                      <Input
+                        label="New Password"
+                        type="password"
+                        placeholder="••••••••"
+                      />
+                      <Button variant="primary" size="sm" type="submit" className="w-full">
+                        Update Password
+                      </Button>
+                    </form>
+                  </div>
+                </div>
+
+                <div className="pt-6 border-t border-[#F4ECE1] flex justify-between items-center">
+                  <p className="text-xs text-[#8E5B34]">Logged in with authorized staff credentials</p>
+                  <Button variant="ghost" className="text-red-700" onClick={logout}>
+                    Sign Out of Terminal
+                  </Button>
+                </div>
+              </div>
+            </div>
+          )}
 
         </main>
       </div>
 
-      {/* Create Order Modal */}
+      {/* TAKE NEW ORDER MODAL */}
       {orderModalOpen && (
         <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="bg-white rounded-3xl max-w-xl w-full p-8 border border-[#D5BFA4] shadow-2xl space-y-6 max-h-[90vh] overflow-y-auto">
+          <div className="bg-white rounded-3xl max-w-2xl w-full p-6 sm:p-8 border border-[#D5BFA4] shadow-2xl space-y-6 max-h-[90vh] overflow-y-auto">
+            
             <div className="flex justify-between items-center border-b border-[#F4ECE1] pb-4">
               <div>
-                <span className="text-xs font-bold uppercase text-[#8E5B34]">Floor Terminal</span>
+                <span className="text-xs font-bold uppercase tracking-wider text-[#8E5B34]">Floor POS Terminal</span>
                 <h3 className="font-serif text-2xl font-bold text-[#26160E]">
-                  Create Order for Table {selectedTable.number}
+                  Punch Order for Table {selectedTableNumber}
                 </h3>
               </div>
               <button
                 onClick={() => setOrderModalOpen(false)}
-                className="text-xs font-bold px-3 py-1 bg-[#F4ECE1] rounded-lg text-[#6F4E37]"
+                className="p-2 rounded-xl bg-[#F4ECE1] text-[#6F4E37] hover:bg-[#D5BFA4]/40"
               >
-                Close
+                <X className="w-5 h-5" />
               </button>
             </div>
 
-            <form onSubmit={handleCreateOrderSubmit} className="space-y-4">
-              <div className="space-y-2">
-                <label className="text-xs font-bold uppercase text-[#8E5B34]">Select Dishes to Punch</label>
-                <div className="max-h-48 overflow-y-auto space-y-2 divide-y divide-[#F4ECE1] p-3 rounded-xl border border-[#D5BFA4]/40">
-                  {menuItems.slice(0, 5).map((item) => (
-                    <div key={item.id} className="pt-2 first:pt-0 flex items-center justify-between text-xs">
-                      <div>
-                        <p className="font-bold text-[#26160E]">{item.name}</p>
-                        <p className="text-[#8E5B34]">{formatCurrency(item.price)}</p>
-                      </div>
-                      <button
-                        type="button"
-                        onClick={() => {
-                          setSelectedItems(prev => [...prev, { ...item, qty: 1 }]);
-                        }}
-                        className="px-2.5 py-1 rounded bg-[#6F4E37] text-white font-bold text-[11px]"
-                      >
-                        + Add
-                      </button>
-                    </div>
-                  ))}
+            <form onSubmit={handleCreateOrderSubmit} className="space-y-6">
+              
+              {/* Select Table Number */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="text-xs font-bold uppercase text-[#8E5B34] block mb-1">Target Table</label>
+                  <select
+                    value={selectedTableNumber}
+                    onChange={(e) => setSelectedTableNumber(Number(e.target.value))}
+                    className="w-full p-3 rounded-xl border border-[#D5BFA4] bg-white text-xs font-bold text-[#26160E] focus:ring-2 focus:ring-[#6F4E37]"
+                  >
+                    {tables.map(t => (
+                      <option key={t.id} value={t.number}>
+                        Table {t.number} ({t.status}) {t.activeSessionId ? `[Session #${t.activeSessionId}]` : ''}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                <div>
+                  <label className="text-xs font-bold uppercase text-[#8E5B34] block mb-1">Search Dishes</label>
+                  <div className="relative">
+                    <Search className="w-4 h-4 absolute left-3 top-3.5 text-[#8E5B34]" />
+                    <input
+                      type="text"
+                      placeholder="Search menu catalog..."
+                      value={menuSearch}
+                      onChange={(e) => setMenuSearch(e.target.value)}
+                      className="w-full pl-9 p-2.5 rounded-xl border border-[#D5BFA4] text-xs"
+                    />
+                  </div>
                 </div>
               </div>
 
-              {/* Selected List */}
-              <div className="p-3 bg-[#FAF6F0] rounded-xl text-xs space-y-1">
-                <p className="font-bold text-[#6F4E37]">Current Ticket Items ({selectedItems.length}):</p>
-                {selectedItems.map((si, i) => (
-                  <p key={i} className="text-[#26160E]">• 1 × {si.name}</p>
-                ))}
+              {/* Dish Selection Grid */}
+              <div className="space-y-2">
+                <label className="text-xs font-bold uppercase text-[#8E5B34] block">Available Menu Dishes</label>
+                <div className="max-h-56 overflow-y-auto space-y-2 divide-y divide-[#F4ECE1] p-3 rounded-2xl border border-[#D5BFA4]/40 bg-[#FAF6F0]/50">
+                  {menuItems
+                    .filter(m => m.name.toLowerCase().includes(menuSearch.toLowerCase()))
+                    .slice(0, 10)
+                    .map((item) => (
+                      <div key={item.id} className="pt-2 first:pt-0 flex items-center justify-between text-xs">
+                        <div className="flex items-center gap-3">
+                          <img
+                            src={item.image}
+                            alt={item.name}
+                            className="w-10 h-10 rounded-lg object-cover"
+                          />
+                          <div>
+                            <p className="font-bold text-[#26160E]">{item.name}</p>
+                            <p className="text-[#8E5B34]">{formatCurrency(item.price)} • {item.category}</p>
+                          </div>
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() => handleAddDish(item)}
+                          className="px-3 py-1.5 rounded-xl bg-[#6F4E37] text-white font-bold text-xs hover:bg-[#563B29] transition-colors"
+                        >
+                          + Add
+                        </button>
+                      </div>
+                    ))}
+                </div>
               </div>
 
+              {/* Selected Items Ticket */}
+              <div className="p-4 bg-[#FAF6F0] rounded-2xl border border-[#D5BFA4]/60 space-y-3">
+                <div className="flex justify-between items-center">
+                  <span className="font-bold text-xs text-[#6F4E37] uppercase tracking-wider">
+                    Current Order Ticket ({selectedMenuItems.length} dishes)
+                  </span>
+                  <span className="font-mono font-bold text-sm text-[#26160E]">
+                    Ticket Subtotal: {formatCurrency(
+                      selectedMenuItems.reduce((s, it) => s + (it.price * it.qty), 0)
+                    )}
+                  </span>
+                </div>
+
+                {selectedMenuItems.length === 0 ? (
+                  <p className="text-xs text-[#8E5B34] italic">No dishes added yet. Click "+ Add" above.</p>
+                ) : (
+                  <div className="space-y-2 max-h-40 overflow-y-auto">
+                    {selectedMenuItems.map(item => (
+                      <div key={item.id} className="flex justify-between items-center text-xs bg-white p-2.5 rounded-xl border border-[#D5BFA4]/40">
+                        <span className="font-bold text-[#26160E]">{item.name}</span>
+                        <div className="flex items-center gap-2">
+                          <button
+                            type="button"
+                            onClick={() => handleUpdateItemQty(item.id, -1)}
+                            className="w-6 h-6 rounded bg-[#F4ECE1] font-bold text-[#6F4E37] flex items-center justify-center"
+                          >
+                            -
+                          </button>
+                          <span className="font-mono font-bold w-4 text-center">{item.qty}</span>
+                          <button
+                            type="button"
+                            onClick={() => handleUpdateItemQty(item.id, 1)}
+                            className="w-6 h-6 rounded bg-[#F4ECE1] font-bold text-[#6F4E37] flex items-center justify-center"
+                          >
+                            +
+                          </button>
+                          <span className="font-mono font-bold text-[#6F4E37] ml-2">
+                            {formatCurrency(item.price * item.qty)}
+                          </span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* Chef Notes / Allergies */}
               <div className="space-y-1">
-                <label className="text-xs font-bold uppercase text-[#8E5B34]">Chef Special Notes</label>
+                <label className="text-xs font-bold uppercase text-[#8E5B34]">Chef Preparation Notes / Allergies</label>
                 <textarea
                   rows={2}
-                  placeholder="e.g. Medium rare steak, allergy to peanuts, separate sauces..."
+                  placeholder="e.g. Medium rare, nut allergy, dressing on the side..."
                   value={orderNotes}
                   onChange={(e) => setOrderNotes(e.target.value)}
-                  className="w-full text-xs p-2.5 rounded-lg border border-[#D5BFA4]"
+                  className="w-full text-xs p-3 rounded-xl border border-[#D5BFA4] focus:ring-2 focus:ring-[#6F4E37]"
                 ></textarea>
               </div>
 
@@ -278,12 +1151,99 @@ export const WaiterPortal = () => {
                 type="submit"
                 variant="primary"
                 size="lg"
-                className="w-full"
+                className="w-full shadow-xl"
                 icon={Send}
               >
-                Send Order to Kitchen
+                Send Ticket Directly to Kitchen (KDS)
               </Button>
             </form>
+
+          </div>
+        </div>
+      )}
+
+      {/* VIEW SESSION BILL MODAL */}
+      {viewSessionModal && (
+        <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+          <div className="bg-white rounded-3xl max-w-md w-full p-8 border border-[#D5BFA4] shadow-2xl space-y-6">
+            <div className="flex justify-between items-center border-b border-[#F4ECE1] pb-4">
+              <div>
+                <span className="text-xs font-bold uppercase tracking-wider text-[#8E5B34]">Dining Session Bill</span>
+                <h3 className="font-serif text-2xl font-bold text-[#26160E]">
+                  Table {viewSessionModal.tableNumber}
+                </h3>
+              </div>
+              <button
+                onClick={() => setViewSessionModal(null)}
+                className="p-2 rounded-xl bg-[#F4ECE1] text-[#6F4E37]"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            <div className="space-y-3 text-xs">
+              <div className="flex justify-between">
+                <span className="text-[#8E5B34]">Daily 6-Digit Session:</span>
+                <span className="font-mono font-bold text-[#6F4E37]">#{viewSessionModal.sessionId}</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-[#8E5B34]">Guest Name:</span>
+                <span className="font-bold text-[#26160E]">{viewSessionModal.guestName}</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-[#8E5B34]">Seated At:</span>
+                <span className="text-[#26160E]">{viewSessionModal.checkInTime}</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-[#8E5B34]">Assigned Waiter:</span>
+                <span className="text-[#26160E]">{viewSessionModal.waiter}</span>
+              </div>
+
+              <div className="pt-3 border-t border-[#F4ECE1] space-y-1.5">
+                <div className="flex justify-between">
+                  <span>Subtotal:</span>
+                  <span className="font-mono font-bold">{formatCurrency(viewSessionModal.subtotal || 0)}</span>
+                </div>
+                <div className="flex justify-between text-[#8E5B34]">
+                  <span>Tax (9%):</span>
+                  <span className="font-mono">{formatCurrency(viewSessionModal.tax || 0)}</span>
+                </div>
+                <div className="flex justify-between text-[#8E5B34]">
+                  <span>Service Charge (10%):</span>
+                  <span className="font-mono">{formatCurrency(viewSessionModal.serviceCharge || 0)}</span>
+                </div>
+                {viewSessionModal.advancePayment > 0 && (
+                  <div className="flex justify-between text-emerald-700">
+                    <span>Advance Booking Deposit:</span>
+                    <span className="font-mono">-{formatCurrency(viewSessionModal.advancePayment)}</span>
+                  </div>
+                )}
+                <div className="flex justify-between font-serif text-base font-bold text-[#26160E] pt-2 border-t border-[#F4ECE1]">
+                  <span>Total Due:</span>
+                  <span className="text-[#6F4E37]">{formatCurrency(viewSessionModal.total || 0)}</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex gap-2">
+              <Button
+                variant="outline"
+                size="sm"
+                className="flex-1"
+                icon={Printer}
+                onClick={() => alert(`Printing table bill for Table ${viewSessionModal.tableNumber}...`)}
+              >
+                Print Check
+              </Button>
+              <Button
+                variant="primary"
+                size="sm"
+                className="flex-1"
+                onClick={() => setViewSessionModal(null)}
+              >
+                Done
+              </Button>
+            </div>
           </div>
         </div>
       )}
