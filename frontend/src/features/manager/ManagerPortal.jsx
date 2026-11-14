@@ -105,7 +105,7 @@ export const ManagerPortal = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-[#F4EDE8] flex">
+    <div className="min-h-screen bg-[#F2E5DB] flex">
       {/* Sidebar with exact Mocha Brown #754D45 */}
       <Sidebar
         title="Manager Portal"
@@ -120,16 +120,16 @@ export const ManagerPortal = () => {
       <div className="flex-1 lg:pl-72 flex flex-col min-h-screen">
         
         {/* Top Navbar */}
-        <header className="h-20 bg-white border-b border-[#E8DDD8]/40 px-6 flex items-center justify-between sticky top-0 z-30 shadow-sm">
+        <header className="h-20 bg-white border-b border-[#D0ADA0]/40 px-6 flex items-center justify-between sticky top-0 z-30 shadow-sm">
           <div className="flex items-center gap-4">
             <button
               onClick={() => setSidebarOpen(true)}
-              className="lg:hidden p-2 rounded-lg text-[#301A18] hover:bg-[#FAF7F5]"
+              className="lg:hidden p-2 rounded-lg text-[#38231F] hover:bg-[#F2E5DB]"
             >
               <Menu className="w-6 h-6" />
             </button>
             <div>
-              <h2 className="font-serif text-xl font-bold text-[#301A18] capitalize">
+              <h2 className="font-serif text-xl font-bold text-[#38231F] capitalize">
                 Manager: {activeTab.replace(/^(mgmt-|mon-)/, '').replace(/-/g, ' ')}
               </h2>
               <p className="text-xs text-[#754D45]">Floor Supervision • Shift Operations Supervisor</p>
@@ -154,13 +154,13 @@ export const ManagerPortal = () => {
             <div className="space-y-8">
               {/* Operational Stats Grid */}
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-                <div className="bg-white p-5 rounded-2xl border border-[#E8DDD8]/50 shadow-sm">
+                <div className="bg-white p-5 rounded-2xl border border-[#D0ADA0]/50 shadow-sm">
                   <p className="text-xs uppercase font-bold text-[#754D45]">Today's Reservations</p>
-                  <p className="font-serif text-3xl font-bold text-[#301A18] mt-2">{bookings.length}</p>
+                  <p className="font-serif text-3xl font-bold text-[#38231F] mt-2">{bookings.length}</p>
                   <p className="text-xs text-[#754D45] mt-1">{bookings.filter(b => b.status === 'Checked-In').length} guests currently seated</p>
                 </div>
 
-                <div className="bg-white p-5 rounded-2xl border border-[#E8DDD8]/50 shadow-sm">
+                <div className="bg-white p-5 rounded-2xl border border-[#D0ADA0]/50 shadow-sm">
                   <p className="text-xs uppercase font-bold text-[#754D45]">Table Breakdown</p>
                   <div className="flex items-baseline gap-2 mt-2">
                     <span className="font-serif text-3xl font-bold text-[#754D45]">
@@ -175,13 +175,13 @@ export const ManagerPortal = () => {
                   </p>
                 </div>
 
-                <div className="bg-white p-5 rounded-2xl border border-[#E8DDD8]/50 shadow-sm">
+                <div className="bg-white p-5 rounded-2xl border border-[#D0ADA0]/50 shadow-sm">
                   <p className="text-xs uppercase font-bold text-[#754D45]">Waiting List Queue</p>
                   <p className="font-serif text-3xl font-bold text-amber-700 mt-2">{waitingList.length}</p>
                   <p className="text-xs text-[#754D45] mt-1">Avg wait time ~15 mins</p>
                 </div>
 
-                <div className="bg-white p-5 rounded-2xl border border-[#E8DDD8]/50 shadow-sm">
+                <div className="bg-white p-5 rounded-2xl border border-[#D0ADA0]/50 shadow-sm">
                   <p className="text-xs uppercase font-bold text-[#754D45]">Active Shift Sales</p>
                   <p className="font-serif text-3xl font-bold text-emerald-800 mt-2">
                     {formatCurrency(sessions.reduce((a, b) => a + (b.total || 0), 0) + 8500)}
@@ -209,10 +209,10 @@ export const ManagerPortal = () => {
               )}
 
               {/* Live Tables Floor Overview */}
-              <div className="bg-white rounded-2xl border border-[#E8DDD8]/50 shadow-sm p-6 space-y-4">
+              <div className="bg-white rounded-2xl border border-[#D0ADA0]/50 shadow-sm p-6 space-y-4">
                 <div className="flex justify-between items-center">
                   <div>
-                    <h3 className="font-serif text-xl font-bold text-[#301A18]">Floor Dining Sessions & Table Grid</h3>
+                    <h3 className="font-serif text-xl font-bold text-[#38231F]">Floor Dining Sessions & Table Grid</h3>
                     <p className="text-xs text-[#754D45]">Real-time status: Available, Reserved, Occupied, Cleaning.</p>
                   </div>
                   <Button variant="outline" size="sm" onClick={() => setActiveTab('mgmt-tables')}>
@@ -251,10 +251,10 @@ export const ManagerPortal = () => {
               2. MANAGEMENT - A. STAFF MANAGEMENT
              ======================================================== */}
           {activeTab === 'mgmt-staff' && (
-            <div className="bg-white rounded-2xl border border-[#E8DDD8]/50 shadow-sm p-6 space-y-6">
+            <div className="bg-white rounded-2xl border border-[#D0ADA0]/50 shadow-sm p-6 space-y-6">
               <div className="flex justify-between items-center">
                 <div>
-                  <h3 className="font-serif text-xl font-bold text-[#301A18]">Shift & Staff Attendance Supervision</h3>
+                  <h3 className="font-serif text-xl font-bold text-[#38231F]">Shift & Staff Attendance Supervision</h3>
                   <p className="text-xs text-[#754D45]">Daily staff deployment, shift check-in/out, and break management.</p>
                 </div>
                 <Button variant="primary" size="sm" onClick={() => alert("Shift schedule updated.")}>
@@ -265,7 +265,7 @@ export const ManagerPortal = () => {
               <div className="overflow-x-auto">
                 <table className="w-full text-left text-sm">
                   <thead>
-                    <tr className="border-b border-[#FAF7F5] text-[#754D45] uppercase text-xs">
+                    <tr className="border-b border-[#F2E5DB] text-[#754D45] uppercase text-xs">
                       <th className="py-3 px-2">Staff Member</th>
                       <th className="py-3 px-2">Role</th>
                       <th className="py-3 px-2">Assigned Section</th>
@@ -275,10 +275,10 @@ export const ManagerPortal = () => {
                       <th className="py-3 px-2">Action</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-[#FAF7F5]">
+                  <tbody className="divide-y divide-[#F2E5DB]">
                     {staffRoster.map((s) => (
-                      <tr key={s.id} className="hover:bg-[#F4EDE8]">
-                        <td className="py-3 px-2 font-bold text-[#301A18]">{s.name}</td>
+                      <tr key={s.id} className="hover:bg-[#F2E5DB]">
+                        <td className="py-3 px-2 font-bold text-[#38231F]">{s.name}</td>
                         <td className="py-3 px-2 font-semibold text-[#754D45]">{s.role}</td>
                         <td className="py-3 px-2 text-[#754D45]">{s.section}</td>
                         <td className="py-3 px-2 text-xs">{s.shift}</td>
@@ -311,17 +311,17 @@ export const ManagerPortal = () => {
               2. MANAGEMENT - B. TABLE MANAGEMENT
              ======================================================== */}
           {activeTab === 'mgmt-tables' && (
-            <div className="bg-white rounded-2xl border border-[#E8DDD8]/50 shadow-sm p-6 space-y-6">
+            <div className="bg-white rounded-2xl border border-[#D0ADA0]/50 shadow-sm p-6 space-y-6">
               <div>
-                <h3 className="font-serif text-xl font-bold text-[#301A18]">Table Lifecycle & Reassignment Control</h3>
+                <h3 className="font-serif text-xl font-bold text-[#38231F]">Table Lifecycle & Reassignment Control</h3>
                 <p className="text-xs text-[#754D45]">Reassign tables, transition from Cleaning to Available, and monitor Session IDs.</p>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
                 {tables.map((t) => (
-                  <div key={t.id} className="p-5 rounded-2xl border border-[#E8DDD8]/50 bg-[#F4EDE8] space-y-3">
+                  <div key={t.id} className="p-5 rounded-2xl border border-[#D0ADA0]/50 bg-[#F2E5DB] space-y-3">
                     <div className="flex justify-between items-center">
-                      <span className="font-serif font-bold text-lg text-[#301A18]">Table {t.number}</span>
+                      <span className="font-serif font-bold text-lg text-[#38231F]">Table {t.number}</span>
                       <span className={`px-2.5 py-0.5 rounded-full text-xs font-bold ${
                         t.status === 'Occupied' ? 'bg-[#C44747]/15 text-[#C44747] border border-[#C44747]/30' :
                         t.status === 'Reserved' ? 'bg-[#B7791F]/15 text-[#B7791F] border border-[#B7791F]/30' :
@@ -338,7 +338,7 @@ export const ManagerPortal = () => {
                       <p><span className="font-bold text-[#754D45]">Table Session ID:</span> {t.activeSessionId ? `#${t.activeSessionId}` : 'None'}</p>
                     </div>
 
-                    <div className="pt-2 border-t border-[#E8DDD8]/30 flex gap-2">
+                    <div className="pt-2 border-t border-[#D0ADA0]/30 flex gap-2">
                       {t.status === 'Cleaning' ? (
                         <Button
                           variant="primary"
@@ -372,9 +372,9 @@ export const ManagerPortal = () => {
               2. MANAGEMENT - C. WAITER & SERVICE ASSIGNMENT
              ======================================================== */}
           {activeTab === 'mgmt-waiter' && (
-            <div className="bg-white rounded-2xl border border-[#E8DDD8]/50 shadow-sm p-6 space-y-6">
+            <div className="bg-white rounded-2xl border border-[#D0ADA0]/50 shadow-sm p-6 space-y-6">
               <div>
-                <h3 className="font-serif text-xl font-bold text-[#301A18]">Waitstaff Section & Table Workload Assignment</h3>
+                <h3 className="font-serif text-xl font-bold text-[#38231F]">Waitstaff Section & Table Workload Assignment</h3>
                 <p className="text-xs text-[#754D45]">Distribute table assignments across waitstaff to balance workload.</p>
               </div>
 
@@ -384,10 +384,10 @@ export const ManagerPortal = () => {
                   { name: "Lucas Vance", section: "Floor B (Terrace)", tables: [5, 6, 7, 8], activeGuests: 8 },
                   { name: "Amelia Thorne", section: "Cellar & Lounge", tables: [9, 10, 11, 12], activeGuests: 6 }
                 ].map((w, idx) => (
-                  <div key={idx} className="p-5 rounded-2xl border border-[#E8DDD8]/50 bg-[#F4EDE8] space-y-3">
+                  <div key={idx} className="p-5 rounded-2xl border border-[#D0ADA0]/50 bg-[#F2E5DB] space-y-3">
                     <div className="flex justify-between items-start">
                       <div>
-                        <h4 className="font-serif font-bold text-base text-[#301A18]">{w.name}</h4>
+                        <h4 className="font-serif font-bold text-base text-[#38231F]">{w.name}</h4>
                         <p className="text-xs text-[#754D45]">{w.section}</p>
                       </div>
                       <span className="text-xs font-bold px-2 py-0.5 bg-[#754D45] text-white rounded-full">
@@ -413,16 +413,16 @@ export const ManagerPortal = () => {
               2. MANAGEMENT - D. ORDER SUPERVISION
              ======================================================== */}
           {activeTab === 'mgmt-orders' && (
-            <div className="bg-white rounded-2xl border border-[#E8DDD8]/50 shadow-sm p-6 space-y-6">
+            <div className="bg-white rounded-2xl border border-[#D0ADA0]/50 shadow-sm p-6 space-y-6">
               <div>
-                <h3 className="font-serif text-xl font-bold text-[#301A18]">Live Order Supervision & Priority Management</h3>
+                <h3 className="font-serif text-xl font-bold text-[#38231F]">Live Order Supervision & Priority Management</h3>
                 <p className="text-xs text-[#754D45]">Monitor preparation times and expedite delayed dining tickets.</p>
               </div>
 
               <div className="overflow-x-auto">
                 <table className="w-full text-left text-sm">
                   <thead>
-                    <tr className="border-b border-[#FAF7F5] text-[#754D45] uppercase text-xs">
+                    <tr className="border-b border-[#F2E5DB] text-[#754D45] uppercase text-xs">
                       <th className="py-3 px-2">Order ID</th>
                       <th className="py-3 px-2">Session ID</th>
                       <th className="py-3 px-2">Table</th>
@@ -432,18 +432,18 @@ export const ManagerPortal = () => {
                       <th className="py-3 px-2">Manager Action</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-[#FAF7F5]">
+                  <tbody className="divide-y divide-[#F2E5DB]">
                     {orders.map((ord) => (
-                      <tr key={ord.id} className="hover:bg-[#F4EDE8]">
+                      <tr key={ord.id} className="hover:bg-[#F2E5DB]">
                         <td className="py-3 px-2 font-mono font-bold text-[#754D45]">{ord.id}</td>
-                        <td className="py-3 px-2 font-mono font-bold text-[#301A18]">#{ord.sessionId}</td>
-                        <td className="py-3 px-2 font-bold text-[#301A18]">Table {ord.tableNumber}</td>
+                        <td className="py-3 px-2 font-mono font-bold text-[#38231F]">#{ord.sessionId}</td>
+                        <td className="py-3 px-2 font-bold text-[#38231F]">Table {ord.tableNumber}</td>
                         <td className="py-3 px-2 text-xs text-[#754D45]">
                           {ord.items.map(it => `${it.qty}x ${it.name}`).join(', ')}
                         </td>
                         <td className="py-3 px-2 text-xs">{ord.time}</td>
                         <td className="py-3 px-2">
-                          <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-[#FAF7F5] text-[#754D45]">
+                          <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-[#F2E5DB] text-[#754D45]">
                             {ord.status}
                           </span>
                         </td>
@@ -470,10 +470,10 @@ export const ManagerPortal = () => {
               2. MANAGEMENT - E. VIP GUEST PROFILES
              ======================================================== */}
           {activeTab === 'mgmt-vip' && (
-            <div className="bg-white rounded-2xl border border-[#E8DDD8]/50 shadow-sm p-6 space-y-6">
+            <div className="bg-white rounded-2xl border border-[#D0ADA0]/50 shadow-sm p-6 space-y-6">
               <div className="flex justify-between items-center">
                 <div>
-                  <h3 className="font-serif text-xl font-bold text-[#301A18]">VIP Customer Registry & Preferences</h3>
+                  <h3 className="font-serif text-xl font-bold text-[#38231F]">VIP Customer Registry & Preferences</h3>
                   <p className="text-xs text-[#754D45]">High-net-worth patron preferences, dietary restrictions, and anniversary alerts.</p>
                 </div>
                 <Button variant="primary" size="sm" icon={Plus} onClick={() => alert("Add VIP profile modal")}>
@@ -483,9 +483,9 @@ export const ManagerPortal = () => {
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {vipList.map((vip) => (
-                  <div key={vip.id} className="p-5 rounded-2xl border border-[#E8DDD8]/50 bg-[#F4EDE8] space-y-3">
+                  <div key={vip.id} className="p-5 rounded-2xl border border-[#D0ADA0]/50 bg-[#F2E5DB] space-y-3">
                     <div className="flex justify-between items-center">
-                      <h4 className="font-serif font-bold text-base text-[#301A18]">{vip.name}</h4>
+                      <h4 className="font-serif font-bold text-base text-[#38231F]">{vip.name}</h4>
                       <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#A2766B] text-[#754D45]">
                         {vip.tier}
                       </span>
@@ -495,7 +495,7 @@ export const ManagerPortal = () => {
                       <p><span className="font-bold text-[#754D45]">Favorite Vintage:</span> {vip.favoriteWine}</p>
                       <p><span className="font-bold text-[#754D45]">Seating Preference:</span> {vip.seatingPref}</p>
                       <p><span className="font-bold text-[#754D45]">Allergies:</span> {vip.allergies}</p>
-                      <p className="italic bg-white p-2 rounded-lg border border-[#E8DDD8]/30 mt-2">"{vip.notes}"</p>
+                      <p className="italic bg-white p-2 rounded-lg border border-[#D0ADA0]/30 mt-2">"{vip.notes}"</p>
                     </div>
 
                     <Button variant="outline" size="sm" className="w-full" onClick={() => alert(`Complimentary wine sent to ${vip.name}`)}>
@@ -511,16 +511,16 @@ export const ManagerPortal = () => {
               3. MONITORING - A. RESERVATION MONITORING
              ======================================================== */}
           {activeTab === 'mon-reservations' && (
-            <div className="bg-white rounded-2xl border border-[#E8DDD8]/50 shadow-sm p-6 space-y-6">
+            <div className="bg-white rounded-2xl border border-[#D0ADA0]/50 shadow-sm p-6 space-y-6">
               <div>
-                <h3 className="font-serif text-xl font-bold text-[#301A18]">Reservation Status Tracking</h3>
+                <h3 className="font-serif text-xl font-bold text-[#38231F]">Reservation Status Tracking</h3>
                 <p className="text-xs text-[#754D45]">Monitor Confirmed, Checked-in, and Cancelled reservations.</p>
               </div>
 
               <div className="overflow-x-auto">
                 <table className="w-full text-left text-sm">
                   <thead>
-                    <tr className="border-b border-[#FAF7F5] text-[#754D45] uppercase text-xs">
+                    <tr className="border-b border-[#F2E5DB] text-[#754D45] uppercase text-xs">
                       <th className="py-3 px-2">Booking ID</th>
                       <th className="py-3 px-2">Guest Name</th>
                       <th className="py-3 px-2">Party</th>
@@ -530,11 +530,11 @@ export const ManagerPortal = () => {
                       <th className="py-3 px-2">Status</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-[#FAF7F5]">
+                  <tbody className="divide-y divide-[#F2E5DB]">
                     {bookings.map((b) => (
-                      <tr key={b.id} className="hover:bg-[#F4EDE8]">
+                      <tr key={b.id} className="hover:bg-[#F2E5DB]">
                         <td className="py-3 px-2 font-mono font-bold text-[#754D45]">{b.id}</td>
-                        <td className="py-3 px-2 font-bold text-[#301A18]">{b.customerName}</td>
+                        <td className="py-3 px-2 font-bold text-[#38231F]">{b.customerName}</td>
                         <td className="py-3 px-2">{b.guests}</td>
                         <td className="py-3 px-2 text-xs">{formatDate(b.date)} at {b.time}</td>
                         <td className="py-3 px-2 font-semibold text-[#754D45]">{b.tableNo}</td>
@@ -556,15 +556,15 @@ export const ManagerPortal = () => {
               3. MONITORING - B. KITCHEN MONITORING
              ======================================================== */}
           {activeTab === 'mon-kitchen' && (
-            <div className="bg-white rounded-2xl border border-[#E8DDD8]/50 shadow-sm p-6 space-y-6">
+            <div className="bg-white rounded-2xl border border-[#D0ADA0]/50 shadow-sm p-6 space-y-6">
               <div>
-                <h3 className="font-serif text-xl font-bold text-[#301A18]">Kitchen Display & Preparation Monitoring</h3>
+                <h3 className="font-serif text-xl font-bold text-[#38231F]">Kitchen Display & Preparation Monitoring</h3>
                 <p className="text-xs text-[#754D45]">Review live KOT progress across stations.</p>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {orders.map((ord) => (
-                  <div key={ord.id} className="p-5 rounded-2xl border border-[#E8DDD8]/50 bg-[#F4EDE8] space-y-3">
+                  <div key={ord.id} className="p-5 rounded-2xl border border-[#D0ADA0]/50 bg-[#F2E5DB] space-y-3">
                     <div className="flex justify-between items-center">
                       <span className="font-mono text-xs font-bold text-[#754D45]">{ord.id} ({ord.kotId})</span>
                       <span className={`px-2 py-0.5 rounded-full text-xs font-bold ${
@@ -573,7 +573,7 @@ export const ManagerPortal = () => {
                         {ord.status}
                       </span>
                     </div>
-                    <p className="font-serif font-bold text-base text-[#301A18]">Table {ord.tableNumber} • Session #{ord.sessionId}</p>
+                    <p className="font-serif font-bold text-base text-[#38231F]">Table {ord.tableNumber} • Session #{ord.sessionId}</p>
                     <ul className="text-xs text-[#754D45] space-y-1">
                       {ord.items.map((it, i) => (
                         <li key={i}>• {it.qty}x {it.name}</li>
@@ -589,10 +589,10 @@ export const ManagerPortal = () => {
               3. MONITORING - C. INVENTORY MONITORING
              ======================================================== */}
           {activeTab === 'mon-inventory' && (
-            <div className="bg-white rounded-2xl border border-[#E8DDD8]/50 shadow-sm p-6 space-y-6">
+            <div className="bg-white rounded-2xl border border-[#D0ADA0]/50 shadow-sm p-6 space-y-6">
               <div className="flex justify-between items-center">
                 <div>
-                  <h3 className="font-serif text-xl font-bold text-[#301A18]">Inventory Stock & Requisition to Admin</h3>
+                  <h3 className="font-serif text-xl font-bold text-[#38231F]">Inventory Stock & Requisition to Admin</h3>
                   <p className="text-xs text-[#754D45]">Submit replenishment requests for low-stock steaks, truffles, or cellar bottles.</p>
                 </div>
                 <Button variant="primary" size="sm" onClick={() => alert("Requisition dispatched to Admin office.")}>
@@ -603,7 +603,7 @@ export const ManagerPortal = () => {
               <div className="overflow-x-auto">
                 <table className="w-full text-left text-sm">
                   <thead>
-                    <tr className="border-b border-[#FAF7F5] text-[#754D45] uppercase text-xs">
+                    <tr className="border-b border-[#F2E5DB] text-[#754D45] uppercase text-xs">
                       <th className="py-3 px-2">Item</th>
                       <th className="py-3 px-2">Current Stock</th>
                       <th className="py-3 px-2">Min Threshold</th>
@@ -611,10 +611,10 @@ export const ManagerPortal = () => {
                       <th className="py-3 px-2">Action</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-[#FAF7F5]">
+                  <tbody className="divide-y divide-[#F2E5DB]">
                     {inventory.map((inv) => (
-                      <tr key={inv.id} className="hover:bg-[#F4EDE8]">
-                        <td className="py-3 px-2 font-bold text-[#301A18]">{inv.item}</td>
+                      <tr key={inv.id} className="hover:bg-[#F2E5DB]">
+                        <td className="py-3 px-2 font-bold text-[#38231F]">{inv.item}</td>
                         <td className="py-3 px-2 font-mono">{inv.stock} {inv.unit}</td>
                         <td className="py-3 px-2 text-xs">{inv.minStock} {inv.unit}</td>
                         <td className="py-3 px-2">
@@ -644,17 +644,17 @@ export const ManagerPortal = () => {
               4. COMPLAINTS & REVIEWS
              ======================================================== */}
           {activeTab === 'complaints-mgmt' && (
-            <div className="bg-white rounded-2xl border border-[#E8DDD8]/50 shadow-sm p-6 space-y-6">
+            <div className="bg-white rounded-2xl border border-[#D0ADA0]/50 shadow-sm p-6 space-y-6">
               <div>
-                <h3 className="font-serif text-xl font-bold text-[#301A18]">Guest Complaints & Immediate Service Recovery</h3>
+                <h3 className="font-serif text-xl font-bold text-[#38231F]">Guest Complaints & Immediate Service Recovery</h3>
                 <p className="text-xs text-[#754D45]">Manager resolution log for guest issues, temperature, or dish remakes.</p>
               </div>
 
               <div className="space-y-4">
                 {complaints.map((c) => (
-                  <div key={c.id} className="p-5 rounded-2xl border border-[#E8DDD8]/50 bg-[#F4EDE8] space-y-2">
+                  <div key={c.id} className="p-5 rounded-2xl border border-[#D0ADA0]/50 bg-[#F2E5DB] space-y-2">
                     <div className="flex justify-between items-center">
-                      <span className="font-bold text-sm text-[#301A18]">{c.guest} ({c.table})</span>
+                      <span className="font-bold text-sm text-[#38231F]">{c.guest} ({c.table})</span>
                       <span className={`px-2.5 py-0.5 rounded-full text-xs font-bold ${
                         c.status === 'Resolved' ? 'bg-[#21845A]/15 text-[#21845A] border border-[#21845A]/30' : 'bg-[#C44747]/15 text-[#C44747] border border-[#C44747]/30'
                       }`}>
@@ -684,16 +684,16 @@ export const ManagerPortal = () => {
               5. PAYMENT MANAGEMENT
              ======================================================== */}
           {activeTab === 'payments-mgmt' && (
-            <div className="bg-white rounded-2xl border border-[#E8DDD8]/50 shadow-sm p-6 space-y-6">
+            <div className="bg-white rounded-2xl border border-[#D0ADA0]/50 shadow-sm p-6 space-y-6">
               <div>
-                <h3 className="font-serif text-xl font-bold text-[#301A18]">Session-Wise Billing & Register Audit</h3>
+                <h3 className="font-serif text-xl font-bold text-[#38231F]">Session-Wise Billing & Register Audit</h3>
                 <p className="text-xs text-[#754D45]">Track open session tabs, advance deposit reconciliations, and payment methods.</p>
               </div>
 
               <div className="overflow-x-auto">
                 <table className="w-full text-left text-sm">
                   <thead>
-                    <tr className="border-b border-[#FAF7F5] text-[#754D45] uppercase text-xs">
+                    <tr className="border-b border-[#F2E5DB] text-[#754D45] uppercase text-xs">
                       <th className="py-3 px-2">Session ID</th>
                       <th className="py-3 px-2">Table</th>
                       <th className="py-3 px-2">Guest</th>
@@ -703,15 +703,15 @@ export const ManagerPortal = () => {
                       <th className="py-3 px-2">Payment Status</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-[#FAF7F5]">
+                  <tbody className="divide-y divide-[#F2E5DB]">
                     {sessions.map((s) => (
-                      <tr key={s.sessionId} className="hover:bg-[#F4EDE8]">
+                      <tr key={s.sessionId} className="hover:bg-[#F2E5DB]">
                         <td className="py-3 px-2 font-mono font-bold text-[#754D45]">#{s.sessionId}</td>
                         <td className="py-3 px-2">Table {s.tableNumber}</td>
-                        <td className="py-3 px-2 font-bold text-[#301A18]">{s.guestName}</td>
+                        <td className="py-3 px-2 font-bold text-[#38231F]">{s.guestName}</td>
                         <td className="py-3 px-2 font-mono">{formatCurrency(s.subtotal)}</td>
                         <td className="py-3 px-2 font-mono text-emerald-700">-{formatCurrency(s.advancePayment)}</td>
-                        <td className="py-3 px-2 font-mono font-bold text-[#301A18]">{formatCurrency(s.total)}</td>
+                        <td className="py-3 px-2 font-mono font-bold text-[#38231F]">{formatCurrency(s.total)}</td>
                         <td className="py-3 px-2">
                           <span className={`px-2.5 py-0.5 rounded-full text-xs font-bold ${
                             s.paymentStatus === 'Paid' ? 'bg-[#21845A]/15 text-[#21845A] border border-[#21845A]/30' : 'bg-[#B7791F]/15 text-[#B7791F] border border-[#B7791F]/30'
@@ -731,15 +731,15 @@ export const ManagerPortal = () => {
               6. MY PROFILE
              ======================================================== */}
           {activeTab === 'profile-mgmt' && (
-            <div className="bg-white rounded-2xl border border-[#E8DDD8]/50 shadow-sm p-8 space-y-6 max-w-2xl">
-              <div className="flex items-center gap-6 border-b border-[#FAF7F5] pb-6">
+            <div className="bg-white rounded-2xl border border-[#D0ADA0]/50 shadow-sm p-8 space-y-6 max-w-2xl">
+              <div className="flex items-center gap-6 border-b border-[#F2E5DB] pb-6">
                 <img
                   src={currentUser?.avatar || "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=300&q=80"}
                   alt={currentUser?.name}
                   className="w-20 h-20 rounded-full object-cover border-4 border-[#754D45]"
                 />
                 <div>
-                  <h3 className="font-serif text-2xl font-bold text-[#301A18]">{currentUser?.name}</h3>
+                  <h3 className="font-serif text-2xl font-bold text-[#38231F]">{currentUser?.name}</h3>
                   <p className="text-xs text-[#754D45] font-semibold">Restaurant General & Floor Manager</p>
                   <p className="text-xs text-[#754D45]">{currentUser?.email}</p>
                 </div>

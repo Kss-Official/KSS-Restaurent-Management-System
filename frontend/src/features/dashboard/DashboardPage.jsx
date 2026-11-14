@@ -16,9 +16,9 @@ export const DashboardPage = () => {
   if (role === ROLES.CUSTOMER) return <Navigate to="/customer/profile" replace />;
 
   return (
-    <div className="min-h-[80vh] bg-[#F4EDE8] flex items-center justify-center p-6">
-      <div className="max-w-xl w-full bg-white p-8 rounded-3xl border border-[#E8DDD8] shadow-xl text-center space-y-6">
-        <h2 className="font-serif text-3xl font-bold text-[#301A18]">
+    <div className="min-h-[80vh] bg-[#F2E5DB] flex items-center justify-center p-6">
+      <div className="max-w-xl w-full bg-white p-8 rounded-3xl border border-[#D0ADA0] shadow-xl text-center space-y-6">
+        <h2 className="font-serif text-3xl font-bold text-[#38231F]">
           Restaurant Portals Access
         </h2>
         <p className="text-sm text-[#754D45]">
@@ -26,29 +26,29 @@ export const DashboardPage = () => {
         </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-left">
-          <Link to="/login" className="p-4 rounded-xl border border-[#E8DDD8]/60 hover:border-[#754D45] bg-[#F4EDE8] transition-colors">
+          <Link to="/login" className="p-4 rounded-xl border border-[#D0ADA0]/60 hover:border-[#754D45] bg-[#F2E5DB] transition-colors">
             <ShieldCheck className="w-6 h-6 text-[#754D45] mb-2" />
-            <h4 className="font-bold text-[#301A18]">Admin Portal</h4>
+            <h4 className="font-bold text-[#38231F]">Admin Portal</h4>
             <p className="text-xs text-[#754D45]">Executive management & reports</p>
           </Link>
-          <Link to="/login" className="p-4 rounded-xl border border-[#E8DDD8]/60 hover:border-[#754D45] bg-[#F4EDE8] transition-colors">
+          <Link to="/login" className="p-4 rounded-xl border border-[#D0ADA0]/60 hover:border-[#754D45] bg-[#F2E5DB] transition-colors">
             <Briefcase className="w-6 h-6 text-[#754D45] mb-2" />
-            <h4 className="font-bold text-[#301A18]">Manager Portal</h4>
+            <h4 className="font-bold text-[#38231F]">Manager Portal</h4>
             <p className="text-xs text-[#754D45]">Operations, floor & inventory oversight</p>
           </Link>
-          <Link to="/login" className="p-4 rounded-xl border border-[#E8DDD8]/60 hover:border-[#754D45] bg-[#F4EDE8] transition-colors">
+          <Link to="/login" className="p-4 rounded-xl border border-[#D0ADA0]/60 hover:border-[#754D45] bg-[#F2E5DB] transition-colors">
             <ChefHat className="w-6 h-6 text-[#754D45] mb-2" />
-            <h4 className="font-bold text-[#301A18]">Kitchen Portal</h4>
+            <h4 className="font-bold text-[#38231F]">Kitchen Portal</h4>
             <p className="text-xs text-[#754D45]">KDS & live cooking tickets</p>
           </Link>
-          <Link to="/login" className="p-4 rounded-xl border border-[#E8DDD8]/60 hover:border-[#754D45] bg-[#F4EDE8] transition-colors">
+          <Link to="/login" className="p-4 rounded-xl border border-[#D0ADA0]/60 hover:border-[#754D45] bg-[#F2E5DB] transition-colors">
             <ConciergeBell className="w-6 h-6 text-[#754D45] mb-2" />
-            <h4 className="font-bold text-[#301A18]">Reception Portal</h4>
+            <h4 className="font-bold text-[#38231F]">Reception Portal</h4>
             <p className="text-xs text-[#754D45]">Front desk, check-in & seating</p>
           </Link>
-          <Link to="/login" className="p-4 rounded-xl border border-[#E8DDD8]/60 hover:border-[#754D45] bg-[#F4EDE8] transition-colors">
+          <Link to="/login" className="p-4 rounded-xl border border-[#D0ADA0]/60 hover:border-[#754D45] bg-[#F2E5DB] transition-colors">
             <Users className="w-6 h-6 text-[#754D45] mb-2" />
-            <h4 className="font-bold text-[#301A18]">Waiter Portal</h4>
+            <h4 className="font-bold text-[#38231F]">Waiter Portal</h4>
             <p className="text-xs text-[#754D45]">Table service & order taking</p>
           </Link>
         </div>

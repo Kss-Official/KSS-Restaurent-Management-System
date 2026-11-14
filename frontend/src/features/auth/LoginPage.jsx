@@ -98,7 +98,7 @@ export const LoginPage = () => {
   };
 
   return (
-    <div className="relative min-h-screen w-full flex items-center justify-center p-4 sm:p-6 overflow-hidden bg-gradient-to-b from-[#301A18] via-[#754D45] to-[#301A18]">
+    <div className="relative min-h-screen w-full flex items-center justify-center p-4 sm:p-6 overflow-hidden bg-gradient-to-b from-[#38231F] via-[#55352F] to-[#38231F]">
       
       {/* Heavily Blurred Background Image & Backdrop Filter */}
       <div className="absolute inset-0 z-0">
@@ -107,14 +107,14 @@ export const LoginPage = () => {
           alt="Aura Mocha Luxury Restaurant"
           className="w-full h-full object-cover scale-110 filter blur-2xl opacity-25"
         />
-        <div className="absolute inset-0 bg-[#301A18]/80 backdrop-blur-3xl"></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-[#301A18] via-[#754D45]/85 to-[#301A18]"></div>
+        <div className="absolute inset-0 bg-[#38231F]/80 backdrop-blur-3xl"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-[#38231F] via-[#55352F]/85 to-[#38231F]"></div>
       </div>
 
       {/* Back to Home Button (floating at top left) */}
       <Link
         to="/"
-        className="absolute top-6 left-6 z-20 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/15 hover:bg-white/25 text-[#FFFFFF] text-xs font-semibold backdrop-blur-md border border-[#A2766B]/30 transition-all shadow-lg"
+        className="absolute top-6 left-6 z-20 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/15 hover:bg-white/25 text-[#FFFFFF] text-xs font-semibold backdrop-blur-md border border-[#D0ADA0]/30 transition-all shadow-lg"
       >
         <ArrowLeft className="w-4 h-4 text-[#A2766B]" />
         <span>Back to Website</span>
@@ -126,11 +126,11 @@ export const LoginPage = () => {
         {/* Header Branding */}
         <div className="text-center space-y-2">
           <Link to="/" className="inline-flex items-center gap-2">
-            <div className="w-12 h-12 rounded-2xl bg-[#301A18] text-white flex items-center justify-center shadow-md shadow-[#301A18]/30">
+            <div className="w-12 h-12 rounded-2xl bg-[#38231F] text-white flex items-center justify-center shadow-md shadow-[#38231F]/30">
               <UtensilsCrossed className="w-6 h-6 text-[#A2766B]" />
             </div>
           </Link>
-          <h2 className="font-serif text-3xl font-bold tracking-tight text-[#301A18]">
+          <h2 className="font-serif text-3xl font-bold tracking-tight text-[#38231F]">
             Sign In to Aura Mocha
           </h2>
           <p className="text-xs sm:text-sm text-[#754D45]">
@@ -139,15 +139,15 @@ export const LoginPage = () => {
         </div>
 
         {/* Quick Demo Role Selector */}
-        <div className="p-3.5 bg-[#FAF7F5] rounded-2xl border border-[#A2766B]/30 space-y-2">
-          <p className="text-[11px] font-bold uppercase tracking-wider text-[#301A18] text-center">
+        <div className="p-3.5 bg-[#F2E5DB] rounded-2xl border border-[#A2766B]/30 space-y-2">
+          <p className="text-[11px] font-bold uppercase tracking-wider text-[#38231F] text-center">
             One-Click Portal Testing Access
           </p>
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-1.5 text-xs">
             <button
               type="button"
               onClick={() => handleQuickRoleLogin(ROLES.CUSTOMER)}
-              className="px-2.5 py-1.5 rounded-lg bg-white hover:bg-[#301A18] hover:text-white text-[#301A18] border border-[#A2766B]/30 font-semibold transition-colors flex items-center justify-center gap-1 shadow-sm"
+              className="px-2.5 py-1.5 rounded-lg bg-white hover:bg-[#38231F] hover:text-white text-[#38231F] border border-[#A2766B]/30 font-semibold transition-colors flex items-center justify-center gap-1 shadow-sm"
             >
               <UserCheck className="w-3.5 h-3.5 text-[#A2766B]" />
               <span>Customer</span>
@@ -155,7 +155,7 @@ export const LoginPage = () => {
             <button
               type="button"
               onClick={() => handleQuickRoleLogin(ROLES.ADMIN)}
-              className="px-2.5 py-1.5 rounded-lg bg-white hover:bg-[#301A18] hover:text-white text-[#301A18] border border-[#A2766B]/30 font-semibold transition-colors flex items-center justify-center gap-1 shadow-sm"
+              className="px-2.5 py-1.5 rounded-lg bg-white hover:bg-[#38231F] hover:text-white text-[#38231F] border border-[#A2766B]/30 font-semibold transition-colors flex items-center justify-center gap-1 shadow-sm"
             >
               <ShieldCheck className="w-3.5 h-3.5 text-[#A2766B]" />
               <span>Admin</span>
@@ -163,7 +163,7 @@ export const LoginPage = () => {
             <button
               type="button"
               onClick={() => handleQuickRoleLogin(ROLES.MANAGER)}
-              className="px-2.5 py-1.5 rounded-lg bg-white hover:bg-[#301A18] hover:text-white text-[#301A18] border border-[#A2766B]/30 font-semibold transition-colors flex items-center justify-center gap-1 shadow-sm"
+              className="px-2.5 py-1.5 rounded-lg bg-white hover:bg-[#38231F] hover:text-white text-[#38231F] border border-[#A2766B]/30 font-semibold transition-colors flex items-center justify-center gap-1 shadow-sm"
             >
               <Briefcase className="w-3.5 h-3.5 text-[#A2766B]" />
               <span>Manager</span>
@@ -171,7 +171,7 @@ export const LoginPage = () => {
             <button
               type="button"
               onClick={() => handleQuickRoleLogin(ROLES.KITCHEN)}
-              className="px-2.5 py-1.5 rounded-lg bg-white hover:bg-[#301A18] hover:text-white text-[#301A18] border border-[#A2766B]/30 font-semibold transition-colors flex items-center justify-center gap-1 shadow-sm"
+              className="px-2.5 py-1.5 rounded-lg bg-white hover:bg-[#38231F] hover:text-white text-[#38231F] border border-[#A2766B]/30 font-semibold transition-colors flex items-center justify-center gap-1 shadow-sm"
             >
               <ChefHat className="w-3.5 h-3.5 text-[#A2766B]" />
               <span>Kitchen</span>
@@ -179,7 +179,7 @@ export const LoginPage = () => {
             <button
               type="button"
               onClick={() => handleQuickRoleLogin(ROLES.RECEPTIONIST)}
-              className="px-2.5 py-1.5 rounded-lg bg-white hover:bg-[#301A18] hover:text-white text-[#301A18] border border-[#A2766B]/30 font-semibold transition-colors flex items-center justify-center gap-1 shadow-sm"
+              className="px-2.5 py-1.5 rounded-lg bg-white hover:bg-[#38231F] hover:text-white text-[#38231F] border border-[#A2766B]/30 font-semibold transition-colors flex items-center justify-center gap-1 shadow-sm"
             >
               <ConciergeBell className="w-3.5 h-3.5 text-[#A2766B]" />
               <span>Reception</span>
@@ -187,7 +187,7 @@ export const LoginPage = () => {
             <button
               type="button"
               onClick={() => handleQuickRoleLogin(ROLES.WAITER)}
-              className="px-2.5 py-1.5 rounded-lg bg-white hover:bg-[#301A18] hover:text-white text-[#301A18] border border-[#A2766B]/30 font-semibold transition-colors flex items-center justify-center gap-1 shadow-sm"
+              className="px-2.5 py-1.5 rounded-lg bg-white hover:bg-[#38231F] hover:text-white text-[#38231F] border border-[#A2766B]/30 font-semibold transition-colors flex items-center justify-center gap-1 shadow-sm"
             >
               <Users className="w-3.5 h-3.5 text-[#A2766B]" />
               <span>Waiter</span>
@@ -203,7 +203,7 @@ export const LoginPage = () => {
         </div>
 
         {error && (
-          <div className="p-3 rounded-xl bg-[#754D45]/10 border border-[#754D45]/30 text-xs text-[#301A18] font-semibold">
+          <div className="p-3 rounded-xl bg-[#754D45]/10 border border-[#754D45]/30 text-xs text-[#38231F] font-semibold">
             {error}
           </div>
         )}
@@ -222,7 +222,7 @@ export const LoginPage = () => {
           />
 
           <div className="w-full flex flex-col gap-1.5">
-            <label className="text-xs font-semibold uppercase tracking-wider text-[#301A18]">
+            <label className="text-xs font-semibold uppercase tracking-wider text-[#38231F]">
               Password
             </label>
             <div className="relative rounded-lg shadow-sm">
@@ -236,12 +236,12 @@ export const LoginPage = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                className="w-full text-sm rounded-lg border border-[#A2766B]/40 bg-white pl-10 pr-10 py-2.5 text-[#301A18] focus:outline-none focus:ring-2 focus:ring-[#754D45]"
+                className="w-full text-sm rounded-lg border border-[#A2766B]/40 bg-white pl-10 pr-10 py-2.5 text-[#38231F] focus:outline-none focus:ring-2 focus:ring-[#754D45]"
               />
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute inset-y-0 right-0 pr-3.5 flex items-center text-[#754D45] hover:text-[#301A18]"
+                className="absolute inset-y-0 right-0 pr-3.5 flex items-center text-[#754D45] hover:text-[#38231F]"
               >
                 {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
               </button>
@@ -250,7 +250,7 @@ export const LoginPage = () => {
 
           {/* Remember Me & Forgot Password */}
           <div className="flex items-center justify-between text-xs pt-1">
-            <label className="flex items-center gap-2 cursor-pointer text-[#301A18]">
+            <label className="flex items-center gap-2 cursor-pointer text-[#38231F]">
               <input
                 type="checkbox"
                 checked={rememberMe}
@@ -283,7 +283,7 @@ export const LoginPage = () => {
         {/* Register CTA */}
         <div className="text-center pt-2 border-t border-[#A2766B]/30 text-xs text-[#754D45]">
           Don't have an account yet?{' '}
-          <Link to="/register" className="font-bold text-[#301A18] hover:underline">
+          <Link to="/register" className="font-bold text-[#38231F] hover:underline">
             Create Customer Account
           </Link>
         </div>

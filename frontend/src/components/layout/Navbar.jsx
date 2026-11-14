@@ -96,17 +96,17 @@ export const Navbar = ({ onOpenBookingModal }) => {
   const PortalIcon = getPortalIcon();
 
   return (
-    <header className="sticky top-0 z-50 bg-[#F4EDE8]/95 backdrop-blur-md border-b border-[#A2766B]/30 shadow-sm transition-all">
+    <header className="sticky top-0 z-50 bg-[#F2E5DB]/95 backdrop-blur-md border-b border-[#A2766B]/30 shadow-sm transition-all">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           
-          {/* Brand Logo - #301A18 to #754D45 & #A2766B Accent */}
+          {/* Brand Logo - 6-Color System */}
           <Link to="/" className="flex items-center gap-3 group">
-            <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-[#301A18] to-[#754D45] flex items-center justify-center text-[#FFFFFF] shadow-md group-hover:scale-105 transition-all border border-[#A2766B]/40">
+            <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-[#38231F] to-[#55352F] flex items-center justify-center text-[#FFFFFF] shadow-md group-hover:scale-105 transition-all border border-[#D0ADA0]/40">
               <UtensilsCrossed className="w-5 h-5 text-[#A2766B]" />
             </div>
             <div className="flex flex-col">
-              <span className="font-serif text-2xl font-bold tracking-tight text-[#301A18] group-hover:text-[#754D45] transition-colors">
+              <span className="font-serif text-2xl font-bold tracking-tight text-[#38231F] group-hover:text-[#55352F] transition-colors">
                 Aura Mocha
               </span>
               <span className="text-[10px] uppercase tracking-[0.2em] font-semibold text-[#754D45]">
@@ -125,8 +125,8 @@ export const Navbar = ({ onOpenBookingModal }) => {
                   to={link.path}
                   className={`px-3.5 py-2 rounded-lg text-sm font-semibold transition-all ${
                     isActive
-                      ? 'text-[#301A18] bg-[#FFFFFF] shadow-sm border border-[#A2766B]/40'
-                      : 'text-[#301A18] hover:text-[#754D45] hover:bg-[#A2766B]/15'
+                      ? 'text-[#38231F] bg-[#FFFFFF] shadow-sm border border-[#D0ADA0]'
+                      : 'text-[#38231F] hover:text-[#55352F] hover:bg-[#D0ADA0]/25'
                   }`}
                 >
                   {link.label}
@@ -215,7 +215,7 @@ export const Navbar = ({ onOpenBookingModal }) => {
                       alt={currentUser?.name}
                       className="w-8 h-8 rounded-full object-cover border border-[#754D45]/30"
                     />
-                    <span className="text-xs font-semibold text-[#301A18] max-w-[100px] truncate hidden lg:inline-block">
+                    <span className="text-xs font-semibold text-[#38231F] max-w-[100px] truncate hidden lg:inline-block">
                       {currentUser?.name?.split(' ')[0]}
                     </span>
                     <ChevronDown className={`w-3.5 h-3.5 text-[#754D45] transition-transform duration-200 ${profileDropdownOpen ? 'rotate-180' : ''}`} />
@@ -226,49 +226,49 @@ export const Navbar = ({ onOpenBookingModal }) => {
                     <div className="absolute right-0 mt-2 w-64 rounded-2xl bg-white shadow-xl border border-[#A2766B]/30 py-2 z-50 animate-fadeIn divide-y divide-[#A2766B]/20">
                       <div className="px-4 py-2.5">
                         <p className="text-[10px] text-[#A2766B] font-bold uppercase tracking-wider">Patron Account</p>
-                        <p className="text-sm font-bold text-[#301A18] truncate">{currentUser?.name}</p>
+                        <p className="text-sm font-bold text-[#38231F] truncate">{currentUser?.name}</p>
                         <p className="text-xs text-[#754D45] truncate">{currentUser?.email}</p>
                       </div>
 
                       <div className="py-1.5 text-xs">
                         <Link
                           to="/customer/profile"
-                          className="flex items-center gap-3 px-4 py-2 text-[#301A18] hover:bg-[#A2766B]/15 hover:text-[#301A18] transition-colors"
+                          className="flex items-center gap-3 px-4 py-2 text-[#38231F] hover:bg-[#A2766B]/15 hover:text-[#38231F] transition-colors"
                         >
                           <User className="w-4 h-4 text-[#754D45]" />
                           <span>My Profile</span>
                         </Link>
                         <Link
                           to="/customer/bookings"
-                          className="flex items-center gap-3 px-4 py-2 text-[#301A18] hover:bg-[#A2766B]/15 hover:text-[#301A18] transition-colors"
+                          className="flex items-center gap-3 px-4 py-2 text-[#38231F] hover:bg-[#A2766B]/15 hover:text-[#38231F] transition-colors"
                         >
                           <Calendar className="w-4 h-4 text-[#754D45]" />
                           <span>My Bookings</span>
                         </Link>
                         <Link
                           to="/customer/orders"
-                          className="flex items-center gap-3 px-4 py-2 text-[#301A18] hover:bg-[#A2766B]/15 hover:text-[#301A18] transition-colors"
+                          className="flex items-center gap-3 px-4 py-2 text-[#38231F] hover:bg-[#A2766B]/15 hover:text-[#38231F] transition-colors"
                         >
                           <Clock className="w-4 h-4 text-[#754D45]" />
                           <span>Live Table Orders</span>
                         </Link>
                         <Link
                           to="/wishlist"
-                          className="flex items-center gap-3 px-4 py-2 text-[#301A18] hover:bg-[#A2766B]/15 hover:text-[#301A18] transition-colors"
+                          className="flex items-center gap-3 px-4 py-2 text-[#38231F] hover:bg-[#A2766B]/15 hover:text-[#38231F] transition-colors"
                         >
                           <Heart className="w-4 h-4 text-[#754D45]" />
                           <span>Culinary Wishlist ({wishlistCount})</span>
                         </Link>
                         <Link
                           to="/offers"
-                          className="flex items-center gap-3 px-4 py-2 text-[#301A18] hover:bg-[#A2766B]/15 hover:text-[#301A18] transition-colors"
+                          className="flex items-center gap-3 px-4 py-2 text-[#38231F] hover:bg-[#A2766B]/15 hover:text-[#38231F] transition-colors"
                         >
                           <Tag className="w-4 h-4 text-[#754D45]" />
                           <span>Special Offers & Vouchers</span>
                         </Link>
                         <Link
                           to="/support"
-                          className="flex items-center gap-3 px-4 py-2 text-[#301A18] hover:bg-[#A2766B]/15 hover:text-[#301A18] transition-colors"
+                          className="flex items-center gap-3 px-4 py-2 text-[#38231F] hover:bg-[#A2766B]/15 hover:text-[#38231F] transition-colors"
                         >
                           <HelpCircle className="w-4 h-4 text-[#754D45]" />
                           <span>Concierge Support</span>
@@ -313,7 +313,7 @@ export const Navbar = ({ onOpenBookingModal }) => {
             )}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-lg text-[#301A18] hover:bg-[#A2766B]/15 transition-colors"
+              className="p-2 rounded-lg text-[#38231F] hover:bg-[#A2766B]/15 transition-colors"
               aria-label="Toggle Navigation Menu"
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -325,7 +325,7 @@ export const Navbar = ({ onOpenBookingModal }) => {
 
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-t border-[#A2766B]/30 bg-[#F4EDE8] px-4 pt-3 pb-6 space-y-3">
+        <div className="md:hidden border-t border-[#A2766B]/30 bg-[#F2E5DB] px-4 pt-3 pb-6 space-y-3">
           <nav className="flex flex-col space-y-1">
             {navLinks.map((link) => (
               <Link
@@ -333,8 +333,8 @@ export const Navbar = ({ onOpenBookingModal }) => {
                 to={link.path}
                 className={`px-3 py-2 rounded-lg text-base font-semibold ${
                   location.pathname === link.path
-                    ? 'bg-[#301A18] text-white'
-                    : 'text-[#301A18] hover:bg-[#A2766B]/15'
+                    ? 'bg-[#38231F] text-white'
+                    : 'text-[#38231F] hover:bg-[#A2766B]/15'
                 }`}
               >
                 {link.label}
@@ -342,7 +342,7 @@ export const Navbar = ({ onOpenBookingModal }) => {
             ))}
           </nav>
 
-          <div className="pt-3 border-t border-[#E8DDD8] flex flex-col gap-2">
+          <div className="pt-3 border-t border-[#D0ADA0] flex flex-col gap-2">
             {!isAuthenticated ? (
               <Link to="/login" className="w-full">
                 <Button variant="primary" className="w-full" size="md">

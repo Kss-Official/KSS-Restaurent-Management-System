@@ -5,7 +5,7 @@ import { RESTAURANT_LOCATIONS } from '../../utils/constants';
 
 export const Footer = () => {
   return (
-    <footer className="relative bg-gradient-to-br from-[#301A18] via-[#754D45] to-[#301A18] text-[#FFFFFF] border-t-2 border-[#A2766B]/60 shadow-2xl overflow-hidden">
+    <footer className="relative bg-gradient-to-br from-[#38231F] via-[#55352F] to-[#38231F] text-[#FFFFFF] border-t-2 border-[#D0ADA0] shadow-2xl overflow-hidden">
       
       {/* Subtle luxury ambient glow effect */}
       <div className="absolute top-0 right-1/4 w-96 h-96 bg-[#A2766B]/15 rounded-full blur-3xl pointer-events-none"></div>
@@ -150,9 +150,9 @@ export const Footer = () => {
 
         <div className="mt-12 pt-8 border-t border-white/20 flex flex-col sm:flex-row items-center justify-between text-xs text-[#FFFFFF] font-medium">
           <p>© {new Date().getFullYear()} Aura Mocha Haute Cuisine. All Rights Reserved.</p>
-          <p className="mt-2 sm:mt-0 flex items-center gap-1.5 text-[#A2766B]">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>Mocha, Terracotta & Rose Taupe Luxury Aesthetic</span>
+          <p className="mt-2 sm:mt-0 flex items-center gap-1.5 text-[#D0ADA0]">
+            <Sparkles className="w-3.5 h-3.5 text-[#A2766B]" />
+            <span>Harmonious Haute Dining Palette</span>
           </p>
         </div>
       </div>

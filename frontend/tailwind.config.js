@@ -7,25 +7,33 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Exact User 3-Color Palette: #301A18, #754D45, #A2766B
+        // Exact User 6-Color Palette: #38231F, #55352F, #754D45, #A2766B, #D0ADA0, #F2E5DB
+        brand: {
+          darkest: '#38231F',    // Darkest Espresso
+          dark: '#55352F',       // Deep Mocha
+          medium: '#754D45',     // Warm Terracotta
+          accent: '#A2766B',     // Rose Taupe Accent
+          muted: '#D0ADA0',      // Soft Beige Border
+          light: '#F2E5DB',      // Light Linen Background
+        },
         burgundy: {
-          primary: '#301A18',    // Dark Espresso (#301A18)
-          secondary: '#754D45',  // Medium Terracotta (#754D45)
+          primary: '#38231F',    // Darkest Tone (#38231F)
+          secondary: '#55352F',  // Secondary Dark (#55352F)
           muted: '#A2766B',      // Soft Rose Taupe (#A2766B)
-          dark: '#301A18',       // Primary Deep Dark (#301A18)
+          dark: '#38231F',       // Primary Deep Dark (#38231F)
         },
         champagne: {
-          bg: '#F4EDE8',         // Main page background
+          bg: '#F2E5DB',         // Main page background (#F2E5DB)
           gold: '#A2766B',       // Accent highlight (#A2766B)
-          surface: '#FAF7F5',    // Subtle surface
-          border: '#E8DDD8',     // Border tone
+          surface: '#F2E5DB',    // Subtle surface (#F2E5DB)
+          border: '#D0ADA0',     // Border tone (#D0ADA0)
         },
         neutral: {
-          primary: '#301A18',    // Primary text (#301A18)
-          secondary: '#754D45',  // Secondary text (#754D45)
-          muted: '#A2766B',      // Muted text (#A2766B)
-          border: '#E8DDD8',     // Border
-          subtle: '#FAF7F5',     // Subtle surface
+          primary: '#38231F',    // Primary text (#38231F)
+          secondary: '#55352F',  // Secondary text (#55352F)
+          muted: '#754D45',      // Muted text (#754D45)
+          border: '#D0ADA0',     // Border (#D0ADA0)
+          subtle: '#F2E5DB',     // Subtle surface (#F2E5DB)
         },
         semantic: {
           success: '#21845A',    // Completed, paid, available
@@ -35,17 +43,17 @@ export default {
         },
         // Mapped aliases ensuring zero breakage across existing code
         mocha: {
-          50: '#FAF7F5',
-          100: '#F4EDE8',
-          200: '#E8DDD8',
-          300: '#E8DDD8',
+          50: '#F2E5DB',
+          100: '#F2E5DB',
+          200: '#D0ADA0',
+          300: '#D0ADA0',
           400: '#A2766B',
           500: '#754D45',
           600: '#754D45',
-          700: '#301A18',
-          800: '#301A18',
-          900: '#301A18',
-          950: '#301A18',
+          700: '#38231F',
+          800: '#38231F',
+          900: '#38231F',
+          950: '#38231F',
         },
         gold: {
           400: '#A2766B',

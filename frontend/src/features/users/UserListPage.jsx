@@ -14,16 +14,16 @@ export const UserListPage = () => {
 
   return (
     <div className="max-w-5xl mx-auto py-10 px-4 sm:px-6">
-      <div className="bg-white rounded-3xl p-8 border border-[#E8DDD8] shadow-md space-y-6">
+      <div className="bg-white rounded-3xl p-8 border border-[#D0ADA0] shadow-md space-y-6">
         <div>
-          <h2 className="font-serif text-2xl font-bold text-[#301A18]">System Users Directory</h2>
+          <h2 className="font-serif text-2xl font-bold text-[#38231F]">System Users Directory</h2>
           <p className="text-xs text-[#754D45]">List of all registered customers and staff members across the restaurant.</p>
         </div>
 
         <div className="overflow-x-auto">
           <table className="w-full text-left text-sm">
             <thead>
-              <tr className="border-b border-[#FAF7F5] text-[#754D45] uppercase text-xs">
+              <tr className="border-b border-[#F2E5DB] text-[#754D45] uppercase text-xs">
                 <th className="py-3 px-2">Name</th>
                 <th className="py-3 px-2">Email</th>
                 <th className="py-3 px-2">Role</th>
@@ -31,10 +31,10 @@ export const UserListPage = () => {
                 <th className="py-3 px-2">Action</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-[#FAF7F5]">
+            <tbody className="divide-y divide-[#F2E5DB]">
               {users.map(u => (
-                <tr key={u.id} className="hover:bg-[#F4EDE8]">
-                  <td className="py-3 px-2 font-bold text-[#301A18]">{u.name}</td>
+                <tr key={u.id} className="hover:bg-[#F2E5DB]">
+                  <td className="py-3 px-2 font-bold text-[#38231F]">{u.name}</td>
                   <td className="py-3 px-2 text-[#754D45]">{u.email}</td>
                   <td className="py-3 px-2 font-semibold text-[#754D45]">{u.role}</td>
                   <td className="py-3 px-2 text-[#754D45]">{u.phone}</td>

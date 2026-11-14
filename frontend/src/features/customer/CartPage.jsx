@@ -115,17 +115,17 @@ export const CartPage = () => {
   };
 
   return (
-    <div className="py-12 bg-[#F4EDE8] min-h-[85vh]">
+    <div className="py-12 bg-[#F2E5DB] min-h-[85vh]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         
         {/* Header */}
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-white p-6 sm:p-8 rounded-3xl border border-[#E8DDD8]/50 shadow-sm">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-white p-6 sm:p-8 rounded-3xl border border-[#D0ADA0]/50 shadow-sm">
           <div>
             <div className="flex items-center gap-2 mb-1">
               <span className="text-xs font-bold uppercase tracking-wider text-[#754D45]">Table Dining Cart</span>
               <Sparkles className="w-4 h-4 text-[#A2766B]" />
             </div>
-            <h1 className="font-serif text-3xl font-bold text-[#301A18]">Your Curated Selection</h1>
+            <h1 className="font-serif text-3xl font-bold text-[#38231F]">Your Curated Selection</h1>
             <p className="text-xs text-[#754D45] mt-1">
               Review your dishes and dispatch them directly to our executive culinary brigade.
             </p>
@@ -139,11 +139,11 @@ export const CartPage = () => {
         </div>
 
         {cart.length === 0 ? (
-          <div className="bg-white rounded-3xl p-12 text-center border border-[#E8DDD8]/50 shadow-sm space-y-4">
-            <div className="w-16 h-16 rounded-full bg-[#F4EDE8] text-[#754D45] mx-auto flex items-center justify-center">
+          <div className="bg-white rounded-3xl p-12 text-center border border-[#D0ADA0]/50 shadow-sm space-y-4">
+            <div className="w-16 h-16 rounded-full bg-[#F2E5DB] text-[#754D45] mx-auto flex items-center justify-center">
               <ShoppingBag className="w-8 h-8" />
             </div>
-            <h3 className="font-serif text-2xl font-bold text-[#301A18]">Your Table Order is Empty</h3>
+            <h3 className="font-serif text-2xl font-bold text-[#38231F]">Your Table Order is Empty</h3>
             <p className="text-sm text-[#754D45] max-w-md mx-auto">
               You haven't selected any dishes yet. Browse our exquisite appetizers, signature steaks, and artisan desserts.
             </p>
@@ -160,9 +160,9 @@ export const CartPage = () => {
             
             {/* Cart Items List */}
             <div className="lg:col-span-2 space-y-4">
-              <div className="bg-white rounded-3xl p-6 border border-[#E8DDD8]/50 shadow-sm space-y-4">
-                <div className="flex justify-between items-center pb-3 border-b border-[#FAF7F5]">
-                  <h3 className="font-serif text-xl font-bold text-[#301A18]">
+              <div className="bg-white rounded-3xl p-6 border border-[#D0ADA0]/50 shadow-sm space-y-4">
+                <div className="flex justify-between items-center pb-3 border-b border-[#F2E5DB]">
+                  <h3 className="font-serif text-xl font-bold text-[#38231F]">
                     Order Items ({cart.reduce((a, b) => a + b.qty, 0)})
                   </h3>
                   <button
@@ -173,18 +173,18 @@ export const CartPage = () => {
                   </button>
                 </div>
 
-                <div className="space-y-4 divide-y divide-[#FAF7F5]">
+                <div className="space-y-4 divide-y divide-[#F2E5DB]">
                   {cart.map((item) => (
                     <div key={item.id} className="pt-4 first:pt-0 flex items-center justify-between gap-4">
                       <div className="flex items-center gap-4">
                         <img
                           src={item.image}
                           alt={item.name}
-                          className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl object-cover border border-[#E8DDD8]/40"
+                          className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl object-cover border border-[#D0ADA0]/40"
                         />
                         <div>
                           <span className="text-[10px] uppercase font-bold text-[#754D45]">{item.category}</span>
-                          <h4 className="font-serif font-bold text-base sm:text-lg text-[#301A18]">
+                          <h4 className="font-serif font-bold text-base sm:text-lg text-[#38231F]">
                             {item.name}
                           </h4>
                           <p className="font-mono text-xs font-bold text-[#754D45] mt-0.5">
@@ -195,7 +195,7 @@ export const CartPage = () => {
 
                       {/* Quantity Modifier & Subtotal */}
                       <div className="flex items-center gap-4">
-                        <div className="flex items-center border border-[#E8DDD8] rounded-xl bg-[#F4EDE8] p-1">
+                        <div className="flex items-center border border-[#D0ADA0] rounded-xl bg-[#F2E5DB] p-1">
                           <button
                             onClick={() => updateCartQty(item.id, item.qty - 1)}
                             className="p-1 rounded-lg hover:bg-white text-[#754D45] transition-colors"
@@ -212,7 +212,7 @@ export const CartPage = () => {
                         </div>
 
                         <div className="text-right min-w-[70px]">
-                          <p className="font-mono font-bold text-sm text-[#301A18]">
+                          <p className="font-mono font-bold text-sm text-[#38231F]">
                             {formatCurrency(item.price * item.qty)}
                           </p>
                           <button
@@ -229,7 +229,7 @@ export const CartPage = () => {
               </div>
 
               {/* Special Instructions */}
-              <div className="bg-white rounded-3xl p-6 border border-[#E8DDD8]/50 shadow-sm space-y-2">
+              <div className="bg-white rounded-3xl p-6 border border-[#D0ADA0]/50 shadow-sm space-y-2">
                 <label className="text-xs font-bold uppercase tracking-wider text-[#754D45]">
                   Kitchen Preparation & Allergy Notes
                 </label>
@@ -238,7 +238,7 @@ export const CartPage = () => {
                   value={orderNotes}
                   onChange={(e) => setOrderNotes(e.target.value)}
                   placeholder="e.g. Please bring appetizers together, gluten-free preparation, dressing on the side..."
-                  className="w-full text-xs p-3 rounded-xl border border-[#E8DDD8] focus:ring-2 focus:ring-[#754D45]"
+                  className="w-full text-xs p-3 rounded-xl border border-[#D0ADA0] focus:ring-2 focus:ring-[#754D45]"
                 ></textarea>
               </div>
             </div>
@@ -247,8 +247,8 @@ export const CartPage = () => {
             <div className="space-y-6">
               
               {/* Table Selection Card */}
-              <div className="bg-white rounded-3xl p-6 border border-[#E8DDD8]/50 shadow-sm space-y-4">
-                <h3 className="font-serif text-lg font-bold text-[#301A18]">Table Delivery Details</h3>
+              <div className="bg-white rounded-3xl p-6 border border-[#D0ADA0]/50 shadow-sm space-y-4">
+                <h3 className="font-serif text-lg font-bold text-[#38231F]">Table Delivery Details</h3>
                 
                 <div>
                   <label className="text-xs font-bold uppercase text-[#754D45] block mb-1">
@@ -257,7 +257,7 @@ export const CartPage = () => {
                   <select
                     value={selectedTable}
                     onChange={(e) => setSelectedTable(Number(e.target.value))}
-                    className="w-full p-3 rounded-xl border border-[#E8DDD8] bg-[#F4EDE8] text-xs font-bold text-[#301A18] focus:ring-2 focus:ring-[#754D45]"
+                    className="w-full p-3 rounded-xl border border-[#D0ADA0] bg-[#F2E5DB] text-xs font-bold text-[#38231F] focus:ring-2 focus:ring-[#754D45]"
                   >
                     {tables.map(t => (
                       <option key={t.id} value={t.number}>
@@ -267,15 +267,15 @@ export const CartPage = () => {
                   </select>
                 </div>
 
-                <div className="p-3 rounded-xl bg-[#F4EDE8] border border-[#E8DDD8]/40 flex items-center gap-2 text-xs text-[#754D45]">
+                <div className="p-3 rounded-xl bg-[#F2E5DB] border border-[#D0ADA0]/40 flex items-center gap-2 text-xs text-[#754D45]">
                   <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
                   <span>Orders are synchronized with our front desk and assigned waitstaff.</span>
                 </div>
               </div>
 
               {/* Coupon / Promo Card */}
-              <div className="bg-white rounded-3xl p-6 border border-[#E8DDD8]/50 shadow-sm space-y-3">
-                <h3 className="font-serif text-lg font-bold text-[#301A18]">Promotional Privilege</h3>
+              <div className="bg-white rounded-3xl p-6 border border-[#D0ADA0]/50 shadow-sm space-y-3">
+                <h3 className="font-serif text-lg font-bold text-[#38231F]">Promotional Privilege</h3>
                 
                 {appliedCoupon ? (
                   <div className="p-3 rounded-2xl bg-emerald-50 border border-emerald-300 flex items-center justify-between">
@@ -300,7 +300,7 @@ export const CartPage = () => {
                         placeholder="Coupon code (e.g. WELCOME10)"
                         value={couponInput}
                         onChange={(e) => setCouponInput(e.target.value)}
-                        className="flex-1 p-2.5 rounded-xl border border-[#E8DDD8] text-xs uppercase"
+                        className="flex-1 p-2.5 rounded-xl border border-[#D0ADA0] text-xs uppercase"
                       />
                       <Button variant="primary" size="sm" type="submit">
                         Apply
@@ -319,21 +319,21 @@ export const CartPage = () => {
               </div>
 
               {/* Grand Total Breakdown */}
-              <div className="bg-white rounded-3xl p-6 border border-[#E8DDD8]/50 shadow-sm space-y-4">
-                <h3 className="font-serif text-lg font-bold text-[#301A18]">Order Summary</h3>
+              <div className="bg-white rounded-3xl p-6 border border-[#D0ADA0]/50 shadow-sm space-y-4">
+                <h3 className="font-serif text-lg font-bold text-[#38231F]">Order Summary</h3>
 
-                <div className="space-y-2 text-xs border-b border-[#FAF7F5] pb-4">
+                <div className="space-y-2 text-xs border-b border-[#F2E5DB] pb-4">
                   <div className="flex justify-between">
                     <span className="text-[#754D45]">Subtotal:</span>
-                    <span className="font-mono font-bold text-[#301A18]">{formatCurrency(subtotal)}</span>
+                    <span className="font-mono font-bold text-[#38231F]">{formatCurrency(subtotal)}</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-[#754D45]">State Dining Tax (9%):</span>
-                    <span className="font-mono font-bold text-[#301A18]">{formatCurrency(tax)}</span>
+                    <span className="font-mono font-bold text-[#38231F]">{formatCurrency(tax)}</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-[#754D45]">Staff Service Gratuity (10%):</span>
-                    <span className="font-mono font-bold text-[#301A18]">{formatCurrency(serviceCharge)}</span>
+                    <span className="font-mono font-bold text-[#38231F]">{formatCurrency(serviceCharge)}</span>
                   </div>
                   {discount > 0 && (
                     <div className="flex justify-between text-emerald-700 font-bold">
@@ -344,7 +344,7 @@ export const CartPage = () => {
                 </div>
 
                 <div className="flex justify-between items-baseline pt-2">
-                  <span className="font-serif text-lg font-bold text-[#301A18]">Grand Total:</span>
+                  <span className="font-serif text-lg font-bold text-[#38231F]">Grand Total:</span>
                   <span className="font-serif text-2xl font-bold text-[#754D45]">{formatCurrency(grandTotal)}</span>
                 </div>
 

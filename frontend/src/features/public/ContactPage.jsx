@@ -20,13 +20,13 @@ export const ContactPage = () => {
   };
 
   return (
-    <div className="bg-[#F4EDE8] py-16 space-y-16">
+    <div className="bg-[#F2E5DB] py-16 space-y-16">
       {/* Header */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
         <span className="text-xs font-bold uppercase tracking-[0.3em] text-[#754D45]">
           Personalized Service
         </span>
-        <h1 className="font-serif text-4xl sm:text-6xl font-bold text-[#301A18]">
+        <h1 className="font-serif text-4xl sm:text-6xl font-bold text-[#38231F]">
           Concierge & Reservations
         </h1>
         <div className="w-16 h-1 bg-[#754D45] mx-auto rounded-full"></div>
@@ -40,18 +40,18 @@ export const ContactPage = () => {
           
           {/* Left Details */}
           <div className="space-y-8">
-            <div className="bg-white p-8 rounded-2xl border border-[#E8DDD8]/50 shadow-sm space-y-6">
-              <h2 className="font-serif text-2xl font-bold text-[#301A18]">
+            <div className="bg-white p-8 rounded-2xl border border-[#D0ADA0]/50 shadow-sm space-y-6">
+              <h2 className="font-serif text-2xl font-bold text-[#38231F]">
                 Direct Contacts
               </h2>
 
               <div className="space-y-4 text-sm text-[#754D45]">
                 <div className="flex items-start gap-4">
                   <div className="w-10 h-10 rounded-xl bg-[#754D45] text-white flex items-center justify-center shrink-0">
-                    <Phone className="w-5 h-5 text-[#F4EDE8]" />
+                    <Phone className="w-5 h-5 text-[#F2E5DB]" />
                   </div>
                   <div>
-                    <p className="font-bold text-[#301A18]">Telephone Concierge</p>
+                    <p className="font-bold text-[#38231F]">Telephone Concierge</p>
                     <p className="text-[#754D45]">+1 (555) 782-9900</p>
                     <p className="text-xs text-[#754D45]/70">Available 9:00 AM – 11:00 PM EST daily</p>
                   </div>
@@ -59,10 +59,10 @@ export const ContactPage = () => {
 
                 <div className="flex items-start gap-4">
                   <div className="w-10 h-10 rounded-xl bg-[#754D45] text-white flex items-center justify-center shrink-0">
-                    <Mail className="w-5 h-5 text-[#F4EDE8]" />
+                    <Mail className="w-5 h-5 text-[#F2E5DB]" />
                   </div>
                   <div>
-                    <p className="font-bold text-[#301A18]">Electronic Mail</p>
+                    <p className="font-bold text-[#38231F]">Electronic Mail</p>
                     <p className="text-[#754D45]">reservations@auramocha.com</p>
                     <p className="text-xs text-[#754D45]/70">Inquiries answered within 2 business hours</p>
                   </div>
@@ -70,10 +70,10 @@ export const ContactPage = () => {
 
                 <div className="flex items-start gap-4">
                   <div className="w-10 h-10 rounded-xl bg-[#754D45] text-white flex items-center justify-center shrink-0">
-                    <Clock className="w-5 h-5 text-[#F4EDE8]" />
+                    <Clock className="w-5 h-5 text-[#F2E5DB]" />
                   </div>
                   <div>
-                    <p className="font-bold text-[#301A18]">Operating Hours</p>
+                    <p className="font-bold text-[#38231F]">Operating Hours</p>
                     <p className="text-xs">Lunch: 11:30 AM – 3:00 PM (Daily)</p>
                     <p className="text-xs">Dinner: 5:30 PM – 11:00 PM (Daily)</p>
                     <p className="text-xs">Mocha Bar: Until 1:00 AM (Fri & Sat)</p>
@@ -83,14 +83,14 @@ export const ContactPage = () => {
             </div>
 
             {/* Locations List */}
-            <div className="bg-[#FAF7F5] p-8 rounded-2xl border border-[#E8DDD8] space-y-4">
-              <h3 className="font-serif text-xl font-bold text-[#301A18] flex items-center gap-2">
+            <div className="bg-[#F2E5DB] p-8 rounded-2xl border border-[#D0ADA0] space-y-4">
+              <h3 className="font-serif text-xl font-bold text-[#38231F] flex items-center gap-2">
                 <MapPin className="w-5 h-5 text-[#754D45]" />
                 Our Flagship Locations
               </h3>
               <div className="space-y-3">
                 {RESTAURANT_LOCATIONS.map((loc, idx) => (
-                  <div key={idx} className="p-3 bg-white/70 rounded-xl border border-[#E8DDD8]/40 text-xs sm:text-sm font-medium text-[#301A18] flex items-center justify-between">
+                  <div key={idx} className="p-3 bg-white/70 rounded-xl border border-[#D0ADA0]/40 text-xs sm:text-sm font-medium text-[#38231F] flex items-center justify-between">
                     <span>{loc}</span>
                     <span className="text-[11px] font-bold text-[#754D45] uppercase tracking-wider">Open Today</span>
                   </div>
@@ -100,13 +100,13 @@ export const ContactPage = () => {
           </div>
 
           {/* Right Form */}
-          <div className="bg-white p-8 sm:p-10 rounded-2xl border border-[#E8DDD8]/50 shadow-md">
+          <div className="bg-white p-8 sm:p-10 rounded-2xl border border-[#D0ADA0]/50 shadow-md">
             {submitted ? (
               <div className="text-center py-12 space-y-4">
                 <div className="w-16 h-16 rounded-full bg-[#754D45] text-white flex items-center justify-center mx-auto shadow-lg">
-                  <CheckCircle2 className="w-8 h-8 text-[#F4EDE8]" />
+                  <CheckCircle2 className="w-8 h-8 text-[#F2E5DB]" />
                 </div>
-                <h3 className="font-serif text-2xl font-bold text-[#301A18]">
+                <h3 className="font-serif text-2xl font-bold text-[#38231F]">
                   Message Dispatched
                 </h3>
                 <p className="text-sm text-[#754D45] max-w-md mx-auto">
@@ -125,7 +125,7 @@ export const ContactPage = () => {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-5">
-                <h2 className="font-serif text-2xl font-bold text-[#301A18]">
+                <h2 className="font-serif text-2xl font-bold text-[#38231F]">
                   Send an Inquiry
                 </h2>
                 <p className="text-xs sm:text-sm text-[#754D45]">
@@ -161,13 +161,13 @@ export const ContactPage = () => {
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold uppercase tracking-wider text-[#301A18]">
+                  <label className="text-xs font-semibold uppercase tracking-wider text-[#38231F]">
                     Subject of Inquiry
                   </label>
                   <select
                     value={formData.subject}
                     onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                    className="w-full text-sm rounded-lg border border-[#E8DDD8] bg-white px-3.5 py-2.5 text-[#301A18] focus:outline-none focus:ring-2 focus:ring-[#754D45]"
+                    className="w-full text-sm rounded-lg border border-[#D0ADA0] bg-white px-3.5 py-2.5 text-[#38231F] focus:outline-none focus:ring-2 focus:ring-[#754D45]"
                   >
                     <option>General Inquiry</option>
                     <option>Private Room Buyout & Events</option>
@@ -178,7 +178,7 @@ export const ContactPage = () => {
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold uppercase tracking-wider text-[#301A18]">
+                  <label className="text-xs font-semibold uppercase tracking-wider text-[#38231F]">
                     Your Message
                   </label>
                   <textarea
@@ -187,7 +187,7 @@ export const ContactPage = () => {
                     placeholder="Tell us about your upcoming occasion, guest count, or requirements..."
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full text-sm rounded-lg border border-[#E8DDD8] bg-white px-3.5 py-2.5 text-[#301A18] focus:outline-none focus:ring-2 focus:ring-[#754D45]"
+                    className="w-full text-sm rounded-lg border border-[#D0ADA0] bg-white px-3.5 py-2.5 text-[#38231F] focus:outline-none focus:ring-2 focus:ring-[#754D45]"
                   ></textarea>
                 </div>
 

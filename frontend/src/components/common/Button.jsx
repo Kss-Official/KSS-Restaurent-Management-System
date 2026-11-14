@@ -21,27 +21,27 @@ export const Button = ({
   };
 
   const variantStyles = {
-    // 3-Color System: #301A18, #754D45, #A2766B
-    // Primary Button with rich #301A18 to #754D45 gradient & pure white text
-    primary: "bg-gradient-to-r from-[#301A18] via-[#754D45] to-[#301A18] text-[#FFFFFF] font-bold hover:shadow-lg hover:brightness-110 focus:ring-[#A2766B] border border-[#754D45] shadow-[#301A18]/25",
+    // 6-Color System: #38231F, #55352F, #754D45, #A2766B, #D0ADA0, #F2E5DB
+    // Primary Button with rich #38231F to #55352F gradient & pure white text
+    primary: "bg-gradient-to-r from-[#38231F] via-[#55352F] to-[#38231F] text-[#FFFFFF] font-bold hover:shadow-lg hover:brightness-110 focus:ring-[#A2766B] border border-[#55352F] shadow-[#38231F]/25",
     
-    // Secondary Button (bg: #FFFFFF, text: #301A18, border: #A2766B/40)
-    secondary: "bg-[#FFFFFF] text-[#301A18] hover:bg-[#754D45]/10 focus:ring-[#A2766B] border border-[#A2766B]/40 shadow-xs",
+    // Secondary Button (bg: #FFFFFF, text: #38231F, border: #D0ADA0)
+    secondary: "bg-[#FFFFFF] text-[#38231F] hover:bg-[#F2E5DB] focus:ring-[#A2766B] border border-[#D0ADA0] shadow-xs",
     
     // Outline Button
-    outline: "border-2 border-[#754D45] text-[#754D45] bg-transparent hover:bg-[#754D45] hover:text-white focus:ring-[#754D45]",
+    outline: "border-2 border-[#55352F] text-[#55352F] bg-transparent hover:bg-[#55352F] hover:text-white focus:ring-[#55352F]",
     
     // Accent Button with #754D45 to #A2766B gradient
     gold: "bg-gradient-to-r from-[#754D45] via-[#A2766B] to-[#754D45] text-[#FFFFFF] hover:brightness-105 font-bold focus:ring-[#A2766B] shadow-md shadow-[#A2766B]/20",
     
     // Semantic Danger / Error
-    danger: "bg-[#754D45] text-white hover:bg-[#301A18] focus:ring-[#754D45]",
+    danger: "bg-[#754D45] text-white hover:bg-[#38231F] focus:ring-[#754D45]",
     
     // Tertiary / Cancel / Ghost Button
-    ghost: "bg-transparent text-[#754D45] hover:bg-[#A2766B]/15 hover:text-[#301A18] focus:ring-[#754D45] shadow-none",
+    ghost: "bg-transparent text-[#754D45] hover:bg-[#F2E5DB] hover:text-[#38231F] focus:ring-[#754D45] shadow-none",
     
-    // Dark Button in #301A18
-    dark: "bg-gradient-to-r from-[#301A18] to-[#754D45] text-[#FFFFFF] hover:brightness-110 border border-[#A2766B]/30"
+    // Dark Button in #38231F
+    dark: "bg-gradient-to-r from-[#38231F] to-[#55352F] text-[#FFFFFF] hover:brightness-110 border border-[#D0ADA0]/30"
   };
 
   return (

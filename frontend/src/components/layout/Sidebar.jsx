@@ -38,9 +38,9 @@ export const Sidebar = ({
         />
       )}
 
-      {/* Sidebar container with Elegant #301A18 to #754D45 Gradient */}
+      {/* Sidebar container with Elegant #38231F to #55352F Gradient */}
       <aside 
-        className={`fixed top-0 bottom-0 left-0 z-50 w-72 bg-gradient-to-b from-[#301A18] via-[#754D45] to-[#301A18] text-[#FFFFFF] flex flex-col justify-between transition-transform duration-300 shadow-2xl border-r border-[#A2766B]/30 lg:translate-x-0 ${
+        className={`fixed top-0 bottom-0 left-0 z-50 w-72 bg-gradient-to-b from-[#38231F] via-[#55352F] to-[#38231F] text-[#FFFFFF] flex flex-col justify-between transition-transform duration-300 shadow-2xl border-r border-[#D0ADA0]/30 lg:translate-x-0 ${
           isOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
@@ -48,7 +48,7 @@ export const Sidebar = ({
         <div className="flex flex-col flex-1 overflow-hidden">
           <div className="p-5 border-b border-white/15 flex items-center justify-between shrink-0">
             <Link to="/" className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-white text-[#301A18] flex items-center justify-center shadow-lg shrink-0">
+              <div className="w-10 h-10 rounded-xl bg-white text-[#38231F] flex items-center justify-center shadow-lg shrink-0">
                 <UtensilsCrossed className="w-5 h-5 text-[#A2766B]" />
               </div>
               <div className="overflow-hidden">
@@ -88,7 +88,7 @@ export const Sidebar = ({
               if (item.isGroup) {
                 return (
                   <div key={idx} className="pt-3 pb-1">
-                    <p className="px-3 text-[10px] font-bold uppercase tracking-widest text-[#A2766B]">
+                    <p className="px-3 text-[10px] font-bold uppercase tracking-widest text-[#D0ADA0]">
                       {item.groupTitle}
                     </p>
                     <div className="mt-1 space-y-0.5">
@@ -106,7 +106,7 @@ export const Sidebar = ({
                             }}
                             className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs font-semibold transition-all text-left ${
                               isSubActive
-                                ? 'bg-white text-[#301A18] shadow-md font-bold'
+                                ? 'bg-white text-[#38231F] shadow-md font-bold'
                                 : 'text-[#FFFFFF] opacity-90 hover:opacity-100 hover:bg-white/15'
                             }`}
                           >
@@ -142,7 +142,7 @@ export const Sidebar = ({
                   }}
                   className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-lg text-xs sm:text-sm font-semibold transition-all text-left ${
                     isActive
-                      ? 'bg-white text-[#301A18] shadow-md font-bold'
+                      ? 'bg-white text-[#38231F] shadow-md font-bold'
                       : 'text-[#FFFFFF] opacity-90 hover:opacity-100 hover:bg-white/15'
                   }`}
                 >
@@ -185,7 +185,7 @@ export const Sidebar = ({
             </Link>
             <button
               onClick={handleLogout}
-              className="flex items-center justify-center gap-1.5 py-2 text-xs font-semibold text-white bg-[#754D45] hover:bg-[#301A18] rounded-lg transition-colors shadow-sm"
+              className="flex items-center justify-center gap-1.5 py-2 text-xs font-semibold text-white bg-[#754D45] hover:bg-[#38231F] rounded-lg transition-colors shadow-sm"
             >
               <LogOut className="w-3.5 h-3.5" />
               <span>Logout</span>

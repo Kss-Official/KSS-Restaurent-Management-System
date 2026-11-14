@@ -37,11 +37,11 @@ export const ProfilePage = () => {
   };
 
   return (
-    <div className="bg-[#F4EDE8] py-12 px-4 sm:px-6 lg:px-8 min-h-[85vh]">
+    <div className="bg-[#F2E5DB] py-12 px-4 sm:px-6 lg:px-8 min-h-[85vh]">
       <div className="max-w-4xl mx-auto space-y-8">
         
         {/* Navigation tabs */}
-        <div className="flex items-center gap-3 border-b border-[#E8DDD8]/50 pb-4">
+        <div className="flex items-center gap-3 border-b border-[#D0ADA0]/50 pb-4">
           <Link
             to="/customer/profile"
             className="px-4 py-2 rounded-xl bg-[#754D45] text-white text-sm font-semibold shadow-sm"
@@ -50,7 +50,7 @@ export const ProfilePage = () => {
           </Link>
           <Link
             to="/customer/bookings"
-            className="px-4 py-2 rounded-xl bg-white text-[#754D45] hover:bg-[#FAF7F5] text-sm font-semibold border border-[#E8DDD8]/40"
+            className="px-4 py-2 rounded-xl bg-white text-[#754D45] hover:bg-[#F2E5DB] text-sm font-semibold border border-[#D0ADA0]/40"
           >
             My Bookings & History
           </Link>
@@ -64,9 +64,9 @@ export const ProfilePage = () => {
         )}
 
         {/* Profile Card */}
-        <div className="bg-white rounded-3xl p-8 sm:p-10 border border-[#E8DDD8] shadow-xl space-y-8">
+        <div className="bg-white rounded-3xl p-8 sm:p-10 border border-[#D0ADA0] shadow-xl space-y-8">
           
-          <div className="flex flex-col sm:flex-row items-center sm:items-start justify-between gap-6 pb-6 border-b border-[#FAF7F5]">
+          <div className="flex flex-col sm:flex-row items-center sm:items-start justify-between gap-6 pb-6 border-b border-[#F2E5DB]">
             <div className="flex flex-col sm:flex-row items-center gap-6">
               <div className="relative">
                 <img
@@ -77,10 +77,10 @@ export const ProfilePage = () => {
                 <span className="absolute bottom-1 right-1 w-5 h-5 rounded-full bg-emerald-500 border-2 border-white"></span>
               </div>
               <div className="text-center sm:text-left space-y-1">
-                <span className="px-3 py-0.5 rounded-full bg-[#FAF7F5] text-[#754D45] text-[11px] font-bold uppercase tracking-wider">
+                <span className="px-3 py-0.5 rounded-full bg-[#F2E5DB] text-[#754D45] text-[11px] font-bold uppercase tracking-wider">
                   Patron Member
                 </span>
-                <h1 className="font-serif text-2xl sm:text-3xl font-bold text-[#301A18]">
+                <h1 className="font-serif text-2xl sm:text-3xl font-bold text-[#38231F]">
                   {currentUser?.name}
                 </h1>
                 <p className="text-xs text-[#754D45]">
@@ -112,32 +112,32 @@ export const ProfilePage = () => {
           {/* Details / Edit View */}
           {!isEditing ? (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
-              <div className="p-4 rounded-2xl bg-[#F4EDE8] border border-[#E8DDD8]/40 space-y-1">
+              <div className="p-4 rounded-2xl bg-[#F2E5DB] border border-[#D0ADA0]/40 space-y-1">
                 <p className="text-xs uppercase tracking-wider font-semibold text-[#754D45] flex items-center gap-1.5">
                   <User className="w-3.5 h-3.5 text-[#754D45]" /> Full Name
                 </p>
-                <p className="font-bold text-[#301A18] text-base">{currentUser?.name}</p>
+                <p className="font-bold text-[#38231F] text-base">{currentUser?.name}</p>
               </div>
 
-              <div className="p-4 rounded-2xl bg-[#F4EDE8] border border-[#E8DDD8]/40 space-y-1">
+              <div className="p-4 rounded-2xl bg-[#F2E5DB] border border-[#D0ADA0]/40 space-y-1">
                 <p className="text-xs uppercase tracking-wider font-semibold text-[#754D45] flex items-center gap-1.5">
                   <Mail className="w-3.5 h-3.5 text-[#754D45]" /> Email Address
                 </p>
-                <p className="font-bold text-[#301A18] text-base">{currentUser?.email}</p>
+                <p className="font-bold text-[#38231F] text-base">{currentUser?.email}</p>
               </div>
 
-              <div className="p-4 rounded-2xl bg-[#F4EDE8] border border-[#E8DDD8]/40 space-y-1">
+              <div className="p-4 rounded-2xl bg-[#F2E5DB] border border-[#D0ADA0]/40 space-y-1">
                 <p className="text-xs uppercase tracking-wider font-semibold text-[#754D45] flex items-center gap-1.5">
                   <Phone className="w-3.5 h-3.5 text-[#754D45]" /> Mobile Number
                 </p>
-                <p className="font-bold text-[#301A18] text-base">{currentUser?.phone}</p>
+                <p className="font-bold text-[#38231F] text-base">{currentUser?.phone}</p>
               </div>
 
-              <div className="p-4 rounded-2xl bg-[#F4EDE8] border border-[#E8DDD8]/40 space-y-1">
+              <div className="p-4 rounded-2xl bg-[#F2E5DB] border border-[#D0ADA0]/40 space-y-1">
                 <p className="text-xs uppercase tracking-wider font-semibold text-[#754D45] flex items-center gap-1.5">
                   <ShieldCheck className="w-3.5 h-3.5 text-[#754D45]" /> Privilege Tier
                 </p>
-                <p className="font-bold text-[#301A18] text-base">Black Gold Connoisseur</p>
+                <p className="font-bold text-[#38231F] text-base">Black Gold Connoisseur</p>
               </div>
             </div>
           ) : (
@@ -177,9 +177,9 @@ export const ProfilePage = () => {
           )}
 
           {/* Quick link to reservations */}
-          <div className="p-6 rounded-2xl bg-[#FAF7F5] border border-[#E8DDD8] flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="p-6 rounded-2xl bg-[#F2E5DB] border border-[#D0ADA0] flex flex-col sm:flex-row items-center justify-between gap-4">
             <div>
-              <h3 className="font-serif font-bold text-lg text-[#301A18]">Looking to Dine Soon?</h3>
+              <h3 className="font-serif font-bold text-lg text-[#38231F]">Looking to Dine Soon?</h3>
               <p className="text-xs sm:text-sm text-[#754D45]">View your existing reservations or book a new table.</p>
             </div>
             <div className="flex gap-2">

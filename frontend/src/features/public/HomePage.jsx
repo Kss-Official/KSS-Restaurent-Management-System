@@ -115,7 +115,7 @@ export const HomePage = () => {
   ];
 
   return (
-    <div className="bg-[#F4EDE8] text-[#301A18] space-y-24">
+    <div className="bg-[#F2E5DB] text-[#38231F] space-y-24">
       
       {/* 1. Large Hero Banner with HD Photography */}
       <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
@@ -126,7 +126,7 @@ export const HomePage = () => {
             alt="Aura Mocha Luxury Restaurant Dining"
             className="w-full h-full object-cover object-center scale-105 animate-pulse duration-[10000ms]"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#301A18]/92 via-[#754D45]/80 to-[#301A18]/88"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-[#38231F]/92 via-[#754D45]/80 to-[#38231F]/88"></div>
           {/* Subtle Mocha accent tint */}
           <div className="absolute inset-0 bg-[#754D45]/20 mix-blend-multiply"></div>
         </div>
@@ -161,7 +161,7 @@ export const HomePage = () => {
               <Button
                 variant="outline"
                 size="lg"
-                className="w-full sm:w-auto border-[#F4EDE8] text-[#F4EDE8] hover:bg-[#F4EDE8] hover:text-[#301A18]"
+                className="w-full sm:w-auto border-[#F2E5DB] text-[#F2E5DB] hover:bg-[#F2E5DB] hover:text-[#38231F]"
               >
                 Explore Haute Menu
               </Button>
@@ -172,19 +172,19 @@ export const HomePage = () => {
           <div className="pt-12 grid grid-cols-2 md:grid-cols-4 gap-6 border-t border-[#A2766B]/30 max-w-4xl mx-auto text-center">
             <div>
               <p className="font-serif text-2xl font-bold text-[#A2766B]">28 Days</p>
-              <p className="text-xs uppercase tracking-wider text-[#F4EDE8]">In-House Dry Aging</p>
+              <p className="text-xs uppercase tracking-wider text-[#F2E5DB]">In-House Dry Aging</p>
             </div>
             <div>
               <p className="font-serif text-2xl font-bold text-[#A2766B]">1,200+</p>
-              <p className="text-xs uppercase tracking-wider text-[#F4EDE8]">Cellar Vintages</p>
+              <p className="text-xs uppercase tracking-wider text-[#F2E5DB]">Cellar Vintages</p>
             </div>
             <div>
               <p className="font-serif text-2xl font-bold text-[#A2766B]">4 Cities</p>
-              <p className="text-xs uppercase tracking-wider text-[#F4EDE8]">Exclusive Locations</p>
+              <p className="text-xs uppercase tracking-wider text-[#F2E5DB]">Exclusive Locations</p>
             </div>
             <div>
               <p className="font-serif text-2xl font-bold text-[#A2766B]">100%</p>
-              <p className="text-xs uppercase tracking-wider text-[#F4EDE8]">Single-Origin Mocha</p>
+              <p className="text-xs uppercase tracking-wider text-[#F2E5DB]">Single-Origin Mocha</p>
             </div>
           </div>
         </div>
@@ -196,7 +196,7 @@ export const HomePage = () => {
           <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#754D45]">
             Gastronomic Excellence
           </p>
-          <h2 className="font-serif text-3xl sm:text-5xl font-bold text-[#301A18]">
+          <h2 className="font-serif text-3xl sm:text-5xl font-bold text-[#38231F]">
             Our Signature Creations
           </h2>
           <div className="w-16 h-1 bg-[#754D45] mx-auto rounded-full"></div>
@@ -220,14 +220,14 @@ export const HomePage = () => {
                 <span className="absolute top-3 left-3 bg-[#754D45] text-white text-[11px] font-semibold px-3 py-1 rounded-full uppercase tracking-wider shadow-sm">
                   {dish.badge}
                 </span>
-                <span className="absolute bottom-3 right-3 bg-[#301A18]/90 text-[#FFFFFF] font-serif font-bold text-sm px-3 py-1 rounded-lg backdrop-blur-sm">
+                <span className="absolute bottom-3 right-3 bg-[#38231F]/90 text-[#FFFFFF] font-serif font-bold text-sm px-3 py-1 rounded-lg backdrop-blur-sm">
                   {dish.price}
                 </span>
               </div>
 
               <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
                 <div>
-                  <h3 className="font-serif text-xl font-bold text-[#301A18] group-hover:text-[#754D45] transition-colors">
+                  <h3 className="font-serif text-xl font-bold text-[#38231F] group-hover:text-[#754D45] transition-colors">
                     {dish.title}
                   </h3>
                   <p className="text-xs sm:text-sm text-[#754D45] leading-relaxed mt-2">
@@ -258,7 +258,7 @@ export const HomePage = () => {
       </section>
 
       {/* 3. About Our Restaurant Section */}
-      <section className="bg-[#FAF7F5] py-20 border-y border-[#A2766B]/30">
+      <section className="bg-[#F2E5DB] py-20 border-y border-[#A2766B]/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             
@@ -278,7 +278,7 @@ export const HomePage = () => {
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="absolute top-6 left-6 bg-gradient-to-br from-[#301A18] via-[#754D45] to-[#301A18] text-[#FFFFFF] p-5 rounded-2xl shadow-2xl max-w-[190px] border border-[#A2766B]/40">
+              <div className="absolute top-6 left-6 bg-gradient-to-br from-[#38231F] via-[#55352F] to-[#38231F] text-[#FFFFFF] p-5 rounded-2xl shadow-2xl max-w-[190px] border border-[#D0ADA0]">
                 <p className="font-serif text-3xl font-bold text-[#A2766B]">18+</p>
                 <p className="text-[11px] font-medium tracking-wider uppercase text-[#FFFFFF] mt-0.5">Years of Culinary Heritage</p>
               </div>
@@ -289,7 +289,7 @@ export const HomePage = () => {
               <span className="text-xs font-bold uppercase tracking-[0.25em] text-[#754D45]">
                 Our Philosophy
               </span>
-              <h2 className="font-serif text-3xl sm:text-5xl font-bold text-[#301A18] leading-tight">
+              <h2 className="font-serif text-3xl sm:text-5xl font-bold text-[#38231F] leading-tight">
                 Crafted with Passion, Served with Warmth
               </h2>
               <p className="text-base text-[#754D45] leading-relaxed">
@@ -305,7 +305,7 @@ export const HomePage = () => {
                     <ShieldCheck className="w-4 h-4" />
                   </div>
                   <div>
-                    <h4 className="text-sm font-bold text-[#301A18]">Sustainable Sourcing</h4>
+                    <h4 className="text-sm font-bold text-[#38231F]">Sustainable Sourcing</h4>
                     <p className="text-xs text-[#754D45]">Farm-to-table organic meats and vegetables.</p>
                   </div>
                 </div>
@@ -314,7 +314,7 @@ export const HomePage = () => {
                     <Star className="w-4 h-4" />
                   </div>
                   <div>
-                    <h4 className="text-sm font-bold text-[#301A18]">Michelin Standards</h4>
+                    <h4 className="text-sm font-bold text-[#38231F]">Michelin Standards</h4>
                     <p className="text-xs text-[#754D45]">Impeccable service and culinary artistry.</p>
                   </div>
                 </div>
@@ -339,7 +339,7 @@ export const HomePage = () => {
           <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#754D45]">
             Bespoke Hospitality
           </p>
-          <h2 className="font-serif text-3xl sm:text-5xl font-bold text-[#301A18]">
+          <h2 className="font-serif text-3xl sm:text-5xl font-bold text-[#38231F]">
             Curated Culinary Services
           </h2>
           <div className="w-16 h-1 bg-[#754D45] mx-auto rounded-full"></div>
@@ -353,10 +353,10 @@ export const HomePage = () => {
                 key={index}
                 className="bg-white p-8 rounded-2xl border border-[#A2766B]/30 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group"
               >
-                <div className="w-14 h-14 rounded-2xl bg-[#754D45] text-white flex items-center justify-center mb-6 group-hover:bg-[#301A18] transition-colors shadow-md shadow-[#754D45]/20">
+                <div className="w-14 h-14 rounded-2xl bg-[#754D45] text-white flex items-center justify-center mb-6 group-hover:bg-[#38231F] transition-colors shadow-md shadow-[#754D45]/20">
                   <Icon className="w-7 h-7 text-[#FFFFFF]" />
                 </div>
-                <h3 className="font-serif text-xl font-bold text-[#301A18] mb-3 group-hover:text-[#754D45] transition-colors">
+                <h3 className="font-serif text-xl font-bold text-[#38231F] mb-3 group-hover:text-[#754D45] transition-colors">
                   {service.title}
                 </h3>
                 <p className="text-sm text-[#754D45] leading-relaxed">
@@ -370,7 +370,7 @@ export const HomePage = () => {
 
       {/* 5. Special Call to Action: Book a Table Banner */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="relative rounded-3xl overflow-hidden shadow-2xl bg-gradient-to-r from-[#301A18] via-[#754D45] to-[#301A18] border-2 border-[#A2766B]/40 text-[#FFFFFF] p-8 sm:p-16">
+        <div className="relative rounded-3xl overflow-hidden shadow-2xl bg-gradient-to-r from-[#38231F] via-[#55352F] to-[#38231F] border-2 border-[#D0ADA0] text-[#FFFFFF] p-8 sm:p-16">
           <div className="absolute inset-0 z-0 opacity-25">
             <img
               src={RESTAURANT_IMAGES.privateDining}
@@ -379,7 +379,7 @@ export const HomePage = () => {
             />
           </div>
           <div className="relative z-10 max-w-2xl space-y-6">
-            <span className="px-3 py-1 rounded-full bg-[#A2766B] text-[#301A18] text-xs font-bold uppercase tracking-wider shadow-sm">
+            <span className="px-3 py-1 rounded-full bg-[#A2766B] text-[#38231F] text-xs font-bold uppercase tracking-wider shadow-sm">
               Reserve Your Experience
             </span>
             <h2 className="font-serif text-3xl sm:text-5xl font-bold tracking-tight text-[#FFFFFF] leading-tight">
@@ -401,7 +401,7 @@ export const HomePage = () => {
                 <Button
                   variant="outline"
                   size="lg"
-                  className="border-[#FFFFFF] text-[#FFFFFF] hover:bg-white hover:text-[#301A18]"
+                  className="border-[#FFFFFF] text-[#FFFFFF] hover:bg-white hover:text-[#38231F]"
                 >
                   Contact Concierge
                 </Button>
@@ -412,13 +412,13 @@ export const HomePage = () => {
       </section>
 
       {/* 6. Customer Testimonials */}
-      <section className="bg-[#FAF7F5] py-20 border-y border-[#A2766B]/30">
+      <section className="bg-[#F2E5DB] py-20 border-y border-[#A2766B]/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
             <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#754D45]">
               Guest Experiences
             </p>
-            <h2 className="font-serif text-3xl sm:text-5xl font-bold text-[#301A18]">
+            <h2 className="font-serif text-3xl sm:text-5xl font-bold text-[#38231F]">
               What Our Patrons Say
             </h2>
             <div className="w-16 h-1 bg-[#754D45] mx-auto rounded-full"></div>
@@ -436,12 +436,12 @@ export const HomePage = () => {
                       <Star key={i} className="w-4 h-4 fill-current" />
                     ))}
                   </div>
-                  <p className="font-serif text-base italic text-[#301A18] leading-relaxed">
+                  <p className="font-serif text-base italic text-[#38231F] leading-relaxed">
                     "{test.quote}"
                   </p>
                 </div>
                 <div className="mt-6 pt-4 border-t border-[#A2766B]/20">
-                  <p className="font-serif font-bold text-sm text-[#301A18]">{test.author}</p>
+                  <p className="font-serif font-bold text-sm text-[#38231F]">{test.author}</p>
                   <p className="text-xs text-[#754D45] font-medium">{test.title}</p>
                 </div>
               </div>
@@ -456,7 +456,7 @@ export const HomePage = () => {
           <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#754D45]">
             Visual Journey
           </p>
-          <h2 className="font-serif text-3xl sm:text-5xl font-bold text-[#301A18]">
+          <h2 className="font-serif text-3xl sm:text-5xl font-bold text-[#38231F]">
             Moments at Aura Mocha
           </h2>
           <div className="w-16 h-1 bg-[#754D45] mx-auto rounded-full"></div>
@@ -473,7 +473,7 @@ export const HomePage = () => {
                 alt={img.alt}
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#301A18]/90 via-[#754D45]/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+              <div className="absolute inset-0 bg-gradient-to-t from-[#38231F]/90 via-[#55352F]/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
                 <p className="font-serif text-[#FFFFFF] font-medium text-sm drop-shadow">{img.alt}</p>
               </div>
             </div>

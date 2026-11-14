@@ -32,10 +32,10 @@ export const BookTablePage = () => {
   // If user is not logged in or not a customer, redirect to login
   if (!isAuthenticated || !isCustomer) {
     return (
-      <div className="min-h-[70vh] bg-[#F4EDE8] flex items-center justify-center p-4">
-        <div className="max-w-md w-full bg-white p-8 rounded-3xl border border-[#E8DDD8] shadow-lg text-center space-y-4">
+      <div className="min-h-[70vh] bg-[#F2E5DB] flex items-center justify-center p-4">
+        <div className="max-w-md w-full bg-white p-8 rounded-3xl border border-[#D0ADA0] shadow-lg text-center space-y-4">
           <Calendar className="w-12 h-12 text-[#754D45] mx-auto" />
-          <h2 className="font-serif text-2xl font-bold text-[#301A18]">Sign In to Reserve a Table</h2>
+          <h2 className="font-serif text-2xl font-bold text-[#38231F]">Sign In to Reserve a Table</h2>
           <p className="text-sm text-[#754D45]">
             Table reservations are reserved for registered patrons. Please sign in or create an account to proceed.
           </p>
@@ -96,21 +96,21 @@ export const BookTablePage = () => {
   };
 
   return (
-    <div className="bg-[#F4EDE8] py-12 px-4 sm:px-6 lg:px-8 min-h-[85vh]">
+    <div className="bg-[#F2E5DB] py-12 px-4 sm:px-6 lg:px-8 min-h-[85vh]">
       <div className="max-w-4xl mx-auto space-y-8">
         
         {/* If Confirmation UI is active */}
         {confirmedBooking ? (
-          <div className="bg-white rounded-3xl p-8 sm:p-12 border border-[#E8DDD8] shadow-xl text-center space-y-8 animate-fadeIn">
+          <div className="bg-white rounded-3xl p-8 sm:p-12 border border-[#D0ADA0] shadow-xl text-center space-y-8 animate-fadeIn">
             <div className="w-20 h-20 rounded-full bg-[#754D45] text-white flex items-center justify-center mx-auto shadow-xl shadow-[#754D45]/30">
-              <CheckCircle2 className="w-10 h-10 text-[#F4EDE8]" />
+              <CheckCircle2 className="w-10 h-10 text-[#F2E5DB]" />
             </div>
 
             <div className="space-y-2">
-              <span className="px-3.5 py-1 rounded-full bg-[#FAF7F5] text-[#754D45] text-xs font-bold uppercase tracking-wider">
+              <span className="px-3.5 py-1 rounded-full bg-[#F2E5DB] text-[#754D45] text-xs font-bold uppercase tracking-wider">
                 Reservation Confirmed
               </span>
-              <h1 className="font-serif text-3xl sm:text-5xl font-bold text-[#301A18]">
+              <h1 className="font-serif text-3xl sm:text-5xl font-bold text-[#38231F]">
                 We Look Forward to Hosting You
               </h1>
               <p className="text-sm text-[#754D45] max-w-lg mx-auto">
@@ -119,8 +119,8 @@ export const BookTablePage = () => {
             </div>
 
             {/* Confirmation Card with Mocha Palette */}
-            <div className="max-w-xl mx-auto bg-[#F4EDE8] rounded-2xl p-6 border border-[#E8DDD8]/60 text-left space-y-4">
-              <div className="flex items-center justify-between border-b border-[#E8DDD8]/40 pb-4">
+            <div className="max-w-xl mx-auto bg-[#F2E5DB] rounded-2xl p-6 border border-[#D0ADA0]/60 text-left space-y-4">
+              <div className="flex items-center justify-between border-b border-[#D0ADA0]/40 pb-4">
                 <div>
                   <p className="text-[11px] font-bold uppercase tracking-wider text-[#754D45]">Booking Reference</p>
                   <p className="font-mono text-2xl font-bold text-[#754D45]">{confirmedBooking.id}</p>
@@ -136,28 +136,28 @@ export const BookTablePage = () => {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs sm:text-sm">
                 <div>
                   <p className="text-[#754D45] font-medium">Guest Name</p>
-                  <p className="font-bold text-[#301A18]">{confirmedBooking.customerName}</p>
+                  <p className="font-bold text-[#38231F]">{confirmedBooking.customerName}</p>
                 </div>
                 <div>
                   <p className="text-[#754D45] font-medium">Party Size</p>
-                  <p className="font-bold text-[#301A18]">{confirmedBooking.guests}</p>
+                  <p className="font-bold text-[#38231F]">{confirmedBooking.guests}</p>
                 </div>
                 <div>
                   <p className="text-[#754D45] font-medium">Date & Time</p>
-                  <p className="font-bold text-[#301A18]">{formatDate(confirmedBooking.date)} at {confirmedBooking.time}</p>
+                  <p className="font-bold text-[#38231F]">{formatDate(confirmedBooking.date)} at {confirmedBooking.time}</p>
                 </div>
                 <div>
                   <p className="text-[#754D45] font-medium">Contact Phone</p>
-                  <p className="font-bold text-[#301A18]">{confirmedBooking.contactNumber}</p>
+                  <p className="font-bold text-[#38231F]">{confirmedBooking.contactNumber}</p>
                 </div>
                 <div className="sm:col-span-2">
                   <p className="text-[#754D45] font-medium">Location</p>
-                  <p className="font-bold text-[#301A18]">{confirmedBooking.location}</p>
+                  <p className="font-bold text-[#38231F]">{confirmedBooking.location}</p>
                 </div>
                 {confirmedBooking.specialRequests && (
                   <div className="sm:col-span-2">
                     <p className="text-[#754D45] font-medium">Special Requests</p>
-                    <p className="text-[#301A18] italic">"{confirmedBooking.specialRequests}"</p>
+                    <p className="text-[#38231F] italic">"{confirmedBooking.specialRequests}"</p>
                   </div>
                 )}
               </div>
@@ -178,13 +178,13 @@ export const BookTablePage = () => {
           </div>
         ) : (
           /* Reservation Form */
-          <div className="bg-white rounded-3xl p-8 sm:p-12 border border-[#E8DDD8] shadow-xl space-y-8">
+          <div className="bg-white rounded-3xl p-8 sm:p-12 border border-[#D0ADA0] shadow-xl space-y-8">
             
-            <div className="border-b border-[#FAF7F5] pb-6 space-y-2">
+            <div className="border-b border-[#F2E5DB] pb-6 space-y-2">
               <span className="text-xs font-bold uppercase tracking-[0.25em] text-[#754D45]">
                 Exclusive Dining
               </span>
-              <h1 className="font-serif text-3xl sm:text-4xl font-bold text-[#301A18]">
+              <h1 className="font-serif text-3xl sm:text-4xl font-bold text-[#38231F]">
                 Reserve Your Table
               </h1>
               <p className="text-sm text-[#754D45]">
@@ -196,14 +196,14 @@ export const BookTablePage = () => {
               
               {/* Location */}
               <div className="space-y-1.5">
-                <label className="text-xs font-semibold uppercase tracking-wider text-[#301A18] flex items-center gap-2">
+                <label className="text-xs font-semibold uppercase tracking-wider text-[#38231F] flex items-center gap-2">
                   <MapPin className="w-4 h-4 text-[#754D45]" />
                   Restaurant Location <span className="text-red-600">*</span>
                 </label>
                 <select
                   value={formData.location}
                   onChange={(e) => setFormData({ ...formData, location: e.target.value })}
-                  className="w-full text-sm rounded-lg border border-[#E8DDD8] bg-white px-3.5 py-2.5 text-[#301A18] focus:outline-none focus:ring-2 focus:ring-[#754D45]"
+                  className="w-full text-sm rounded-lg border border-[#D0ADA0] bg-white px-3.5 py-2.5 text-[#38231F] focus:outline-none focus:ring-2 focus:ring-[#754D45]"
                   required
                 >
                   {RESTAURANT_LOCATIONS.map((loc, idx) => (
@@ -215,7 +215,7 @@ export const BookTablePage = () => {
               {/* Date & Time */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold uppercase tracking-wider text-[#301A18] flex items-center gap-2">
+                  <label className="text-xs font-semibold uppercase tracking-wider text-[#38231F] flex items-center gap-2">
                     <Calendar className="w-4 h-4 text-[#754D45]" />
                     Reservation Date <span className="text-red-600">*</span>
                   </label>
@@ -225,19 +225,19 @@ export const BookTablePage = () => {
                     value={formData.date}
                     onChange={(e) => setFormData({ ...formData, date: e.target.value })}
                     required
-                    className="w-full text-sm rounded-lg border border-[#E8DDD8] bg-white px-3.5 py-2.5 text-[#301A18] focus:outline-none focus:ring-2 focus:ring-[#754D45]"
+                    className="w-full text-sm rounded-lg border border-[#D0ADA0] bg-white px-3.5 py-2.5 text-[#38231F] focus:outline-none focus:ring-2 focus:ring-[#754D45]"
                   />
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold uppercase tracking-wider text-[#301A18] flex items-center gap-2">
+                  <label className="text-xs font-semibold uppercase tracking-wider text-[#38231F] flex items-center gap-2">
                     <Clock className="w-4 h-4 text-[#754D45]" />
                     Reservation Time Slot <span className="text-red-600">*</span>
                   </label>
                   <select
                     value={formData.time}
                     onChange={(e) => setFormData({ ...formData, time: e.target.value })}
-                    className="w-full text-sm rounded-lg border border-[#E8DDD8] bg-white px-3.5 py-2.5 text-[#301A18] focus:outline-none focus:ring-2 focus:ring-[#754D45]"
+                    className="w-full text-sm rounded-lg border border-[#D0ADA0] bg-white px-3.5 py-2.5 text-[#38231F] focus:outline-none focus:ring-2 focus:ring-[#754D45]"
                     required
                   >
                     {TIME_SLOTS.map((slot, idx) => (
@@ -249,7 +249,7 @@ export const BookTablePage = () => {
 
               {/* Guests Selection */}
               <div className="space-y-1.5">
-                <label className="text-xs font-semibold uppercase tracking-wider text-[#301A18] flex items-center gap-2">
+                <label className="text-xs font-semibold uppercase tracking-wider text-[#38231F] flex items-center gap-2">
                   <Users className="w-4 h-4 text-[#754D45]" />
                   Number of Guests <span className="text-red-600">*</span>
                 </label>
@@ -262,7 +262,7 @@ export const BookTablePage = () => {
                       className={`py-3 px-4 rounded-xl text-sm font-semibold border transition-all ${
                         formData.guests === opt
                           ? 'bg-[#754D45] text-white border-[#754D45] shadow-md'
-                          : 'bg-[#F4EDE8] text-[#301A18] border-[#E8DDD8] hover:bg-[#FAF7F5]'
+                          : 'bg-[#F2E5DB] text-[#38231F] border-[#D0ADA0] hover:bg-[#F2E5DB]'
                       }`}
                     >
                       {opt}
@@ -296,7 +296,7 @@ export const BookTablePage = () => {
 
               {/* Special Requests */}
               <div className="space-y-1.5">
-                <label className="text-xs font-semibold uppercase tracking-wider text-[#301A18] flex items-center gap-2">
+                <label className="text-xs font-semibold uppercase tracking-wider text-[#38231F] flex items-center gap-2">
                   <FileText className="w-4 h-4 text-[#754D45]" />
                   Special Requests (Optional)
                 </label>
@@ -305,7 +305,7 @@ export const BookTablePage = () => {
                   placeholder="Dietary allergies, window booth preference, birthday/anniversary arrangements..."
                   value={formData.specialRequests}
                   onChange={(e) => setFormData({ ...formData, specialRequests: e.target.value })}
-                  className="w-full text-sm rounded-lg border border-[#E8DDD8] bg-white px-3.5 py-2.5 text-[#301A18] focus:outline-none focus:ring-2 focus:ring-[#754D45]"
+                  className="w-full text-sm rounded-lg border border-[#D0ADA0] bg-white px-3.5 py-2.5 text-[#38231F] focus:outline-none focus:ring-2 focus:ring-[#754D45]"
                 ></textarea>
               </div>
 
