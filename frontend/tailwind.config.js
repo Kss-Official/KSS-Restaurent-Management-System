@@ -12,7 +12,7 @@ export default {
           primary: '#542334',    // Main brand identity, headings, primary buttons
           secondary: '#873C50',  // Secondary buttons, active states, primary chart series
           muted: '#B66A79',      // Highlights, secondary chart series, subtle accents
-          dark: '#3A1421',       // Deep dark wine
+          dark: '#542334',       // Exact Primary Burgundy
         },
         champagne: {
           bg: '#F4EDE8',         // Main page background
@@ -42,10 +42,10 @@ export default {
           400: '#B66A79',
           500: '#873C50',
           600: '#542334',
-          700: '#461B2B',
-          800: '#3A1421',
+          700: '#542334',
+          800: '#542334',
           900: '#2D2528',
-          950: '#1D0D14',
+          950: '#542334',
         },
         gold: {
           400: '#D8BC86',

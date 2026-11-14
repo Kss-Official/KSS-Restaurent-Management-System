@@ -379,7 +379,7 @@ export const HomePage = () => {
             />
           </div>
           <div className="relative z-10 max-w-2xl space-y-6">
-            <span className="px-3 py-1 rounded-full bg-[#C8A66B] text-[#3A1421] text-xs font-bold uppercase tracking-wider">
+            <span className="px-3 py-1 rounded-full bg-[#C8A66B] text-[#542334] text-xs font-bold uppercase tracking-wider">
               Reserve Your Experience
             </span>
             <h2 className="font-serif text-3xl sm:text-5xl font-bold tracking-tight text-white leading-tight">

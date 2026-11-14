@@ -41,7 +41,7 @@ export const Button = ({
     ghost: "bg-transparent text-[#75696B] hover:bg-[#F4EDE8] hover:text-[#542334] focus:ring-[#873C50] shadow-none",
     
     // Primary Burgundy Dark Button
-    dark: "bg-[#542334] text-[#F4EDE8] hover:bg-[#3A1421] border border-[#542334]"
+    dark: "bg-[#542334] text-[#F4EDE8] hover:bg-[#873C50] border border-[#542334]"
   };
 
   return (

@@ -98,7 +98,7 @@ export const LoginPage = () => {
   };
 
   return (
-    <div className="relative min-h-screen w-full flex items-center justify-center p-4 sm:p-6 overflow-hidden bg-[#3A1421]">
+    <div className="relative min-h-screen w-full flex items-center justify-center p-4 sm:p-6 overflow-hidden bg-[#542334]">
       
       {/* Heavily Blurred Background Image & Backdrop Filter */}
       <div className="absolute inset-0 z-0">
@@ -107,8 +107,8 @@ export const LoginPage = () => {
           alt="Aura Mocha Luxury Restaurant"
           className="w-full h-full object-cover scale-110 filter blur-2xl opacity-35"
         />
-        <div className="absolute inset-0 bg-[#3A1421]/80 backdrop-blur-3xl"></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-[#3A1421] via-[#542334]/85 to-[#3A1421]"></div>
+        <div className="absolute inset-0 bg-[#542334]/85 backdrop-blur-3xl"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-[#542334] via-[#542334]/90 to-[#542334]"></div>
       </div>
 
       {/* Back to Home Button (floating at top left) */}

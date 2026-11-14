@@ -5,7 +5,7 @@ import { RESTAURANT_LOCATIONS } from '../../utils/constants';
 
 export const Footer = () => {
   return (
-    <footer className="bg-[#3A1421] text-[#F4EDE8] border-t border-[#873C50]">
+    <footer className="bg-[#542334] text-[#F4EDE8] border-t border-[#873C50]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           

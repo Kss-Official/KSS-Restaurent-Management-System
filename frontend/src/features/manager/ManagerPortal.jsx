@@ -486,7 +486,7 @@ export const ManagerPortal = () => {
                   <div key={vip.id} className="p-5 rounded-2xl border border-[#E8DDD8]/50 bg-[#F4EDE8] space-y-3">
                     <div className="flex justify-between items-center">
                       <h4 className="font-serif font-bold text-base text-[#2D2528]">{vip.name}</h4>
-                      <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#C8A66B] text-[#3A1421]">
+                      <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#C8A66B] text-[#542334]">
                         {vip.tier}
                       </span>
                     </div>

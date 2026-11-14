@@ -70,7 +70,7 @@ export const Sidebar = ({
           </div>
 
           {/* Portal badge */}
-          <div className="px-5 py-3 bg-[#3A1421]/60 flex items-center justify-between text-xs text-[#F4EDE8] shrink-0 border-b border-[#873C50]/40">
+          <div className="px-5 py-3 bg-[#542334] flex items-center justify-between text-xs text-[#F4EDE8] shrink-0 border-b border-[#873C50]/40">
             <span className="font-semibold uppercase tracking-wider text-[#B66A79] text-[11px]">Active Portal</span>
             <span className="px-2.5 py-0.5 rounded-full bg-[#873C50] text-[#F4EDE8] font-bold border border-[#B66A79]/40 text-[11px]">
               {subtitle || (currentUser?.role && ROLE_LABELS[currentUser.role]) || 'Portal'}
@@ -158,7 +158,7 @@ export const Sidebar = ({
         </div>
 
         {/* Footer Area with user summary and back to public site / logout */}
-        <div className="p-3.5 border-t border-[#873C50]/60 bg-[#3A1421]/50 space-y-2.5 shrink-0">
+        <div className="p-3.5 border-t border-[#873C50]/60 bg-[#542334] space-y-2.5 shrink-0">
           <div className="flex items-center gap-2.5 p-2 rounded-lg bg-[#542334] border border-[#873C50]/40">
             <img 
               src={currentUser?.avatar || "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80"}
@@ -174,7 +174,7 @@ export const Sidebar = ({
           <div className="grid grid-cols-2 gap-2">
             <Link
               to="/"
-              className="flex items-center justify-center gap-1.5 py-2 text-xs font-semibold text-[#F4EDE8] bg-[#873C50] hover:bg-[#3A1421] rounded-lg transition-colors shadow-sm"
+              className="flex items-center justify-center gap-1.5 py-2 text-xs font-semibold text-[#F4EDE8] bg-[#873C50] hover:bg-[#542334] rounded-lg transition-colors shadow-sm"
             >
               <ArrowLeft className="w-3.5 h-3.5" />
               <span>Public Site</span>
