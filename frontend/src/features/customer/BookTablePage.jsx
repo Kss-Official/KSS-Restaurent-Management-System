@@ -32,11 +32,11 @@ export const BookTablePage = () => {
   // If user is not logged in or not a customer, redirect to login
   if (!isAuthenticated || !isCustomer) {
     return (
-      <div className="min-h-[70vh] bg-[#F2E5DB] flex items-center justify-center p-4">
-        <div className="max-w-md w-full bg-white p-8 rounded-3xl border border-[#D0ADA0] shadow-lg text-center space-y-4">
-          <Calendar className="w-12 h-12 text-[#754D45] mx-auto" />
-          <h2 className="font-serif text-2xl font-bold text-[#38231F]">Sign In to Reserve a Table</h2>
-          <p className="text-sm text-[#754D45]">
+      <div className="min-h-[70vh] bg-[#F4EDE8] flex items-center justify-center p-4">
+        <div className="max-w-md w-full bg-white p-8 rounded-3xl border border-[#E8DDD8] shadow-lg text-center space-y-4">
+          <Calendar className="w-12 h-12 text-[#75696B] mx-auto" />
+          <h2 className="font-serif text-2xl font-bold text-[#2D2528]">Sign In to Reserve a Table</h2>
+          <p className="text-sm text-[#75696B]">
             Table reservations are reserved for registered patrons. Please sign in or create an account to proceed.
           </p>
           <div className="pt-2 flex flex-col gap-2">
@@ -96,37 +96,37 @@ export const BookTablePage = () => {
   };
 
   return (
-    <div className="bg-[#F2E5DB] py-12 px-4 sm:px-6 lg:px-8 min-h-[85vh]">
+    <div className="bg-[#F4EDE8] py-12 px-4 sm:px-6 lg:px-8 min-h-[85vh]">
       <div className="max-w-4xl mx-auto space-y-8">
         
         {/* If Confirmation UI is active */}
         {confirmedBooking ? (
-          <div className="bg-white rounded-3xl p-8 sm:p-12 border border-[#D0ADA0] shadow-xl text-center space-y-8 animate-fadeIn">
-            <div className="w-20 h-20 rounded-full bg-[#754D45] text-white flex items-center justify-center mx-auto shadow-xl shadow-[#754D45]/30">
-              <CheckCircle2 className="w-10 h-10 text-[#F2E5DB]" />
+          <div className="bg-white rounded-3xl p-8 sm:p-12 border border-[#E8DDD8] shadow-xl text-center space-y-8 animate-fadeIn">
+            <div className="w-20 h-20 rounded-full bg-[#873C50] text-white flex items-center justify-center mx-auto shadow-xl shadow-[#873C50]/30">
+              <CheckCircle2 className="w-10 h-10 text-[#FFFFFF]" />
             </div>
 
             <div className="space-y-2">
-              <span className="px-3.5 py-1 rounded-full bg-[#F2E5DB] text-[#754D45] text-xs font-bold uppercase tracking-wider">
+              <span className="px-3.5 py-1 rounded-full bg-[#F4EDE8] text-[#75696B] text-xs font-bold uppercase tracking-wider">
                 Reservation Confirmed
               </span>
-              <h1 className="font-serif text-3xl sm:text-5xl font-bold text-[#38231F]">
+              <h1 className="font-serif text-3xl sm:text-5xl font-bold text-[#2D2528]">
                 We Look Forward to Hosting You
               </h1>
-              <p className="text-sm text-[#754D45] max-w-lg mx-auto">
+              <p className="text-sm text-[#75696B] max-w-lg mx-auto">
                 Your table has been reserved with Executive Service. A confirmation code has been generated for your party.
               </p>
             </div>
 
             {/* Confirmation Card with Mocha Palette */}
-            <div className="max-w-xl mx-auto bg-[#F2E5DB] rounded-2xl p-6 border border-[#D0ADA0]/60 text-left space-y-4">
-              <div className="flex items-center justify-between border-b border-[#D0ADA0]/40 pb-4">
+            <div className="max-w-xl mx-auto bg-[#F4EDE8] rounded-2xl p-6 border border-[#E8DDD8] text-left space-y-4">
+              <div className="flex items-center justify-between border-b border-[#E8DDD8] pb-4">
                 <div>
-                  <p className="text-[11px] font-bold uppercase tracking-wider text-[#754D45]">Booking Reference</p>
-                  <p className="font-mono text-2xl font-bold text-[#754D45]">{confirmedBooking.id}</p>
+                  <p className="text-[11px] font-bold uppercase tracking-wider text-[#75696B]">Booking Reference</p>
+                  <p className="font-mono text-2xl font-bold text-[#75696B]">{confirmedBooking.id}</p>
                 </div>
                 <div className="text-right">
-                  <p className="text-[11px] font-bold uppercase tracking-wider text-[#754D45]">Status</p>
+                  <p className="text-[11px] font-bold uppercase tracking-wider text-[#75696B]">Status</p>
                   <span className="px-3 py-1 rounded-full bg-[#21845A]/15 text-[#21845A] border border-[#21845A]/30 text-xs font-bold">
                     {confirmedBooking.status}
                   </span>
@@ -135,29 +135,29 @@ export const BookTablePage = () => {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs sm:text-sm">
                 <div>
-                  <p className="text-[#754D45] font-medium">Guest Name</p>
-                  <p className="font-bold text-[#38231F]">{confirmedBooking.customerName}</p>
+                  <p className="text-[#75696B] font-medium">Guest Name</p>
+                  <p className="font-bold text-[#2D2528]">{confirmedBooking.customerName}</p>
                 </div>
                 <div>
-                  <p className="text-[#754D45] font-medium">Party Size</p>
-                  <p className="font-bold text-[#38231F]">{confirmedBooking.guests}</p>
+                  <p className="text-[#75696B] font-medium">Party Size</p>
+                  <p className="font-bold text-[#2D2528]">{confirmedBooking.guests}</p>
                 </div>
                 <div>
-                  <p className="text-[#754D45] font-medium">Date & Time</p>
-                  <p className="font-bold text-[#38231F]">{formatDate(confirmedBooking.date)} at {confirmedBooking.time}</p>
+                  <p className="text-[#75696B] font-medium">Date & Time</p>
+                  <p className="font-bold text-[#2D2528]">{formatDate(confirmedBooking.date)} at {confirmedBooking.time}</p>
                 </div>
                 <div>
-                  <p className="text-[#754D45] font-medium">Contact Phone</p>
-                  <p className="font-bold text-[#38231F]">{confirmedBooking.contactNumber}</p>
+                  <p className="text-[#75696B] font-medium">Contact Phone</p>
+                  <p className="font-bold text-[#2D2528]">{confirmedBooking.contactNumber}</p>
                 </div>
                 <div className="sm:col-span-2">
-                  <p className="text-[#754D45] font-medium">Location</p>
-                  <p className="font-bold text-[#38231F]">{confirmedBooking.location}</p>
+                  <p className="text-[#75696B] font-medium">Location</p>
+                  <p className="font-bold text-[#2D2528]">{confirmedBooking.location}</p>
                 </div>
                 {confirmedBooking.specialRequests && (
                   <div className="sm:col-span-2">
-                    <p className="text-[#754D45] font-medium">Special Requests</p>
-                    <p className="text-[#38231F] italic">"{confirmedBooking.specialRequests}"</p>
+                    <p className="text-[#75696B] font-medium">Special Requests</p>
+                    <p className="text-[#2D2528] italic">"{confirmedBooking.specialRequests}"</p>
                   </div>
                 )}
               </div>
@@ -178,16 +178,16 @@ export const BookTablePage = () => {
           </div>
         ) : (
           /* Reservation Form */
-          <div className="bg-white rounded-3xl p-8 sm:p-12 border border-[#D0ADA0] shadow-xl space-y-8">
+          <div className="bg-white rounded-3xl p-8 sm:p-12 border border-[#E8DDD8] shadow-xl space-y-8">
             
-            <div className="border-b border-[#F2E5DB] pb-6 space-y-2">
-              <span className="text-xs font-bold uppercase tracking-[0.25em] text-[#754D45]">
+            <div className="border-b border-[#E8DDD8] pb-6 space-y-2">
+              <span className="text-xs font-bold uppercase tracking-[0.25em] text-[#75696B]">
                 Exclusive Dining
               </span>
-              <h1 className="font-serif text-3xl sm:text-4xl font-bold text-[#38231F]">
+              <h1 className="font-serif text-3xl sm:text-4xl font-bold text-[#2D2528]">
                 Reserve Your Table
               </h1>
-              <p className="text-sm text-[#754D45]">
+              <p className="text-sm text-[#75696B]">
                 Please complete the reservation parameters below to secure your seating.
               </p>
             </div>
@@ -196,14 +196,14 @@ export const BookTablePage = () => {
               
               {/* Location */}
               <div className="space-y-1.5">
-                <label className="text-xs font-semibold uppercase tracking-wider text-[#38231F] flex items-center gap-2">
-                  <MapPin className="w-4 h-4 text-[#754D45]" />
+                <label className="text-xs font-semibold uppercase tracking-wider text-[#2D2528] flex items-center gap-2">
+                  <MapPin className="w-4 h-4 text-[#75696B]" />
                   Restaurant Location <span className="text-red-600">*</span>
                 </label>
                 <select
                   value={formData.location}
                   onChange={(e) => setFormData({ ...formData, location: e.target.value })}
-                  className="w-full text-sm rounded-lg border border-[#D0ADA0] bg-white px-3.5 py-2.5 text-[#38231F] focus:outline-none focus:ring-2 focus:ring-[#754D45]"
+                  className="w-full text-sm rounded-lg border border-[#E8DDD8] bg-white px-3.5 py-2.5 text-[#2D2528] focus:outline-none focus:ring-2 focus:ring-[#B66A79]"
                   required
                 >
                   {RESTAURANT_LOCATIONS.map((loc, idx) => (
@@ -215,8 +215,8 @@ export const BookTablePage = () => {
               {/* Date & Time */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold uppercase tracking-wider text-[#38231F] flex items-center gap-2">
-                    <Calendar className="w-4 h-4 text-[#754D45]" />
+                  <label className="text-xs font-semibold uppercase tracking-wider text-[#2D2528] flex items-center gap-2">
+                    <Calendar className="w-4 h-4 text-[#75696B]" />
                     Reservation Date <span className="text-red-600">*</span>
                   </label>
                   <input
@@ -225,19 +225,19 @@ export const BookTablePage = () => {
                     value={formData.date}
                     onChange={(e) => setFormData({ ...formData, date: e.target.value })}
                     required
-                    className="w-full text-sm rounded-lg border border-[#D0ADA0] bg-white px-3.5 py-2.5 text-[#38231F] focus:outline-none focus:ring-2 focus:ring-[#754D45]"
+                    className="w-full text-sm rounded-lg border border-[#E8DDD8] bg-white px-3.5 py-2.5 text-[#2D2528] focus:outline-none focus:ring-2 focus:ring-[#B66A79]"
                   />
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold uppercase tracking-wider text-[#38231F] flex items-center gap-2">
-                    <Clock className="w-4 h-4 text-[#754D45]" />
+                  <label className="text-xs font-semibold uppercase tracking-wider text-[#2D2528] flex items-center gap-2">
+                    <Clock className="w-4 h-4 text-[#75696B]" />
                     Reservation Time Slot <span className="text-red-600">*</span>
                   </label>
                   <select
                     value={formData.time}
                     onChange={(e) => setFormData({ ...formData, time: e.target.value })}
-                    className="w-full text-sm rounded-lg border border-[#D0ADA0] bg-white px-3.5 py-2.5 text-[#38231F] focus:outline-none focus:ring-2 focus:ring-[#754D45]"
+                    className="w-full text-sm rounded-lg border border-[#E8DDD8] bg-white px-3.5 py-2.5 text-[#2D2528] focus:outline-none focus:ring-2 focus:ring-[#B66A79]"
                     required
                   >
                     {TIME_SLOTS.map((slot, idx) => (
@@ -249,8 +249,8 @@ export const BookTablePage = () => {
 
               {/* Guests Selection */}
               <div className="space-y-1.5">
-                <label className="text-xs font-semibold uppercase tracking-wider text-[#38231F] flex items-center gap-2">
-                  <Users className="w-4 h-4 text-[#754D45]" />
+                <label className="text-xs font-semibold uppercase tracking-wider text-[#2D2528] flex items-center gap-2">
+                  <Users className="w-4 h-4 text-[#75696B]" />
                   Number of Guests <span className="text-red-600">*</span>
                 </label>
                 <div className="grid grid-cols-3 gap-3">
@@ -261,8 +261,8 @@ export const BookTablePage = () => {
                       onClick={() => setFormData({ ...formData, guests: opt })}
                       className={`py-3 px-4 rounded-xl text-sm font-semibold border transition-all ${
                         formData.guests === opt
-                          ? 'bg-[#754D45] text-white border-[#754D45] shadow-md'
-                          : 'bg-[#F2E5DB] text-[#38231F] border-[#D0ADA0] hover:bg-[#F2E5DB]'
+                          ? 'bg-[#873C50] text-white border-[#873C50] shadow-md'
+                          : 'bg-[#F4EDE8] text-[#2D2528] border-[#E8DDD8] hover:bg-[#F4EDE8]'
                       }`}
                     >
                       {opt}
@@ -296,8 +296,8 @@ export const BookTablePage = () => {
 
               {/* Special Requests */}
               <div className="space-y-1.5">
-                <label className="text-xs font-semibold uppercase tracking-wider text-[#38231F] flex items-center gap-2">
-                  <FileText className="w-4 h-4 text-[#754D45]" />
+                <label className="text-xs font-semibold uppercase tracking-wider text-[#2D2528] flex items-center gap-2">
+                  <FileText className="w-4 h-4 text-[#75696B]" />
                   Special Requests (Optional)
                 </label>
                 <textarea
@@ -305,7 +305,7 @@ export const BookTablePage = () => {
                   placeholder="Dietary allergies, window booth preference, birthday/anniversary arrangements..."
                   value={formData.specialRequests}
                   onChange={(e) => setFormData({ ...formData, specialRequests: e.target.value })}
-                  className="w-full text-sm rounded-lg border border-[#D0ADA0] bg-white px-3.5 py-2.5 text-[#38231F] focus:outline-none focus:ring-2 focus:ring-[#754D45]"
+                  className="w-full text-sm rounded-lg border border-[#E8DDD8] bg-white px-3.5 py-2.5 text-[#2D2528] focus:outline-none focus:ring-2 focus:ring-[#B66A79]"
                 ></textarea>
               </div>
 
@@ -321,7 +321,7 @@ export const BookTablePage = () => {
                 >
                   Confirm Table Reservation
                 </Button>
-                <p className="text-center text-xs text-[#754D45] mt-3">
+                <p className="text-center text-xs text-[#75696B] mt-3">
                   Reservations can be modified or cancelled up to 2 hours prior to scheduled dining time without penalty.
                 </p>
               </div>

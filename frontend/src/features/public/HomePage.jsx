@@ -92,7 +92,7 @@ export const HomePage = () => {
       rating: 5
     },
     {
-      quote: "The atmosphere, staff poise, and table allocation were flawless. Aura Mocha is our celebratory destination of choice in Manhattan.",
+      quote: "The atmosphere, staff poise, and table allocation were flawless. Aura Dining is our celebratory destination of choice in Manhattan.",
       author: "Marcus Sterling",
       title: "Luxury Lifestyle Critic",
       rating: 5
@@ -115,7 +115,7 @@ export const HomePage = () => {
   ];
 
   return (
-    <div className="bg-[#F2E5DB] text-[#38231F] space-y-24">
+    <div className="bg-[#F4EDE8] text-[#2D2528] space-y-24">
       
       {/* 1. Large Hero Banner with HD Photography */}
       <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
@@ -123,23 +123,23 @@ export const HomePage = () => {
         <div className="absolute inset-0 z-0">
           <img
             src={RESTAURANT_IMAGES.hero}
-            alt="Aura Mocha Luxury Restaurant Dining"
+            alt="Aura Dining Luxury Restaurant Dining"
             className="w-full h-full object-cover object-center scale-105 animate-pulse duration-[10000ms]"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#38231F]/92 via-[#754D45]/80 to-[#38231F]/88"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-[#542334]/92 via-[#873C50]/80 to-[#542334]/88"></div>
           {/* Subtle Mocha accent tint */}
-          <div className="absolute inset-0 bg-[#754D45]/20 mix-blend-multiply"></div>
+          <div className="absolute inset-0 bg-[#873C50]/20 mix-blend-multiply"></div>
         </div>
 
         <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white py-24 space-y-8">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-[#A2766B]/40 text-[#FFFFFF] text-xs font-semibold tracking-widest uppercase shadow-md">
-            <Award className="w-4 h-4 text-[#A2766B]" />
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-[#E8DDD8] text-[#FFFFFF] text-xs font-semibold tracking-widest uppercase shadow-md">
+            <Award className="w-4 h-4 text-[#C8A66B]" />
             <span>Michelin Recommended 2026</span>
           </div>
 
           <h1 className="font-serif text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-[#FFFFFF] leading-tight drop-shadow-md">
             Culinary Artistry in <br />
-            <span className="italic font-normal text-[#A2766B]">Warm Mocha Elegance</span>
+            <span className="italic font-normal text-[#C8A66B]">Warm Mocha Elegance</span>
           </h1>
 
           <p className="max-w-2xl mx-auto text-base sm:text-xl text-[#FFFFFF] opacity-95 font-light leading-relaxed">
@@ -161,7 +161,7 @@ export const HomePage = () => {
               <Button
                 variant="outline"
                 size="lg"
-                className="w-full sm:w-auto border-[#F2E5DB] text-[#F2E5DB] hover:bg-[#F2E5DB] hover:text-[#38231F]"
+                className="w-full sm:w-auto border-[#E8DDD8] text-[#FFFFFF] hover:bg-[#F4EDE8] hover:text-[#2D2528]"
               >
                 Explore Haute Menu
               </Button>
@@ -169,22 +169,22 @@ export const HomePage = () => {
           </div>
 
           {/* Quick highlights */}
-          <div className="pt-12 grid grid-cols-2 md:grid-cols-4 gap-6 border-t border-[#A2766B]/30 max-w-4xl mx-auto text-center">
+          <div className="pt-12 grid grid-cols-2 md:grid-cols-4 gap-6 border-t border-[#E8DDD8] max-w-4xl mx-auto text-center">
             <div>
-              <p className="font-serif text-2xl font-bold text-[#A2766B]">28 Days</p>
-              <p className="text-xs uppercase tracking-wider text-[#F2E5DB]">In-House Dry Aging</p>
+              <p className="font-serif text-2xl font-bold text-[#C8A66B]">28 Days</p>
+              <p className="text-xs uppercase tracking-wider text-[#FFFFFF]">In-House Dry Aging</p>
             </div>
             <div>
-              <p className="font-serif text-2xl font-bold text-[#A2766B]">1,200+</p>
-              <p className="text-xs uppercase tracking-wider text-[#F2E5DB]">Cellar Vintages</p>
+              <p className="font-serif text-2xl font-bold text-[#C8A66B]">1,200+</p>
+              <p className="text-xs uppercase tracking-wider text-[#FFFFFF]">Cellar Vintages</p>
             </div>
             <div>
-              <p className="font-serif text-2xl font-bold text-[#A2766B]">4 Cities</p>
-              <p className="text-xs uppercase tracking-wider text-[#F2E5DB]">Exclusive Locations</p>
+              <p className="font-serif text-2xl font-bold text-[#C8A66B]">4 Cities</p>
+              <p className="text-xs uppercase tracking-wider text-[#FFFFFF]">Exclusive Locations</p>
             </div>
             <div>
-              <p className="font-serif text-2xl font-bold text-[#A2766B]">100%</p>
-              <p className="text-xs uppercase tracking-wider text-[#F2E5DB]">Single-Origin Mocha</p>
+              <p className="font-serif text-2xl font-bold text-[#C8A66B]">100%</p>
+              <p className="text-xs uppercase tracking-wider text-[#FFFFFF]">Single-Origin Mocha</p>
             </div>
           </div>
         </div>
@@ -193,14 +193,14 @@ export const HomePage = () => {
       {/* 2. Popular & Signature Dishes Section */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
-          <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#754D45]">
+          <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#75696B]">
             Gastronomic Excellence
           </p>
-          <h2 className="font-serif text-3xl sm:text-5xl font-bold text-[#38231F]">
+          <h2 className="font-serif text-3xl sm:text-5xl font-bold text-[#2D2528]">
             Our Signature Creations
           </h2>
-          <div className="w-16 h-1 bg-[#754D45] mx-auto rounded-full"></div>
-          <p className="text-sm sm:text-base text-[#754D45] leading-relaxed">
+          <div className="w-16 h-1 bg-[#873C50] mx-auto rounded-full"></div>
+          <p className="text-sm sm:text-base text-[#75696B] leading-relaxed">
             Every dish embodies our dedication to earthy depth, artisanal sourcing, and visually captivating presentation.
           </p>
         </div>
@@ -209,7 +209,7 @@ export const HomePage = () => {
           {signatureDishes.map((dish, index) => (
             <div
               key={index}
-              className="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 border border-[#A2766B]/30 flex flex-col justify-between"
+              className="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 border border-[#E8DDD8] flex flex-col justify-between"
             >
               <div className="relative h-60 overflow-hidden">
                 <img
@@ -217,29 +217,29 @@ export const HomePage = () => {
                   alt={dish.title}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 />
-                <span className="absolute top-3 left-3 bg-[#754D45] text-white text-[11px] font-semibold px-3 py-1 rounded-full uppercase tracking-wider shadow-sm">
+                <span className="absolute top-3 left-3 bg-[#873C50] text-white text-[11px] font-semibold px-3 py-1 rounded-full uppercase tracking-wider shadow-sm">
                   {dish.badge}
                 </span>
-                <span className="absolute bottom-3 right-3 bg-[#38231F]/90 text-[#FFFFFF] font-serif font-bold text-sm px-3 py-1 rounded-lg backdrop-blur-sm">
+                <span className="absolute bottom-3 right-3 bg-[#542334]/90 text-[#FFFFFF] font-serif font-bold text-sm px-3 py-1 rounded-lg backdrop-blur-sm">
                   {dish.price}
                 </span>
               </div>
 
               <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
                 <div>
-                  <h3 className="font-serif text-xl font-bold text-[#38231F] group-hover:text-[#754D45] transition-colors">
+                  <h3 className="font-serif text-xl font-bold text-[#2D2528] group-hover:text-[#75696B] transition-colors">
                     {dish.title}
                   </h3>
-                  <p className="text-xs sm:text-sm text-[#754D45] leading-relaxed mt-2">
+                  <p className="text-xs sm:text-sm text-[#75696B] leading-relaxed mt-2">
                     {dish.desc}
                   </p>
                 </div>
-                <div className="pt-2 border-t border-[#A2766B]/20 flex items-center justify-between text-xs text-[#754D45]">
+                <div className="pt-2 border-t border-[#E8DDD8] flex items-center justify-between text-xs text-[#75696B]">
                   <span className="flex items-center gap-1 font-medium">
-                    <Star className="w-3.5 h-3.5 fill-[#A2766B] text-[#A2766B]" />
+                    <Star className="w-3.5 h-3.5 fill-[#C8A66B] text-[#C8A66B]" />
                     4.9 / 5.0 Rating
                   </span>
-                  <Link to="/menu" className="font-semibold text-[#754D45] hover:underline flex items-center gap-0.5">
+                  <Link to="/menu" className="font-semibold text-[#75696B] hover:underline flex items-center gap-0.5">
                     Order <ChevronRight className="w-3.5 h-3.5" />
                   </Link>
                 </div>
@@ -258,7 +258,7 @@ export const HomePage = () => {
       </section>
 
       {/* 3. About Our Restaurant Section */}
-      <section className="bg-[#F2E5DB] py-20 border-y border-[#A2766B]/30">
+      <section className="bg-[#F4EDE8] py-20 border-y border-[#E8DDD8]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             
@@ -267,7 +267,7 @@ export const HomePage = () => {
               <div className="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-white">
                 <img
                   src={RESTAURANT_IMAGES.about}
-                  alt="Aura Mocha Fine Dining Atmosphere"
+                  alt="Aura Dining Fine Dining Atmosphere"
                   className="w-full h-[450px] object-cover"
                 />
               </div>
@@ -278,44 +278,44 @@ export const HomePage = () => {
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="absolute top-6 left-6 bg-gradient-to-br from-[#38231F] via-[#55352F] to-[#38231F] text-[#FFFFFF] p-5 rounded-2xl shadow-2xl max-w-[190px] border border-[#D0ADA0]">
-                <p className="font-serif text-3xl font-bold text-[#A2766B]">18+</p>
+              <div className="absolute top-6 left-6 bg-gradient-to-br from-[#542334] via-[#873C50] to-[#542334] text-[#FFFFFF] p-5 rounded-2xl shadow-2xl max-w-[190px] border border-[#E8DDD8]">
+                <p className="font-serif text-3xl font-bold text-[#C8A66B]">18+</p>
                 <p className="text-[11px] font-medium tracking-wider uppercase text-[#FFFFFF] mt-0.5">Years of Culinary Heritage</p>
               </div>
             </div>
 
             {/* Content Details */}
             <div className="space-y-6 lg:pl-6">
-              <span className="text-xs font-bold uppercase tracking-[0.25em] text-[#754D45]">
+              <span className="text-xs font-bold uppercase tracking-[0.25em] text-[#75696B]">
                 Our Philosophy
               </span>
-              <h2 className="font-serif text-3xl sm:text-5xl font-bold text-[#38231F] leading-tight">
+              <h2 className="font-serif text-3xl sm:text-5xl font-bold text-[#2D2528] leading-tight">
                 Crafted with Passion, Served with Warmth
               </h2>
-              <p className="text-base text-[#754D45] leading-relaxed">
-                Founded in the heart of Manhattan, Aura Mocha was conceived with a vision to redefine modern fine dining through rich, earth-inspired elements: aged cuts of meat, organic produce, and deeply satisfying mocha roast notes.
+              <p className="text-base text-[#75696B] leading-relaxed">
+                Founded in the heart of Manhattan, Aura Dining was conceived with a vision to redefine modern fine dining through rich, earth-inspired elements: aged cuts of meat, organic produce, and deeply satisfying mocha roast notes.
               </p>
-              <p className="text-sm text-[#754D45] leading-relaxed">
+              <p className="text-sm text-[#75696B] leading-relaxed">
                 Our kitchen is led by award-winning chefs who balance classic French culinary techniques with avant-garde flavor pairings. Whether you join us for an intimate celebration or a private corporate dinner, our attentive staff ensures every moment is memorable.
               </p>
 
-              <div className="grid grid-cols-2 gap-4 pt-4 border-t border-[#A2766B]/30">
+              <div className="grid grid-cols-2 gap-4 pt-4 border-t border-[#E8DDD8]">
                 <div className="flex items-start gap-3">
-                  <div className="w-8 h-8 rounded-lg bg-[#754D45] text-white flex items-center justify-center shrink-0">
+                  <div className="w-8 h-8 rounded-lg bg-[#873C50] text-white flex items-center justify-center shrink-0">
                     <ShieldCheck className="w-4 h-4" />
                   </div>
                   <div>
-                    <h4 className="text-sm font-bold text-[#38231F]">Sustainable Sourcing</h4>
-                    <p className="text-xs text-[#754D45]">Farm-to-table organic meats and vegetables.</p>
+                    <h4 className="text-sm font-bold text-[#2D2528]">Sustainable Sourcing</h4>
+                    <p className="text-xs text-[#75696B]">Farm-to-table organic meats and vegetables.</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
-                  <div className="w-8 h-8 rounded-lg bg-[#754D45] text-white flex items-center justify-center shrink-0">
+                  <div className="w-8 h-8 rounded-lg bg-[#873C50] text-white flex items-center justify-center shrink-0">
                     <Star className="w-4 h-4" />
                   </div>
                   <div>
-                    <h4 className="text-sm font-bold text-[#38231F]">Michelin Standards</h4>
-                    <p className="text-xs text-[#754D45]">Impeccable service and culinary artistry.</p>
+                    <h4 className="text-sm font-bold text-[#2D2528]">Michelin Standards</h4>
+                    <p className="text-xs text-[#75696B]">Impeccable service and culinary artistry.</p>
                   </div>
                 </div>
               </div>
@@ -336,13 +336,13 @@ export const HomePage = () => {
       {/* 4. Our Services Section */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
-          <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#754D45]">
+          <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#75696B]">
             Bespoke Hospitality
           </p>
-          <h2 className="font-serif text-3xl sm:text-5xl font-bold text-[#38231F]">
+          <h2 className="font-serif text-3xl sm:text-5xl font-bold text-[#2D2528]">
             Curated Culinary Services
           </h2>
-          <div className="w-16 h-1 bg-[#754D45] mx-auto rounded-full"></div>
+          <div className="w-16 h-1 bg-[#873C50] mx-auto rounded-full"></div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -351,15 +351,15 @@ export const HomePage = () => {
             return (
               <div
                 key={index}
-                className="bg-white p-8 rounded-2xl border border-[#A2766B]/30 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group"
+                className="bg-white p-8 rounded-2xl border border-[#E8DDD8] shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group"
               >
-                <div className="w-14 h-14 rounded-2xl bg-[#754D45] text-white flex items-center justify-center mb-6 group-hover:bg-[#38231F] transition-colors shadow-md shadow-[#754D45]/20">
+                <div className="w-14 h-14 rounded-2xl bg-[#873C50] text-white flex items-center justify-center mb-6 group-hover:bg-[#542334] transition-colors shadow-md shadow-[#873C50]/20">
                   <Icon className="w-7 h-7 text-[#FFFFFF]" />
                 </div>
-                <h3 className="font-serif text-xl font-bold text-[#38231F] mb-3 group-hover:text-[#754D45] transition-colors">
+                <h3 className="font-serif text-xl font-bold text-[#2D2528] mb-3 group-hover:text-[#75696B] transition-colors">
                   {service.title}
                 </h3>
-                <p className="text-sm text-[#754D45] leading-relaxed">
+                <p className="text-sm text-[#75696B] leading-relaxed">
                   {service.desc}
                 </p>
               </div>
@@ -370,7 +370,7 @@ export const HomePage = () => {
 
       {/* 5. Special Call to Action: Book a Table Banner */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="relative rounded-3xl overflow-hidden shadow-2xl bg-gradient-to-r from-[#38231F] via-[#55352F] to-[#38231F] border-2 border-[#D0ADA0] text-[#FFFFFF] p-8 sm:p-16">
+        <div className="relative rounded-3xl overflow-hidden shadow-2xl bg-gradient-to-r from-[#542334] via-[#873C50] to-[#542334] border-2 border-[#E8DDD8] text-[#FFFFFF] p-8 sm:p-16">
           <div className="absolute inset-0 z-0 opacity-25">
             <img
               src={RESTAURANT_IMAGES.privateDining}
@@ -379,14 +379,14 @@ export const HomePage = () => {
             />
           </div>
           <div className="relative z-10 max-w-2xl space-y-6">
-            <span className="px-3 py-1 rounded-full bg-[#A2766B] text-[#38231F] text-xs font-bold uppercase tracking-wider shadow-sm">
+            <span className="px-3 py-1 rounded-full bg-[#C8A66B] text-[#2D2528] text-xs font-bold uppercase tracking-wider shadow-sm">
               Reserve Your Experience
             </span>
             <h2 className="font-serif text-3xl sm:text-5xl font-bold tracking-tight text-[#FFFFFF] leading-tight">
               An Evening of Tasteful Distinction Awaits You
             </h2>
             <p className="text-sm sm:text-base text-[#FFFFFF] opacity-95 leading-relaxed">
-              Tables at Aura Mocha are in high demand during dinner services. Reserve your table in advance to guarantee an intimate dining experience with our dedicated sommelier.
+              Tables at Aura Dining are in high demand during dinner services. Reserve your table in advance to guarantee an intimate dining experience with our dedicated sommelier.
             </p>
             <div className="pt-2 flex flex-col sm:flex-row gap-4">
               <Button
@@ -401,7 +401,7 @@ export const HomePage = () => {
                 <Button
                   variant="outline"
                   size="lg"
-                  className="border-[#FFFFFF] text-[#FFFFFF] hover:bg-white hover:text-[#38231F]"
+                  className="border-[#FFFFFF] text-[#FFFFFF] hover:bg-white hover:text-[#2D2528]"
                 >
                   Contact Concierge
                 </Button>
@@ -412,37 +412,37 @@ export const HomePage = () => {
       </section>
 
       {/* 6. Customer Testimonials */}
-      <section className="bg-[#F2E5DB] py-20 border-y border-[#A2766B]/30">
+      <section className="bg-[#F4EDE8] py-20 border-y border-[#E8DDD8]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
-            <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#754D45]">
+            <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#75696B]">
               Guest Experiences
             </p>
-            <h2 className="font-serif text-3xl sm:text-5xl font-bold text-[#38231F]">
+            <h2 className="font-serif text-3xl sm:text-5xl font-bold text-[#2D2528]">
               What Our Patrons Say
             </h2>
-            <div className="w-16 h-1 bg-[#754D45] mx-auto rounded-full"></div>
+            <div className="w-16 h-1 bg-[#873C50] mx-auto rounded-full"></div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {testimonials.map((test, index) => (
               <div
                 key={index}
-                className="bg-white p-8 rounded-2xl border border-[#A2766B]/30 shadow-md flex flex-col justify-between"
+                className="bg-white p-8 rounded-2xl border border-[#E8DDD8] shadow-md flex flex-col justify-between"
               >
                 <div className="space-y-4">
-                  <div className="flex items-center gap-1 text-[#A2766B]">
+                  <div className="flex items-center gap-1 text-[#C8A66B]">
                     {[...Array(test.rating)].map((_, i) => (
                       <Star key={i} className="w-4 h-4 fill-current" />
                     ))}
                   </div>
-                  <p className="font-serif text-base italic text-[#38231F] leading-relaxed">
+                  <p className="font-serif text-base italic text-[#2D2528] leading-relaxed">
                     "{test.quote}"
                   </p>
                 </div>
-                <div className="mt-6 pt-4 border-t border-[#A2766B]/20">
-                  <p className="font-serif font-bold text-sm text-[#38231F]">{test.author}</p>
-                  <p className="text-xs text-[#754D45] font-medium">{test.title}</p>
+                <div className="mt-6 pt-4 border-t border-[#E8DDD8]">
+                  <p className="font-serif font-bold text-sm text-[#2D2528]">{test.author}</p>
+                  <p className="text-xs text-[#75696B] font-medium">{test.title}</p>
                 </div>
               </div>
             ))}
@@ -453,13 +453,13 @@ export const HomePage = () => {
       {/* 7. Restaurant Gallery */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto space-y-4 mb-14">
-          <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#754D45]">
+          <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#75696B]">
             Visual Journey
           </p>
-          <h2 className="font-serif text-3xl sm:text-5xl font-bold text-[#38231F]">
-            Moments at Aura Mocha
+          <h2 className="font-serif text-3xl sm:text-5xl font-bold text-[#2D2528]">
+            Moments at Aura Dining
           </h2>
-          <div className="w-16 h-1 bg-[#754D45] mx-auto rounded-full"></div>
+          <div className="w-16 h-1 bg-[#873C50] mx-auto rounded-full"></div>
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
@@ -473,7 +473,7 @@ export const HomePage = () => {
                 alt={img.alt}
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#38231F]/90 via-[#55352F]/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+              <div className="absolute inset-0 bg-gradient-to-t from-[#542334]/90 via-[#873C50]/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
                 <p className="font-serif text-[#FFFFFF] font-medium text-sm drop-shadow">{img.alt}</p>
               </div>
             </div>

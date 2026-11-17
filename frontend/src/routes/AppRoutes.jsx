@@ -42,7 +42,7 @@ import UserDetailPage from '../features/users/UserDetailPage';
 // Layout for Public & Customer Pages (with Header and Footer)
 const PublicLayout = () => {
   return (
-    <div className="min-h-screen flex flex-col bg-[#F2E5DB]">
+    <div className="min-h-screen flex flex-col bg-[#F4EDE8]">
       <Navbar />
       <main className="flex-1">
         <Outlet />
