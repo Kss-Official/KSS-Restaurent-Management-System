@@ -69,9 +69,11 @@ export default {
         }
       },
       fontFamily: {
-        sans: ['"Manrope"', '"Plus Jakarta Sans"', 'Inter', 'sans-serif'],
+        sans: ['"Hanken Grotesk"', 'sans-serif'],
+        hanken: ['"Hanken Grotesk"', 'sans-serif'],
         serif: ['"Playfair Display"', 'Georgia', 'serif'],
-        manrope: ['"Manrope"', 'sans-serif']
+        manrope: ['"Hanken Grotesk"', 'sans-serif'],
+        poppins: ['"Hanken Grotesk"', 'sans-serif']
       }
     },
   },

@@ -190,7 +190,220 @@ export const INITIAL_MENU_ITEMS = [
     customizations: [
       { name: "Service", options: ["By the Bottle", "Decanted Table-side"] }
     ],
-    tags: ["Cellar Pick"]
+    tags: ["Cellar Pick", "Beverages"]
+  },
+  {
+    id: 9,
+    name: "Hokkaido Truffle Salmon Aburi Roll",
+    category: "Japanese",
+    price: 28.00,
+    description: "Torched Atlantic salmon, truffle aioli, ikura pearls, cucumber, sweet soy glaze.",
+    image: "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=800&q=80",
+    signature: true,
+    available: true,
+    prepTime: "12-15 mins",
+    calories: "420 kcal",
+    allergens: ["Fish", "Soy", "Gluten"],
+    ingredients: "Fresh salmon, Japanese sushi rice, nori, black truffle aioli, ikura, unagi tare.",
+    customizations: [
+      { name: "Spice Level", options: ["Mild", "Spicy Aioli"] }
+    ],
+    tags: ["Japanese", "Signature", "Popular"]
+  },
+  {
+    id: 10,
+    name: "Miso Glazed Chilean Sea Bass",
+    category: "Japanese",
+    price: 42.00,
+    description: "Caramelized Saikyo white miso glaze, pickled ginger blossom, hajikami, baby bok choy.",
+    image: "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=800&q=80",
+    signature: true,
+    available: true,
+    prepTime: "18-20 mins",
+    calories: "530 kcal",
+    allergens: ["Fish", "Soy"],
+    ingredients: "Chilean sea bass, Kyoto Saikyo miso, mirin, sake, baby bok choy.",
+    customizations: [],
+    tags: ["Japanese", "Signature", "Gluten-Free"]
+  },
+  {
+    id: 11,
+    name: "Artisan Truffle Xiao Long Bao",
+    category: "Chinese",
+    price: 24.00,
+    description: "Handmade soup dumplings infused with black summer truffle, heritage pork, and rich aromatic broth.",
+    image: "https://images.unsplash.com/photo-1541696432-82c6da8ce7bf?auto=format&fit=crop&w=800&q=80",
+    signature: true,
+    available: true,
+    prepTime: "15 mins",
+    calories: "390 kcal",
+    allergens: ["Gluten", "Soy", "Pork"],
+    ingredients: "Heritage pork, black truffle broth, hand-rolled wheat wrappers, Zhenjiang black vinegar.",
+    customizations: [
+      { name: "Portion", options: ["6 Pieces", "8 Pieces (+$6)"] }
+    ],
+    tags: ["Chinese", "Signature", "Popular"]
+  },
+  {
+    id: 12,
+    name: "Crispy Szechuan Chili Duck Bao",
+    category: "Chinese",
+    price: 32.00,
+    description: "Slow-roasted Peking duck breast with Szechuan chili crunch, scallions, and steamed lotus buns.",
+    image: "https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=800&q=80",
+    signature: false,
+    available: true,
+    prepTime: "15-18 mins",
+    calories: "580 kcal",
+    allergens: ["Gluten", "Soy", "Sesame"],
+    ingredients: "Roasted duck, Szechuan peppercorn oil, steamed lotus leaf bao, hoisin glaze, cucumber.",
+    customizations: [],
+    tags: ["Chinese", "Spicy"]
+  },
+  {
+    id: 13,
+    name: "Classic Margherita Pizza al Legna",
+    category: "Italian",
+    price: 24.00,
+    description: "San Marzano D.O.P. tomato sauce, fior di latte mozzarella, fresh sweet basil, cold-pressed olive oil.",
+    image: "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=800&q=80",
+    signature: false,
+    available: true,
+    prepTime: "12 mins",
+    calories: "680 kcal",
+    allergens: ["Gluten", "Dairy"],
+    ingredients: "Caputo 00 flour, San Marzano tomatoes, fresh mozzarella, Genovese basil, EVOO.",
+    customizations: [
+      { name: "Crust", options: ["Neapolitan Thin", "Crispy Edge"] },
+      { name: "Cheese", options: ["Fior di Latte", "Buffalo Mozzarella (+$4)"] }
+    ],
+    tags: ["Italian", "Vegetarian", "Popular"]
+  },
+  {
+    id: 14,
+    name: "Saffron Risotto ai Funghi Porcini",
+    category: "Italian",
+    price: 30.00,
+    description: "Carnaroli rice slow-simmered with Persian saffron, wild porcini mushrooms, and 24-month Parmigiano.",
+    image: "https://images.unsplash.com/photo-1633964913295-ceb43826e7c9?auto=format&fit=crop&w=800&q=80",
+    signature: true,
+    available: true,
+    prepTime: "20 mins",
+    calories: "550 kcal",
+    allergens: ["Dairy"],
+    ingredients: "Carnaroli risotto, Iranian saffron threads, wild porcini, Parmigiano-Reggiano, white wine.",
+    customizations: [],
+    tags: ["Italian", "Vegetarian", "Signature"]
+  },
+  {
+    id: 15,
+    name: "Lunar Double Wagyu Smash Burger",
+    category: "American",
+    price: 28.00,
+    description: "Two American Wagyu patties, aged cheddar, caramelized shallot bacon jam, truffle aioli on toasted brioche.",
+    image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80",
+    signature: true,
+    available: true,
+    prepTime: "15 mins",
+    calories: "890 kcal",
+    allergens: ["Gluten", "Dairy", "Eggs"],
+    ingredients: "Double Snake River Farms Wagyu beef, sharp Vermont cheddar, brioche, house bacon jam.",
+    customizations: [
+      { name: "Bun", options: ["Toasted Brioche", "Lettuce Wrap (Keto)"] },
+      { name: "Fries", options: ["Rosemary Sea Salt Fries", "Truffle Parmesan Fries (+$4)"] }
+    ],
+    tags: ["American", "Signature", "Popular"]
+  },
+  {
+    id: 16,
+    name: "Chef's Royal 3-Course Tasting Flight",
+    category: "Combo",
+    price: 78.00,
+    description: "Curated 3-course journey: Burrata starter, Truffle Pappardelle main, and Warm Mocha Fondant paired with Reserve Wine.",
+    image: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80",
+    signature: true,
+    available: true,
+    isCombo: true,
+    prepTime: "Courses served in sequence",
+    calories: "1,250 kcal",
+    allergens: ["Dairy", "Gluten", "Eggs"],
+    ingredients: "Complete starter, main course, dessert, and paired glass of wine.",
+    customizations: [
+      { name: "Main Course", options: ["Truffle Pappardelle", "Dry-Aged Ribeye (+$12)"] },
+      { name: "Dessert", options: ["Warm Mocha Fondant", "Velvet Crème Brûlée"] }
+    ],
+    tags: ["Combo", "Signature", "Best Value"]
+  },
+  {
+    id: 17,
+    name: "Lunar Couple's Twilight Feast",
+    category: "Combo",
+    price: 110.00,
+    description: "Designed for two: Choice of two artisanal appetizers, two signature entrees, a shared dessert, and bottle of wine.",
+    image: "https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?auto=format&fit=crop&w=800&q=80",
+    signature: false,
+    available: true,
+    isCombo: true,
+    prepTime: "Sequence service",
+    calories: "1,800 kcal (for 2)",
+    allergens: ["Dairy", "Gluten"],
+    ingredients: "Two appetizers, two mains, one dessert, and full bottle of Reserve Cabernet.",
+    customizations: [],
+    tags: ["Combo", "Romantic", "Popular"]
+  },
+  {
+    id: 18,
+    name: "[Weekend Special] Truffle Wagyu Feast (20% OFF)",
+    category: "Promo",
+    price: 54.00,
+    description: "Limited weekend promo: Prime Wagyu steak with shaved black truffle butter, truffle fries, and artisanal beverage.",
+    image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80",
+    signature: true,
+    available: true,
+    isPromo: true,
+    discount: "20% OFF",
+    prepTime: "20 mins",
+    calories: "820 kcal",
+    allergens: ["Dairy"],
+    ingredients: "Prime American Wagyu, Perigord truffle butter, hand-cut russet fries, house beverage.",
+    customizations: [],
+    tags: ["Promo", "Limited Time", "Special Offer"]
+  },
+  {
+    id: 19,
+    name: "[Happy Hour Promo] Aperitivo Flight & Bites",
+    category: "Promo",
+    price: 22.00,
+    description: "Daily 4 PM - 7 PM: Two craft cocktails or reserve wines with a selection of chef's crostini and marinated olives.",
+    image: "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=800&q=80",
+    signature: false,
+    available: true,
+    isPromo: true,
+    discount: "Happy Hour",
+    prepTime: "8 mins",
+    calories: "320 kcal",
+    allergens: ["Gluten"],
+    ingredients: "Two drinks, assorted crostini with burrata and fig, Castelvetrano olives.",
+    customizations: [],
+    tags: ["Promo", "Happy Hour"]
+  },
+  {
+    id: 20,
+    name: "Signature Lunar Yuzu Espresso Tonic",
+    category: "Beverages",
+    price: 12.00,
+    description: "Fresh Japanese yuzu citrus juice, cold-brew single-origin Ethiopian espresso, premium elderflower tonic water.",
+    image: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=800&q=80",
+    signature: true,
+    available: true,
+    prepTime: "5 mins",
+    calories: "85 kcal",
+    allergens: ["None"],
+    ingredients: "Single-origin espresso, Kochi yuzu juice, fever tree elderflower tonic, rosemary sprig.",
+    customizations: [
+      { name: "Sweetness", options: ["Standard", "Less Sweet", "No Syrup"] }
+    ],
+    tags: ["Beverages", "Signature", "Mocktail"]
   }
 ];
 

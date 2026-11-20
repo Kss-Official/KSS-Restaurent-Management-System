@@ -1,62 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,300..900;1,300..900&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  /* Burgundy & Champagne Design System */
-  --color-primary-burgundy: #542334;
-  --color-secondary-burgundy: #873C50;
-  --color-muted-rose: #B66A79;
-  --color-champagne-bg: #F4EDE8;
-  --color-champagne-gold: #C8A66B;
-  --color-white: #FFFFFF;
+  /* Exact User 6-Color Palette: #38231F, #55352F, #754D45, #A2766B, #D0ADA0, #F2E5DB */
+  --color-primary-darkest: #38231F;
+  --color-primary-dark: #55352F;
+  --color-secondary-medium: #754D45;
+  --color-accent-rose: #A2766B;
+  --color-border-muted: #D0ADA0;
+  --color-bg-light: #F2E5DB;
+  --color-white-surface: #FFFFFF;
+
+  --color-primary-burgundy: #38231F;
+  --color-secondary-burgundy: #55352F;
+  --color-muted-rose: #A2766B;
+  --color-champagne-bg: #F2E5DB;
+  --color-champagne-gold: #A2766B;
 
   /* Extended Neutral Colors */
-  --color-text-primary: #2D2528;
-  --color-text-secondary: #75696B;
-  --color-text-muted: #9A8D8F;
-  --color-border: #E8DDD8;
-  --color-subtle-surface: #FAF7F5;
+  --color-text-primary: #38231F;
+  --color-text-secondary: #55352F;
+  --color-text-muted: #754D45;
+  --color-border: #D0ADA0;
+  --color-subtle-surface: #F2E5DB;
 
   /* Semantic Status Colors */
   --color-success: #21845A;
-  --color-success-bg: #E8F4ED;
   --color-warning: #B7791F;
-  --color-warning-bg: #FFF4DF;
   --color-error: #C44747;
-  --color-error-bg: #FCECEC;
   --color-info: #3976B8;
-  --color-info-bg: #EAF2FA;
+}
+
+html {
+  overflow-x: clip;
+  scrollbar-gutter: stable;
 }
 
 body {
   margin: 0;
   padding: 0;
-  background-color: #F4EDE8;
-  color: #2D2528;
-  font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  width: 100%;
+  overflow-x: clip;
+  background-color: #F2E5DB;
+  color: #38231F;
+  font-family: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
-h1, h2, h3, h4, .font-serif {
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Hide scrollbars globally for cleaner horizontal sliders */
+.no-scrollbar::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+.no-scrollbar {
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.font-serif {
   font-family: 'Playfair Display', Georgia, serif;
 }
 
-/* Custom Scrollbars in Burgundy & Champagne */
+/* Custom Scrollbars in #38231F, #754D45, #A2766B */
 ::-webkit-scrollbar {
   width: 7px;
   height: 7px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #F4EDE8;
+  background: #F2E5DB;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #B66A79;
+  background: #A2766B;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #873C50;
+  background: #754D45;
 }
