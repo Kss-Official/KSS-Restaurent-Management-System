@@ -145,8 +145,8 @@ export const WaiterPortal = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#F2E5DB] flex">
-      {/* Sidebar with exact Mocha Brown #754D45 */}
+    <div className="min-h-screen bg-[#F4EDE8] flex">
+      {/* Sidebar with exact Mocha Brown #873C50 */}
       <Sidebar
         title="Waiter Portal"
         subtitle="Floor Service & Orders"
@@ -168,17 +168,17 @@ export const WaiterPortal = () => {
       <div className="flex-1 lg:pl-72 flex flex-col min-h-screen">
         
         {/* Top Navbar */}
-        <header className="h-20 bg-white border-b border-[#D0ADA0]/40 px-6 flex items-center justify-between sticky top-0 z-30 shadow-sm">
+        <header className="h-20 bg-white border-b border-[#E8DDD8] px-6 flex items-center justify-between sticky top-0 z-30 shadow-sm">
           <div className="flex items-center gap-4">
             <button
               onClick={() => setSidebarOpen(true)}
-              className="lg:hidden p-2 rounded-lg text-[#38231F] hover:bg-[#F2E5DB]"
+              className="lg:hidden p-2 rounded-lg text-[#2D2528] hover:bg-[#F4EDE8]"
             >
               <Menu className="w-6 h-6" />
             </button>
             <div>
               <div className="flex items-center gap-2">
-                <h2 className="font-serif text-xl font-bold text-[#38231F]">
+                <h2 className="font-serif text-xl font-bold text-[#2D2528]">
                   Floor Service & Waiter Terminal
                 </h2>
                 <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#21845A]/15 text-[#21845A] border border-[#21845A]/30">
@@ -186,8 +186,8 @@ export const WaiterPortal = () => {
                   Active on Floor
                 </span>
               </div>
-              <p className="text-xs text-[#754D45]">
-                Staff: <span className="font-semibold text-[#38231F]">{waiterProfile.name}</span> | Assigned: Floor A (Tables 1 - 8)
+              <p className="text-xs text-[#75696B]">
+                Staff: <span className="font-semibold text-[#2D2528]">{waiterProfile.name}</span> | Assigned: Floor A (Tables 1 - 8)
               </p>
             </div>
           </div>
@@ -203,11 +203,11 @@ export const WaiterPortal = () => {
             </Button>
             <button 
               onClick={() => setActiveTab('notifications')}
-              className="relative p-2.5 rounded-xl border border-[#D0ADA0]/60 bg-[#F2E5DB] text-[#754D45] hover:bg-[#F2E5DB] transition-colors"
+              className="relative p-2.5 rounded-xl border border-[#E8DDD8] bg-[#F4EDE8] text-[#75696B] hover:bg-[#F4EDE8] transition-colors"
             >
               <Bell className="w-5 h-5" />
               {readyOrders.length > 0 && (
-                <span className="absolute -top-1 -right-1 w-5 h-5 bg-[#A2766B] text-white rounded-full text-[10px] font-bold flex items-center justify-center animate-bounce">
+                <span className="absolute -top-1 -right-1 w-5 h-5 bg-[#C8A66B] text-white rounded-full text-[10px] font-bold flex items-center justify-center animate-bounce">
                   {readyOrders.length}
                 </span>
               )}
@@ -220,10 +220,10 @@ export const WaiterPortal = () => {
           
           {/* Urgent Food Ready Alert Banner */}
           {readyOrders.length > 0 && (
-            <div className="p-4 rounded-2xl bg-gradient-to-r from-[#38231F] via-[#55352F] to-[#38231F] text-[#FFFFFF] shadow-xl flex flex-wrap items-center justify-between gap-4 border-2 border-[#D0ADA0]">
+            <div className="p-4 rounded-2xl bg-gradient-to-r from-[#542334] via-[#873C50] to-[#542334] text-[#FFFFFF] shadow-xl flex flex-wrap items-center justify-between gap-4 border-2 border-[#E8DDD8]">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-white/15 flex items-center justify-center animate-pulse border border-[#A2766B]/50">
-                  <Bell className="w-6 h-6 text-[#A2766B]" />
+                <div className="w-10 h-10 rounded-full bg-white/15 flex items-center justify-center animate-pulse border border-[#E8DDD8]">
+                  <Bell className="w-6 h-6 text-[#C8A66B]" />
                 </div>
                 <div>
                   <p className="font-bold text-sm tracking-wide text-[#FFFFFF]">
@@ -254,42 +254,42 @@ export const WaiterPortal = () => {
             <div className="space-y-8">
               {/* Metric Cards */}
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div className="bg-white p-5 rounded-2xl border border-[#D0ADA0]/50 shadow-sm hover:border-[#754D45] transition-all">
-                  <div className="flex justify-between items-center text-[#754D45]">
+                <div className="bg-white p-5 rounded-2xl border border-[#E8DDD8] shadow-sm hover:border-[#873C50] transition-all">
+                  <div className="flex justify-between items-center text-[#75696B]">
                     <span className="text-xs font-bold uppercase tracking-wider">Assigned Tables</span>
-                    <Layers className="w-5 h-5 text-[#754D45]" />
+                    <Layers className="w-5 h-5 text-[#75696B]" />
                   </div>
-                  <p className="font-serif text-3xl font-bold text-[#38231F] mt-2">{myTables.length}</p>
-                  <p className="text-xs text-[#754D45] mt-1">
+                  <p className="font-serif text-3xl font-bold text-[#2D2528] mt-2">{myTables.length}</p>
+                  <p className="text-xs text-[#75696B] mt-1">
                     {myTables.filter(t => t.status === 'Occupied').length} Currently Occupied
                   </p>
                 </div>
 
-                <div className="bg-white p-5 rounded-2xl border border-[#D0ADA0]/50 shadow-sm hover:border-[#754D45] transition-all">
-                  <div className="flex justify-between items-center text-[#754D45]">
+                <div className="bg-white p-5 rounded-2xl border border-[#E8DDD8] shadow-sm hover:border-[#873C50] transition-all">
+                  <div className="flex justify-between items-center text-[#75696B]">
                     <span className="text-xs font-bold uppercase tracking-wider">Active Orders</span>
-                    <UtensilsCrossed className="w-5 h-5 text-[#754D45]" />
+                    <UtensilsCrossed className="w-5 h-5 text-[#75696B]" />
                   </div>
-                  <p className="font-serif text-3xl font-bold text-[#38231F] mt-2">{activeOrders.length}</p>
-                  <p className="text-xs text-[#754D45] mt-1">In kitchen production</p>
+                  <p className="font-serif text-3xl font-bold text-[#2D2528] mt-2">{activeOrders.length}</p>
+                  <p className="text-xs text-[#75696B] mt-1">In kitchen production</p>
                 </div>
 
-                <div className="bg-white p-5 rounded-2xl border border-[#D0ADA0]/50 shadow-sm hover:border-[#754D45] transition-all">
-                  <div className="flex justify-between items-center text-[#754D45]">
+                <div className="bg-white p-5 rounded-2xl border border-[#E8DDD8] shadow-sm hover:border-[#873C50] transition-all">
+                  <div className="flex justify-between items-center text-[#75696B]">
                     <span className="text-xs font-bold uppercase tracking-wider">Ready to Serve</span>
-                    <Bell className="w-5 h-5 text-[#A2766B]" />
+                    <Bell className="w-5 h-5 text-[#C8A66B]" />
                   </div>
-                  <p className="font-serif text-3xl font-bold text-[#A2766B] mt-2">{readyOrders.length}</p>
-                  <p className="text-xs text-[#754D45] mt-1">Awaiting floor delivery</p>
+                  <p className="font-serif text-3xl font-bold text-[#C8A66B] mt-2">{readyOrders.length}</p>
+                  <p className="text-xs text-[#75696B] mt-1">Awaiting floor delivery</p>
                 </div>
 
-                <div className="bg-white p-5 rounded-2xl border border-[#D0ADA0]/50 shadow-sm hover:border-[#754D45] transition-all">
-                  <div className="flex justify-between items-center text-[#754D45]">
+                <div className="bg-white p-5 rounded-2xl border border-[#E8DDD8] shadow-sm hover:border-[#873C50] transition-all">
+                  <div className="flex justify-between items-center text-[#75696B]">
                     <span className="text-xs font-bold uppercase tracking-wider">Served Today</span>
                     <CheckCheck className="w-5 h-5 text-emerald-600" />
                   </div>
                   <p className="font-serif text-3xl font-bold text-emerald-700 mt-2">{servedOrders.length}</p>
-                  <p className="text-xs text-[#754D45] mt-1">Completed orders</p>
+                  <p className="text-xs text-[#75696B] mt-1">Completed orders</p>
                 </div>
               </div>
 
@@ -297,11 +297,11 @@ export const WaiterPortal = () => {
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 
                 {/* Active Floor Tables Snapshot */}
-                <div className="lg:col-span-2 bg-white rounded-3xl p-6 border border-[#D0ADA0]/50 shadow-sm space-y-4">
+                <div className="lg:col-span-2 bg-white rounded-3xl p-6 border border-[#E8DDD8] shadow-sm space-y-4">
                   <div className="flex justify-between items-center">
                     <div>
-                      <h3 className="font-serif text-xl font-bold text-[#38231F]">Floor A - My Section Overview</h3>
-                      <p className="text-xs text-[#754D45]">Real-time occupancy & active dining sessions</p>
+                      <h3 className="font-serif text-xl font-bold text-[#2D2528]">Floor A - My Section Overview</h3>
+                      <p className="text-xs text-[#75696B]">Real-time occupancy & active dining sessions</p>
                     </div>
                     <Button 
                       variant="outline" 
@@ -318,18 +318,18 @@ export const WaiterPortal = () => {
                       const tableOrders = orders.filter(o => o.tableNumber === t.number && o.status !== 'Served');
                       const hasReady = tableOrders.some(o => o.status === 'Ready to Serve');
 
-                      let statusBg = 'bg-white border-[#D0ADA0]/50';
+                      let statusBg = 'bg-white border-[#E8DDD8]';
                       let statusBadge = 'bg-[#21845A]/15 text-[#21845A] border border-[#21845A]/30';
 
                       if (t.status === 'Occupied') {
-                        statusBg = hasReady ? 'bg-amber-50 border-[#A2766B]' : 'bg-[#F2E5DB] border-[#754D45]';
-                        statusBadge = 'bg-[#754D45] text-white';
+                        statusBg = hasReady ? 'bg-amber-50 border-[#E8DDD8]' : 'bg-[#F4EDE8] border-[#873C50]';
+                        statusBadge = 'bg-[#873C50] text-white';
                       } else if (t.status === 'Cleaning') {
                         statusBg = 'bg-blue-50 border-blue-200';
                         statusBadge = 'bg-[#3976B8]/15 text-[#3976B8] border border-[#3976B8]/30';
                       } else if (t.status === 'Reserved') {
                         statusBg = 'bg-purple-50 border-purple-200';
-                        statusBadge = 'bg-[#754D45]/15 text-[#754D45] border border-[#754D45]/30';
+                        statusBadge = 'bg-[#873C50]/15 text-[#75696B] border border-[#873C50]/30';
                       }
 
                       return (
@@ -339,30 +339,30 @@ export const WaiterPortal = () => {
                         >
                           <div>
                             <div className="flex justify-between items-center mb-1">
-                              <span className="font-serif font-bold text-base text-[#38231F]">Table {t.number}</span>
+                              <span className="font-serif font-bold text-base text-[#2D2528]">Table {t.number}</span>
                               <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${statusBadge}`}>
                                 {t.status}
                               </span>
                             </div>
-                            <p className="text-[11px] text-[#754D45]">Cap: {t.capacity} Guests</p>
+                            <p className="text-[11px] text-[#75696B]">Cap: {t.capacity} Guests</p>
                             {activeSession ? (
                               <div className="mt-2 text-[11px] space-y-0.5">
-                                <p className="font-semibold text-[#38231F] truncate">{activeSession.guestName}</p>
-                                <p className="font-mono text-[#754D45] text-[10px]">Session #{activeSession.sessionId}</p>
+                                <p className="font-semibold text-[#2D2528] truncate">{activeSession.guestName}</p>
+                                <p className="font-mono text-[#75696B] text-[10px]">Session #{activeSession.sessionId}</p>
                               </div>
                             ) : (
-                              <p className="text-[11px] text-[#754D45]/70 italic mt-2">No active party</p>
+                              <p className="text-[11px] text-[#75696B]/70 italic mt-2">No active party</p>
                             )}
                           </div>
 
-                          <div className="mt-3 pt-2 border-t border-[#D0ADA0]/30 flex justify-between items-center">
+                          <div className="mt-3 pt-2 border-t border-[#E8DDD8] flex justify-between items-center">
                             {t.status === 'Occupied' ? (
                               <button
                                 onClick={() => {
                                   setSelectedTableNumber(t.number);
                                   setOrderModalOpen(true);
                                 }}
-                                className="text-[11px] font-bold text-[#754D45] hover:underline flex items-center gap-1"
+                                className="text-[11px] font-bold text-[#75696B] hover:underline flex items-center gap-1"
                               >
                                 <PlusCircle className="w-3.5 h-3.5" /> Order
                               </button>
@@ -384,42 +384,42 @@ export const WaiterPortal = () => {
                 </div>
 
                 {/* Floor Task Checklist & Service Requests */}
-                <div className="bg-white rounded-3xl p-6 border border-[#D0ADA0]/50 shadow-sm space-y-4">
+                <div className="bg-white rounded-3xl p-6 border border-[#E8DDD8] shadow-sm space-y-4">
                   <div className="flex items-center justify-between">
-                    <h3 className="font-serif text-lg font-bold text-[#38231F]">Waiter Floor Tasks</h3>
-                    <Coffee className="w-5 h-5 text-[#754D45]" />
+                    <h3 className="font-serif text-lg font-bold text-[#2D2528]">Waiter Floor Tasks</h3>
+                    <Coffee className="w-5 h-5 text-[#75696B]" />
                   </div>
                   
                   <div className="space-y-3">
-                    <div className="p-3 rounded-xl bg-[#F2E5DB] border border-[#D0ADA0]/40 flex items-start gap-3">
-                      <input type="checkbox" className="mt-1 accent-[#754D45] rounded" defaultChecked />
+                    <div className="p-3 rounded-xl bg-[#F4EDE8] border border-[#E8DDD8] flex items-start gap-3">
+                      <input type="checkbox" className="mt-1 accent-[#873C50] rounded" defaultChecked />
                       <div className="text-xs">
-                        <p className="font-bold text-[#38231F]">Pre-shift Station Prep</p>
-                        <p className="text-[#754D45]">Sanitize tables 1-8, check salt & pepper grinders.</p>
+                        <p className="font-bold text-[#2D2528]">Pre-shift Station Prep</p>
+                        <p className="text-[#75696B]">Sanitize tables 1-8, check salt & pepper grinders.</p>
                       </div>
                     </div>
 
-                    <div className="p-3 rounded-xl bg-[#F2E5DB] border border-[#D0ADA0]/40 flex items-start gap-3">
-                      <input type="checkbox" className="mt-1 accent-[#754D45] rounded" />
+                    <div className="p-3 rounded-xl bg-[#F4EDE8] border border-[#E8DDD8] flex items-start gap-3">
+                      <input type="checkbox" className="mt-1 accent-[#873C50] rounded" />
                       <div className="text-xs">
-                        <p className="font-bold text-[#38231F]">Table 2 Wine Presentation</p>
-                        <p className="text-[#754D45]">Deliver 2018 Bordeaux Chateau Margaux to Sophia M.</p>
+                        <p className="font-bold text-[#2D2528]">Table 2 Wine Presentation</p>
+                        <p className="text-[#75696B]">Deliver 2018 Bordeaux Chateau Margaux to Sophia M.</p>
                       </div>
                     </div>
 
-                    <div className="p-3 rounded-xl bg-[#F2E5DB] border border-[#D0ADA0]/40 flex items-start gap-3">
-                      <input type="checkbox" className="mt-1 accent-[#754D45] rounded" />
+                    <div className="p-3 rounded-xl bg-[#F4EDE8] border border-[#E8DDD8] flex items-start gap-3">
+                      <input type="checkbox" className="mt-1 accent-[#873C50] rounded" />
                       <div className="text-xs">
-                        <p className="font-bold text-[#38231F]">Check on Table 7</p>
-                        <p className="text-[#754D45]">Lamb cutlets served 10 mins ago. Ensure guest satisfaction.</p>
+                        <p className="font-bold text-[#2D2528]">Check on Table 7</p>
+                        <p className="text-[#75696B]">Lamb cutlets served 10 mins ago. Ensure guest satisfaction.</p>
                       </div>
                     </div>
 
-                    <div className="p-3 rounded-xl bg-[#F2E5DB] border border-[#D0ADA0]/40 flex items-start gap-3">
-                      <input type="checkbox" className="mt-1 accent-[#754D45] rounded" />
+                    <div className="p-3 rounded-xl bg-[#F4EDE8] border border-[#E8DDD8] flex items-start gap-3">
+                      <input type="checkbox" className="mt-1 accent-[#873C50] rounded" />
                       <div className="text-xs">
-                        <p className="font-bold text-[#38231F]">Reset Table 4</p>
-                        <p className="text-[#754D45]">Table 4 marked Cleaning. Prepare linen for incoming reservation.</p>
+                        <p className="font-bold text-[#2D2528]">Reset Table 4</p>
+                        <p className="text-[#75696B]">Table 4 marked Cleaning. Prepare linen for incoming reservation.</p>
                       </div>
                     </div>
                   </div>
@@ -440,13 +440,13 @@ export const WaiterPortal = () => {
               </div>
 
               {/* Ready Orders Urgent Section */}
-              <div className="bg-white rounded-3xl p-6 border border-[#D0ADA0]/50 shadow-sm space-y-4">
+              <div className="bg-white rounded-3xl p-6 border border-[#E8DDD8] shadow-sm space-y-4">
                 <div className="flex justify-between items-center">
                   <div>
-                    <h3 className="font-serif text-xl font-bold text-[#38231F]">
+                    <h3 className="font-serif text-xl font-bold text-[#2D2528]">
                       Live Kitchen Pass – Ready to Serve ({readyOrders.length})
                     </h3>
-                    <p className="text-xs text-[#754D45]">Dishes waiting for waiter pickup and presentation</p>
+                    <p className="text-xs text-[#75696B]">Dishes waiting for waiter pickup and presentation</p>
                   </div>
                   <Button 
                     variant="ghost" 
@@ -458,7 +458,7 @@ export const WaiterPortal = () => {
                 </div>
 
                 {readyOrders.length === 0 ? (
-                  <div className="text-center py-8 text-[#754D45] text-xs">
+                  <div className="text-center py-8 text-[#75696B] text-xs">
                     <CheckCircle2 className="w-8 h-8 text-emerald-600 mx-auto mb-2 opacity-50" />
                     All prepared dishes have been served to guests. No orders currently waiting at the pass.
                   </div>
@@ -467,15 +467,15 @@ export const WaiterPortal = () => {
                     {readyOrders.map(order => (
                       <div 
                         key={order.id} 
-                        className="p-5 rounded-2xl border-2 border-[#A2766B] bg-[#F2E5DB] shadow-md flex flex-col justify-between space-y-4 animate-pulse"
+                        className="p-5 rounded-2xl border-2 border-[#E8DDD8] bg-[#F4EDE8] shadow-md flex flex-col justify-between space-y-4 animate-pulse"
                       >
                         <div>
                           <div className="flex justify-between items-start">
                             <div>
-                              <span className="text-[10px] font-mono font-bold bg-[#754D45] text-white px-2 py-0.5 rounded">
+                              <span className="text-[10px] font-mono font-bold bg-[#873C50] text-white px-2 py-0.5 rounded">
                                 {order.id}
                               </span>
-                              <h4 className="font-serif font-bold text-lg text-[#38231F] mt-1">
+                              <h4 className="font-serif font-bold text-lg text-[#2D2528] mt-1">
                                 Table {order.tableNumber}
                               </h4>
                             </div>
@@ -485,11 +485,11 @@ export const WaiterPortal = () => {
                           </div>
 
                           <div className="mt-3 text-xs space-y-1">
-                            <p className="font-mono text-[#754D45]">Session: #{order.sessionId}</p>
-                            <p className="text-[#38231F] font-medium">Items to Serve:</p>
+                            <p className="font-mono text-[#75696B]">Session: #{order.sessionId}</p>
+                            <p className="text-[#2D2528] font-medium">Items to Serve:</p>
                             <ul className="space-y-1 pl-2">
                               {order.items.map((it, idx) => (
-                                <li key={idx} className="font-semibold text-[#38231F]">
+                                <li key={idx} className="font-semibold text-[#2D2528]">
                                   • {it.qty} × {it.name}
                                 </li>
                               ))}
@@ -518,10 +518,10 @@ export const WaiterPortal = () => {
           {/* TAB 2: MY ASSIGNED TABLES */}
           {activeTab === 'tables' && (
             <div className="space-y-6">
-              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-white p-6 rounded-3xl border border-[#D0ADA0]/50 shadow-sm">
+              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-white p-6 rounded-3xl border border-[#E8DDD8] shadow-sm">
                 <div>
-                  <h3 className="font-serif text-2xl font-bold text-[#38231F]">My Assigned Tables (Floor A)</h3>
-                  <p className="text-xs text-[#754D45]">
+                  <h3 className="font-serif text-2xl font-bold text-[#2D2528]">My Assigned Tables (Floor A)</h3>
+                  <p className="text-xs text-[#75696B]">
                     Monitor real-time table statuses, dining duration, and 6-digit session links
                   </p>
                 </div>
@@ -546,20 +546,20 @@ export const WaiterPortal = () => {
                   return (
                     <div 
                       key={table.id}
-                      className="bg-white rounded-3xl p-6 border border-[#D0ADA0]/50 shadow-sm flex flex-col justify-between hover:border-[#754D45] transition-all"
+                      className="bg-white rounded-3xl p-6 border border-[#E8DDD8] shadow-sm flex flex-col justify-between hover:border-[#873C50] transition-all"
                     >
                       <div>
                         {/* Header */}
                         <div className="flex justify-between items-start">
                           <div>
-                            <span className="text-xs font-mono font-bold text-[#754D45]">T-0{table.number}</span>
-                            <h4 className="font-serif text-2xl font-bold text-[#38231F]">
+                            <span className="text-xs font-mono font-bold text-[#75696B]">T-0{table.number}</span>
+                            <h4 className="font-serif text-2xl font-bold text-[#2D2528]">
                               Table {table.number}
                             </h4>
                           </div>
                           <span className={`px-2.5 py-1 rounded-full text-xs font-bold ${
-                            table.status === 'Occupied' ? 'bg-[#754D45] text-white' :
-                            table.status === 'Reserved' ? 'bg-[#754D45]/15 text-[#754D45] border border-[#754D45]/30' :
+                            table.status === 'Occupied' ? 'bg-[#873C50] text-white' :
+                            table.status === 'Reserved' ? 'bg-[#873C50]/15 text-[#75696B] border border-[#873C50]/30' :
                             table.status === 'Cleaning' ? 'bg-[#3976B8]/15 text-[#3976B8] border border-[#3976B8]/30' :
                             'bg-[#21845A]/15 text-[#21845A] border border-[#21845A]/30'
                           }`}>
@@ -568,45 +568,45 @@ export const WaiterPortal = () => {
                         </div>
 
                         {/* Specs */}
-                        <div className="mt-4 pt-3 border-t border-[#F2E5DB] space-y-2 text-xs">
+                        <div className="mt-4 pt-3 border-t border-[#E8DDD8] space-y-2 text-xs">
                           <div className="flex justify-between">
-                            <span className="text-[#754D45]">Capacity:</span>
-                            <span className="font-bold text-[#38231F]">{table.capacity} Guests</span>
+                            <span className="text-[#75696B]">Capacity:</span>
+                            <span className="font-bold text-[#2D2528]">{table.capacity} Guests</span>
                           </div>
                           <div className="flex justify-between">
-                            <span className="text-[#754D45]">Assigned Waiter:</span>
-                            <span className="font-semibold text-[#754D45]">{table.waiter || waiterProfile.name}</span>
+                            <span className="text-[#75696B]">Assigned Waiter:</span>
+                            <span className="font-semibold text-[#75696B]">{table.waiter || waiterProfile.name}</span>
                           </div>
 
                           {activeSession ? (
-                            <div className="p-3 rounded-xl bg-[#F2E5DB] border border-[#D0ADA0]/40 space-y-1.5 mt-2">
+                            <div className="p-3 rounded-xl bg-[#F4EDE8] border border-[#E8DDD8] space-y-1.5 mt-2">
                               <div className="flex justify-between items-center">
-                                <span className="text-[#754D45] text-[11px]">Daily Session:</span>
-                                <span className="font-mono font-bold text-[#754D45] bg-white px-1.5 py-0.5 rounded border border-[#D0ADA0]/40 text-[11px]">
+                                <span className="text-[#75696B] text-[11px]">Daily Session:</span>
+                                <span className="font-mono font-bold text-[#75696B] bg-white px-1.5 py-0.5 rounded border border-[#E8DDD8] text-[11px]">
                                   #{activeSession.sessionId}
                                 </span>
                               </div>
                               <div className="flex justify-between">
-                                <span className="text-[#754D45] text-[11px]">Guest:</span>
-                                <span className="font-bold text-[#38231F] truncate max-w-[120px]">{activeSession.guestName}</span>
+                                <span className="text-[#75696B] text-[11px]">Guest:</span>
+                                <span className="font-bold text-[#2D2528] truncate max-w-[120px]">{activeSession.guestName}</span>
                               </div>
                               <div className="flex justify-between">
-                                <span className="text-[#754D45] text-[11px]">Seated At:</span>
-                                <span className="font-medium text-[#38231F]">{activeSession.checkInTime || '19:15'}</span>
+                                <span className="text-[#75696B] text-[11px]">Seated At:</span>
+                                <span className="font-medium text-[#2D2528]">{activeSession.checkInTime || '19:15'}</span>
                               </div>
                               <div className="flex justify-between">
-                                <span className="text-[#754D45] text-[11px]">Current Total:</span>
-                                <span className="font-bold text-[#754D45]">{formatCurrency(activeSession.total || 0)}</span>
+                                <span className="text-[#75696B] text-[11px]">Current Total:</span>
+                                <span className="font-bold text-[#75696B]">{formatCurrency(activeSession.total || 0)}</span>
                               </div>
                             </div>
                           ) : (
-                            <div className="p-3 rounded-xl bg-[#F2E5DB]/50 text-center text-[#754D45] text-xs mt-2">
+                            <div className="p-3 rounded-xl bg-[#F4EDE8]/50 text-center text-[#75696B] text-xs mt-2">
                               No active dining session
                             </div>
                           )}
 
                           {tableOrders.length > 0 && (
-                            <div className="text-[11px] text-[#A2766B] font-bold flex items-center gap-1 mt-1">
+                            <div className="text-[11px] text-[#C8A66B] font-bold flex items-center gap-1 mt-1">
                               <Clock className="w-3.5 h-3.5" /> {tableOrders.length} active order(s) in kitchen
                             </div>
                           )}
@@ -614,7 +614,7 @@ export const WaiterPortal = () => {
                       </div>
 
                       {/* Actions */}
-                      <div className="mt-6 pt-3 border-t border-[#F2E5DB] flex gap-2">
+                      <div className="mt-6 pt-3 border-t border-[#E8DDD8] flex gap-2">
                         {table.status === 'Occupied' ? (
                           <>
                             <Button
@@ -671,10 +671,10 @@ export const WaiterPortal = () => {
           {/* TAB 3: ORDER MANAGEMENT */}
           {activeTab === 'orders' && (
             <div className="space-y-6">
-              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-white p-6 rounded-3xl border border-[#D0ADA0]/50 shadow-sm">
+              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-white p-6 rounded-3xl border border-[#E8DDD8] shadow-sm">
                 <div>
-                  <h3 className="font-serif text-2xl font-bold text-[#38231F]">Order Management & Kitchen Status</h3>
-                  <p className="text-xs text-[#754D45]">
+                  <h3 className="font-serif text-2xl font-bold text-[#2D2528]">Order Management & Kitchen Status</h3>
+                  <p className="text-xs text-[#75696B]">
                     Real-time status tracking: New → Accepted → Preparing → Ready to Serve → Served
                   </p>
                 </div>
@@ -685,8 +685,8 @@ export const WaiterPortal = () => {
                       onClick={() => setOrderStatusFilter(st)}
                       className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${
                         orderStatusFilter === st
-                          ? 'bg-[#754D45] text-white shadow-sm'
-                          : 'bg-[#F2E5DB] text-[#38231F] hover:bg-[#D0ADA0]/50'
+                          ? 'bg-[#873C50] text-white shadow-sm'
+                          : 'bg-[#F4EDE8] text-[#2D2528] hover:bg-[#E8DDD8]/50'
                       }`}
                     >
                       {st}
@@ -715,9 +715,9 @@ export const WaiterPortal = () => {
                       <div
                         key={order.id}
                         className={`rounded-3xl p-6 border-2 flex flex-col justify-between space-y-4 shadow-sm transition-all ${
-                          isReady ? 'bg-amber-50/60 border-[#A2766B]' :
-                          isServed ? 'bg-white border-[#D0ADA0]/40 opacity-80' :
-                          'bg-white border-[#D0ADA0]/60'
+                          isReady ? 'bg-amber-50/60 border-[#E8DDD8]' :
+                          isServed ? 'bg-white border-[#E8DDD8] opacity-80' :
+                          'bg-white border-[#E8DDD8]'
                         }`}
                       >
                         <div>
@@ -725,14 +725,14 @@ export const WaiterPortal = () => {
                           <div className="flex justify-between items-start">
                             <div>
                               <div className="flex items-center gap-2">
-                                <span className="font-mono text-xs font-bold text-[#754D45] bg-[#F2E5DB] px-2 py-0.5 rounded border border-[#D0ADA0]/50">
+                                <span className="font-mono text-xs font-bold text-[#75696B] bg-[#F4EDE8] px-2 py-0.5 rounded border border-[#E8DDD8]">
                                   {order.id}
                                 </span>
-                                <span className="font-mono text-[10px] text-[#754D45]">
+                                <span className="font-mono text-[10px] text-[#75696B]">
                                   {order.kotId}
                                 </span>
                               </div>
-                              <h4 className="font-serif font-bold text-xl text-[#38231F] mt-1">
+                              <h4 className="font-serif font-bold text-xl text-[#2D2528] mt-1">
                                 Table {order.tableNumber}
                               </h4>
                             </div>
@@ -748,24 +748,24 @@ export const WaiterPortal = () => {
                           </div>
 
                           {/* Metadata */}
-                          <div className="mt-3 flex items-center justify-between text-xs text-[#754D45] border-b border-[#F2E5DB] pb-2">
-                            <span>Session: <strong className="text-[#38231F]">#{order.sessionId}</strong></span>
-                            <span>Time: <strong className="text-[#38231F]">{order.time || '10 mins ago'}</strong></span>
+                          <div className="mt-3 flex items-center justify-between text-xs text-[#75696B] border-b border-[#E8DDD8] pb-2">
+                            <span>Session: <strong className="text-[#2D2528]">#{order.sessionId}</strong></span>
+                            <span>Time: <strong className="text-[#2D2528]">{order.time || '10 mins ago'}</strong></span>
                           </div>
 
                           {/* Order Items */}
                           <div className="mt-3 space-y-2 text-xs">
-                            <p className="font-bold text-[#754D45] uppercase tracking-wider text-[10px]">Ordered Items:</p>
-                            <ul className="space-y-1.5 divide-y divide-[#F2E5DB]">
+                            <p className="font-bold text-[#75696B] uppercase tracking-wider text-[10px]">Ordered Items:</p>
+                            <ul className="space-y-1.5 divide-y divide-[#E8DDD8]">
                               {order.items.map((item, idx) => (
                                 <li key={idx} className="pt-1.5 first:pt-0 flex justify-between items-center">
                                   <div>
-                                    <span className="font-bold text-[#38231F]">{item.qty} × {item.name}</span>
+                                    <span className="font-bold text-[#2D2528]">{item.qty} × {item.name}</span>
                                     {item.notes && (
-                                      <p className="text-[10px] text-[#754D45] italic">Note: {item.notes}</p>
+                                      <p className="text-[10px] text-[#75696B] italic">Note: {item.notes}</p>
                                     )}
                                   </div>
-                                  <span className="font-mono text-[#754D45]">{formatCurrency(item.price * item.qty)}</span>
+                                  <span className="font-mono text-[#75696B]">{formatCurrency(item.price * item.qty)}</span>
                                 </li>
                               ))}
                             </ul>
@@ -773,7 +773,7 @@ export const WaiterPortal = () => {
                         </div>
 
                         {/* Order Actions */}
-                        <div className="pt-4 border-t border-[#F2E5DB]">
+                        <div className="pt-4 border-t border-[#E8DDD8]">
                           {isReady ? (
                             <Button
                               variant="gold"
@@ -789,11 +789,11 @@ export const WaiterPortal = () => {
                               <CheckCheck className="w-4 h-4" /> Served to Table
                             </div>
                           ) : (
-                            <div className="flex items-center justify-between text-xs text-[#754D45]">
+                            <div className="flex items-center justify-between text-xs text-[#75696B]">
                               <span className="flex items-center gap-1">
                                 <Clock className="w-3.5 h-3.5 text-orange-600 animate-spin" /> In Preparation
                               </span>
-                              <span className="font-medium text-[#38231F]">{order.placedBy || 'Julian Vance'}</span>
+                              <span className="font-medium text-[#2D2528]">{order.placedBy || 'Julian Vance'}</span>
                             </div>
                           )}
                         </div>
@@ -807,23 +807,23 @@ export const WaiterPortal = () => {
           {/* TAB 4: ORDER HISTORY */}
           {activeTab === 'history' && (
             <div className="space-y-6">
-              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-white p-6 rounded-3xl border border-[#D0ADA0]/50 shadow-sm">
+              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-white p-6 rounded-3xl border border-[#E8DDD8] shadow-sm">
                 <div>
-                  <h3 className="font-serif text-2xl font-bold text-[#38231F]">Order History & Table Logs</h3>
-                  <p className="text-xs text-[#754D45]">Past served orders, table-wise and session-wise historical logs</p>
+                  <h3 className="font-serif text-2xl font-bold text-[#2D2528]">Order History & Table Logs</h3>
+                  <p className="text-xs text-[#75696B]">Past served orders, table-wise and session-wise historical logs</p>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="text-xs font-bold px-3 py-1 bg-[#F2E5DB] rounded-xl border border-[#D0ADA0] text-[#754D45]">
+                  <span className="text-xs font-bold px-3 py-1 bg-[#F4EDE8] rounded-xl border border-[#E8DDD8] text-[#75696B]">
                     Total Orders: {orders.length}
                   </span>
                 </div>
               </div>
 
               {/* Table of Orders */}
-              <div className="bg-white rounded-3xl border border-[#D0ADA0]/50 shadow-sm overflow-hidden">
+              <div className="bg-white rounded-3xl border border-[#E8DDD8] shadow-sm overflow-hidden">
                 <div className="overflow-x-auto">
-                  <table className="w-full text-left text-xs text-[#38231F]">
-                    <thead className="bg-[#F2E5DB] text-[#754D45] font-bold uppercase tracking-wider border-b border-[#D0ADA0]/50">
+                  <table className="w-full text-left text-xs text-[#2D2528]">
+                    <thead className="bg-[#F4EDE8] text-[#75696B] font-bold uppercase tracking-wider border-b border-[#E8DDD8]">
                       <tr>
                         <th className="py-4 px-6">Order / KOT</th>
                         <th className="py-4 px-6">Table & Session</th>
@@ -833,26 +833,26 @@ export const WaiterPortal = () => {
                         <th className="py-4 px-6 text-right">Total</th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-[#F2E5DB]">
+                    <tbody className="divide-y divide-[#E8DDD8]">
                       {orders.map((ord) => {
                         const total = ord.items.reduce((s, it) => s + (it.price * it.qty), 0);
                         return (
-                          <tr key={ord.id} className="hover:bg-[#F2E5DB]/60 transition-colors">
-                            <td className="py-4 px-6 font-mono font-bold text-[#754D45]">
+                          <tr key={ord.id} className="hover:bg-[#F4EDE8]/60 transition-colors">
+                            <td className="py-4 px-6 font-mono font-bold text-[#75696B]">
                               <div>{ord.id}</div>
-                              <span className="text-[10px] text-[#754D45]">{ord.kotId}</span>
+                              <span className="text-[10px] text-[#75696B]">{ord.kotId}</span>
                             </td>
                             <td className="py-4 px-6">
-                              <p className="font-bold text-[#38231F]">Table {ord.tableNumber}</p>
-                              <p className="font-mono text-[10px] text-[#754D45]">Session #{ord.sessionId}</p>
+                              <p className="font-bold text-[#2D2528]">Table {ord.tableNumber}</p>
+                              <p className="font-mono text-[10px] text-[#75696B]">Session #{ord.sessionId}</p>
                             </td>
                             <td className="py-4 px-6">
-                              <p className="font-semibold text-[#38231F]">
+                              <p className="font-semibold text-[#2D2528]">
                                 {ord.items.map(i => `${i.qty}× ${i.name}`).join(', ')}
                               </p>
-                              <p className="text-[10px] text-[#754D45]">Punched by {ord.placedBy}</p>
+                              <p className="text-[10px] text-[#75696B]">Punched by {ord.placedBy}</p>
                             </td>
-                            <td className="py-4 px-6 text-[#754D45]">
+                            <td className="py-4 px-6 text-[#75696B]">
                               {ord.time || 'Today'}
                             </td>
                             <td className="py-4 px-6">
@@ -864,7 +864,7 @@ export const WaiterPortal = () => {
                                 {ord.status}
                               </span>
                             </td>
-                            <td className="py-4 px-6 text-right font-mono font-bold text-[#38231F]">
+                            <td className="py-4 px-6 text-right font-mono font-bold text-[#2D2528]">
                               {formatCurrency(total)}
                             </td>
                           </tr>
@@ -880,10 +880,10 @@ export const WaiterPortal = () => {
           {/* TAB 5: NOTIFICATIONS */}
           {activeTab === 'notifications' && (
             <div className="space-y-6">
-              <div className="bg-white p-6 rounded-3xl border border-[#D0ADA0]/50 shadow-sm flex justify-between items-center">
+              <div className="bg-white p-6 rounded-3xl border border-[#E8DDD8] shadow-sm flex justify-between items-center">
                 <div>
-                  <h3 className="font-serif text-2xl font-bold text-[#38231F]">Floor Alerts & Service Requests</h3>
-                  <p className="text-xs text-[#754D45]">Real-time table calls, ready dish pings, and kitchen updates</p>
+                  <h3 className="font-serif text-2xl font-bold text-[#2D2528]">Floor Alerts & Service Requests</h3>
+                  <p className="text-xs text-[#75696B]">Real-time table calls, ready dish pings, and kitchen updates</p>
                 </div>
                 <Button variant="outline" size="sm" onClick={() => alert('All alerts marked as viewed.')}>
                   Mark All Read
@@ -896,23 +896,23 @@ export const WaiterPortal = () => {
                     key={notif.id}
                     className={`p-5 rounded-2xl border transition-all flex items-start justify-between gap-4 ${
                       notif.unread
-                        ? 'bg-white border-[#754D45] shadow-md'
-                        : 'bg-[#F2E5DB] border-[#D0ADA0]/40'
+                        ? 'bg-white border-[#873C50] shadow-md'
+                        : 'bg-[#F4EDE8] border-[#E8DDD8]'
                     }`}
                   >
                     <div className="flex items-start gap-3">
-                      <div className="w-10 h-10 rounded-xl bg-[#F2E5DB] text-[#754D45] flex items-center justify-center shrink-0">
+                      <div className="w-10 h-10 rounded-xl bg-[#F4EDE8] text-[#75696B] flex items-center justify-center shrink-0">
                         <Bell className="w-5 h-5" />
                       </div>
                       <div>
                         <div className="flex items-center gap-2">
-                          <h4 className="font-bold text-sm text-[#38231F]">{notif.title}</h4>
+                          <h4 className="font-bold text-sm text-[#2D2528]">{notif.title}</h4>
                           {notif.unread && (
-                            <span className="w-2 h-2 rounded-full bg-[#754D45]"></span>
+                            <span className="w-2 h-2 rounded-full bg-[#873C50]"></span>
                           )}
                         </div>
-                        <p className="text-xs text-[#754D45] mt-1">{notif.message}</p>
-                        <p className="text-[10px] text-[#754D45] mt-2 flex items-center gap-1">
+                        <p className="text-xs text-[#75696B] mt-1">{notif.message}</p>
+                        <p className="text-[10px] text-[#75696B] mt-2 flex items-center gap-1">
                           <Clock className="w-3 h-3" /> {notif.time}
                         </p>
                       </div>
@@ -930,19 +930,19 @@ export const WaiterPortal = () => {
           {/* TAB 6: MY PROFILE */}
           {activeTab === 'profile' && (
             <div className="max-w-4xl space-y-6">
-              <div className="bg-white rounded-3xl p-8 border border-[#D0ADA0]/50 shadow-sm space-y-6">
-                <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6 pb-6 border-b border-[#F2E5DB]">
+              <div className="bg-white rounded-3xl p-8 border border-[#E8DDD8] shadow-sm space-y-6">
+                <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6 pb-6 border-b border-[#E8DDD8]">
                   <img
                     src={waiterProfile.avatar}
                     alt={waiterProfile.name}
-                    className="w-24 h-24 rounded-full object-cover border-4 border-[#754D45] shadow-lg"
+                    className="w-24 h-24 rounded-full object-cover border-4 border-[#873C50] shadow-lg"
                   />
                   <div className="text-center sm:text-left space-y-1">
-                    <span className="text-xs font-bold uppercase tracking-wider text-[#754D45]">Floor Service Specialist</span>
-                    <h3 className="font-serif text-3xl font-bold text-[#38231F]">{waiterProfile.name}</h3>
-                    <p className="text-sm text-[#754D45]">{waiterProfile.email} | {waiterProfile.phone}</p>
+                    <span className="text-xs font-bold uppercase tracking-wider text-[#75696B]">Floor Service Specialist</span>
+                    <h3 className="font-serif text-3xl font-bold text-[#2D2528]">{waiterProfile.name}</h3>
+                    <p className="text-sm text-[#75696B]">{waiterProfile.email} | {waiterProfile.phone}</p>
                     <div className="pt-2 flex flex-wrap gap-2">
-                      <span className="px-3 py-1 rounded-full text-xs font-bold bg-[#F2E5DB] text-[#754D45]">
+                      <span className="px-3 py-1 rounded-full text-xs font-bold bg-[#F4EDE8] text-[#75696B]">
                         Section: Floor A (Tables 1 - 8)
                       </span>
                       <span className="px-3 py-1 rounded-full text-xs font-bold bg-[#21845A]/15 text-[#21845A] border border-[#21845A]/30">
@@ -958,25 +958,25 @@ export const WaiterPortal = () => {
                 {/* Account Details & Settings */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4">
                   <div className="space-y-4">
-                    <h4 className="font-serif text-lg font-bold text-[#38231F]">Service Information</h4>
+                    <h4 className="font-serif text-lg font-bold text-[#2D2528]">Service Information</h4>
                     <div className="space-y-2 text-xs">
-                      <div className="p-3 rounded-xl bg-[#F2E5DB] flex justify-between">
-                        <span className="text-[#754D45]">Employee ID:</span>
-                        <span className="font-mono font-bold text-[#38231F]">EMP-WTR-8921</span>
+                      <div className="p-3 rounded-xl bg-[#F4EDE8] flex justify-between">
+                        <span className="text-[#75696B]">Employee ID:</span>
+                        <span className="font-mono font-bold text-[#2D2528]">EMP-WTR-8921</span>
                       </div>
-                      <div className="p-3 rounded-xl bg-[#F2E5DB] flex justify-between">
-                        <span className="text-[#754D45]">Joined Aura Mocha:</span>
-                        <span className="font-bold text-[#38231F]">March 2023</span>
+                      <div className="p-3 rounded-xl bg-[#F4EDE8] flex justify-between">
+                        <span className="text-[#75696B]">Joined Aura Dining:</span>
+                        <span className="font-bold text-[#2D2528]">March 2023</span>
                       </div>
-                      <div className="p-3 rounded-xl bg-[#F2E5DB] flex justify-between">
-                        <span className="text-[#754D45]">POS Terminal Privileges:</span>
+                      <div className="p-3 rounded-xl bg-[#F4EDE8] flex justify-between">
+                        <span className="text-[#75696B]">POS Terminal Privileges:</span>
                         <span className="font-bold text-emerald-700">Full Table Dispatch</span>
                       </div>
                     </div>
                   </div>
 
                   <div className="space-y-4">
-                    <h4 className="font-serif text-lg font-bold text-[#38231F]">Security & Credentials</h4>
+                    <h4 className="font-serif text-lg font-bold text-[#2D2528]">Security & Credentials</h4>
                     <form onSubmit={(e) => { e.preventDefault(); alert('Password updated successfully.'); }} className="space-y-3">
                       <Input
                         label="New Password"
@@ -990,8 +990,8 @@ export const WaiterPortal = () => {
                   </div>
                 </div>
 
-                <div className="pt-6 border-t border-[#F2E5DB] flex justify-between items-center">
-                  <p className="text-xs text-[#754D45]">Logged in with authorized staff credentials</p>
+                <div className="pt-6 border-t border-[#E8DDD8] flex justify-between items-center">
+                  <p className="text-xs text-[#75696B]">Logged in with authorized staff credentials</p>
                   <Button variant="ghost" className="text-red-700" onClick={logout}>
                     Sign Out of Terminal
                   </Button>
@@ -1006,18 +1006,18 @@ export const WaiterPortal = () => {
       {/* TAKE NEW ORDER MODAL */}
       {orderModalOpen && (
         <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="bg-white rounded-3xl max-w-2xl w-full p-6 sm:p-8 border border-[#D0ADA0] shadow-2xl space-y-6 max-h-[90vh] overflow-y-auto">
+          <div className="bg-white rounded-3xl max-w-2xl w-full p-6 sm:p-8 border border-[#E8DDD8] shadow-2xl space-y-6 max-h-[90vh] overflow-y-auto">
             
-            <div className="flex justify-between items-center border-b border-[#F2E5DB] pb-4">
+            <div className="flex justify-between items-center border-b border-[#E8DDD8] pb-4">
               <div>
-                <span className="text-xs font-bold uppercase tracking-wider text-[#754D45]">Floor POS Terminal</span>
-                <h3 className="font-serif text-2xl font-bold text-[#38231F]">
+                <span className="text-xs font-bold uppercase tracking-wider text-[#75696B]">Floor POS Terminal</span>
+                <h3 className="font-serif text-2xl font-bold text-[#2D2528]">
                   Punch Order for Table {selectedTableNumber}
                 </h3>
               </div>
               <button
                 onClick={() => setOrderModalOpen(false)}
-                className="p-2 rounded-xl bg-[#F2E5DB] text-[#754D45] hover:bg-[#D0ADA0]/40"
+                className="p-2 rounded-xl bg-[#F4EDE8] text-[#75696B] hover:bg-[#E8DDD8]/40"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -1028,11 +1028,11 @@ export const WaiterPortal = () => {
               {/* Select Table Number */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="text-xs font-bold uppercase text-[#754D45] block mb-1">Target Table</label>
+                  <label className="text-xs font-bold uppercase text-[#75696B] block mb-1">Target Table</label>
                   <select
                     value={selectedTableNumber}
                     onChange={(e) => setSelectedTableNumber(Number(e.target.value))}
-                    className="w-full p-3 rounded-xl border border-[#D0ADA0] bg-white text-xs font-bold text-[#38231F] focus:ring-2 focus:ring-[#754D45]"
+                    className="w-full p-3 rounded-xl border border-[#E8DDD8] bg-white text-xs font-bold text-[#2D2528] focus:ring-2 focus:ring-[#B66A79]"
                   >
                     {tables.map(t => (
                       <option key={t.id} value={t.number}>
@@ -1043,15 +1043,15 @@ export const WaiterPortal = () => {
                 </div>
 
                 <div>
-                  <label className="text-xs font-bold uppercase text-[#754D45] block mb-1">Search Dishes</label>
+                  <label className="text-xs font-bold uppercase text-[#75696B] block mb-1">Search Dishes</label>
                   <div className="relative">
-                    <Search className="w-4 h-4 absolute left-3 top-3.5 text-[#754D45]" />
+                    <Search className="w-4 h-4 absolute left-3 top-3.5 text-[#75696B]" />
                     <input
                       type="text"
                       placeholder="Search menu catalog..."
                       value={menuSearch}
                       onChange={(e) => setMenuSearch(e.target.value)}
-                      className="w-full pl-9 p-2.5 rounded-xl border border-[#D0ADA0] text-xs"
+                      className="w-full pl-9 p-2.5 rounded-xl border border-[#E8DDD8] text-xs"
                     />
                   </div>
                 </div>
@@ -1059,8 +1059,8 @@ export const WaiterPortal = () => {
 
               {/* Dish Selection Grid */}
               <div className="space-y-2">
-                <label className="text-xs font-bold uppercase text-[#754D45] block">Available Menu Dishes</label>
-                <div className="max-h-56 overflow-y-auto space-y-2 divide-y divide-[#F2E5DB] p-3 rounded-2xl border border-[#D0ADA0]/40 bg-[#F2E5DB]/50">
+                <label className="text-xs font-bold uppercase text-[#75696B] block">Available Menu Dishes</label>
+                <div className="max-h-56 overflow-y-auto space-y-2 divide-y divide-[#E8DDD8] p-3 rounded-2xl border border-[#E8DDD8] bg-[#F4EDE8]/50">
                   {menuItems
                     .filter(m => m.name.toLowerCase().includes(menuSearch.toLowerCase()))
                     .slice(0, 10)
@@ -1073,14 +1073,14 @@ export const WaiterPortal = () => {
                             className="w-10 h-10 rounded-lg object-cover"
                           />
                           <div>
-                            <p className="font-bold text-[#38231F]">{item.name}</p>
-                            <p className="text-[#754D45]">{formatCurrency(item.price)} • {item.category}</p>
+                            <p className="font-bold text-[#2D2528]">{item.name}</p>
+                            <p className="text-[#75696B]">{formatCurrency(item.price)} • {item.category}</p>
                           </div>
                         </div>
                         <button
                           type="button"
                           onClick={() => handleAddDish(item)}
-                          className="px-3 py-1.5 rounded-xl bg-[#754D45] text-white font-bold text-xs hover:bg-[#754D45] transition-colors"
+                          className="px-3 py-1.5 rounded-xl bg-[#873C50] text-white font-bold text-xs hover:bg-[#873C50] transition-colors"
                         >
                           + Add
                         </button>
@@ -1090,12 +1090,12 @@ export const WaiterPortal = () => {
               </div>
 
               {/* Selected Items Ticket */}
-              <div className="p-4 bg-[#F2E5DB] rounded-2xl border border-[#D0ADA0]/60 space-y-3">
+              <div className="p-4 bg-[#F4EDE8] rounded-2xl border border-[#E8DDD8] space-y-3">
                 <div className="flex justify-between items-center">
-                  <span className="font-bold text-xs text-[#754D45] uppercase tracking-wider">
+                  <span className="font-bold text-xs text-[#75696B] uppercase tracking-wider">
                     Current Order Ticket ({selectedMenuItems.length} dishes)
                   </span>
-                  <span className="font-mono font-bold text-sm text-[#38231F]">
+                  <span className="font-mono font-bold text-sm text-[#2D2528]">
                     Ticket Subtotal: {formatCurrency(
                       selectedMenuItems.reduce((s, it) => s + (it.price * it.qty), 0)
                     )}
@@ -1103,17 +1103,17 @@ export const WaiterPortal = () => {
                 </div>
 
                 {selectedMenuItems.length === 0 ? (
-                  <p className="text-xs text-[#754D45] italic">No dishes added yet. Click "+ Add" above.</p>
+                  <p className="text-xs text-[#75696B] italic">No dishes added yet. Click "+ Add" above.</p>
                 ) : (
                   <div className="space-y-2 max-h-40 overflow-y-auto">
                     {selectedMenuItems.map(item => (
-                      <div key={item.id} className="flex justify-between items-center text-xs bg-white p-2.5 rounded-xl border border-[#D0ADA0]/40">
-                        <span className="font-bold text-[#38231F]">{item.name}</span>
+                      <div key={item.id} className="flex justify-between items-center text-xs bg-white p-2.5 rounded-xl border border-[#E8DDD8]">
+                        <span className="font-bold text-[#2D2528]">{item.name}</span>
                         <div className="flex items-center gap-2">
                           <button
                             type="button"
                             onClick={() => handleUpdateItemQty(item.id, -1)}
-                            className="w-6 h-6 rounded bg-[#F2E5DB] font-bold text-[#754D45] flex items-center justify-center"
+                            className="w-6 h-6 rounded bg-[#F4EDE8] font-bold text-[#75696B] flex items-center justify-center"
                           >
                             -
                           </button>
@@ -1121,11 +1121,11 @@ export const WaiterPortal = () => {
                           <button
                             type="button"
                             onClick={() => handleUpdateItemQty(item.id, 1)}
-                            className="w-6 h-6 rounded bg-[#F2E5DB] font-bold text-[#754D45] flex items-center justify-center"
+                            className="w-6 h-6 rounded bg-[#F4EDE8] font-bold text-[#75696B] flex items-center justify-center"
                           >
                             +
                           </button>
-                          <span className="font-mono font-bold text-[#754D45] ml-2">
+                          <span className="font-mono font-bold text-[#75696B] ml-2">
                             {formatCurrency(item.price * item.qty)}
                           </span>
                         </div>
@@ -1137,13 +1137,13 @@ export const WaiterPortal = () => {
 
               {/* Chef Notes / Allergies */}
               <div className="space-y-1">
-                <label className="text-xs font-bold uppercase text-[#754D45]">Chef Preparation Notes / Allergies</label>
+                <label className="text-xs font-bold uppercase text-[#75696B]">Chef Preparation Notes / Allergies</label>
                 <textarea
                   rows={2}
                   placeholder="e.g. Medium rare, nut allergy, dressing on the side..."
                   value={orderNotes}
                   onChange={(e) => setOrderNotes(e.target.value)}
-                  className="w-full text-xs p-3 rounded-xl border border-[#D0ADA0] focus:ring-2 focus:ring-[#754D45]"
+                  className="w-full text-xs p-3 rounded-xl border border-[#E8DDD8] focus:ring-2 focus:ring-[#B66A79]"
                 ></textarea>
               </div>
 
@@ -1165,17 +1165,17 @@ export const WaiterPortal = () => {
       {/* VIEW SESSION BILL MODAL */}
       {viewSessionModal && (
         <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="bg-white rounded-3xl max-w-md w-full p-8 border border-[#D0ADA0] shadow-2xl space-y-6">
-            <div className="flex justify-between items-center border-b border-[#F2E5DB] pb-4">
+          <div className="bg-white rounded-3xl max-w-md w-full p-8 border border-[#E8DDD8] shadow-2xl space-y-6">
+            <div className="flex justify-between items-center border-b border-[#E8DDD8] pb-4">
               <div>
-                <span className="text-xs font-bold uppercase tracking-wider text-[#754D45]">Dining Session Bill</span>
-                <h3 className="font-serif text-2xl font-bold text-[#38231F]">
+                <span className="text-xs font-bold uppercase tracking-wider text-[#75696B]">Dining Session Bill</span>
+                <h3 className="font-serif text-2xl font-bold text-[#2D2528]">
                   Table {viewSessionModal.tableNumber}
                 </h3>
               </div>
               <button
                 onClick={() => setViewSessionModal(null)}
-                className="p-2 rounded-xl bg-[#F2E5DB] text-[#754D45]"
+                className="p-2 rounded-xl bg-[#F4EDE8] text-[#75696B]"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -1183,32 +1183,32 @@ export const WaiterPortal = () => {
 
             <div className="space-y-3 text-xs">
               <div className="flex justify-between">
-                <span className="text-[#754D45]">Daily 6-Digit Session:</span>
-                <span className="font-mono font-bold text-[#754D45]">#{viewSessionModal.sessionId}</span>
+                <span className="text-[#75696B]">Daily 6-Digit Session:</span>
+                <span className="font-mono font-bold text-[#75696B]">#{viewSessionModal.sessionId}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-[#754D45]">Guest Name:</span>
-                <span className="font-bold text-[#38231F]">{viewSessionModal.guestName}</span>
+                <span className="text-[#75696B]">Guest Name:</span>
+                <span className="font-bold text-[#2D2528]">{viewSessionModal.guestName}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-[#754D45]">Seated At:</span>
-                <span className="text-[#38231F]">{viewSessionModal.checkInTime}</span>
+                <span className="text-[#75696B]">Seated At:</span>
+                <span className="text-[#2D2528]">{viewSessionModal.checkInTime}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-[#754D45]">Assigned Waiter:</span>
-                <span className="text-[#38231F]">{viewSessionModal.waiter}</span>
+                <span className="text-[#75696B]">Assigned Waiter:</span>
+                <span className="text-[#2D2528]">{viewSessionModal.waiter}</span>
               </div>
 
-              <div className="pt-3 border-t border-[#F2E5DB] space-y-1.5">
+              <div className="pt-3 border-t border-[#E8DDD8] space-y-1.5">
                 <div className="flex justify-between">
                   <span>Subtotal:</span>
                   <span className="font-mono font-bold">{formatCurrency(viewSessionModal.subtotal || 0)}</span>
                 </div>
-                <div className="flex justify-between text-[#754D45]">
+                <div className="flex justify-between text-[#75696B]">
                   <span>Tax (9%):</span>
                   <span className="font-mono">{formatCurrency(viewSessionModal.tax || 0)}</span>
                 </div>
-                <div className="flex justify-between text-[#754D45]">
+                <div className="flex justify-between text-[#75696B]">
                   <span>Service Charge (10%):</span>
                   <span className="font-mono">{formatCurrency(viewSessionModal.serviceCharge || 0)}</span>
                 </div>
@@ -1218,9 +1218,9 @@ export const WaiterPortal = () => {
                     <span className="font-mono">-{formatCurrency(viewSessionModal.advancePayment)}</span>
                   </div>
                 )}
-                <div className="flex justify-between font-serif text-base font-bold text-[#38231F] pt-2 border-t border-[#F2E5DB]">
+                <div className="flex justify-between font-serif text-base font-bold text-[#2D2528] pt-2 border-t border-[#E8DDD8]">
                   <span>Total Due:</span>
-                  <span className="text-[#754D45]">{formatCurrency(viewSessionModal.total || 0)}</span>
+                  <span className="text-[#75696B]">{formatCurrency(viewSessionModal.total || 0)}</span>
                 </div>
               </div>
             </div>

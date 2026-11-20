@@ -37,20 +37,20 @@ export const ProfilePage = () => {
   };
 
   return (
-    <div className="bg-[#F2E5DB] py-12 px-4 sm:px-6 lg:px-8 min-h-[85vh]">
+    <div className="bg-[#F4EDE8] py-12 px-4 sm:px-6 lg:px-8 min-h-[85vh]">
       <div className="max-w-4xl mx-auto space-y-8">
         
         {/* Navigation tabs */}
-        <div className="flex items-center gap-3 border-b border-[#D0ADA0]/50 pb-4">
+        <div className="flex items-center gap-3 border-b border-[#E8DDD8] pb-4">
           <Link
             to="/customer/profile"
-            className="px-4 py-2 rounded-xl bg-[#754D45] text-white text-sm font-semibold shadow-sm"
+            className="px-4 py-2 rounded-xl bg-[#873C50] text-white text-sm font-semibold shadow-sm"
           >
             Personal Information
           </Link>
           <Link
             to="/customer/bookings"
-            className="px-4 py-2 rounded-xl bg-white text-[#754D45] hover:bg-[#F2E5DB] text-sm font-semibold border border-[#D0ADA0]/40"
+            className="px-4 py-2 rounded-xl bg-white text-[#75696B] hover:bg-[#F4EDE8] text-sm font-semibold border border-[#E8DDD8]"
           >
             My Bookings & History
           </Link>
@@ -64,27 +64,27 @@ export const ProfilePage = () => {
         )}
 
         {/* Profile Card */}
-        <div className="bg-white rounded-3xl p-8 sm:p-10 border border-[#D0ADA0] shadow-xl space-y-8">
+        <div className="bg-white rounded-3xl p-8 sm:p-10 border border-[#E8DDD8] shadow-xl space-y-8">
           
-          <div className="flex flex-col sm:flex-row items-center sm:items-start justify-between gap-6 pb-6 border-b border-[#F2E5DB]">
+          <div className="flex flex-col sm:flex-row items-center sm:items-start justify-between gap-6 pb-6 border-b border-[#E8DDD8]">
             <div className="flex flex-col sm:flex-row items-center gap-6">
               <div className="relative">
                 <img
                   src={currentUser?.avatar || "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80"}
                   alt={currentUser?.name}
-                  className="w-24 h-24 rounded-full object-cover border-4 border-[#754D45] shadow-lg"
+                  className="w-24 h-24 rounded-full object-cover border-4 border-[#873C50] shadow-lg"
                 />
                 <span className="absolute bottom-1 right-1 w-5 h-5 rounded-full bg-emerald-500 border-2 border-white"></span>
               </div>
               <div className="text-center sm:text-left space-y-1">
-                <span className="px-3 py-0.5 rounded-full bg-[#F2E5DB] text-[#754D45] text-[11px] font-bold uppercase tracking-wider">
+                <span className="px-3 py-0.5 rounded-full bg-[#F4EDE8] text-[#75696B] text-[11px] font-bold uppercase tracking-wider">
                   Patron Member
                 </span>
-                <h1 className="font-serif text-2xl sm:text-3xl font-bold text-[#38231F]">
+                <h1 className="font-serif text-2xl sm:text-3xl font-bold text-[#2D2528]">
                   {currentUser?.name}
                 </h1>
-                <p className="text-xs text-[#754D45]">
-                  Member Since {currentUser?.memberSince || '2024'} • Aura Mocha Privilege Club
+                <p className="text-xs text-[#75696B]">
+                  Member Since {currentUser?.memberSince || '2024'} • Aura Dining Privilege Club
                 </p>
               </div>
             </div>
@@ -112,32 +112,32 @@ export const ProfilePage = () => {
           {/* Details / Edit View */}
           {!isEditing ? (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
-              <div className="p-4 rounded-2xl bg-[#F2E5DB] border border-[#D0ADA0]/40 space-y-1">
-                <p className="text-xs uppercase tracking-wider font-semibold text-[#754D45] flex items-center gap-1.5">
-                  <User className="w-3.5 h-3.5 text-[#754D45]" /> Full Name
+              <div className="p-4 rounded-2xl bg-[#F4EDE8] border border-[#E8DDD8] space-y-1">
+                <p className="text-xs uppercase tracking-wider font-semibold text-[#75696B] flex items-center gap-1.5">
+                  <User className="w-3.5 h-3.5 text-[#75696B]" /> Full Name
                 </p>
-                <p className="font-bold text-[#38231F] text-base">{currentUser?.name}</p>
+                <p className="font-bold text-[#2D2528] text-base">{currentUser?.name}</p>
               </div>
 
-              <div className="p-4 rounded-2xl bg-[#F2E5DB] border border-[#D0ADA0]/40 space-y-1">
-                <p className="text-xs uppercase tracking-wider font-semibold text-[#754D45] flex items-center gap-1.5">
-                  <Mail className="w-3.5 h-3.5 text-[#754D45]" /> Email Address
+              <div className="p-4 rounded-2xl bg-[#F4EDE8] border border-[#E8DDD8] space-y-1">
+                <p className="text-xs uppercase tracking-wider font-semibold text-[#75696B] flex items-center gap-1.5">
+                  <Mail className="w-3.5 h-3.5 text-[#75696B]" /> Email Address
                 </p>
-                <p className="font-bold text-[#38231F] text-base">{currentUser?.email}</p>
+                <p className="font-bold text-[#2D2528] text-base">{currentUser?.email}</p>
               </div>
 
-              <div className="p-4 rounded-2xl bg-[#F2E5DB] border border-[#D0ADA0]/40 space-y-1">
-                <p className="text-xs uppercase tracking-wider font-semibold text-[#754D45] flex items-center gap-1.5">
-                  <Phone className="w-3.5 h-3.5 text-[#754D45]" /> Mobile Number
+              <div className="p-4 rounded-2xl bg-[#F4EDE8] border border-[#E8DDD8] space-y-1">
+                <p className="text-xs uppercase tracking-wider font-semibold text-[#75696B] flex items-center gap-1.5">
+                  <Phone className="w-3.5 h-3.5 text-[#75696B]" /> Mobile Number
                 </p>
-                <p className="font-bold text-[#38231F] text-base">{currentUser?.phone}</p>
+                <p className="font-bold text-[#2D2528] text-base">{currentUser?.phone}</p>
               </div>
 
-              <div className="p-4 rounded-2xl bg-[#F2E5DB] border border-[#D0ADA0]/40 space-y-1">
-                <p className="text-xs uppercase tracking-wider font-semibold text-[#754D45] flex items-center gap-1.5">
-                  <ShieldCheck className="w-3.5 h-3.5 text-[#754D45]" /> Privilege Tier
+              <div className="p-4 rounded-2xl bg-[#F4EDE8] border border-[#E8DDD8] space-y-1">
+                <p className="text-xs uppercase tracking-wider font-semibold text-[#75696B] flex items-center gap-1.5">
+                  <ShieldCheck className="w-3.5 h-3.5 text-[#75696B]" /> Privilege Tier
                 </p>
-                <p className="font-bold text-[#38231F] text-base">Black Gold Connoisseur</p>
+                <p className="font-bold text-[#2D2528] text-base">Black Gold Connoisseur</p>
               </div>
             </div>
           ) : (
@@ -177,10 +177,10 @@ export const ProfilePage = () => {
           )}
 
           {/* Quick link to reservations */}
-          <div className="p-6 rounded-2xl bg-[#F2E5DB] border border-[#D0ADA0] flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="p-6 rounded-2xl bg-[#F4EDE8] border border-[#E8DDD8] flex flex-col sm:flex-row items-center justify-between gap-4">
             <div>
-              <h3 className="font-serif font-bold text-lg text-[#38231F]">Looking to Dine Soon?</h3>
-              <p className="text-xs sm:text-sm text-[#754D45]">View your existing reservations or book a new table.</p>
+              <h3 className="font-serif font-bold text-lg text-[#2D2528]">Looking to Dine Soon?</h3>
+              <p className="text-xs sm:text-sm text-[#75696B]">View your existing reservations or book a new table.</p>
             </div>
             <div className="flex gap-2">
               <Link to="/customer/bookings">

@@ -53,20 +53,20 @@ export const CustomerOrdersPage = () => {
   };
 
   return (
-    <div className="py-12 bg-[#F2E5DB] min-h-[85vh]">
+    <div className="py-12 bg-[#F4EDE8] min-h-[85vh]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         
         {/* Header */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 bg-white p-6 sm:p-8 rounded-3xl border border-[#D0ADA0]/50 shadow-sm">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 bg-white p-6 sm:p-8 rounded-3xl border border-[#E8DDD8] shadow-sm">
           <div>
             <div className="flex items-center gap-2 mb-1">
-              <span className="text-xs font-bold uppercase tracking-wider text-[#754D45]">Live Dining Tracker</span>
+              <span className="text-xs font-bold uppercase tracking-wider text-[#75696B]">Live Dining Tracker</span>
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
             </div>
-            <h1 className="font-serif text-3xl font-bold text-[#38231F]">My Live Table Orders</h1>
-            <p className="text-xs text-[#754D45] mt-1">
+            <h1 className="font-serif text-3xl font-bold text-[#2D2528]">My Live Table Orders</h1>
+            <p className="text-xs text-[#75696B] mt-1">
               {userSession ? (
-                <>Seated at <strong className="text-[#754D45]">Table {userSession.tableNumber}</strong> • Active Session <strong className="font-mono text-[#754D45]">#{userSession.sessionId}</strong></>
+                <>Seated at <strong className="text-[#75696B]">Table {userSession.tableNumber}</strong> • Active Session <strong className="font-mono text-[#75696B]">#{userSession.sessionId}</strong></>
               ) : (
                 'Real-time order preparation status direct from the executive kitchen'
               )}
@@ -84,12 +84,12 @@ export const CustomerOrdersPage = () => {
 
         {/* Live Orders Tracker */}
         {customerOrders.length === 0 ? (
-          <div className="bg-white rounded-3xl p-12 text-center border border-[#D0ADA0]/50 shadow-sm space-y-4">
-            <div className="w-16 h-16 rounded-full bg-[#F2E5DB] text-[#754D45] mx-auto flex items-center justify-center">
+          <div className="bg-white rounded-3xl p-12 text-center border border-[#E8DDD8] shadow-sm space-y-4">
+            <div className="w-16 h-16 rounded-full bg-[#F4EDE8] text-[#75696B] mx-auto flex items-center justify-center">
               <ShoppingBag className="w-8 h-8" />
             </div>
-            <h3 className="font-serif text-2xl font-bold text-[#38231F]">No Active Orders Placed</h3>
-            <p className="text-sm text-[#754D45] max-w-md mx-auto">
+            <h3 className="font-serif text-2xl font-bold text-[#2D2528]">No Active Orders Placed</h3>
+            <p className="text-sm text-[#75696B] max-w-md mx-auto">
               You haven't ordered any dishes for your table yet. Explore our luxury seasonal menu and place an order directly to the kitchen.
             </p>
             <div className="pt-2">
@@ -111,24 +111,24 @@ export const CustomerOrdersPage = () => {
                 <div 
                   key={order.id} 
                   className={`bg-white rounded-3xl p-6 sm:p-8 border-2 shadow-md space-y-6 transition-all ${
-                    isReady ? 'border-[#A2766B] bg-amber-50/20' : 'border-[#D0ADA0]/50'
+                    isReady ? 'border-[#E8DDD8] bg-amber-50/20' : 'border-[#E8DDD8]'
                   }`}
                 >
                   {/* Order Top Bar */}
-                  <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pb-4 border-b border-[#F2E5DB]">
+                  <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pb-4 border-b border-[#E8DDD8]">
                     <div>
                       <div className="flex items-center gap-3">
-                        <span className="font-mono font-bold text-sm bg-[#754D45] text-white px-2.5 py-0.5 rounded-lg">
+                        <span className="font-mono font-bold text-sm bg-[#873C50] text-white px-2.5 py-0.5 rounded-lg">
                           {order.id}
                         </span>
-                        <span className="font-mono text-xs text-[#754D45]">
+                        <span className="font-mono text-xs text-[#75696B]">
                           KOT Ticket: {order.kotId}
                         </span>
-                        <span className="text-xs text-[#754D45]">
+                        <span className="text-xs text-[#75696B]">
                           • Placed {order.time || '10 mins ago'}
                         </span>
                       </div>
-                      <h3 className="font-serif text-xl font-bold text-[#38231F] mt-1">
+                      <h3 className="font-serif text-xl font-bold text-[#2D2528] mt-1">
                         Table {order.tableNumber} Dining Service
                       </h3>
                     </div>
@@ -147,7 +147,7 @@ export const CustomerOrdersPage = () => {
 
                   {/* 5-Stage Stepper */}
                   <div className="py-2">
-                    <p className="text-xs font-bold uppercase tracking-wider text-[#754D45] mb-4">
+                    <p className="text-xs font-bold uppercase tracking-wider text-[#75696B] mb-4">
                       Real-Time Kitchen Progress
                     </p>
                     <div className="grid grid-cols-2 sm:grid-cols-5 gap-2 sm:gap-4 relative">
@@ -160,9 +160,9 @@ export const CustomerOrdersPage = () => {
                             key={idx} 
                             className={`p-3 rounded-2xl border transition-all text-center flex flex-col justify-between ${
                               isCurrent
-                                ? 'bg-[#754D45] text-white border-[#754D45] shadow-md scale-105'
+                                ? 'bg-[#873C50] text-white border-[#873C50] shadow-md scale-105'
                                 : isDone
-                                ? 'bg-[#F2E5DB] text-[#38231F] border-[#D0ADA0]'
+                                ? 'bg-[#F4EDE8] text-[#2D2528] border-[#E8DDD8]'
                                 : 'bg-gray-50 text-gray-400 border-gray-200'
                             }`}
                           >
@@ -170,13 +170,13 @@ export const CustomerOrdersPage = () => {
                               {isDone && !isCurrent ? (
                                 <CheckCircle2 className="w-5 h-5 text-emerald-600" />
                               ) : isCurrent ? (
-                                <ChefHat className="w-5 h-5 text-[#A2766B] animate-bounce" />
+                                <ChefHat className="w-5 h-5 text-[#C8A66B] animate-bounce" />
                               ) : (
                                 <Clock className="w-5 h-5 text-gray-300" />
                               )}
                             </div>
                             <span className="font-bold text-xs">{step.label}</span>
-                            <span className={`text-[10px] mt-0.5 ${isCurrent ? 'text-[#F2E5DB]' : 'text-[#754D45]'}`}>
+                            <span className={`text-[10px] mt-0.5 ${isCurrent ? 'text-[#FFFFFF]' : 'text-[#75696B]'}`}>
                               {step.desc}
                             </span>
                           </div>
@@ -186,20 +186,20 @@ export const CustomerOrdersPage = () => {
                   </div>
 
                   {/* Dishes Ordered */}
-                  <div className="pt-4 border-t border-[#F2E5DB] space-y-3">
-                    <p className="font-bold text-xs uppercase tracking-wider text-[#754D45]">
+                  <div className="pt-4 border-t border-[#E8DDD8] space-y-3">
+                    <p className="font-bold text-xs uppercase tracking-wider text-[#75696B]">
                       Dishes on This Ticket:
                     </p>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       {order.items.map((item, idx) => (
-                        <div key={idx} className="p-3 rounded-xl bg-[#F2E5DB] flex justify-between items-center text-xs">
+                        <div key={idx} className="p-3 rounded-xl bg-[#F4EDE8] flex justify-between items-center text-xs">
                           <div>
-                            <span className="font-bold text-[#38231F]">{item.qty} × {item.name}</span>
+                            <span className="font-bold text-[#2D2528]">{item.qty} × {item.name}</span>
                             {item.notes && (
-                              <p className="text-[10px] text-[#754D45] italic">Note: {item.notes}</p>
+                              <p className="text-[10px] text-[#75696B] italic">Note: {item.notes}</p>
                             )}
                           </div>
-                          <span className="font-mono font-bold text-[#754D45]">
+                          <span className="font-mono font-bold text-[#75696B]">
                             {formatCurrency(item.price * item.qty)}
                           </span>
                         </div>
@@ -208,14 +208,14 @@ export const CustomerOrdersPage = () => {
                   </div>
 
                   {/* Summary Footer */}
-                  <div className="pt-4 border-t border-[#F2E5DB] flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 text-xs">
-                    <div className="flex items-center gap-2 text-[#754D45]">
+                  <div className="pt-4 border-t border-[#E8DDD8] flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 text-xs">
+                    <div className="flex items-center gap-2 text-[#75696B]">
                       <ShieldCheck className="w-4 h-4 text-emerald-600" />
-                      <span>Dedicated Waiter: <strong className="text-[#38231F]">{order.waiter || 'Julian Vance'}</strong></span>
+                      <span>Dedicated Waiter: <strong className="text-[#2D2528]">{order.waiter || 'Julian Vance'}</strong></span>
                     </div>
 
-                    <div className="font-mono text-sm font-bold text-[#38231F]">
-                      Ticket Total: <span className="text-[#754D45]">{formatCurrency(
+                    <div className="font-mono text-sm font-bold text-[#2D2528]">
+                      Ticket Total: <span className="text-[#75696B]">{formatCurrency(
                         order.items.reduce((s, it) => s + (it.price * it.qty), 0)
                       )}</span>
                     </div>

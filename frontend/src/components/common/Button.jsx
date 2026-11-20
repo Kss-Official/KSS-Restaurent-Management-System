@@ -21,27 +21,26 @@ export const Button = ({
   };
 
   const variantStyles = {
-    // 6-Color System: #38231F, #55352F, #754D45, #A2766B, #D0ADA0, #F2E5DB
-    // Primary Button with rich #38231F to #55352F gradient & pure white text
-    primary: "bg-gradient-to-r from-[#38231F] via-[#55352F] to-[#38231F] text-[#FFFFFF] font-bold hover:shadow-lg hover:brightness-110 focus:ring-[#A2766B] border border-[#55352F] shadow-[#38231F]/25",
+    // PRIMARY BUTTON: Background: #873C50, Text: #FFFFFF, Hover: #542334, Focus Ring: #B66A79
+    primary: "bg-[#873C50] text-[#FFFFFF] font-bold hover:bg-[#542334] focus:ring-[#B66A79] border border-[#873C50] shadow-sm shadow-[#873C50]/20",
     
-    // Secondary Button (bg: #FFFFFF, text: #38231F, border: #D0ADA0)
-    secondary: "bg-[#FFFFFF] text-[#38231F] hover:bg-[#F2E5DB] focus:ring-[#A2766B] border border-[#D0ADA0] shadow-xs",
+    // SECONDARY BUTTON: Background: #F4EDE8, Text: #542334, Border: #E8DDD8, Hover: #EDE1DC
+    secondary: "bg-[#F4EDE8] text-[#542334] hover:bg-[#EDE1DC] focus:ring-[#B66A79] border border-[#E8DDD8] shadow-xs",
     
     // Outline Button
-    outline: "border-2 border-[#55352F] text-[#55352F] bg-transparent hover:bg-[#55352F] hover:text-white focus:ring-[#55352F]",
+    outline: "border-2 border-[#873C50] text-[#873C50] bg-transparent hover:bg-[#873C50] hover:text-[#FFFFFF] focus:ring-[#B66A79]",
     
-    // Accent Button with #754D45 to #A2766B gradient
-    gold: "bg-gradient-to-r from-[#754D45] via-[#A2766B] to-[#754D45] text-[#FFFFFF] hover:brightness-105 font-bold focus:ring-[#A2766B] shadow-md shadow-[#A2766B]/20",
+    // Champagne Gold Accent Button
+    gold: "bg-[#C8A66B] text-[#FFFFFF] hover:brightness-105 font-bold focus:ring-[#C8A66B] shadow-md shadow-[#C8A66B]/25",
     
-    // Semantic Danger / Error
-    danger: "bg-[#754D45] text-white hover:bg-[#38231F] focus:ring-[#754D45]",
+    // Semantic Danger / Error: #C44747
+    danger: "bg-[#C44747] text-white hover:bg-[#a83333] focus:ring-[#C44747]",
     
-    // Tertiary / Cancel / Ghost Button
-    ghost: "bg-transparent text-[#754D45] hover:bg-[#F2E5DB] hover:text-[#38231F] focus:ring-[#754D45] shadow-none",
+    // TERTIARY BUTTON: Background: Transparent, Text: #873C50, Hover Background: #FAF7F5
+    ghost: "bg-transparent text-[#873C50] hover:bg-[#FAF7F5] focus:ring-[#B66A79] shadow-none",
     
-    // Dark Button in #38231F
-    dark: "bg-gradient-to-r from-[#38231F] to-[#55352F] text-[#FFFFFF] hover:brightness-110 border border-[#D0ADA0]/30"
+    // Dark Burgundy Button: #542334
+    dark: "bg-[#542334] text-[#FFFFFF] hover:bg-[#873C50] border border-[#E8DDD8]"
   };
 
   return (

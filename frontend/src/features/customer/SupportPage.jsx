@@ -32,7 +32,7 @@ export const SupportPage = () => {
 
   const faqs = [
     {
-      q: "What is the dress code for dining at Aura Mocha?",
+      q: "What is the dress code for dining at Aura Dining?",
       a: "We invite our patrons to dress in elegant smart-casual or formal attire. Athletic wear, distressed denim, and beachwear are not permitted in our main dining salon and lounge."
     },
     {
@@ -81,49 +81,49 @@ export const SupportPage = () => {
   };
 
   return (
-    <div className="py-12 bg-[#F2E5DB] min-h-[85vh]">
+    <div className="py-12 bg-[#F4EDE8] min-h-[85vh]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
         
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto space-y-3">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#F2E5DB] text-[#754D45] text-xs font-bold uppercase tracking-wider">
-            <HelpCircle className="w-3.5 h-3.5 text-[#A2766B]" /> Concierge Desk
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#F4EDE8] text-[#75696B] text-xs font-bold uppercase tracking-wider">
+            <HelpCircle className="w-3.5 h-3.5 text-[#C8A66B]" /> Concierge Desk
           </div>
-          <h1 className="font-serif text-3xl sm:text-4xl font-bold text-[#38231F]">
+          <h1 className="font-serif text-3xl sm:text-4xl font-bold text-[#2D2528]">
             Guest Services & Inquiries
           </h1>
-          <p className="text-sm text-[#754D45]">
+          <p className="text-sm text-[#75696B]">
             Our hospitality team is dedicated to orchestrating flawless dining affairs. Reach our concierge for special arrangements or assistance.
           </p>
         </div>
 
         {/* Contact Channels */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="bg-white rounded-3xl p-6 border border-[#D0ADA0]/60 shadow-sm text-center space-y-3">
-            <div className="w-12 h-12 rounded-2xl bg-[#F2E5DB] text-[#754D45] flex items-center justify-center mx-auto">
+          <div className="bg-white rounded-3xl p-6 border border-[#E8DDD8] shadow-sm text-center space-y-3">
+            <div className="w-12 h-12 rounded-2xl bg-[#F4EDE8] text-[#75696B] flex items-center justify-center mx-auto">
               <Phone className="w-6 h-6" />
             </div>
-            <h3 className="font-serif font-bold text-lg text-[#38231F]">Private Concierge Line</h3>
-            <p className="text-xs text-[#754D45]">Direct line for instant inquiries</p>
-            <p className="font-mono font-bold text-sm text-[#754D45]">+1 (555) 800-4499</p>
+            <h3 className="font-serif font-bold text-lg text-[#2D2528]">Private Concierge Line</h3>
+            <p className="text-xs text-[#75696B]">Direct line for instant inquiries</p>
+            <p className="font-mono font-bold text-sm text-[#75696B]">+1 (555) 800-4499</p>
           </div>
 
-          <div className="bg-white rounded-3xl p-6 border border-[#D0ADA0]/60 shadow-sm text-center space-y-3">
-            <div className="w-12 h-12 rounded-2xl bg-[#F2E5DB] text-[#754D45] flex items-center justify-center mx-auto">
+          <div className="bg-white rounded-3xl p-6 border border-[#E8DDD8] shadow-sm text-center space-y-3">
+            <div className="w-12 h-12 rounded-2xl bg-[#F4EDE8] text-[#75696B] flex items-center justify-center mx-auto">
               <Mail className="w-6 h-6" />
             </div>
-            <h3 className="font-serif font-bold text-lg text-[#38231F]">Email Concierge</h3>
-            <p className="text-xs text-[#754D45]">For event quotes and private bookings</p>
-            <p className="font-bold text-xs text-[#754D45]">concierge@auramocha.com</p>
+            <h3 className="font-serif font-bold text-lg text-[#2D2528]">Email Concierge</h3>
+            <p className="text-xs text-[#75696B]">For event quotes and private bookings</p>
+            <p className="font-bold text-xs text-[#75696B]">concierge@auramocha.com</p>
           </div>
 
-          <div className="bg-white rounded-3xl p-6 border border-[#D0ADA0]/60 shadow-sm text-center space-y-3">
-            <div className="w-12 h-12 rounded-2xl bg-[#F2E5DB] text-[#754D45] flex items-center justify-center mx-auto">
+          <div className="bg-white rounded-3xl p-6 border border-[#E8DDD8] shadow-sm text-center space-y-3">
+            <div className="w-12 h-12 rounded-2xl bg-[#F4EDE8] text-[#75696B] flex items-center justify-center mx-auto">
               <Clock className="w-6 h-6" />
             </div>
-            <h3 className="font-serif font-bold text-lg text-[#38231F]">Service Hours</h3>
-            <p className="text-xs text-[#754D45]">Dining Salon & Front Desk</p>
-            <p className="font-bold text-xs text-[#38231F]">Mon – Sun: 11:30 AM – Midnight</p>
+            <h3 className="font-serif font-bold text-lg text-[#2D2528]">Service Hours</h3>
+            <p className="text-xs text-[#75696B]">Dining Salon & Front Desk</p>
+            <p className="font-bold text-xs text-[#2D2528]">Mon – Sun: 11:30 AM – Midnight</p>
           </div>
         </div>
 
@@ -131,27 +131,27 @@ export const SupportPage = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
           
           {/* FAQs Accordion */}
-          <div className="bg-white rounded-3xl p-6 sm:p-8 border border-[#D0ADA0]/60 shadow-sm space-y-4">
+          <div className="bg-white rounded-3xl p-6 sm:p-8 border border-[#E8DDD8] shadow-sm space-y-4">
             <div>
-              <span className="text-xs font-bold uppercase tracking-wider text-[#754D45]">Need Assistance?</span>
-              <h3 className="font-serif text-2xl font-bold text-[#38231F] mt-1">Frequently Asked Questions</h3>
+              <span className="text-xs font-bold uppercase tracking-wider text-[#75696B]">Need Assistance?</span>
+              <h3 className="font-serif text-2xl font-bold text-[#2D2528] mt-1">Frequently Asked Questions</h3>
             </div>
 
             <div className="space-y-3 pt-2">
               {faqs.map((faq, index) => (
                 <div
                   key={index}
-                  className="rounded-2xl border border-[#D0ADA0]/40 overflow-hidden transition-all"
+                  className="rounded-2xl border border-[#E8DDD8] overflow-hidden transition-all"
                 >
                   <button
                     onClick={() => setOpenFaq(openFaq === index ? -1 : index)}
-                    className="w-full p-4 text-left flex justify-between items-center bg-[#F2E5DB]/50 hover:bg-[#F2E5DB] transition-colors"
+                    className="w-full p-4 text-left flex justify-between items-center bg-[#F4EDE8]/50 hover:bg-[#F4EDE8] transition-colors"
                   >
-                    <span className="font-serif font-bold text-sm text-[#38231F] pr-2">{faq.q}</span>
-                    <ChevronDown className={`w-4 h-4 text-[#754D45] transition-transform ${openFaq === index ? 'rotate-180' : ''}`} />
+                    <span className="font-serif font-bold text-sm text-[#2D2528] pr-2">{faq.q}</span>
+                    <ChevronDown className={`w-4 h-4 text-[#75696B] transition-transform ${openFaq === index ? 'rotate-180' : ''}`} />
                   </button>
                   {openFaq === index && (
-                    <div className="p-4 text-xs text-[#754D45] bg-white leading-relaxed border-t border-[#F2E5DB]">
+                    <div className="p-4 text-xs text-[#75696B] bg-white leading-relaxed border-t border-[#E8DDD8]">
                       {faq.a}
                     </div>
                   )}
@@ -161,10 +161,10 @@ export const SupportPage = () => {
           </div>
 
           {/* Concierge Message Form */}
-          <div className="bg-white rounded-3xl p-6 sm:p-8 border border-[#D0ADA0]/60 shadow-sm space-y-6">
+          <div className="bg-white rounded-3xl p-6 sm:p-8 border border-[#E8DDD8] shadow-sm space-y-6">
             <div>
-              <span className="text-xs font-bold uppercase tracking-wider text-[#754D45]">Direct Communication</span>
-              <h3 className="font-serif text-2xl font-bold text-[#38231F] mt-1">Contact Concierge or Raise Query</h3>
+              <span className="text-xs font-bold uppercase tracking-wider text-[#75696B]">Direct Communication</span>
+              <h3 className="font-serif text-2xl font-bold text-[#2D2528] mt-1">Contact Concierge or Raise Query</h3>
             </div>
 
             {submitted && (
@@ -177,33 +177,33 @@ export const SupportPage = () => {
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="text-xs font-bold uppercase text-[#754D45] block mb-1">Your Name</label>
+                  <label className="text-xs font-bold uppercase text-[#75696B] block mb-1">Your Name</label>
                   <input
                     type="text"
                     required
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full text-xs p-3 rounded-xl border border-[#D0ADA0]"
+                    className="w-full text-xs p-3 rounded-xl border border-[#E8DDD8]"
                   />
                 </div>
                 <div>
-                  <label className="text-xs font-bold uppercase text-[#754D45] block mb-1">Email</label>
+                  <label className="text-xs font-bold uppercase text-[#75696B] block mb-1">Email</label>
                   <input
                     type="email"
                     required
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full text-xs p-3 rounded-xl border border-[#D0ADA0]"
+                    className="w-full text-xs p-3 rounded-xl border border-[#E8DDD8]"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="text-xs font-bold uppercase text-[#754D45] block mb-1">Inquiry Category</label>
+                <label className="text-xs font-bold uppercase text-[#75696B] block mb-1">Inquiry Category</label>
                 <select
                   value={formData.category}
                   onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                  className="w-full text-xs p-3 rounded-xl border border-[#D0ADA0] bg-white"
+                  className="w-full text-xs p-3 rounded-xl border border-[#E8DDD8] bg-white"
                 >
                   <option value="Reservation Inquiry">Reservation & Table Seating</option>
                   <option value="Private Dining">Private Dining Salon & Events</option>
@@ -214,25 +214,25 @@ export const SupportPage = () => {
               </div>
 
               <div>
-                <label className="text-xs font-bold uppercase text-[#754D45] block mb-1">Subject</label>
+                <label className="text-xs font-bold uppercase text-[#75696B] block mb-1">Subject</label>
                 <input
                   type="text"
                   placeholder="Brief summary of request..."
                   value={formData.subject}
                   onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                  className="w-full text-xs p-3 rounded-xl border border-[#D0ADA0]"
+                  className="w-full text-xs p-3 rounded-xl border border-[#E8DDD8]"
                 />
               </div>
 
               <div>
-                <label className="text-xs font-bold uppercase text-[#754D45] block mb-1">Message</label>
+                <label className="text-xs font-bold uppercase text-[#75696B] block mb-1">Message</label>
                 <textarea
                   rows={4}
                   required
                   placeholder="Detail your request or inquiry..."
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  className="w-full text-xs p-3 rounded-xl border border-[#D0ADA0]"
+                  className="w-full text-xs p-3 rounded-xl border border-[#E8DDD8]"
                 ></textarea>
               </div>
 

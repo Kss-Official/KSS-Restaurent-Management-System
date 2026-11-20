@@ -65,21 +65,21 @@ export const CustomerBookingsPage = () => {
   };
 
   return (
-    <div className="bg-[#F2E5DB] py-12 px-4 sm:px-6 lg:px-8 min-h-[85vh]">
+    <div className="bg-[#F4EDE8] py-12 px-4 sm:px-6 lg:px-8 min-h-[85vh]">
       <div className="max-w-5xl mx-auto space-y-8">
         
         {/* Navigation tabs */}
-        <div className="flex items-center justify-between border-b border-[#D0ADA0]/50 pb-4">
+        <div className="flex items-center justify-between border-b border-[#E8DDD8] pb-4">
           <div className="flex items-center gap-3">
             <Link
               to="/customer/profile"
-              className="px-4 py-2 rounded-xl bg-white text-[#754D45] hover:bg-[#F2E5DB] text-sm font-semibold border border-[#D0ADA0]/40"
+              className="px-4 py-2 rounded-xl bg-white text-[#75696B] hover:bg-[#F4EDE8] text-sm font-semibold border border-[#E8DDD8]"
             >
               Personal Information
             </Link>
             <Link
               to="/customer/bookings"
-              className="px-4 py-2 rounded-xl bg-[#754D45] text-white text-sm font-semibold shadow-sm"
+              className="px-4 py-2 rounded-xl bg-[#873C50] text-white text-sm font-semibold shadow-sm"
             >
               My Bookings ({myBookings.length})
             </Link>
@@ -94,20 +94,20 @@ export const CustomerBookingsPage = () => {
 
         {/* Section Title */}
         <div>
-          <h1 className="font-serif text-3xl font-bold text-[#38231F]">
+          <h1 className="font-serif text-3xl font-bold text-[#2D2528]">
             Reservation & Dining History
           </h1>
-          <p className="text-sm text-[#754D45] mt-1">
+          <p className="text-sm text-[#75696B] mt-1">
             Review upcoming reservation details, assigned tables, or past visits.
           </p>
         </div>
 
         {/* Bookings List */}
         {myBookings.length === 0 ? (
-          <div className="text-center py-16 bg-white rounded-3xl border border-dashed border-[#D0ADA0] p-8 space-y-4">
-            <Calendar className="w-12 h-12 text-[#754D45] mx-auto opacity-60" />
-            <h3 className="font-serif text-xl font-bold text-[#38231F]">No Reservations Yet</h3>
-            <p className="text-sm text-[#754D45] max-w-sm mx-auto">
+          <div className="text-center py-16 bg-white rounded-3xl border border-dashed border-[#E8DDD8] p-8 space-y-4">
+            <Calendar className="w-12 h-12 text-[#75696B] mx-auto opacity-60" />
+            <h3 className="font-serif text-xl font-bold text-[#2D2528]">No Reservations Yet</h3>
+            <p className="text-sm text-[#75696B] max-w-sm mx-auto">
               You haven't scheduled any dining experiences with us. Reserve a table now to taste our signature cuisine.
             </p>
             <Link to="/customer/book-table">
@@ -119,14 +119,14 @@ export const CustomerBookingsPage = () => {
             {myBookings.map((booking) => (
               <div
                 key={booking.id}
-                className="bg-white rounded-2xl p-6 border border-[#D0ADA0]/60 shadow-sm hover:shadow-md transition-shadow duration-200"
+                className="bg-white rounded-2xl p-6 border border-[#E8DDD8] shadow-sm hover:shadow-md transition-shadow duration-200"
               >
-                <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-4 border-b border-[#F2E5DB]">
+                <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-4 border-b border-[#E8DDD8]">
                   <div className="flex items-center gap-3">
-                    <span className="font-mono text-base font-bold text-[#754D45] bg-[#F2E5DB] px-3 py-1 rounded-lg border border-[#D0ADA0]/40">
+                    <span className="font-mono text-base font-bold text-[#75696B] bg-[#F4EDE8] px-3 py-1 rounded-lg border border-[#E8DDD8]">
                       {booking.id}
                     </span>
-                    <span className="text-xs font-semibold text-[#754D45]">
+                    <span className="text-xs font-semibold text-[#75696B]">
                       {booking.tableNo || 'Table Assigned on Arrival'}
                     </span>
                   </div>
@@ -137,41 +137,41 @@ export const CustomerBookingsPage = () => {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 py-4 text-xs sm:text-sm">
                   <div className="flex items-start gap-2">
-                    <MapPin className="w-4 h-4 text-[#754D45] shrink-0 mt-0.5" />
+                    <MapPin className="w-4 h-4 text-[#75696B] shrink-0 mt-0.5" />
                     <div>
-                      <p className="text-[#754D45] font-medium text-[11px] uppercase">Location</p>
-                      <p className="font-bold text-[#38231F] leading-tight">{booking.location}</p>
+                      <p className="text-[#75696B] font-medium text-[11px] uppercase">Location</p>
+                      <p className="font-bold text-[#2D2528] leading-tight">{booking.location}</p>
                     </div>
                   </div>
 
                   <div className="flex items-start gap-2">
-                    <Calendar className="w-4 h-4 text-[#754D45] shrink-0 mt-0.5" />
+                    <Calendar className="w-4 h-4 text-[#75696B] shrink-0 mt-0.5" />
                     <div>
-                      <p className="text-[#754D45] font-medium text-[11px] uppercase">Date & Time</p>
-                      <p className="font-bold text-[#38231F] leading-tight">{formatDate(booking.date)}</p>
-                      <p className="text-xs text-[#754D45]">{booking.time}</p>
+                      <p className="text-[#75696B] font-medium text-[11px] uppercase">Date & Time</p>
+                      <p className="font-bold text-[#2D2528] leading-tight">{formatDate(booking.date)}</p>
+                      <p className="text-xs text-[#75696B]">{booking.time}</p>
                     </div>
                   </div>
 
                   <div className="flex items-start gap-2">
-                    <Users className="w-4 h-4 text-[#754D45] shrink-0 mt-0.5" />
+                    <Users className="w-4 h-4 text-[#75696B] shrink-0 mt-0.5" />
                     <div>
-                      <p className="text-[#754D45] font-medium text-[11px] uppercase">Party Size</p>
-                      <p className="font-bold text-[#38231F] leading-tight">{booking.guests}</p>
+                      <p className="text-[#75696B] font-medium text-[11px] uppercase">Party Size</p>
+                      <p className="font-bold text-[#2D2528] leading-tight">{booking.guests}</p>
                     </div>
                   </div>
 
                   <div className="flex items-start gap-2">
-                    <FileText className="w-4 h-4 text-[#754D45] shrink-0 mt-0.5" />
+                    <FileText className="w-4 h-4 text-[#75696B] shrink-0 mt-0.5" />
                     <div>
-                      <p className="text-[#754D45] font-medium text-[11px] uppercase">Guest Name</p>
-                      <p className="font-bold text-[#38231F] leading-tight">{booking.customerName}</p>
+                      <p className="text-[#75696B] font-medium text-[11px] uppercase">Guest Name</p>
+                      <p className="font-bold text-[#2D2528] leading-tight">{booking.customerName}</p>
                     </div>
                   </div>
                 </div>
 
-                <div className="pt-3 border-t border-[#F2E5DB] flex items-center justify-between">
-                  <span className="text-xs text-[#754D45] italic truncate max-w-xs">
+                <div className="pt-3 border-t border-[#E8DDD8] flex items-center justify-between">
+                  <span className="text-xs text-[#75696B] italic truncate max-w-xs">
                     {booking.specialRequests ? `"${booking.specialRequests}"` : 'Standard seating'}
                   </span>
                   <div className="flex items-center gap-2">
@@ -203,56 +203,56 @@ export const CustomerBookingsPage = () => {
         {/* Detailed Modal View */}
         {selectedBooking && (
           <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
-            <div className="bg-white rounded-3xl max-w-lg w-full p-8 border border-[#D0ADA0] shadow-2xl space-y-6 relative animate-fadeIn">
+            <div className="bg-white rounded-3xl max-w-lg w-full p-8 border border-[#E8DDD8] shadow-2xl space-y-6 relative animate-fadeIn">
               <button
                 onClick={() => setSelectedBooking(null)}
-                className="absolute top-5 right-5 p-2 rounded-full hover:bg-[#F2E5DB] text-[#754D45]"
+                className="absolute top-5 right-5 p-2 rounded-full hover:bg-[#F4EDE8] text-[#75696B]"
               >
                 <X className="w-5 h-5" />
               </button>
 
               <div className="space-y-1">
-                <span className="text-xs font-bold uppercase tracking-wider text-[#754D45]">
+                <span className="text-xs font-bold uppercase tracking-wider text-[#75696B]">
                   Reservation Voucher
                 </span>
-                <h3 className="font-serif text-2xl font-bold text-[#38231F]">
+                <h3 className="font-serif text-2xl font-bold text-[#2D2528]">
                   Booking Reference: {selectedBooking.id}
                 </h3>
               </div>
 
-              <div className="bg-[#F2E5DB] p-5 rounded-2xl border border-[#D0ADA0]/50 space-y-3 text-sm">
-                <div className="flex justify-between items-center pb-2 border-b border-[#D0ADA0]/30">
-                  <span className="text-[#754D45]">Current Status</span>
+              <div className="bg-[#F4EDE8] p-5 rounded-2xl border border-[#E8DDD8] space-y-3 text-sm">
+                <div className="flex justify-between items-center pb-2 border-b border-[#E8DDD8]">
+                  <span className="text-[#75696B]">Current Status</span>
                   {getStatusBadge(selectedBooking.status)}
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-[#754D45]">Location</span>
-                  <span className="font-semibold text-[#38231F] text-right">{selectedBooking.location}</span>
+                  <span className="text-[#75696B]">Location</span>
+                  <span className="font-semibold text-[#2D2528] text-right">{selectedBooking.location}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-[#754D45]">Date</span>
-                  <span className="font-semibold text-[#38231F]">{formatDate(selectedBooking.date)}</span>
+                  <span className="text-[#75696B]">Date</span>
+                  <span className="font-semibold text-[#2D2528]">{formatDate(selectedBooking.date)}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-[#754D45]">Time</span>
-                  <span className="font-semibold text-[#38231F]">{selectedBooking.time}</span>
+                  <span className="text-[#75696B]">Time</span>
+                  <span className="font-semibold text-[#2D2528]">{selectedBooking.time}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-[#754D45]">Number of Guests</span>
-                  <span className="font-semibold text-[#38231F]">{selectedBooking.guests}</span>
+                  <span className="text-[#75696B]">Number of Guests</span>
+                  <span className="font-semibold text-[#2D2528]">{selectedBooking.guests}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-[#754D45]">Table Assignment</span>
-                  <span className="font-semibold text-[#754D45]">{selectedBooking.tableNo || 'Table 12 (Reserved)'}</span>
+                  <span className="text-[#75696B]">Table Assignment</span>
+                  <span className="font-semibold text-[#75696B]">{selectedBooking.tableNo || 'Table 12 (Reserved)'}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-[#754D45]">Guest Contact</span>
-                  <span className="font-semibold text-[#38231F]">{selectedBooking.contactNumber}</span>
+                  <span className="text-[#75696B]">Guest Contact</span>
+                  <span className="font-semibold text-[#2D2528]">{selectedBooking.contactNumber}</span>
                 </div>
                 {selectedBooking.specialRequests && (
-                  <div className="pt-2 border-t border-[#D0ADA0]/30">
-                    <span className="text-[#754D45] text-xs block mb-1">Special Dietary / Requests:</span>
-                    <p className="text-xs italic text-[#38231F] bg-white p-2.5 rounded-lg border border-[#D0ADA0]/30">
+                  <div className="pt-2 border-t border-[#E8DDD8]">
+                    <span className="text-[#75696B] text-xs block mb-1">Special Dietary / Requests:</span>
+                    <p className="text-xs italic text-[#2D2528] bg-white p-2.5 rounded-lg border border-[#E8DDD8]">
                       "{selectedBooking.specialRequests}"
                     </p>
                   </div>
