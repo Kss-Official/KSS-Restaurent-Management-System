@@ -1,73 +1,80 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
-import { useAppStore } from '../../store/store';
-import { ROLES, ROLE_LABELS } from '../../utils/constants';
-import Button from '../common/Button';
-import { 
-  UtensilsCrossed, 
-  User, 
-  Calendar, 
-  LogOut, 
-  Menu, 
-  X, 
-  ChevronDown, 
-  ShieldAlert, 
-  Compass, 
-  ChefHat, 
-  ConciergeBell, 
-  Users,
-  Briefcase,
-  ShoppingBag,
-  Heart,
-  Tag,
-  Clock,
-  Star,
-  HelpCircle
-} from 'lucide-react';
+import { ROLES } from '../../utils/constants';
+import { Leaf, Calendar, User, Menu, X, LogOut } from 'lucide-react';
 
-export const Navbar = ({ onOpenBookingModal }) => {
-  const { currentUser, isAuthenticated, isCustomer, logout, role } = useAuth();
-  const { cart, wishlist } = useAppStore();
-  const [profileDropdownOpen, setProfileDropdownOpen] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+export const Navbar = () => {
+  const { isAuthenticated, isCustomer, logout, role } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
-  const dropdownRef = useRef(null);
 
-  const cartTotalItems = cart ? cart.reduce((sum, item) => sum + item.qty, 0) : 0;
-  const wishlistCount = wishlist ? wishlist.length : 0;
+  const isHome = location.pathname === '/';
+  const isMenu = location.pathname === '/menu';
+  const isAbout = location.pathname === '/about';
+  const isReviews = location.pathname === '/reviews';
+  const isBlogs = location.pathname === '/blogs';
 
-  // Close dropdown on click outside
+  // Animation Stage:
+  // Stage 1: Logo capsule centered in viewport (Home entrance)
+  // Stage 2: Logo capsule in top-center (Menu, About, Reviews & Blogs entrance & Home stage 2)
+  // Stage 3: Expands horizontally to LHS & RHS into floating light cream glass navbar
+  const [animStage, setAnimStage] = useState(() => (isHome ? 1 : (isMenu || isAbout || isReviews || isBlogs) ? 2 : 3));
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setProfileDropdownOpen(false);
-      }
+    if (isHome) {
+      // Run full 3-stage opening sequence on home page load: center -> top-center -> expand
+      setAnimStage(1);
+
+      const timer1 = setTimeout(() => {
+        setAnimStage(2); // Glides to top middle
+      }, 850);
+
+      const timer2 = setTimeout(() => {
+        setAnimStage(3); // Expands outwards to LHS & RHS
+      }, 1750);
+
+      return () => {
+        clearTimeout(timer1);
+        clearTimeout(timer2);
+      };
+    } else if (isMenu || isAbout || isReviews || isBlogs) {
+      // Menu / About / Reviews / Blogs Page sequence matching Reference Images:
+      // Starts in top middle (Stage 2) -> smoothly expands outwards to LHS & RHS (Stage 3)
+      setAnimStage(2);
+
+      const timer = setTimeout(() => {
+        setAnimStage(3); // Expands outwards to LHS & RHS
+      }, 750);
+
+      return () => {
+        clearTimeout(timer);
+      };
+    } else {
+      setAnimStage(3);
+    }
+  }, [location.pathname, isHome, isMenu, isAbout, isReviews, isBlogs]);
+
+  // Track window scroll for enhanced contrast over long pages
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 40);
     };
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Close mobile menu on route change
+  // Close mobile drawer on route change
   useEffect(() => {
     setMobileMenuOpen(false);
-    setProfileDropdownOpen(false);
   }, [location.pathname]);
-
-  const navLinks = [
-    { label: 'Home', path: '/' },
-    { label: 'About', path: '/about' },
-    { label: 'Services', path: '/services' },
-    { label: 'Menu', path: '/menu' },
-    { label: 'Offers', path: '/offers' },
-    { label: 'Reviews', path: '/reviews' },
-    { label: 'Contact', path: '/contact' },
-  ];
 
   const handleLogout = () => {
     logout();
     navigate('/');
+    setMobileMenuOpen(false);
   };
 
   const getPortalRoute = () => {
@@ -82,51 +89,154 @@ export const Navbar = ({ onOpenBookingModal }) => {
     }
   };
 
-  const getPortalIcon = () => {
-    switch (role) {
-      case ROLES.ADMIN: return ShieldAlert;
-      case ROLES.MANAGER: return Briefcase;
-      case ROLES.KITCHEN: return ChefHat;
-      case ROLES.RECEPTIONIST: return ConciergeBell;
-      case ROLES.WAITER: return Users;
-      default: return Compass;
-    }
+  // Requested order: Home, About Us, Menu, Reviews, Blogs
+  const navLinks = [
+    { label: 'Home', path: '/' },
+    { label: 'About Us', path: '/about' },
+    { label: 'Menu', path: '/menu' },
+    { label: 'Reviews', path: '/reviews' },
+    { label: 'Blogs', path: '/blogs' },
+  ];
+
+  const handleReserveClick = () => {
+    // Notify BookTablePage to reset if user is already on the page
+    window.dispatchEvent(new CustomEvent('lunar-reset-booking'));
+    navigate('/book-table', { state: { reset: Date.now() } });
   };
 
-  const PortalIcon = getPortalIcon();
+  // Dynamic geometry & light cream/light white frosted glass styles
+  const getContainerStyles = () => {
+    if (animStage === 1) {
+      return {
+        top: '50%',
+        transform: 'translate(-50%, -50%)',
+        width: 'clamp(220px, 46vw, 270px)',
+        height: 'clamp(120px, 25vw, 145px)',
+        borderRadius: '9999px',
+        backgroundColor: 'rgba(250, 245, 239, 0.92)',
+        backdropFilter: 'blur(24px)',
+        WebkitBackdropFilter: 'blur(24px)',
+        boxShadow: '0 20px 60px rgba(0, 0, 0, 0.35)',
+        border: '1px solid rgba(255, 255, 255, 0.85)',
+      };
+    }
+    if (animStage === 2) {
+      return {
+        top: 'clamp(14px, 2.5vw, 20px)',
+        transform: 'translate(-50%, 0)',
+        width: 'clamp(105px, 20vw, 124px)',
+        height: 'clamp(46px, 8vw, 52px)',
+        borderRadius: '9999px',
+        backgroundColor: 'rgba(250, 245, 239, 0.92)',
+        backdropFilter: 'blur(24px)',
+        WebkitBackdropFilter: 'blur(24px)',
+        boxShadow: '0 10px 30px rgba(0, 0, 0, 0.22)',
+        border: '1px solid rgba(255, 255, 255, 0.85)',
+      };
+    }
+    // Stage 3: Light cream / light white frosted glass matching Image 2
+    return {
+      top: 'clamp(14px, 2.5vw, 20px)',
+      transform: 'translate(-50%, 0)',
+      width: 'min(90vw, 1060px)',
+      height: 'clamp(56px, 8vw, 64px)',
+      borderRadius: '9999px',
+      backgroundColor: isScrolled
+        ? 'rgba(252, 248, 243, 0.96)'
+        : 'rgba(247, 240, 232, 0.86)',
+      backdropFilter: 'blur(24px)',
+      WebkitBackdropFilter: 'blur(24px)',
+      boxShadow: isScrolled
+        ? '0 12px 36px rgba(0, 0, 0, 0.16)'
+        : '0 16px 45px rgba(0, 0, 0, 0.22)',
+      border: '1px solid rgba(255, 255, 255, 0.75)',
+    };
+  };
 
   return (
-    <header className="sticky top-0 z-50 bg-[#F2E5DB]/95 backdrop-blur-md border-b border-[#A2766B]/30 shadow-sm transition-all">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
-          
-          {/* Brand Logo - 6-Color System */}
-          <Link to="/" className="flex items-center gap-3 group">
-            <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-[#38231F] to-[#55352F] flex items-center justify-center text-[#FFFFFF] shadow-md group-hover:scale-105 transition-all border border-[#D0ADA0]/40">
-              <UtensilsCrossed className="w-5 h-5 text-[#A2766B]" />
-            </div>
-            <div className="flex flex-col">
-              <span className="font-serif text-2xl font-bold tracking-tight text-[#38231F] group-hover:text-[#55352F] transition-colors">
-                Aura Mocha
-              </span>
-              <span className="text-[10px] uppercase tracking-[0.2em] font-semibold text-[#754D45]">
-                Haute Cuisine & Lounge
-              </span>
-            </div>
+    <>
+      {/* Morphing Floating Light Cream Glass Navbar */}
+      <header
+        role="banner"
+        style={{
+          ...getContainerStyles(),
+          transition:
+            'top 0.85s cubic-bezier(0.22, 1, 0.36, 1), transform 0.85s cubic-bezier(0.22, 1, 0.36, 1), width 0.75s cubic-bezier(0.16, 1, 0.3, 1), height 0.75s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease',
+        }}
+        className="fixed left-1/2 z-50 overflow-hidden select-none font-hanken"
+      >
+        {/* ========================================================
+            STAGE 1 & 2 CONTENT: Centered Lunar Logo Pill
+            (Smoothly shrinks in place as capsule glides to top)
+           ======================================================== */}
+        <div
+          className={`absolute inset-0 flex flex-col items-center justify-center pointer-events-none transition-all duration-400 ${
+            animStage === 3 ? 'opacity-0 scale-75 pointer-events-none' : 'opacity-100 scale-100'
+          }`}
+        >
+          {/* Leaf Icon with dynamic scale */}
+          <Leaf
+            strokeWidth={1.8}
+            className={`text-[#4C1824] transition-all duration-700 ${
+              animStage === 1
+                ? 'w-10 h-10 sm:w-11 sm:h-11'
+                : 'w-3.5 h-3.5 sm:w-4 sm:h-4'
+            }`}
+          />
+          {/* Lunar Brand Name with dynamic scale */}
+          <span
+            className={`font-hanken text-[#4C1824] transition-all duration-700 ${
+              animStage === 1
+                ? 'text-2xl sm:text-3xl font-medium tracking-tight mt-1'
+                : 'text-xs sm:text-[13px] font-semibold leading-tight mt-0.5'
+            }`}
+          >
+            Lunar
+          </span>
+        </div>
+
+        {/* ========================================================
+            STAGE 3 CONTENT: Fully Opened Floating Glass Navbar
+            Matching Image 2:
+            - LHS: Light cream oval badge with Leaf + Lunar
+            - Center: Links with wide gap covering empty area
+            - RHS: "Reserve a Table" button (No user icon before login)
+           ======================================================== */}
+        <div
+          className={`w-full h-full flex items-center justify-between px-3.5 sm:px-5 md:px-6 transition-opacity duration-500 delay-100 ${
+            animStage === 3 ? 'opacity-100' : 'opacity-0 pointer-events-none'
+          }`}
+        >
+          {/* LHS: Lunar Badge Matching Image 2 */}
+          <Link
+            to="/"
+            aria-label="Lunar Home"
+            className="flex-shrink-0 inline-flex flex-col items-center justify-center px-4 sm:px-5 py-1 sm:py-1.5 rounded-full bg-[#FAF5EE]/95 hover:bg-white border border-white/80 shadow-xs transition-all duration-200 active:scale-95 group cursor-pointer"
+          >
+            <Leaf
+              strokeWidth={1.8}
+              className="w-3.5 h-3.5 text-[#4C1824] group-hover:scale-110 transition-transform duration-200"
+            />
+            <span className="text-[12px] sm:text-[12.5px] font-semibold text-[#4C1824] font-hanken leading-tight tracking-wide">
+              Lunar
+            </span>
           </Link>
 
-          {/* Desktop Navigation Links */}
-          <nav className="hidden md:flex items-center space-x-1 lg:space-x-2">
+          {/* Center: Desktop Navigation Links with Balanced Spacing */}
+          <nav
+            aria-label="Main Navigation"
+            className="hidden md:flex items-center justify-center gap-4 lg:gap-6 xl:gap-7 mx-auto"
+          >
             {navLinks.map((link) => {
               const isActive = location.pathname === link.path;
               return (
                 <Link
-                  key={link.path}
+                  key={link.label}
                   to={link.path}
-                  className={`px-3.5 py-2 rounded-lg text-sm font-semibold transition-all ${
+                  className={`font-hanken text-[13.5px] lg:text-[14px] font-medium transition-all duration-200 ${
                     isActive
-                      ? 'text-[#38231F] bg-[#FFFFFF] shadow-sm border border-[#D0ADA0]'
-                      : 'text-[#38231F] hover:text-[#55352F] hover:bg-[#D0ADA0]/25'
+                      ? 'bg-[#4C1824] text-white px-5 sm:px-6 py-2 rounded-full shadow-sm'
+                      : 'text-[#3B151E] hover:text-[#4C1824] hover:bg-black/5 px-2.5 py-1.5 rounded-full'
                   }`}
                 >
                   {link.label}
@@ -135,272 +245,106 @@ export const Navbar = ({ onOpenBookingModal }) => {
             })}
           </nav>
 
-          {/* Right Action Area */}
-          <div className="hidden md:flex items-center gap-3">
-            
-            {/* Wishlist Button */}
-            <Link 
-              to="/wishlist" 
-              className="relative p-2.5 rounded-xl border border-[#A2766B]/30 bg-white hover:bg-[#A2766B]/10 text-[#754D45] transition-colors shadow-sm"
-              title="Culinary Wishlist"
-            >
-              <Heart className="w-4 h-4" />
-              {wishlistCount > 0 && (
-                <span className="absolute -top-1 -right-1 w-4 h-4 bg-[#754D45] text-white rounded-full text-[9px] font-bold flex items-center justify-center">
-                  {wishlistCount}
-                </span>
-              )}
-            </Link>
-
-            {/* Cart Button */}
-            <Link 
-              to="/cart" 
-              className="relative p-2.5 rounded-xl border border-[#A2766B]/30 bg-white hover:bg-[#A2766B]/10 text-[#754D45] transition-colors shadow-sm"
-              title="Table Order Cart"
-            >
-              <ShoppingBag className="w-4 h-4" />
-              {cartTotalItems > 0 && (
-                <span className="absolute -top-1 -right-1 w-4 h-4 bg-[#754D45] text-white rounded-full text-[9px] font-bold flex items-center justify-center">
-                  {cartTotalItems}
-                </span>
-              )}
-            </Link>
-
-            {/* If Not Authenticated -> Show Login Button */}
-            {!isAuthenticated && (
-              <Link to="/login">
-                <Button variant="primary" size="md">
-                  Login
-                </Button>
-              </Link>
-            )}
-
-            {/* If Staff Member -> Show Portal Quick Access */}
-            {isAuthenticated && !isCustomer && (
-              <div className="flex items-center gap-3">
-                <Link to={getPortalRoute()}>
-                  <Button variant="dark" size="sm" icon={PortalIcon}>
-                    {ROLE_LABELS[role]} Dashboard
-                  </Button>
-                </Link>
-                <Button variant="ghost" size="sm" onClick={handleLogout} icon={LogOut}>
-                  Logout
-                </Button>
-              </div>
-            )}
-
-            {/* If Customer Logged In -> Show "Book a Table" & Customer Profile Dropdown */}
-            {isAuthenticated && isCustomer && (
-              <div className="flex items-center gap-3">
-                <Link to="/customer/book-table">
-                  <Button 
-                    variant="primary" 
-                    size="md" 
-                    icon={Calendar}
-                    className="shadow-md"
-                  >
-                    Book a Table
-                  </Button>
-                </Link>
-
-                {/* Profile Dropdown */}
-                <div className="relative" ref={dropdownRef}>
-                  <button
-                    onClick={() => setProfileDropdownOpen(!profileDropdownOpen)}
-                    className="flex items-center gap-2 p-1.5 pl-2.5 rounded-full border border-[#A2766B]/40 bg-white hover:border-[#754D45] transition-all focus:outline-none focus:ring-2 focus:ring-[#754D45]"
-                    aria-label="User Profile Menu"
-                  >
-                    <img
-                      src={currentUser?.avatar || "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80"}
-                      alt={currentUser?.name}
-                      className="w-8 h-8 rounded-full object-cover border border-[#754D45]/30"
-                    />
-                    <span className="text-xs font-semibold text-[#38231F] max-w-[100px] truncate hidden lg:inline-block">
-                      {currentUser?.name?.split(' ')[0]}
-                    </span>
-                    <ChevronDown className={`w-3.5 h-3.5 text-[#754D45] transition-transform duration-200 ${profileDropdownOpen ? 'rotate-180' : ''}`} />
-                  </button>
-
-                  {/* Dropdown Menu */}
-                  {profileDropdownOpen && (
-                    <div className="absolute right-0 mt-2 w-64 rounded-2xl bg-white shadow-xl border border-[#A2766B]/30 py-2 z-50 animate-fadeIn divide-y divide-[#A2766B]/20">
-                      <div className="px-4 py-2.5">
-                        <p className="text-[10px] text-[#A2766B] font-bold uppercase tracking-wider">Patron Account</p>
-                        <p className="text-sm font-bold text-[#38231F] truncate">{currentUser?.name}</p>
-                        <p className="text-xs text-[#754D45] truncate">{currentUser?.email}</p>
-                      </div>
-
-                      <div className="py-1.5 text-xs">
-                        <Link
-                          to="/customer/profile"
-                          className="flex items-center gap-3 px-4 py-2 text-[#38231F] hover:bg-[#A2766B]/15 hover:text-[#38231F] transition-colors"
-                        >
-                          <User className="w-4 h-4 text-[#754D45]" />
-                          <span>My Profile</span>
-                        </Link>
-                        <Link
-                          to="/customer/bookings"
-                          className="flex items-center gap-3 px-4 py-2 text-[#38231F] hover:bg-[#A2766B]/15 hover:text-[#38231F] transition-colors"
-                        >
-                          <Calendar className="w-4 h-4 text-[#754D45]" />
-                          <span>My Bookings</span>
-                        </Link>
-                        <Link
-                          to="/customer/orders"
-                          className="flex items-center gap-3 px-4 py-2 text-[#38231F] hover:bg-[#A2766B]/15 hover:text-[#38231F] transition-colors"
-                        >
-                          <Clock className="w-4 h-4 text-[#754D45]" />
-                          <span>Live Table Orders</span>
-                        </Link>
-                        <Link
-                          to="/wishlist"
-                          className="flex items-center gap-3 px-4 py-2 text-[#38231F] hover:bg-[#A2766B]/15 hover:text-[#38231F] transition-colors"
-                        >
-                          <Heart className="w-4 h-4 text-[#754D45]" />
-                          <span>Culinary Wishlist ({wishlistCount})</span>
-                        </Link>
-                        <Link
-                          to="/offers"
-                          className="flex items-center gap-3 px-4 py-2 text-[#38231F] hover:bg-[#A2766B]/15 hover:text-[#38231F] transition-colors"
-                        >
-                          <Tag className="w-4 h-4 text-[#754D45]" />
-                          <span>Special Offers & Vouchers</span>
-                        </Link>
-                        <Link
-                          to="/support"
-                          className="flex items-center gap-3 px-4 py-2 text-[#38231F] hover:bg-[#A2766B]/15 hover:text-[#38231F] transition-colors"
-                        >
-                          <HelpCircle className="w-4 h-4 text-[#754D45]" />
-                          <span>Concierge Support</span>
-                        </Link>
-                      </div>
-
-                      <div className="pt-1">
-                        <button
-                          onClick={handleLogout}
-                          className="w-full flex items-center gap-3 px-4 py-2.5 text-xs font-semibold text-[#754D45] hover:bg-[#A2766B]/10 transition-colors text-left"
-                        >
-                          <LogOut className="w-4 h-4" />
-                          <span>Sign Out</span>
-                        </button>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              </div>
-            )}
-
-          </div>
-
-          {/* Mobile Hamburger Button */}
-          <div className="flex md:hidden items-center gap-2">
-            <Link to="/cart" className="relative p-2 text-[#754D45]">
-              <ShoppingBag className="w-5 h-5" />
-              {cartTotalItems > 0 && (
-                <span className="absolute top-0 right-0 w-4 h-4 bg-[#754D45] text-white rounded-full text-[9px] font-bold flex items-center justify-center">
-                  {cartTotalItems}
-                </span>
-              )}
-            </Link>
-            {isAuthenticated && isCustomer && (
-              <Link to="/customer/profile" className="p-1">
-                <img
-                  src={currentUser?.avatar}
-                  alt={currentUser?.name}
-                  className="w-8 h-8 rounded-full object-cover border border-[#754D45]"
-                />
-              </Link>
-            )}
+          {/* RHS: "Reserve a Table" Button (Exactly matching Image 2 Before Login) */}
+          <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
+            {/* Reserve a Table Button */}
             <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-lg text-[#38231F] hover:bg-[#A2766B]/15 transition-colors"
-              aria-label="Toggle Navigation Menu"
+              onClick={handleReserveClick}
+              className="bg-[#4C1824] hover:bg-[#38111A] text-white px-4 sm:px-6 py-2 sm:py-2.5 rounded-full font-hanken text-[13px] sm:text-[14px] font-medium flex items-center gap-2 shadow-sm transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
             >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              <Calendar className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white" />
+              <span className="hidden sm:inline">Reserve a Table</span>
+              <span className="sm:hidden font-semibold">Reserve</span>
+            </button>
+
+            {/* If Authenticated: Subtle Profile & Logout Controls */}
+            {isAuthenticated && (
+              <div className="flex items-center gap-1.5">
+                <Link
+                  to={getPortalRoute()}
+                  title={isCustomer ? "My Profile" : "Staff Dashboard"}
+                  className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white/70 hover:bg-white border border-white/80 flex items-center justify-center text-[#4C1824] transition-all duration-200 hover:scale-105 active:scale-95 cursor-pointer shadow-xs"
+                >
+                  <User className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#4C1824]" />
+                </Link>
+                <button
+                  onClick={handleLogout}
+                  title="Logout"
+                  className="hidden sm:flex w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white/70 hover:bg-white border border-white/80 items-center justify-center text-[#754D45] hover:text-[#4C1824] transition-all duration-200 cursor-pointer shadow-xs"
+                >
+                  <LogOut className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                </button>
+              </div>
+            )}
+
+            {/* Mobile Hamburger Toggle */}
+            <button
+              onClick={() => setMobileMenuOpen((prev) => !prev)}
+              aria-label="Toggle Navigation Menu"
+              className="md:hidden w-8 h-8 rounded-full bg-white/70 hover:bg-white border border-white/80 flex items-center justify-center text-[#4C1824] transition-all duration-200 cursor-pointer shadow-xs"
+            >
+              {mobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
             </button>
           </div>
-
         </div>
-      </div>
+      </header>
 
-      {/* Mobile Drawer Menu */}
-      {mobileMenuOpen && (
-        <div className="md:hidden border-t border-[#A2766B]/30 bg-[#F2E5DB] px-4 pt-3 pb-6 space-y-3">
-          <nav className="flex flex-col space-y-1">
-            {navLinks.map((link) => (
-              <Link
-                key={link.path}
-                to={link.path}
-                className={`px-3 py-2 rounded-lg text-base font-semibold ${
-                  location.pathname === link.path
-                    ? 'bg-[#38231F] text-white'
-                    : 'text-[#38231F] hover:bg-[#A2766B]/15'
-                }`}
-              >
-                {link.label}
-              </Link>
-            ))}
+      {/* Mobile Drawer Dropdown */}
+      {mobileMenuOpen && animStage === 3 && (
+        <div className="fixed top-20 left-1/2 -translate-x-1/2 w-[92vw] max-w-sm z-40 rounded-2xl backdrop-blur-2xl bg-[#FAF5EE]/95 border border-white/80 shadow-2xl p-5 md:hidden animate-in fade-in slide-in-from-top-4 duration-200 font-hanken">
+          <nav className="flex flex-col gap-2">
+            {navLinks.map((link) => {
+              const isActive = location.pathname === link.path;
+              return (
+                <Link
+                  key={link.label}
+                  to={link.path}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={`font-hanken text-sm font-medium px-4 py-2.5 rounded-xl transition-all duration-200 ${
+                    isActive
+                      ? 'bg-[#4C1824] text-white shadow-sm'
+                      : 'text-[#3B151E] hover:bg-black/5 hover:text-[#4C1824]'
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
+
+            <div className="border-t border-black/10 my-2 pt-2">
+              {!isAuthenticated ? (
+                <Link
+                  to="/login"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="font-hanken text-sm font-medium text-[#4C1824] hover:bg-black/5 px-4 py-2.5 rounded-xl flex items-center gap-2 transition-colors"
+                >
+                  <User className="w-4 h-4" />
+                  <span>Login / Register</span>
+                </Link>
+              ) : (
+                <div className="space-y-1">
+                  <Link
+                    to={getPortalRoute()}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="font-hanken text-sm font-medium text-[#4C1824] hover:bg-black/5 px-4 py-2.5 rounded-xl flex items-center gap-2 transition-colors"
+                  >
+                    <User className="w-4 h-4" />
+                    <span>{isCustomer ? 'My Profile' : 'Portal Dashboard'}</span>
+                  </Link>
+                  <button
+                    onClick={handleLogout}
+                    className="w-full text-left font-hanken text-sm font-medium text-[#754D45] hover:text-[#4C1824] hover:bg-black/5 px-4 py-2.5 rounded-xl flex items-center gap-2 transition-colors cursor-pointer"
+                  >
+                    <LogOut className="w-4 h-4" />
+                    <span>Logout</span>
+                  </button>
+                </div>
+              )}
+            </div>
           </nav>
-
-          <div className="pt-3 border-t border-[#D0ADA0] flex flex-col gap-2">
-            {!isAuthenticated ? (
-              <Link to="/login" className="w-full">
-                <Button variant="primary" className="w-full" size="md">
-                  Login
-                </Button>
-              </Link>
-            ) : isCustomer ? (
-              <>
-                <Link to="/customer/book-table" className="w-full">
-                  <Button variant="primary" className="w-full" size="md" icon={Calendar}>
-                    Book a Table
-                  </Button>
-                </Link>
-                <Link to="/customer/orders" className="w-full">
-                  <Button variant="secondary" className="w-full" size="md" icon={Clock}>
-                    Live Table Orders
-                  </Button>
-                </Link>
-                <Link to="/cart" className="w-full">
-                  <Button variant="secondary" className="w-full" size="md" icon={ShoppingBag}>
-                    Table Cart ({cartTotalItems})
-                  </Button>
-                </Link>
-                <Link to="/customer/bookings" className="w-full">
-                  <Button variant="secondary" className="w-full" size="md" icon={Calendar}>
-                    My Bookings
-                  </Button>
-                </Link>
-                <Link to="/wishlist" className="w-full">
-                  <Button variant="secondary" className="w-full" size="md" icon={Heart}>
-                    Wishlist ({wishlistCount})
-                  </Button>
-                </Link>
-                <Link to="/customer/profile" className="w-full">
-                  <Button variant="secondary" className="w-full" size="md" icon={User}>
-                    My Profile
-                  </Button>
-                </Link>
-                <Button variant="ghost" className="w-full justify-start text-[#C44747]" onClick={handleLogout} icon={LogOut}>
-                  Logout
-                </Button>
-              </>
-            ) : (
-              <>
-                <Link to={getPortalRoute()} className="w-full">
-                  <Button variant="dark" className="w-full" size="md" icon={PortalIcon}>
-                    Go to {ROLE_LABELS[role]} Portal
-                  </Button>
-                </Link>
-                <Button variant="ghost" className="w-full justify-start text-[#C44747]" onClick={handleLogout} icon={LogOut}>
-                  Logout
-                </Button>
-              </>
-            )}
-          </div>
         </div>
       )}
-    </header>
+    </>
   );
 };
 

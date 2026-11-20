@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route, Outlet } from 'react-router-dom';
+import { Routes, Route, Outlet, useLocation } from 'react-router-dom';
 import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
 import ProtectedRoute from './ProtectedRoute';
@@ -11,6 +11,7 @@ import AboutPage from '../features/public/AboutPage';
 import ServicesPage from '../features/public/ServicesPage';
 import MenuPage from '../features/public/MenuPage';
 import ContactPage from '../features/public/ContactPage';
+import BlogsPage from '../features/public/BlogsPage';
 
 // Auth Pages
 import LoginPage from '../features/auth/LoginPage';
@@ -41,13 +42,18 @@ import UserDetailPage from '../features/users/UserDetailPage';
 
 // Layout for Public & Customer Pages (with Header and Footer)
 const PublicLayout = () => {
+  const location = useLocation();
+  // Pages with full-bleed top hero banner under the floating glass navbar
+  const isFullBleedHero = location.pathname === '/' || location.pathname === '/menu' || location.pathname === '/about' || location.pathname === '/reviews' || location.pathname === '/blogs';
+  const isReservationPage = location.pathname === '/book-table' || location.pathname === '/reserve' || location.pathname === '/customer/book-table';
+
   return (
-    <div className="min-h-screen flex flex-col bg-[#F2E5DB]">
+    <div className="min-h-screen flex flex-col bg-[#FAF7F2]">
       <Navbar />
-      <main className="flex-1">
+      <main className={`flex-1 ${!isFullBleedHero ? 'pt-24 sm:pt-28' : ''}`}>
         <Outlet />
       </main>
-      <Footer />
+      {!isReservationPage && <Footer />}
     </div>
   );
 };
@@ -66,6 +72,11 @@ export const AppRoutes = () => {
         <Route path="/services" element={<ServicesPage />} />
         <Route path="/menu" element={<MenuPage />} />
         <Route path="/contact" element={<ContactPage />} />
+        <Route path="/blogs" element={<BlogsPage />} />
+
+        {/* Public Reservation Routes */}
+        <Route path="/book-table" element={<BookTablePage />} />
+        <Route path="/reserve" element={<BookTablePage />} />
 
         {/* Public / Customer accessible features */}
         <Route path="/cart" element={<CartPage />} />
@@ -74,15 +85,8 @@ export const AppRoutes = () => {
         <Route path="/reviews" element={<ReviewsPage />} />
         <Route path="/support" element={<SupportPage />} />
 
-        {/* Customer Portal routes (Protected) */}
-        <Route
-          path="/customer/book-table"
-          element={
-            <ProtectedRoute allowedRoles={[ROLES.CUSTOMER, ROLES.ADMIN]}>
-              <BookTablePage />
-            </ProtectedRoute>
-          }
-        />
+        {/* Customer Portal routes */}
+        <Route path="/customer/book-table" element={<BookTablePage />} />
         <Route
           path="/customer/profile"
           element={

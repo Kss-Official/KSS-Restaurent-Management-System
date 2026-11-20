@@ -30,3 +30,8 @@ db.sqlite3-journal
 .idea/
 .vscode/
 Thumbs.db
+
+# Root scratch crops
+/*.png
+/*.jpg
+/*.jpeg

@@ -91,8 +91,15 @@ export const AppProvider = ({ children }) => {
   // 5. Orders (Linked to 6-digit Session ID)
   const [orders, setOrders] = useState(() => getStoredItem('aura_orders', INITIAL_ORDERS));
 
-  // 6. Menu Catalog
-  const [menuItems, setMenuItems] = useState(() => getStoredItem('aura_menu', INITIAL_MENU_ITEMS));
+  // 6. Menu Catalog (Auto-sync if catalog expanded)
+  const [menuItems, setMenuItems] = useState(() => {
+    const stored = getStoredItem('aura_menu', null);
+    if (!stored || !Array.isArray(stored) || stored.length < INITIAL_MENU_ITEMS.length) {
+      setStoredItem('aura_menu', INITIAL_MENU_ITEMS);
+      return INITIAL_MENU_ITEMS;
+    }
+    return stored;
+  });
 
   // 7. Reception Waiting List
   const [waitingList, setWaitingList] = useState(() => getStoredItem('aura_waiting_list', INITIAL_WAITING_LIST));

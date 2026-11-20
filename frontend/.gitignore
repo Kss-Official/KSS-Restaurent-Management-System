@@ -27,3 +27,18 @@ dist-ssr
 .env
 .env.production
 
+
+# Temporary calibration, crop, and inspect debug test files
+public/calib_*
+public/check_*
+public/crop_*
+public/inspect_*
+public/sim_*
+public/test_*
+public/verify_*
+public/thumb_test_*
+public/bot_*
+public/b5_*
+public/cd_*
+public/user_ref_*
+public/tbl_candidate_*

@@ -22,7 +22,7 @@ export const ContactPage = () => {
   return (
     <div className="bg-[#F2E5DB] py-16 space-y-16">
       {/* Header */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
+      <div className="w-full px-5 sm:px-8 md:px-12 lg:px-16 xl:px-20 max-w-[1720px] mx-auto text-center space-y-4">
         <span className="text-xs font-bold uppercase tracking-[0.3em] text-[#754D45]">
           Personalized Service
         </span>
@@ -35,7 +35,7 @@ export const ContactPage = () => {
         </p>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="w-full px-5 sm:px-8 md:px-12 lg:px-16 xl:px-20 max-w-[1720px] mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           
           {/* Left Details */}

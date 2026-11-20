@@ -52,7 +52,7 @@ export const ServicesPage = () => {
 
   return (
     <div className="bg-[#F2E5DB] py-16 space-y-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
+      <div className="w-full px-5 sm:px-8 md:px-12 lg:px-16 xl:px-20 max-w-[1720px] mx-auto text-center space-y-4">
         <span className="text-xs font-bold uppercase tracking-[0.3em] text-[#754D45]">
           Exclusive Offerings
         </span>
@@ -65,7 +65,7 @@ export const ServicesPage = () => {
         </p>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="w-full px-5 sm:px-8 md:px-12 lg:px-16 xl:px-20 max-w-[1720px] mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {serviceList.map((srv, idx) => {
             const Icon = srv.icon;
@@ -103,7 +103,7 @@ export const ServicesPage = () => {
                         Inquire Details
                       </Button>
                     </Link>
-                    <Link to="/customer/book-table">
+                    <Link to="/book-table">
                       <Button variant="primary" size="sm" icon={Calendar}>
                         Reserve
                       </Button>
