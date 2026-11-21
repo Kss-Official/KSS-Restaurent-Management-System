@@ -5,11 +5,11 @@ export const CustomerNavTabs = ({ rightElement, className = '' }) => {
   const location = useLocation();
 
   const navTabs = [
-    { label: 'Personal Profile', path: '/customer/profile' },
     { label: 'My Orders', path: '/customer/orders' },
     { label: 'Order Tracking', path: '/customer/order-tracking' },
-    { label: 'Invoices & Receipts', path: '/customer/invoice' },
-    { label: 'Table Bookings History', path: '/customer/bookings' },
+    { label: 'Table Booking History', path: '/customer/bookings' },
+    { label: 'Payment & Invoice', path: '/customer/invoice' },
+    { label: 'My Profile', path: '/customer/profile' },
   ];
 
   return (
