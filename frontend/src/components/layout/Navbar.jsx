@@ -99,6 +99,12 @@ export const Navbar = () => {
   ];
 
   const handleReserveClick = () => {
+    // Reserve a Table requires customer login
+    if (!isAuthenticated || (!isCustomer && role !== ROLES.ADMIN)) {
+      navigate('/login?redirect=/book-table');
+      return;
+    }
+
     // Notify BookTablePage to reset if user is already on the page
     window.dispatchEvent(new CustomEvent('lunar-reset-booking'));
     navigate('/book-table', { state: { reset: Date.now() } });

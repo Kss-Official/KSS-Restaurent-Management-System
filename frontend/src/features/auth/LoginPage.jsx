@@ -69,7 +69,7 @@ export const LoginPage = () => {
   };
 
   const redirectToRole = (role) => {
-    if (redirectPath && role === ROLES.CUSTOMER) {
+    if (redirectPath && (role === ROLES.CUSTOMER || role === ROLES.ADMIN)) {
       navigate(redirectPath);
       return;
     }
@@ -137,6 +137,15 @@ export const LoginPage = () => {
             Access your reservation account or portal dashboard
           </p>
         </div>
+
+        {/* Redirect Notice */}
+        {redirectPath && (
+          <div className="p-3 bg-[#542334]/10 border border-[#542334]/20 rounded-xl text-center">
+            <p className="text-xs font-semibold text-[#542334]">
+              Please log in to your Customer account to reserve a table.
+            </p>
+          </div>
+        )}
 
         {/* Quick Demo Role Selector */}
         <div className="p-3.5 bg-[#F4EDE8] rounded-2xl border border-[#E8DDD8] space-y-2">
@@ -283,7 +292,10 @@ export const LoginPage = () => {
         {/* Register CTA */}
         <div className="text-center pt-2 border-t border-[#E8DDD8] text-xs text-[#75696B]">
           Don't have an account yet?{' '}
-          <Link to="/register" className="font-bold text-[#2D2528] hover:underline">
+          <Link
+            to={redirectPath ? `/register?redirect=${encodeURIComponent(redirectPath)}` : "/register"}
+            className="font-bold text-[#2D2528] hover:underline"
+          >
             Create Customer Account
           </Link>
         </div>

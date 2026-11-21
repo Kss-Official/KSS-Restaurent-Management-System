@@ -36,7 +36,7 @@ import {
 } from 'lucide-react';
 
 export const HomePage = () => {
-  const { isAuthenticated, isCustomer } = useAuth();
+  const { isAuthenticated, isCustomer, role } = useAuth();
   const navigate = useNavigate();
   const [cardsVisible, setCardsVisible] = useState(false);
   const signatureSectionRef = useRef(null);
@@ -181,6 +181,10 @@ export const HomePage = () => {
   }, []);
 
   const handleBookTableClick = () => {
+    if (!isAuthenticated || (!isCustomer && role !== 'admin')) {
+      navigate('/login?redirect=/book-table');
+      return;
+    }
     navigate('/book-table');
   };
 

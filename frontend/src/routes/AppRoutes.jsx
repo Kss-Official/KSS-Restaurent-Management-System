@@ -74,9 +74,23 @@ export const AppRoutes = () => {
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/blogs" element={<BlogsPage />} />
 
-        {/* Public Reservation Routes */}
-        <Route path="/book-table" element={<BookTablePage />} />
-        <Route path="/reserve" element={<BookTablePage />} />
+        {/* Reservation Routes (Protected for Customer & Admin) */}
+        <Route
+          path="/book-table"
+          element={
+            <ProtectedRoute allowedRoles={[ROLES.CUSTOMER, ROLES.ADMIN]}>
+              <BookTablePage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/reserve"
+          element={
+            <ProtectedRoute allowedRoles={[ROLES.CUSTOMER, ROLES.ADMIN]}>
+              <BookTablePage />
+            </ProtectedRoute>
+          }
+        />
 
         {/* Public / Customer accessible features */}
         <Route path="/cart" element={<CartPage />} />
@@ -86,7 +100,14 @@ export const AppRoutes = () => {
         <Route path="/support" element={<SupportPage />} />
 
         {/* Customer Portal routes */}
-        <Route path="/customer/book-table" element={<BookTablePage />} />
+        <Route
+          path="/customer/book-table"
+          element={
+            <ProtectedRoute allowedRoles={[ROLES.CUSTOMER, ROLES.ADMIN]}>
+              <BookTablePage />
+            </ProtectedRoute>
+          }
+        />
         <Route
           path="/customer/profile"
           element={
