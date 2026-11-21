@@ -1723,7 +1723,7 @@ export const BookTablePage = () => {
   const [cardNumber, setCardNumber] = useState('');
   const [cardExpiry, setCardExpiry] = useState('');
   const [cardCvv, setCardCvv] = useState('');
-  const [cardName, setCardName] = useState(guestName || 'Sophia Montgomery');
+  const [cardName, setCardName] = useState(currentUser?.name || 'Sophia Montgomery');
   const [upiId, setUpiId] = useState('');
   const [selectedBank, setSelectedBank] = useState('HDFC Bank');
   const [isProcessingPayment, setIsProcessingPayment] = useState(false);
@@ -3197,7 +3197,10 @@ export const BookTablePage = () => {
                       required
                       placeholder="Enter your full name"
                       value={guestName}
-                      onChange={(e) => setGuestName(e.target.value)}
+                      onChange={(e) => {
+                        setGuestName(e.target.value);
+                        setCardName(e.target.value);
+                      }}
                       className="w-full bg-white border border-[#EADBCC] rounded-xl pl-11 pr-4 py-3 text-xs sm:text-sm text-[#2B181C] placeholder:text-[#9C8279] focus:outline-none focus:border-[#4C1824] focus:ring-1 focus:ring-[#4C1824]"
                     />
                   </div>
