@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
 import { ROLES, RESTAURANT_IMAGES } from '../../utils/constants';
 import Button from '../../components/common/Button';
@@ -9,6 +9,9 @@ import { UtensilsCrossed, User, Mail, Phone, Lock, ArrowLeft } from 'lucide-reac
 export const RegisterPage = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const redirectPath = queryParams.get('redirect');
 
   const [formData, setFormData] = useState({
     fullName: '',
@@ -63,7 +66,7 @@ export const RegisterPage = () => {
         memberSince: "Nov 2026"
       });
       setLoading(false);
-      navigate('/');
+      navigate(redirectPath || '/');
     }, 600);
   };
 
@@ -198,7 +201,10 @@ export const RegisterPage = () => {
 
         <div className="text-center pt-2 border-t border-[#E8DDD8] text-xs text-[#75696B]">
           Already an esteemed guest?{' '}
-          <Link to="/login" className="font-bold text-[#2D2528] hover:underline">
+          <Link
+            to={redirectPath ? `/login?redirect=${encodeURIComponent(redirectPath)}` : "/login"}
+            className="font-bold text-[#2D2528] hover:underline"
+          >
             Sign In here
           </Link>
         </div>

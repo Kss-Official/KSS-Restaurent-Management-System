@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import * as THREE from 'three';
+import gsap from 'gsap';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
 import { useAppStore } from '../../store/store';
@@ -612,7 +613,417 @@ const Chair3DViewInside = ({ table, seat, onBack, onConfirmSeat }) => {
   );
 };
 
-// Continuous 3D Restaurant Hall Scene (Unified, cinematic 3D environment with precise table centering and 360 orbit)
+// ============================================================================
+// ULTRA-SHARP 3D 360° TABLE EXPERIENCE (WebGL Three.js Cylindrical 360 Scene)
+// ============================================================================
+const Table360ExperienceView = ({
+  table,
+  selectedSeats,
+  onSelectChair,
+  onToggleSeat,
+  onBackToFloor,
+  diningPreference
+}) => {
+  const mountRef = useRef(null);
+  const isOutdoor = Boolean(
+    table?.isOutdoor ||
+    diningPreference === 'Outdoor Dining' ||
+    table?.id?.startsWith('O') ||
+    ['T11', 'T12', 'T13', 'T14', 'T15', 'T16'].includes(table?.id)
+  );
+
+  const [fov, setFov] = useState(62);
+  const [cameraAngle, setCameraAngle] = useState({ yaw: 0, pitch: 0 });
+  const threeRef = useRef(null);
+
+  // Full table view with base, chairs, and floor completely visible:
+  const getTablePanoramaImage = () => {
+    if (isOutdoor) {
+      return table?.image || '/lunar_outdoor_table_zoom.jpg';
+    }
+    // Indoor Hall
+    return table?.capacity === 4
+      ? '/lunar_360_4seater.jpg'
+      : table?.capacity === 6
+        ? '/lunar_360_6seater.jpg'
+        : '/lunar_360_2seater.jpg';
+  };
+
+  const panoramaImage = getTablePanoramaImage();
+
+  useEffect(() => {
+    const container = mountRef.current;
+    if (!container) return;
+
+    let width = container.clientWidth || 800;
+    let height = container.clientHeight || 560;
+
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0x140d0e);
+
+    const camera = new THREE.PerspectiveCamera(62, width / height, 1, 2500);
+    camera.target = new THREE.Vector3(0, 0, 0);
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false, powerPreference: 'high-performance' });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setSize(width, height);
+    container.innerHTML = '';
+    container.appendChild(renderer.domElement);
+
+    // Wide curved panoramic cyc: Full table framing with entire pedestal base and chairs on floor visible
+    const R = 720;
+    const H = 940; // Exact height matching camera vertical FOV so the entire table, pedestal base, and chair legs on floor are 100% visible
+    const Arc = H * (16 / 9); // Exact 16:9 aspect ratio preserving optical geometry without distortion
+    const thetaSpan = Arc / R; // ~2.32 rad (~133° span for natural, immersive panorama)
+    const geometry = new THREE.CylinderGeometry(R, R, H, 64, 1, true, -thetaSpan / 2, thetaSpan);
+    geometry.scale(1, 1, 1); // Native forward-facing orientation
+
+    const texture = new THREE.TextureLoader().load(panoramaImage);
+    texture.colorSpace = THREE.SRGBColorSpace;
+    texture.minFilter = THREE.LinearFilter;
+    texture.magFilter = THREE.LinearFilter;
+    texture.generateMipmaps = false;
+
+    const material = new THREE.MeshBasicMaterial({
+      map: texture,
+      side: THREE.DoubleSide
+    });
+    const mesh = new THREE.Mesh(geometry, material);
+    mesh.position.set(0, 16, 0); // Elevated so table base and chair legs sit cleanly above footer
+    scene.add(mesh);
+
+    let isUserInteracting = false;
+    let onPointerDownMouseX = 0, onPointerDownMouseY = 0;
+    let onPointerDownLon = 0, onPointerDownLat = 0;
+    
+    // Physics-damped interpolation for silky smooth rotation
+    let currentLon = 0, targetLon = 0;
+    let currentLat = 0, targetLat = 0;
+    let currentFov = 62, targetFov = 62;
+
+    let reqId;
+    const animate = () => {
+      reqId = requestAnimationFrame(animate);
+
+      // Smooth damping (lerp)
+      currentLon += (targetLon - currentLon) * 0.14;
+      currentLat += (targetLat - currentLat) * 0.14;
+      currentFov += (targetFov - currentFov) * 0.14;
+
+      // Clamped within curved panoramic safety boundaries so camera never sees past edge of photo
+      currentLon = Math.max(-36, Math.min(36, currentLon));
+      currentLat = Math.max(-14, Math.min(14, currentLat));
+
+      camera.fov = currentFov;
+      camera.updateProjectionMatrix();
+
+      const phi = THREE.MathUtils.degToRad(90 - currentLat);
+      const theta = THREE.MathUtils.degToRad(currentLon);
+
+      camera.target.x = 500 * Math.sin(phi) * Math.sin(theta);
+      camera.target.y = 500 * Math.cos(phi);
+      camera.target.z = 500 * Math.sin(phi) * Math.cos(theta);
+      camera.lookAt(camera.target);
+
+      renderer.render(scene, camera);
+      setCameraAngle({ yaw: Math.round(currentLon), pitch: Math.round(currentLat) });
+      setFov(Math.round(currentFov));
+    };
+    animate();
+
+    const onPointerDown = (e) => {
+      if (e.isPrimary === false) return;
+      if (e.target.closest('button') || e.target.closest('[role="button"]') || e.target.closest('.interactive-chair-chip')) {
+        return;
+      }
+      isUserInteracting = true;
+      onPointerDownMouseX = e.clientX;
+      onPointerDownMouseY = e.clientY;
+      onPointerDownLon = targetLon;
+      onPointerDownLat = targetLat;
+      container.setPointerCapture?.(e.pointerId);
+    };
+
+    const onPointerMove = (e) => {
+      if (!isUserInteracting) return;
+      // Dragging right rotates view right, dragging left rotates view left
+      targetLon = Math.max(-36, Math.min(36, onPointerDownLon + (e.clientX - onPointerDownMouseX) * 0.20));
+      targetLat = Math.max(-14, Math.min(14, onPointerDownLat - (e.clientY - onPointerDownMouseY) * 0.16));
+    };
+
+    const onPointerUp = (e) => {
+      isUserInteracting = false;
+      try { container.releasePointerCapture?.(e.pointerId); } catch {}
+    };
+
+    const onWheel = (e) => {
+      e.preventDefault();
+      targetFov = Math.max(52, Math.min(74, targetFov + e.deltaY * 0.04));
+    };
+
+    const handleResize = () => {
+      if (!container) return;
+      const w = container.clientWidth || 800;
+      const h = container.clientHeight || 560;
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+      renderer.setSize(w, h);
+    };
+
+    container.addEventListener('pointerdown', onPointerDown);
+    window.addEventListener('pointermove', onPointerMove);
+    window.addEventListener('pointerup', onPointerUp);
+    container.addEventListener('wheel', onWheel, { passive: false });
+    window.addEventListener('resize', handleResize);
+
+    threeRef.current = {
+      rotateBy: (deltaLon, deltaLat = 0) => {
+        targetLon = Math.max(-36, Math.min(36, targetLon + deltaLon));
+        targetLat = Math.max(-14, Math.min(14, targetLat + deltaLat));
+      },
+      zoomBy: (deltaFov) => {
+        targetFov = Math.max(52, Math.min(74, targetFov + deltaFov));
+      },
+      reset: () => {
+        targetLon = 0;
+        targetLat = 0;
+        targetFov = 62;
+      }
+    };
+
+    return () => {
+      cancelAnimationFrame(reqId);
+      container.removeEventListener('pointerdown', onPointerDown);
+      window.removeEventListener('pointermove', onPointerMove);
+      window.removeEventListener('pointerup', onPointerUp);
+      container.removeEventListener('wheel', onWheel);
+      window.removeEventListener('resize', handleResize);
+      geometry.dispose();
+      material.dispose();
+      texture.dispose();
+      renderer.dispose();
+      if (container.contains(renderer.domElement)) {
+        container.removeChild(renderer.domElement);
+      }
+    };
+  }, [table.id, table.capacity, isOutdoor, panoramaImage]);
+
+  // Chair layout definitions positioned naturally around the 3D table matching Image 2
+  const getTableChairs = () => {
+    if (table.capacity === 2) {
+      return [
+        { seat: 'S1', label: 'Chair S1', desc: 'Left View', top: '50%', left: '30%' },
+        { seat: 'S2', label: 'Chair S2', desc: 'Right View', top: '50%', left: '70%' }
+      ];
+    }
+    if (table.capacity === 4) {
+      return [
+        { seat: 'S1', label: 'Chair S1', desc: 'North View (Across)', top: '34%', left: '50%' },
+        { seat: 'S4', label: 'Chair S4', desc: 'West View (Left)', top: '54%', left: '26%' },
+        { seat: 'S2', label: 'Chair S2', desc: 'East View (Right)', top: '54%', left: '74%' },
+        { seat: 'S3', label: 'Chair S3', desc: 'South View (Front)', top: '70%', left: '50%' }
+      ];
+    }
+    // 6-Seater VIP (Exact placement matching Reference Image 2)
+    return [
+      { seat: 'S1', label: 'Chair S1', desc: 'North West View', top: '26%', left: '38%' },
+      { seat: 'S2', label: 'Chair S2', desc: 'North East View', top: '26%', left: '62%' },
+      { seat: 'S6', label: 'Chair S6', desc: 'West Side', top: '48%', left: '20%' },
+      { seat: 'S3', label: 'Chair S3', desc: 'East Side', top: '48%', left: '80%' },
+      { seat: 'S5', label: 'Chair S5', desc: 'South West View', top: '72%', left: '28%' },
+      { seat: 'S4', label: 'Chair S4', desc: 'South East View', top: '72%', left: '72%' }
+    ];
+  };
+
+  // Parallax horizontal shift for chair badges as camera rotates
+  const tableShiftX = -cameraAngle.yaw * 1.55;
+
+  return (
+    <div className="relative w-full h-full min-h-[520px] sm:min-h-[600px] rounded-[28px] overflow-hidden border border-[#EADBCC] shadow-xs flex flex-col justify-between select-none bg-[#140D0E] animate-in fade-in duration-300">
+      
+      {/* Three.js 3D WebGL Cylindrical Panoramic Canvas */}
+      <div
+        ref={mountRef}
+        className="absolute inset-0 w-full h-full cursor-grab active:cursor-grabbing touch-none"
+      />
+
+      {/* Atmospheric Subtle Vignette */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-black/55 pointer-events-none" />
+
+      {/* Top Header: Navigation & 360° Orbit Controls */}
+      <div className="relative z-20 p-4 sm:p-5 flex items-center justify-between text-white flex-wrap gap-2 pointer-events-none">
+        <div className="flex items-center gap-2 pointer-events-auto">
+          <button
+            type="button"
+            onClick={onBackToFloor}
+            className="bg-black/75 hover:bg-black/95 text-white text-xs font-semibold px-4 py-2 rounded-full flex items-center gap-2 border border-[#FABE24]/40 backdrop-blur-md shadow-md transition-all cursor-pointer hover:scale-105"
+          >
+            <ArrowLeft className="w-3.5 h-3.5 text-[#FABE24]" />
+            <span>{isOutdoor ? '← Back to Terrace View' : '← Back to Full Hall View'}</span>
+          </button>
+
+          <span className="text-xs font-bold text-white bg-black/70 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/20">
+            {table.name} • {table.capacity} Chairs ({table.type})
+          </span>
+        </div>
+
+        {/* 360° Real Orbit Controls */}
+        <div className="flex items-center gap-1.5 bg-black/80 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/20 text-white text-xs pointer-events-auto">
+          <span className="text-[11px] text-white/70 mr-1 hidden lg:inline">3D View:</span>
+          <button
+            type="button"
+            onClick={() => threeRef.current?.rotateBy(30, 0)}
+            className="px-2 py-0.5 rounded-md hover:bg-white/10 font-bold text-[#FABE24] cursor-pointer"
+            title="Rotate Left (LHS View)"
+          >
+            ◀ Left (LHS)
+          </button>
+          <button
+            type="button"
+            onClick={() => threeRef.current?.rotateBy(-30, 0)}
+            className="px-2 py-0.5 rounded-md hover:bg-white/10 font-bold text-[#FABE24] cursor-pointer"
+            title="Rotate Right (RHS View)"
+          >
+            (RHS) Right ▶
+          </button>
+          <button
+            type="button"
+            onClick={() => threeRef.current?.rotateBy(0, 8)}
+            className="px-1.5 py-0.5 rounded-md hover:bg-white/10 font-bold text-white cursor-pointer text-[10px]"
+            title="Look Up (Skyline & Palms)"
+          >
+            ▲
+          </button>
+          <button
+            type="button"
+            onClick={() => threeRef.current?.rotateBy(0, -8)}
+            className="px-1.5 py-0.5 rounded-md hover:bg-white/10 font-bold text-white cursor-pointer text-[10px]"
+            title="Look Down (Table & Decor)"
+          >
+            ▼
+          </button>
+          <button
+            type="button"
+            onClick={() => threeRef.current?.zoomBy(-6)}
+            className="px-2 py-0.5 rounded-md hover:bg-white/10 font-bold text-[#FABE24] cursor-pointer"
+            title="Zoom In"
+          >
+            +
+          </button>
+          <button
+            type="button"
+            onClick={() => threeRef.current?.zoomBy(6)}
+            className="px-2 py-0.5 rounded-md hover:bg-white/10 font-bold text-[#FABE24] cursor-pointer"
+            title="Zoom Out"
+          >
+            −
+          </button>
+          <button
+            type="button"
+            onClick={() => threeRef.current?.reset()}
+            className="p-1 rounded-md hover:bg-white/10 text-white/80 cursor-pointer"
+            title="Reset Center View"
+          >
+            <RotateCcw className="w-3.5 h-3.5 text-[#FABE24]" />
+          </button>
+        </div>
+      </div>
+
+      {/* Floating 3D Chair Badges Layer (Parallax-synchronized with camera rotation) */}
+      <div
+        className="absolute inset-0 pointer-events-none transition-transform duration-100 ease-out"
+        style={{
+          transform: `translate3d(${tableShiftX}%, 0, 0)`
+        }}
+      >
+        {/* Table ID Center Core */}
+        <div
+          className="absolute -translate-x-1/2 -translate-y-1/2 pointer-events-none z-10"
+          style={{ top: '50%', left: '50%' }}
+        >
+          <div className="w-10 h-10 rounded-full bg-black/90 backdrop-blur-md border-2 border-[#FABE24] flex items-center justify-center shadow-[0_0_20px_rgba(250,190,36,0.8)]">
+            <span className="text-xs font-black text-[#FABE24]">{table.id}</span>
+          </div>
+        </div>
+
+        {/* Interactive Chairs */}
+        {getTableChairs().map((chair) => {
+          const isSelected = selectedSeats.includes(chair.seat);
+          return (
+            <div
+              key={chair.seat}
+              className="absolute -translate-x-1/2 -translate-y-1/2 z-20 pointer-events-auto"
+              style={{ top: chair.top, left: chair.left }}
+            >
+              <div className="flex items-center gap-1.5 p-1 rounded-full bg-black/85 backdrop-blur-md border border-[#FABE24]/80 shadow-2xl hover:scale-105 transition-all">
+                <button
+                  type="button"
+                  onClick={() => onToggleSeat(chair.seat)}
+                  className={`px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer ${
+                    isSelected
+                      ? 'bg-[#4C1824] text-white border border-[#FABE24] shadow-[0_0_12px_rgba(250,190,36,0.6)]'
+                      : 'text-white/90 hover:text-white'
+                  }`}
+                  title={`Click to select Chair ${chair.seat} for booking`}
+                >
+                  <UtensilsCrossed className="w-3 h-3 text-[#FABE24]" />
+                  <span>Chair {chair.seat}</span>
+                  {isSelected && <Check className="w-3 h-3 text-[#FABE24] stroke-[3]" />}
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => onSelectChair(chair.seat)}
+                  className="bg-[#FABE24] hover:bg-[#E5AC18] text-[#1F1416] font-bold text-[11px] px-2.5 py-1 rounded-full flex items-center gap-1 transition-all shadow-md cursor-pointer hover:scale-105 active:scale-95"
+                  title={`Sit down in Chair ${chair.seat} (Realistic 3D POV)`}
+                >
+                  <Eye className="w-3 h-3" />
+                  <span>3D View</span>
+                </button>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Bottom Footer: Quick Seat Selector & 360 Guidance */}
+      <div className="relative z-20 p-4 bg-gradient-to-t from-black/95 via-black/75 to-transparent flex flex-wrap items-center justify-between gap-3 pointer-events-none">
+        <div className="flex items-center gap-2 pointer-events-auto flex-wrap">
+          <span className="text-white/70 text-xs font-semibold">Select Chairs:</span>
+          {table.seats.map((seat) => {
+            const isSelected = selectedSeats.includes(seat);
+            return (
+              <button
+                key={seat}
+                type="button"
+                onClick={() => onToggleSeat(seat)}
+                className={`px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer ${
+                  isSelected
+                    ? 'bg-[#FABE24] text-[#1F1416] shadow-[0_0_15px_rgba(250,190,36,0.6)]'
+                    : 'bg-black/70 hover:bg-black/90 text-white border border-white/20'
+                }`}
+              >
+                <span>Chair {seat}</span>
+                {isSelected && <Check className="w-3 h-3 stroke-[3]" />}
+              </button>
+            );
+          })}
+        </div>
+
+        <div className="flex items-center gap-2 text-white text-xs pointer-events-auto">
+          <Sparkles className="w-4 h-4 text-[#FABE24] shrink-0" />
+          <span className="text-white/85 text-[11.5px]">
+            Drag anywhere to explore in 3D (LHS &amp; RHS) • Click 3D View to sit down
+          </span>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// ============================================================================
+// CONTINUOUS 3D RESTAURANT SCENE (Powered by GSAP for Silky Smooth 3D Motion)
+// ============================================================================
 const Continuous3DHallScene = ({
   tables,
   selectedTable,
@@ -626,39 +1037,125 @@ const Continuous3DHallScene = ({
   hoveredTableId,
   setHoveredTableId,
   diningPreference,
-  onToggleDiningPreference
+  onToggleDiningPreference,
+  flyingToTable,
+  onFlightArrival,
+  isZoomingOut,
+  setIsZoomingOut
 }) => {
   const containerRef = useRef(null);
+  const worldRef = useRef(null);
   const isOutdoor = diningPreference === 'Outdoor Dining' || Boolean(tables && tables[0]?.isOutdoor);
   const overviewImage = isOutdoor ? '/lunar_outdoor_floor_hd.jpg' : '/lunar_hall_overview_hd.jpg';
   const isZoomed = viewMode === 'table';
-  const [zoomLevel, setZoomLevel] = useState(2.85);
-  const [orbit, setOrbit] = useState({ pitch: 0, yaw: 0, panX: 0, panY: 0 });
+
+  // Persistent transform state driven by GSAP (1.08 overscan eliminates any edge gaps on 3D parallax)
+  const transformState = useRef({
+    scale: 1.08,
+    x: 0,
+    y: 0,
+    rotX: 0,
+    rotY: 0
+  });
+
+  // Track horizontal and vertical camera exploration in Zoomed Mode (real LHS & RHS navigation)
+  const panOffset = useRef({ x: 0, y: 0 });
   const [isDragging, setIsDragging] = useState(false);
-  const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
+  const dragStart = useRef({ x: 0, y: 0 });
 
+  // Directly apply hardware-accelerated 3D transform to DOM without React re-render overhead
+  const applyTransform = () => {
+    if (!worldRef.current) return;
+    const { x, y, scale, rotX, rotY } = transformState.current;
+    worldRef.current.style.transform = `translate3d(${x}%, ${y}%, 0px) scale(${scale}) perspective(1200px) rotateX(${rotX}deg) rotateY(${rotY}deg)`;
+  };
+
+  // Smooth GSAP Camera Flight when selecting a table or returning to floor
   useEffect(() => {
-    if (viewMode === 'floor') {
-      setOrbit({ pitch: 0, yaw: 0, panX: 0, panY: 0 });
-      setZoomLevel(1.0);
-    } else {
-      setOrbit({ pitch: 0, yaw: 0, panX: 0, panY: 0 });
-      setZoomLevel(2.85);
-    }
-  }, [viewMode, selectedTable?.id]);
+    panOffset.current = { x: 0, y: 0 };
+    if (flyingToTable) {
+      const tx = parseFloat(flyingToTable.position.left);
+      const ty = parseFloat(flyingToTable.position.top);
+      const targetScale = 2.45;
+      const targetX = 50 - tx;
+      const targetY = 50 - ty;
 
+      gsap.killTweensOf(transformState.current);
+      gsap.to(transformState.current, {
+        scale: targetScale,
+        x: targetX,
+        y: targetY,
+        rotX: -2.0,
+        rotY: 0,
+        duration: 1.15,
+        ease: 'power2.inOut',
+        onUpdate: applyTransform,
+        onComplete: () => {
+          if (onFlightArrival) {
+            onFlightArrival(flyingToTable);
+          }
+        }
+      });
+    } else if (isZoomingOut) {
+      gsap.killTweensOf(transformState.current);
+      gsap.to(transformState.current, {
+        scale: 1.08,
+        x: 0,
+        y: 0,
+        rotX: 0,
+        rotY: 0,
+        duration: 1.05,
+        ease: 'power2.inOut',
+        onUpdate: applyTransform,
+        onComplete: () => {
+          if (setIsZoomingOut) setIsZoomingOut(false);
+        }
+      });
+    } else if (viewMode === 'table' && selectedTable && !flyingToTable) {
+      const tx = parseFloat(selectedTable.position.left);
+      const ty = parseFloat(selectedTable.position.top);
+      const targetScale = 2.45;
+      const targetX = 50 - tx;
+      const targetY = 50 - ty;
+
+      gsap.killTweensOf(transformState.current);
+      gsap.to(transformState.current, {
+        scale: targetScale,
+        x: targetX + panOffset.current.x,
+        y: targetY + panOffset.current.y,
+        rotX: -2.0,
+        rotY: 0,
+        duration: 0.7,
+        ease: 'power2.out',
+        onUpdate: applyTransform
+      });
+    } else if (viewMode === 'floor' && !flyingToTable) {
+      gsap.killTweensOf(transformState.current);
+      gsap.to(transformState.current, {
+        scale: 1.08,
+        x: 0,
+        y: 0,
+        rotX: 0,
+        rotY: 0,
+        duration: 0.9,
+        ease: 'power2.out',
+        onUpdate: applyTransform
+      });
+    }
+  }, [flyingToTable?.id, isZoomingOut, viewMode, selectedTable?.id]);
+
+  // Pointer & Mouse Handlers (Silky smooth 60fps physics-damped motion via GSAP)
   const handlePointerDown = (e) => {
-    // If clicking a button, link or UI control, let the button handle it and do not capture pointer!
     if (e.target.closest('button') || e.target.closest('a') || e.target.closest('[role="button"]') || e.target.closest('.no-drag')) {
       return;
     }
     if (isZoomed) {
       setIsDragging(true);
       e.currentTarget.setPointerCapture?.(e.pointerId);
-      setDragStart({
+      dragStart.current = {
         x: e.clientX || (e.touches && e.touches[0].clientX) || 0,
         y: e.clientY || (e.touches && e.touches[0].clientY) || 0
-      });
+      };
     }
   };
 
@@ -666,26 +1163,41 @@ const Continuous3DHallScene = ({
     const clientX = e.clientX || (e.touches && e.touches[0].clientX) || 0;
     const clientY = e.clientY || (e.touches && e.touches[0].clientY) || 0;
 
-    if (isZoomed && isDragging) {
-      const deltaX = clientX - dragStart.x;
-      const deltaY = clientY - dragStart.y;
-      setOrbit((prev) => ({
-        pitch: Math.max(-25, Math.min(25, prev.pitch + deltaY * -0.25)),
-        yaw: Math.max(-45, Math.min(45, prev.yaw + deltaX * 0.35)),
-        panX: Math.max(-80, Math.min(80, prev.panX + deltaX * 0.4)),
-        panY: Math.max(-60, Math.min(60, prev.panY + deltaY * 0.4))
-      }));
-      setDragStart({ x: clientX, y: clientY });
+    if (isZoomed && isDragging && selectedTable) {
+      const deltaX = clientX - dragStart.current.x;
+      const deltaY = clientY - dragStart.current.y;
+      dragStart.current = { x: clientX, y: clientY };
+
+      const tx = parseFloat(selectedTable.position.left);
+      const ty = parseFloat(selectedTable.position.top);
+      const baseX = 50 - tx;
+      const baseY = 50 - ty;
+
+      // Real 3D Camera Pan: Dragging LHS/RHS actually navigates across the terrace view!
+      panOffset.current.x = Math.max(-22, Math.min(22, panOffset.current.x + deltaX * 0.08));
+      panOffset.current.y = Math.max(-14, Math.min(14, panOffset.current.y + deltaY * 0.08));
+
+      transformState.current.x = baseX + panOffset.current.x;
+      transformState.current.y = baseY + panOffset.current.y;
+      transformState.current.rotY = (panOffset.current.x / 22) * 6.5;
+      transformState.current.rotX = -2.5 + (panOffset.current.y / 14) * 4.0;
+      applyTransform();
     } else if (!isZoomed && containerRef.current) {
-      // Subtle parallax in floor mode
+      // Smooth 3D mouse parallax in Floor Mode via GSAP
       const rect = containerRef.current.getBoundingClientRect();
-      const x = (clientX - rect.left) / rect.width;
-      const y = (clientY - rect.top) / rect.height;
-      setOrbit({
-        pitch: (0.5 - y) * 8,
-        yaw: (x - 0.5) * 10,
-        panX: (0.5 - x) * 18,
-        panY: (0.5 - y) * 12
+      const nx = (clientX - rect.left) / rect.width;
+      const ny = (clientY - rect.top) / rect.height;
+
+      gsap.to(transformState.current, {
+        rotX: (0.5 - ny) * 6.0,
+        rotY: (nx - 0.5) * 8.0,
+        x: (nx - 0.5) * -1.8,
+        y: (ny - 0.5) * -1.4,
+        scale: 1.08,
+        duration: 0.6,
+        ease: 'power2.out',
+        overwrite: 'auto',
+        onUpdate: applyTransform
       });
     }
   };
@@ -700,18 +1212,21 @@ const Continuous3DHallScene = ({
   const handlePointerLeave = () => {
     setIsDragging(false);
     if (!isZoomed) {
-      setOrbit({ pitch: 0, yaw: 0, panX: 0, panY: 0 });
+      gsap.to(transformState.current, {
+        rotX: 0,
+        rotY: 0,
+        x: 0,
+        y: 0,
+        scale: 1.08,
+        duration: 0.8,
+        ease: 'power2.out',
+        overwrite: 'auto',
+        onUpdate: applyTransform
+      });
     }
   };
 
-  // Mathematical Centering: Translates the exact clicked table to the (50%, 50%) dead center of the viewport
-  const tx = selectedTable ? parseFloat(selectedTable.position.left) : 50;
-  const ty = selectedTable ? parseFloat(selectedTable.position.top) : 50;
-  const currentScale = isZoomed ? zoomLevel : 1.0;
-  const transX = isZoomed ? (50 - tx) * currentScale : 0;
-  const transY = isZoomed ? (50 - ty) * currentScale : 0;
-
-  // Chair offsets as percentages of the hall image, ensuring they stay locked directly onto the physical chairs
+  // Chair offsets as percentages of the hall image
   const getChairPositions = (table) => {
     const cx = parseFloat(table.position.left);
     const cy = parseFloat(table.position.top);
@@ -752,165 +1267,175 @@ const Continuous3DHallScene = ({
         isZoomed ? 'cursor-grab active:cursor-grabbing' : ''
       }`}
     >
-      {/* ==============================================================
-          UNIFIED 3D CAMERA WORLD: Both Image AND Chairs are scaled
-          and translated together in the exact same 3D coordinate space!
-         ============================================================== */}
+      {/* 3D Visual Stage: Full Edge-to-Edge Cover (Zero LHS/RHS Blank Spaces!) */}
+      {flyingToTable && (
+        <div className="absolute top-16 left-1/2 -translate-x-1/2 z-40 bg-black/90 backdrop-blur-md px-5 py-2.5 rounded-full border border-[#FABE24] shadow-[0_0_25px_rgba(250,190,36,0.7)] flex items-center gap-2.5 animate-in fade-in zoom-in-95 duration-200 pointer-events-none">
+          <Sparkles className="w-4 h-4 text-[#FABE24] animate-spin" />
+          <span className="text-white text-xs font-bold">
+            Approaching {flyingToTable.name} ({flyingToTable.type})...
+          </span>
+        </div>
+      )}
       <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
         <div
-          className="relative w-full aspect-[2048/1152] shrink-0"
+          ref={worldRef}
+          className="relative shrink-0 will-change-transform"
           style={{
-            transformOrigin: `${tx}% ${ty}%`,
-            transform: isZoomed
-              ? `translate(calc(${50 - tx}% + ${orbit.panX}px), calc(${50 - ty}% + ${orbit.panY}px)) scale(${zoomLevel}) perspective(1200px) rotateX(${orbit.pitch}deg) rotateY(${orbit.yaw}deg)`
-              : 'translate(0%, 0%) scale(1.0)',
-            transition: isDragging
-              ? 'none'
-              : 'transform 750ms cubic-bezier(0.16, 1, 0.3, 1)'
+            width: '100%',
+            height: '100%',
+            aspectRatio: '2048 / 1152',
+            minWidth: '100%',
+            minHeight: '100%',
+            transformOrigin: '50% 50%',
+            transform: 'translate3d(0%, 0%, 0px) scale(1.08)'
           }}
         >
-          {/* High-Resolution Overview Reference Image */}
+          {/* High-Resolution Full-Bleed Reference Image */}
           <img
             src={overviewImage}
             alt={isOutdoor ? "Lunar Sky Garden Outdoor Terrace" : "Lunar Grand Restaurant 3D Hall"}
-            className="w-full h-full block object-fill select-none pointer-events-none"
+            className="w-full h-full block object-cover select-none pointer-events-none"
             draggable={false}
           />
 
-        {/* Hotspots: In Floor Mode, all 10 tables are interactive */}
-        {!isZoomed &&
-          tables.map((table) => {
-            const isReserved = isTableReserved(table.id);
-            const isHovered = hoveredTableId === table.id;
+          {/* Table Markers (Floor Overview Mode) - Authentic Clean Badges */}
+          {!isZoomed &&
+            tables.map((table) => {
+              const isReserved = isTableReserved(table.id);
+              const isHovered = hoveredTableId === table.id;
 
-            if (isReserved) {
+              if (isReserved) {
+                return (
+                  <div
+                    key={table.id}
+                    className={`absolute -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full bg-black/75 backdrop-blur-[2px] border border-white/20 flex flex-col items-center justify-center pointer-events-none shadow-lg transition-all duration-300 ${
+                      flyingToTable ? 'opacity-0 scale-90' : 'opacity-85 scale-100'
+                    }`}
+                    style={{ top: table.position.top, left: table.position.left }}
+                  >
+                    <span className="text-[10px] font-bold text-white/60 uppercase">{table.id}</span>
+                    <span className="text-[8.5px] text-[#FABE24] font-semibold">Reserved</span>
+                  </div>
+                );
+              }
+
               return (
                 <div
                   key={table.id}
-                  className="absolute -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full bg-black/75 backdrop-blur-[2px] border border-white/20 flex flex-col items-center justify-center pointer-events-none opacity-85 shadow-lg"
+                  className={`absolute -translate-x-1/2 -translate-y-1/2 transition-all duration-300 ${
+                    flyingToTable ? 'opacity-0 pointer-events-none scale-90' : 'opacity-100 scale-100'
+                  }`}
                   style={{ top: table.position.top, left: table.position.left }}
+                  onMouseEnter={() => setHoveredTableId(table.id)}
+                  onMouseLeave={() => setHoveredTableId(null)}
                 >
-                  <span className="text-[10px] font-bold text-white/60 uppercase">{table.id}</span>
-                  <span className="text-[8.5px] text-[#FABE24] font-semibold">Reserved</span>
-                </div>
-              );
-            }
+                  <div className="relative flex flex-col items-center group">
+                    {/* Tooltip on Hover */}
+                    {isHovered && (
+                      <div className="absolute -top-11 px-3 py-1 rounded-lg bg-[#2B181C]/95 text-white text-[11px] font-semibold border border-[#FABE24]/60 shadow-2xl whitespace-nowrap pointer-events-none z-30 flex items-center gap-1.5 animate-in fade-in zoom-in-95 duration-150">
+                        <span>{table.name}</span>
+                        <span className="text-[#FABE24]">({table.type})</span>
+                        <span className="text-emerald-400 font-bold">• Click to Zoom</span>
+                      </div>
+                    )}
 
-            return (
-              <div
-                key={table.id}
-                className="absolute -translate-x-1/2 -translate-y-1/2 transition-transform duration-200"
-                style={{ top: table.position.top, left: table.position.left }}
-                onMouseEnter={() => setHoveredTableId(table.id)}
-                onMouseLeave={() => setHoveredTableId(null)}
-              >
-                <div className="relative flex flex-col items-center group">
-                  {/* Tooltip on Hover */}
-                  {isHovered && (
-                    <div className="absolute -top-11 px-3 py-1 rounded-lg bg-[#2B181C]/95 text-white text-[11px] font-semibold border border-[#FABE24]/60 shadow-2xl whitespace-nowrap pointer-events-none z-30 flex items-center gap-1.5 animate-in fade-in zoom-in-95 duration-150">
-                      <span>{table.name}</span>
-                      <span className="text-[#FABE24]">({table.type})</span>
-                      <span className="text-emerald-400 font-bold">• Click to Zoom</span>
-                    </div>
-                  )}
-
-                  {/* Clean table target button */}
-                  <button
-                    type="button"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      onSelectTable(table);
-                    }}
-                    className="w-16 h-16 rounded-full border-none bg-transparent hover:bg-white/10 transition-all duration-200 cursor-pointer flex items-center justify-center focus:outline-hidden"
-                    title={`Click to zoom in and view ${table.name} (${table.type})`}
-                  >
-                    <div className="w-8 h-8 rounded-full bg-black/70 backdrop-blur-md border border-[#FABE24] text-white flex items-center justify-center shadow-xl group-hover:scale-115 group-hover:shadow-[0_0_15px_rgba(250,190,36,0.6)] transition-all">
-                      <span className="text-[10px] font-bold text-[#FABE24]">{table.id}</span>
-                    </div>
-                  </button>
-                </div>
-              </div>
-            );
-          })}
-
-        {/* In Zoomed Table Mode: Chairs rendered inside the transformed 3D world on top of physical chairs */}
-        {isZoomed && selectedTable && (
-          <>
-            {/* Table Identification Center Core (Scale-invariant) */}
-            <div
-              className="absolute z-20 pointer-events-none flex items-center justify-center"
-              style={{
-                top: selectedTable.position.top,
-                left: selectedTable.position.left,
-                transform: `translate(-50%, -50%) scale(${1 / currentScale})`,
-                transformOrigin: 'center center'
-              }}
-            >
-              <div className="w-11 h-11 rounded-full bg-black/90 backdrop-blur-md border-2 border-[#FABE24] flex items-center justify-center shadow-[0_0_25px_rgba(250,190,36,0.7)]">
-                <span className="text-xs font-black text-[#FABE24]">{selectedTable.id}</span>
-              </div>
-            </div>
-
-            {/* Individual Clickable Chairs Mapped Directly onto Physical Chairs (Scale-invariant: Zero Overlap!) */}
-            {getChairPositions(selectedTable).map((chair) => {
-              const isSelected = selectedSeats.includes(chair.seat);
-              return (
-                <div
-                  key={chair.seat}
-                  className="absolute z-30 group/chair flex flex-col items-center pointer-events-auto"
-                  style={{
-                    top: chair.top,
-                    left: chair.left,
-                    transform: `translate(-50%, -50%) scale(${1 / currentScale})`,
-                    transformOrigin: 'center center'
-                  }}
-                >
-                  {/* Tooltip on Hover */}
-                  <div className="mb-2 opacity-0 group-hover/chair:opacity-100 transition-opacity duration-150 pointer-events-none whitespace-nowrap bg-[#2B181C]/95 text-white text-xs font-semibold px-3 py-1 rounded-lg border border-[#FABE24]/60 shadow-2xl flex items-center gap-1.5 animate-in fade-in zoom-in-95">
-                    <Sparkles className="w-3 h-3 text-[#FABE24]" />
-                    <span>Click to Sit in Chair {chair.seat} (3D POV)</span>
+                    {/* Clean Table Target Button */}
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onSelectTable(table);
+                      }}
+                      className="w-16 h-16 rounded-full border-none bg-transparent hover:bg-white/10 transition-all duration-200 cursor-pointer flex items-center justify-center focus:outline-hidden"
+                      title={`Click to zoom in and view ${table.name} (${table.type})`}
+                    >
+                      <div className="w-8 h-8 rounded-full bg-black/70 backdrop-blur-md border border-[#FABE24] text-white flex items-center justify-center shadow-xl group-hover:scale-115 group-hover:shadow-[0_0_15px_rgba(250,190,36,0.6)] transition-all">
+                        <span className="text-[10px] font-bold text-[#FABE24]">{table.id}</span>
+                      </div>
+                    </button>
                   </div>
-
-                  {/* Interactive Chair Button with clear visual separation */}
-                  <button
-                    type="button"
-                    onPointerDown={(e) => e.stopPropagation()}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      onSelectChair(chair.seat);
-                    }}
-                    className={`px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-2xl backdrop-blur-md transition-all duration-200 cursor-pointer hover:scale-115 active:scale-95 ${
-                      isSelected
-                        ? 'bg-[#4C1824] text-white border-2 border-[#FABE24] ring-4 ring-[#FABE24]/50 shadow-[0_0_25px_rgba(250,190,36,0.8)]'
-                        : 'bg-black/90 hover:bg-black text-white border border-[#FABE24]/90 hover:border-[#FABE24] shadow-xl'
-                    }`}
-                    title={`Click to sit in Chair ${chair.seat} (3D POV)`}
-                  >
-                    <span className="w-2 h-2 rounded-full bg-[#FABE24] animate-ping" />
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-3.5 h-3.5 text-[#FABE24]">
-                      <path d="M19 9V6a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v3" />
-                      <path d="M3 11v5a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5a2 2 0 0 0-4 0v2H7v-2a2 2 0 0 0-4 0Z" />
-                      <path d="M5 18v3" />
-                      <path d="M19 18v3" />
-                    </svg>
-                    <span className="font-bold text-xs text-[#FABE24]">Chair {chair.seat}</span>
-                    <span className="text-[10px] text-[#FABE24] font-semibold bg-[#FABE24]/20 px-1.5 py-0.5 rounded flex items-center gap-1">
-                      <Eye className="w-3 h-3" />
-                      <span>3D View</span>
-                    </span>
-                  </button>
                 </div>
               );
             })}
-          </>
-        )}
+
+          {/* In Zoomed Table Mode: Chairs rendered inside the transformed 3D world */}
+          {isZoomed && selectedTable && (
+            <>
+              {/* Table Identification Center Core */}
+              <div
+                className="absolute z-20 pointer-events-none flex items-center justify-center"
+                style={{
+                  top: selectedTable.position.top,
+                  left: selectedTable.position.left,
+                  transform: 'translate(-50%, -50%) scale(0.35)',
+                  transformOrigin: 'center center'
+                }}
+              >
+                <div className="w-11 h-11 rounded-full bg-black/90 backdrop-blur-md border-2 border-[#FABE24] flex items-center justify-center shadow-[0_0_25px_rgba(250,190,36,0.7)]">
+                  <span className="text-xs font-black text-[#FABE24]">{selectedTable.id}</span>
+                </div>
+              </div>
+
+              {/* Individual Clickable Chairs */}
+              {getChairPositions(selectedTable).map((chair) => {
+                const isSelected = selectedSeats.includes(chair.seat);
+                return (
+                  <div
+                    key={chair.seat}
+                    className="absolute z-30 group/chair flex flex-col items-center pointer-events-auto"
+                    style={{
+                      top: chair.top,
+                      left: chair.left,
+                      transform: 'translate(-50%, -50%) scale(0.35)',
+                      transformOrigin: 'center center'
+                    }}
+                  >
+                    {/* Tooltip on Hover */}
+                    <div className="mb-2 opacity-0 group-hover/chair:opacity-100 transition-opacity duration-150 pointer-events-none whitespace-nowrap bg-[#2B181C]/95 text-white text-xs font-semibold px-3 py-1 rounded-lg border border-[#FABE24]/60 shadow-2xl flex items-center gap-1.5 animate-in fade-in zoom-in-95">
+                      <Sparkles className="w-3 h-3 text-[#FABE24]" />
+                      <span>Click to Sit in Chair {chair.seat} (3D POV)</span>
+                    </div>
+
+                    {/* Interactive Chair Button */}
+                    <button
+                      type="button"
+                      onPointerDown={(e) => e.stopPropagation()}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onSelectChair(chair.seat);
+                      }}
+                      className={`px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-2xl backdrop-blur-md transition-all duration-200 cursor-pointer hover:scale-115 active:scale-95 ${
+                        isSelected
+                          ? 'bg-[#4C1824] text-white border-2 border-[#FABE24] ring-4 ring-[#FABE24]/50 shadow-[0_0_25px_rgba(250,190,36,0.8)]'
+                          : 'bg-black/90 hover:bg-black text-white border border-[#FABE24]/90 hover:border-[#FABE24] shadow-xl'
+                      }`}
+                      title={`Click to sit in Chair ${chair.seat} (3D POV)`}
+                    >
+                      <span className="w-2 h-2 rounded-full bg-[#FABE24] animate-ping" />
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-3.5 h-3.5 text-[#FABE24]">
+                        <path d="M19 9V6a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v3" />
+                        <path d="M3 11v5a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5a2 2 0 0 0-4 0v2H7v-2a2 2 0 0 0-4 0Z" />
+                        <path d="M5 18v3" />
+                        <path d="M19 18v3" />
+                      </svg>
+                      <span className="font-bold text-xs text-[#FABE24]">Chair {chair.seat}</span>
+                      <span className="text-[10px] text-[#FABE24] font-semibold bg-[#FABE24]/20 px-1.5 py-0.5 rounded flex items-center gap-1">
+                        <Eye className="w-3 h-3" />
+                        <span>3D View</span>
+                      </span>
+                    </button>
+                  </div>
+                );
+              })}
+            </>
+          )}
         </div>
       </div>
 
       {/* Atmospheric Subtle Vignette */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/50 pointer-events-none" />
 
-      {/* Top Header: Controls, Back Button & 360 Camera Controls */}
+      {/* Top Header: Controls & Status */}
       <div 
         className="relative z-20 p-4 sm:p-5 flex items-center justify-between flex-wrap gap-2 no-drag"
         onPointerDown={(e) => e.stopPropagation()}
@@ -933,72 +1458,113 @@ const Continuous3DHallScene = ({
               </span>
             </div>
 
-            {/* Dedicated 360 Orbit & 3D Tilt Controls */}
+            {/* Dedicated 360 Orbit & 3D Tilt Controls: Real LHS and RHS Terrace Exploration */}
             <div className="flex items-center gap-1.5 bg-black/80 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/20 text-white text-xs">
-              <span className="text-[11px] text-white/70 mr-1 hidden lg:inline">360° Orbit:</span>
+              <span className="text-[11px] text-white/70 mr-1 hidden lg:inline">360° View:</span>
               <button
                 type="button"
                 onPointerDown={(e) => e.stopPropagation()}
-                onClick={() => setOrbit((o) => ({ ...o, yaw: Math.max(-45, o.yaw - 15) }))}
+                onClick={() => {
+                  if (!selectedTable) return;
+                  const tx = parseFloat(selectedTable.position.left);
+                  const baseX = 50 - tx;
+                  panOffset.current.x = Math.min(22, panOffset.current.x + 6.5);
+                  gsap.to(transformState.current, {
+                    x: baseX + panOffset.current.x,
+                    rotY: (panOffset.current.x / 22) * 6.5,
+                    duration: 0.45,
+                    ease: 'power2.out',
+                    onUpdate: applyTransform
+                  });
+                }}
                 className="px-2 py-0.5 rounded-md hover:bg-white/10 font-bold text-[#FABE24] cursor-pointer"
-                title="Orbit Left 360°"
+                title="Look Left (LHS Terrace View)"
               >
-                ◀ Left
+                ◀ Left (LHS)
               </button>
               <button
                 type="button"
                 onPointerDown={(e) => e.stopPropagation()}
-                onClick={() => setOrbit((o) => ({ ...o, yaw: Math.min(45, o.yaw + 15) }))}
+                onClick={() => {
+                  if (!selectedTable) return;
+                  const tx = parseFloat(selectedTable.position.left);
+                  const baseX = 50 - tx;
+                  panOffset.current.x = Math.max(-22, panOffset.current.x - 6.5);
+                  gsap.to(transformState.current, {
+                    x: baseX + panOffset.current.x,
+                    rotY: (panOffset.current.x / 22) * 6.5,
+                    duration: 0.45,
+                    ease: 'power2.out',
+                    onUpdate: applyTransform
+                  });
+                }}
                 className="px-2 py-0.5 rounded-md hover:bg-white/10 font-bold text-[#FABE24] cursor-pointer"
-                title="Orbit Right 360°"
+                title="Look Right (RHS Terrace View)"
               >
-                Right ▶
+                (RHS) Right ▶
               </button>
               <button
                 type="button"
                 onPointerDown={(e) => e.stopPropagation()}
-                onClick={() => setOrbit((o) => ({ ...o, pitch: Math.min(25, o.pitch + 8) }))}
+                onClick={() => {
+                  if (!selectedTable) return;
+                  const ty = parseFloat(selectedTable.position.top);
+                  const baseY = 50 - ty;
+                  panOffset.current.y = Math.min(14, panOffset.current.y + 4.5);
+                  gsap.to(transformState.current, {
+                    y: baseY + panOffset.current.y,
+                    rotX: -2.5 + (panOffset.current.y / 14) * 4.0,
+                    duration: 0.45,
+                    ease: 'power2.out',
+                    onUpdate: applyTransform
+                  });
+                }}
                 className="px-1.5 py-0.5 rounded-md hover:bg-white/10 font-bold text-white/90 cursor-pointer text-[10px]"
-                title="Tilt Up"
+                title="Look Up (Skyline & Palms)"
               >
                 ▲
               </button>
               <button
                 type="button"
                 onPointerDown={(e) => e.stopPropagation()}
-                onClick={() => setOrbit((o) => ({ ...o, pitch: Math.max(-25, o.pitch - 8) }))}
+                onClick={() => {
+                  if (!selectedTable) return;
+                  const ty = parseFloat(selectedTable.position.top);
+                  const baseY = 50 - ty;
+                  panOffset.current.y = Math.max(-14, panOffset.current.y - 4.5);
+                  gsap.to(transformState.current, {
+                    y: baseY + panOffset.current.y,
+                    rotX: -2.5 + (panOffset.current.y / 14) * 4.0,
+                    duration: 0.45,
+                    ease: 'power2.out',
+                    onUpdate: applyTransform
+                  });
+                }}
                 className="px-1.5 py-0.5 rounded-md hover:bg-white/10 font-bold text-white/90 cursor-pointer text-[10px]"
-                title="Tilt Down"
+                title="Look Down (Table Surface)"
               >
                 ▼
               </button>
               <button
                 type="button"
                 onPointerDown={(e) => e.stopPropagation()}
-                onClick={() => setZoomLevel((z) => Math.min(4.2, z + 0.35))}
-                className="px-2 py-0.5 rounded-md hover:bg-white/10 font-bold text-[#FABE24] cursor-pointer"
-                title="Zoom In"
-              >
-                +
-              </button>
-              <button
-                type="button"
-                onPointerDown={(e) => e.stopPropagation()}
-                onClick={() => setZoomLevel((z) => Math.max(2.2, z - 0.35))}
-                className="px-2 py-0.5 rounded-md hover:bg-white/10 font-bold text-[#FABE24] cursor-pointer"
-                title="Zoom Out"
-              >
-                −
-              </button>
-              <button
-                type="button"
-                onPointerDown={(e) => e.stopPropagation()}
                 onClick={() => {
-                  setOrbit({ pitch: 0, yaw: 0, panX: 0, panY: 0 });
-                  setZoomLevel(2.85);
+                  if (!selectedTable) return;
+                  const tx = parseFloat(selectedTable.position.left);
+                  const ty = parseFloat(selectedTable.position.top);
+                  panOffset.current = { x: 0, y: 0 };
+                  gsap.to(transformState.current, {
+                    x: 50 - tx,
+                    y: 50 - ty,
+                    rotX: -2.5,
+                    rotY: 0,
+                    duration: 0.5,
+                    ease: 'power2.out',
+                    onUpdate: applyTransform
+                  });
                 }}
                 className="p-1 rounded-md hover:bg-white/10 text-white/80 cursor-pointer"
-                title="Reset Camera Angle"
+                title="Reset to Table Center"
               >
                 <RotateCcw className="w-3.5 h-3.5 text-[#FABE24]" />
               </button>
@@ -1012,7 +1578,7 @@ const Continuous3DHallScene = ({
                 <span>{isOutdoor ? '3D Outdoor Sky Terrace' : '3D Interactive Dining Hall'}</span>
               </div>
 
-              {/* Quick Dining Area Toggle Pill */}
+              {/* Dining Area Toggle Pill */}
               {onToggleDiningPreference && (
                 <div className="hidden sm:flex items-center bg-black/70 backdrop-blur-md rounded-full p-0.5 border border-white/20">
                   <button
@@ -1053,8 +1619,33 @@ const Continuous3DHallScene = ({
         )}
       </div>
 
-      {/* Bottom Info Bar */}
-      <div className="relative z-20 p-4 sm:p-5 flex justify-center">
+      {/* Bottom Info Bar & Table Selector Pills */}
+      <div className="relative z-20 p-4 sm:p-5 flex flex-col items-center gap-2.5 no-drag" onPointerDown={(e) => e.stopPropagation()}>
+        {/* Table Selector Pills */}
+        {!isZoomed && (
+          <div className="flex items-center justify-center flex-wrap gap-2">
+            {tables.map((table) => {
+              const isReserved = isTableReserved(table.id);
+              return (
+                <button
+                  key={table.id}
+                  type="button"
+                  disabled={isReserved}
+                  onClick={() => onSelectTable(table)}
+                  className={`px-3 py-1 rounded-full text-xs font-semibold border backdrop-blur-md transition-all cursor-pointer flex items-center gap-1.5 ${
+                    isReserved
+                      ? 'bg-black/40 text-white/40 border-white/10 cursor-not-allowed'
+                      : 'bg-black/75 hover:bg-black text-[#FABE24] hover:text-white border-[#FABE24]/50 hover:border-[#FABE24] hover:scale-105 shadow-md'
+                  }`}
+                >
+                  <span className={`w-1.5 h-1.5 rounded-full ${isReserved ? 'bg-white/30' : 'bg-[#FABE24]'}`} />
+                  <span>{table.id} ({table.capacity}P)</span>
+                </button>
+              );
+            })}
+          </div>
+        )}
+
         <div className="bg-black/80 backdrop-blur-md px-6 py-2 rounded-full border border-white/20 shadow-lg flex items-center gap-3 sm:gap-6 text-xs font-medium text-white">
           {isZoomed ? (
             <>
@@ -1110,6 +1701,8 @@ export const BookTablePage = () => {
   const [viewMode, setViewMode] = useState('floor'); // 'floor' | 'table' | 'chair'
   const [activeChairSeat, setActiveChairSeat] = useState('S1');
   const [isTableSelected, setIsTableSelected] = useState(false);
+  const [flyingToTable, setFlyingToTable] = useState(null);
+  const [isZoomingOut, setIsZoomingOut] = useState(false);
   const [isZoomedToTable, setIsZoomedToTable] = useState(false);
   const [selectedTableId, setSelectedTableId] = useState('T05');
   const [selectedTable, setSelectedTable] = useState('Table T05');
@@ -1255,14 +1848,21 @@ export const BookTablePage = () => {
     setSelectedTable(table.name);
     // Set default seats to table capacity
     setSelectedSeats(table.seats.slice(0, Math.min(2, table.seats.length)));
+    // Initiate smooth 3D camera swoop flight towards table
+    setFlyingToTable(table);
+  };
+
+  const handleFlightArrival = (table) => {
+    setFlyingToTable(null);
     setViewMode('table');
     setIsTableSelected(true);
   };
 
-  // Reset to full floor overview (Allows rebooking any other table easily!)
+  // Reset to full floor overview (Smoothly flies camera back out to full terrace overview!)
   const handleResetToFloor = () => {
-    setViewMode('floor');
     setIsTableSelected(false);
+    setIsZoomingOut(true);
+    setViewMode('floor');
     setTilt({ tiltX: 0, tiltY: 0, panX: 0, panY: 0 });
   };
 
@@ -2253,9 +2853,9 @@ export const BookTablePage = () => {
 
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-7 lg:gap-8 items-stretch">
               
-              {/* Left Column (col-span-12 when browsing full-width, col-span-7 when a table is selected!) */}
+              {/* Left Column (Full-Width col-span-12 during floor overview & table zoom; col-span-7 ONLY when seated in chair POV!) */}
               <div className={`transition-all duration-500 ease-in-out ${
-                isTableSelected ? 'lg:col-span-7' : 'lg:col-span-12'
+                viewMode === 'chair' ? 'lg:col-span-7' : 'lg:col-span-12'
               }`}>
                 {viewMode === 'chair' ? (
                   <Chair3DViewInside
@@ -2282,12 +2882,16 @@ export const BookTablePage = () => {
                     setHoveredTableId={setHoveredTableId}
                     diningPreference={diningPreference}
                     onToggleDiningPreference={handleSelectDiningPreference}
+                    flyingToTable={flyingToTable}
+                    onFlightArrival={handleFlightArrival}
+                    isZoomingOut={isZoomingOut}
+                    setIsZoomingOut={setIsZoomingOut}
                   />
                 )}
               </div>
 
-              {/* Right Column (col-span-5): Revealed only when isTableSelected is true! */}
-              {isTableSelected && (
+              {/* Right Column (col-span-5): Revealed ONLY in chair POV mode! */}
+              {viewMode === 'chair' && (
                 <div className="lg:col-span-5 bg-white rounded-[28px] border border-[#EADBCC] p-6 sm:p-7 shadow-xs flex flex-col justify-between h-full animate-in fade-in slide-in-from-right-4 duration-300">
                   
                   <div className="space-y-6">
