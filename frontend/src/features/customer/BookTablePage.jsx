@@ -38,7 +38,13 @@ import {
   Minimize2,
   X,
   AlertCircle,
-  Info
+  Info,
+  CreditCard,
+  Wallet,
+  QrCode,
+  Building2,
+  Lock,
+  BadgeCheck
 } from 'lucide-react';
 
 // Indoor Dining Tables: Strictly 2, 4, and 6 Seaters mapped to HD 3D Floor Plan (User Reference Image)
@@ -1712,6 +1718,16 @@ export const BookTablePage = () => {
   const [copiedRef, setCopiedRef] = useState(false);
   const [hoveredTableId, setHoveredTableId] = useState(null);
 
+  // Step 4: Payment States
+  const [paymentMethod, setPaymentMethod] = useState('card'); // 'card' | 'upi' | 'netbanking' | 'pay_at_venue'
+  const [cardNumber, setCardNumber] = useState('');
+  const [cardExpiry, setCardExpiry] = useState('');
+  const [cardCvv, setCardCvv] = useState('');
+  const [cardName, setCardName] = useState(guestName || 'Sophia Montgomery');
+  const [upiId, setUpiId] = useState('');
+  const [selectedBank, setSelectedBank] = useState('HDFC Bank');
+  const [isProcessingPayment, setIsProcessingPayment] = useState(false);
+
   // 3D Interactive Camera State: tilts and shifts smoothly with mouse movement
   const [tilt, setTilt] = useState({ tiltX: 0, tiltY: 0, panX: 0, panY: 0 });
 
@@ -2027,43 +2043,61 @@ export const BookTablePage = () => {
       alert("Please agree to Lunar's reservation policies and terms to continue.");
       return;
     }
-    const newRef = 'LNR' + Math.floor(10000 + Math.random() * 90000);
-    setBookingRef(newRef);
 
-    const bookingData = {
-      id: generateBookingId(),
-      bookingRef: newRef,
-      userId: currentUser?.id || 'guest-' + Date.now(),
-      customerName: guestName || 'Kuruva Mahesh',
-      email: guestEmail || 'mahesh.kuruva@email.com',
-      contactNumber: guestPhone || '+91 98765 43210',
-      experience: experience || 'Dinner Service',
-      date,
-      time,
-      diningPreference: diningPreference === 'Outdoor Dining' ? 'Outdoor Terrace' : 'Main Dining',
-      table: currentTableObj.id,
-      tableNo: currentTableObj.name,
-      tableDetails: {
-        name: currentTableObj.name,
-        capacity: `${currentTableObj.capacity} Seats`,
-        area: currentTableObj.area,
-        image: currentTableObj.image
-      },
-      seats: selectedSeats.sort(),
-      guests: `${selectedSeats.length || currentTableObj.capacity} People`,
-      specialRequests: specialRequests || 'Birthday celebration setup, if possible.',
-      createdAt: new Date().toISOString(),
-      status: 'Confirmed'
-    };
+    setIsProcessingPayment(true);
 
-    try {
-      addBooking(bookingData);
-    } catch (err) {
-      console.warn('Booking stored locally:', err);
-    }
-    setConfirmedBooking(bookingData);
-    window.scrollTo({ top: 80, behavior: 'smooth' });
-    setCurrentStep(4);
+    setTimeout(() => {
+      setIsProcessingPayment(false);
+      const newRef = 'LNR' + Math.floor(10000 + Math.random() * 90000);
+      setBookingRef(newRef);
+
+      const paymentMethodLabel =
+        paymentMethod === 'pay_at_venue'
+          ? 'Pay at Restaurant'
+          : paymentMethod === 'upi'
+          ? 'UPI / QR Code'
+          : paymentMethod === 'netbanking'
+          ? `Net Banking (${selectedBank})`
+          : 'Credit / Debit Card';
+
+      const bookingData = {
+        id: generateBookingId(),
+        bookingRef: newRef,
+        userId: currentUser?.id || 'guest-' + Date.now(),
+        customerName: guestName || 'Sophia Montgomery',
+        email: guestEmail || 'customer@auramocha.com',
+        contactNumber: guestPhone || '+1 (555) 392-8819',
+        experience: experience || 'Dinner Service',
+        date,
+        time,
+        diningPreference: diningPreference === 'Outdoor Dining' ? 'Outdoor Terrace' : 'Main Dining',
+        table: currentTableObj.id,
+        tableNo: currentTableObj.name,
+        tableDetails: {
+          name: currentTableObj.name,
+          capacity: `${currentTableObj.capacity} Seats`,
+          area: currentTableObj.area,
+          image: currentTableObj.image
+        },
+        seats: selectedSeats.sort(),
+        guests: `${selectedSeats.length || currentTableObj.capacity} People`,
+        specialRequests: specialRequests || 'Fine dining table setup.',
+        paymentMethod: paymentMethodLabel,
+        paymentStatus: paymentMethod === 'pay_at_venue' ? 'Pending (Pay at Venue)' : 'Paid (₹525)',
+        amountPaid: paymentMethod === 'pay_at_venue' ? '₹0' : '₹525',
+        createdAt: new Date().toISOString(),
+        status: 'Confirmed'
+      };
+
+      try {
+        addBooking(bookingData);
+      } catch (err) {
+        console.warn('Booking stored locally:', err);
+      }
+      setConfirmedBooking(bookingData);
+      window.scrollTo({ top: 80, behavior: 'smooth' });
+      setCurrentStep(5);
+    }, 600);
   };
 
   return (
@@ -2073,12 +2107,12 @@ export const BookTablePage = () => {
         
         {/* ========================================================
             1. Stepper Progress Bar matching Reference Design
-            4 Steps: 1. Reservation Details | 2. Select Seats | 3. Your Details | 4. Confirmation
+            5 Steps: 1. Reservation Details | 2. Select Seats | 3. Your Details | 4. Payment | 5. Confirmation
            ======================================================== */}
-        <div className="max-w-3xl mx-auto mb-8 sm:mb-10">
+        <div className="max-w-4xl mx-auto mb-8 sm:mb-10">
           <div className="flex items-center justify-between relative">
             
-            {/* Step 1 */}
+            {/* Step 1: Reservation Details */}
             <div className="flex flex-col items-center relative z-10">
               <div 
                 className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-xs sm:text-[13px] font-semibold transition-all duration-300 ${
@@ -2093,7 +2127,7 @@ export const BookTablePage = () => {
                   1
                 )}
               </div>
-              <span className={`text-[11px] sm:text-[13px] mt-2 font-medium transition-colors ${
+              <span className={`text-[10px] sm:text-[12.5px] mt-2 font-medium transition-colors text-center ${
                 currentStep === 1 ? 'text-[#2B181C] font-bold' : 'text-[#8A6B63]'
               }`}>
                 Reservation Details
@@ -2101,9 +2135,9 @@ export const BookTablePage = () => {
             </div>
 
             {/* Connecting Line 1-2 */}
-            <div className="flex-1 h-[1.5px] bg-[#E5D7CB] -mt-5 mx-2 sm:mx-3" />
+            <div className="flex-1 h-[1.5px] bg-[#E5D7CB] -mt-5 mx-1 sm:mx-2.5" />
 
-            {/* Step 2 */}
+            {/* Step 2: Select Seats */}
             <div className="flex flex-col items-center relative z-10">
               <div 
                 className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-xs sm:text-[13px] font-semibold transition-all duration-300 ${
@@ -2118,7 +2152,7 @@ export const BookTablePage = () => {
                   2
                 )}
               </div>
-              <span className={`text-[11px] sm:text-[13px] mt-2 font-medium transition-colors ${
+              <span className={`text-[10px] sm:text-[12.5px] mt-2 font-medium transition-colors text-center ${
                 currentStep === 2 ? 'text-[#2B181C] font-bold' : 'text-[#8A6B63]'
               }`}>
                 Select Seats
@@ -2126,9 +2160,9 @@ export const BookTablePage = () => {
             </div>
 
             {/* Connecting Line 2-3 */}
-            <div className="flex-1 h-[1.5px] bg-[#E5D7CB] -mt-5 mx-2 sm:mx-3" />
+            <div className="flex-1 h-[1.5px] bg-[#E5D7CB] -mt-5 mx-1 sm:mx-2.5" />
 
-            {/* Step 3 */}
+            {/* Step 3: Your Details */}
             <div className="flex flex-col items-center relative z-10">
               <div 
                 className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-xs sm:text-[13px] font-semibold transition-all duration-300 ${
@@ -2143,7 +2177,7 @@ export const BookTablePage = () => {
                   3
                 )}
               </div>
-              <span className={`text-[11px] sm:text-[13px] mt-2 font-medium transition-colors ${
+              <span className={`text-[10px] sm:text-[12.5px] mt-2 font-medium transition-colors text-center ${
                 currentStep === 3 ? 'text-[#2B181C] font-bold' : 'text-[#8A6B63]'
               }`}>
                 Your Details
@@ -2151,21 +2185,46 @@ export const BookTablePage = () => {
             </div>
 
             {/* Connecting Line 3-4 */}
-            <div className="flex-1 h-[1.5px] bg-[#E5D7CB] -mt-5 mx-2 sm:mx-3" />
+            <div className="flex-1 h-[1.5px] bg-[#E5D7CB] -mt-5 mx-1 sm:mx-2.5" />
 
-            {/* Step 4 */}
+            {/* Step 4: Payment */}
             <div className="flex flex-col items-center relative z-10">
               <div 
                 className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-xs sm:text-[13px] font-semibold transition-all duration-300 ${
-                  currentStep === 4
+                  currentStep >= 4
                     ? 'bg-[#4C1824] text-white shadow-sm'
                     : 'bg-white border border-[#D1C0B4] text-[#8A6B63]'
                 }`}
               >
-                4
+                {currentStep > 4 ? (
+                  <Check className="w-3.5 h-3.5 text-white" strokeWidth={3} />
+                ) : (
+                  4
+                )}
               </div>
-              <span className={`text-[11px] sm:text-[13px] mt-2 font-medium transition-colors ${
+              <span className={`text-[10px] sm:text-[12.5px] mt-2 font-medium transition-colors text-center ${
                 currentStep === 4 ? 'text-[#2B181C] font-bold' : 'text-[#8A6B63]'
+              }`}>
+                Payment
+              </span>
+            </div>
+
+            {/* Connecting Line 4-5 */}
+            <div className="flex-1 h-[1.5px] bg-[#E5D7CB] -mt-5 mx-1 sm:mx-2.5" />
+
+            {/* Step 5: Confirmation */}
+            <div className="flex flex-col items-center relative z-10">
+              <div 
+                className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-xs sm:text-[13px] font-semibold transition-all duration-300 ${
+                  currentStep === 5
+                    ? 'bg-[#4C1824] text-white shadow-sm'
+                    : 'bg-white border border-[#D1C0B4] text-[#8A6B63]'
+                }`}
+              >
+                5
+              </div>
+              <span className={`text-[10px] sm:text-[12.5px] mt-2 font-medium transition-colors text-center ${
+                currentStep === 5 ? 'text-[#2B181C] font-bold' : 'text-[#8A6B63]'
               }`}>
                 Confirmation
               </span>
@@ -2177,7 +2236,7 @@ export const BookTablePage = () => {
         {/* ========================================================
             2. Centered Header: Exact Styling per Step
            ======================================================== */}
-        {currentStep < 4 && (
+        {currentStep < 5 && (
           <div className="text-center max-w-xl mx-auto mb-10 sm:mb-12">
             {currentStep === 1 && (
               <>
@@ -2206,13 +2265,27 @@ export const BookTablePage = () => {
             {currentStep === 3 && (
               <>
                 <span className="text-xs font-bold tracking-widest text-[#B58237] uppercase mb-2 block">
-                  ALMOST THERE
+                  STEP 3 OF 5
                 </span>
                 <h1 className="font-hanken text-3xl sm:text-4xl md:text-[42px] font-bold text-[#2B181C] tracking-tight leading-tight mb-3">
-                  Complete Your Reservation
+                  Complete Your Details
                 </h1>
                 <p className="text-sm sm:text-base text-[#7A5B53] font-normal leading-relaxed">
                   Just a few details and your table at Lunar will be ready.
+                </p>
+              </>
+            )}
+
+            {currentStep === 4 && (
+              <>
+                <span className="text-xs font-bold tracking-widest text-[#B58237] uppercase mb-2 block">
+                  STEP 4 OF 5 • SECURE CHECKOUT
+                </span>
+                <h1 className="font-hanken text-3xl sm:text-4xl md:text-[42px] font-bold text-[#2B181C] tracking-tight leading-tight mb-3">
+                  Reservation Payment
+                </h1>
+                <p className="text-sm sm:text-base text-[#7A5B53] font-normal leading-relaxed">
+                  Choose your payment method to guarantee your table and complete your reservation.
                 </p>
               </>
             )}
@@ -3246,10 +3319,17 @@ export const BookTablePage = () => {
 
               <button
                 type="button"
-                onClick={handleConfirmReservation}
+                onClick={() => {
+                  if (!agreeTerms) {
+                    alert("Please agree to Lunar's reservation policies and terms to continue.");
+                    return;
+                  }
+                  window.scrollTo({ top: 120, behavior: 'smooth' });
+                  setCurrentStep(4);
+                }}
                 className="bg-[#4C1824] hover:bg-[#38111A] text-white font-medium text-xs sm:text-sm px-8 py-3 rounded-full shadow-md hover:shadow-xl transition-all flex items-center gap-2 cursor-pointer"
               >
-                <span>Confirm Reservation</span>
+                <span>Continue to Payment</span>
                 <ArrowRight className="w-3.5 h-3.5 text-white" />
               </button>
             </div>
@@ -3257,9 +3337,373 @@ export const BookTablePage = () => {
         )}
 
         {/* ========================================================
-            6. STEP 4: CONFIRMATION (Matches Image 3)
+            5. STEP 4: PAYMENT (Requested Step 4)
            ======================================================== */}
         {currentStep === 4 && (
+          <div className="max-w-5xl mx-auto animate-in fade-in duration-300">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-7 items-start">
+              
+              {/* Left Column: Payment Options (col-span-7) */}
+              <div className="lg:col-span-7 space-y-6">
+                
+                {/* Payment Methods Card */}
+                <div className="bg-white rounded-[26px] sm:rounded-[28px] border border-[#EADBCC] p-6 sm:p-7 shadow-xs">
+                  <div className="flex items-center justify-between pb-4 border-b border-[#F0E5D8] mb-5">
+                    <div className="flex items-center gap-2.5">
+                      <CreditCard className="w-5 h-5 text-[#4C1824]" />
+                      <h3 className="font-hanken font-bold text-lg text-[#2B181C]">
+                        Select Payment Method
+                      </h3>
+                    </div>
+                    <span className="text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200 flex items-center gap-1">
+                      <Lock className="w-3 h-3 text-emerald-600" />
+                      <span>256-Bit SSL Encrypted</span>
+                    </span>
+                  </div>
+
+                  {/* Payment Tabs / Radio Options */}
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 mb-6">
+                    <button
+                      type="button"
+                      onClick={() => setPaymentMethod('card')}
+                      className={`p-3 rounded-2xl border text-center transition-all cursor-pointer flex flex-col items-center justify-center gap-1.5 ${
+                        paymentMethod === 'card'
+                          ? 'border-[#4C1824] bg-[#FAF5EE] text-[#4C1824] shadow-xs'
+                          : 'border-[#EADBCC] bg-white text-[#7A5B53] hover:border-[#4C1824]/40'
+                      }`}
+                    >
+                      <CreditCard className={`w-5 h-5 ${paymentMethod === 'card' ? 'text-[#4C1824]' : 'text-[#7A5B53]'}`} />
+                      <span className="text-xs font-bold leading-tight">Card</span>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => setPaymentMethod('upi')}
+                      className={`p-3 rounded-2xl border text-center transition-all cursor-pointer flex flex-col items-center justify-center gap-1.5 ${
+                        paymentMethod === 'upi'
+                          ? 'border-[#4C1824] bg-[#FAF5EE] text-[#4C1824] shadow-xs'
+                          : 'border-[#EADBCC] bg-white text-[#7A5B53] hover:border-[#4C1824]/40'
+                      }`}
+                    >
+                      <QrCode className={`w-5 h-5 ${paymentMethod === 'upi' ? 'text-[#4C1824]' : 'text-[#7A5B53]'}`} />
+                      <span className="text-xs font-bold leading-tight">UPI / QR</span>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => setPaymentMethod('netbanking')}
+                      className={`p-3 rounded-2xl border text-center transition-all cursor-pointer flex flex-col items-center justify-center gap-1.5 ${
+                        paymentMethod === 'netbanking'
+                          ? 'border-[#4C1824] bg-[#FAF5EE] text-[#4C1824] shadow-xs'
+                          : 'border-[#EADBCC] bg-white text-[#7A5B53] hover:border-[#4C1824]/40'
+                      }`}
+                    >
+                      <Building2 className={`w-5 h-5 ${paymentMethod === 'netbanking' ? 'text-[#4C1824]' : 'text-[#7A5B53]'}`} />
+                      <span className="text-xs font-bold leading-tight">Net Banking</span>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => setPaymentMethod('pay_at_venue')}
+                      className={`p-3 rounded-2xl border text-center transition-all cursor-pointer flex flex-col items-center justify-center gap-1.5 ${
+                        paymentMethod === 'pay_at_venue'
+                          ? 'border-[#4C1824] bg-[#FAF5EE] text-[#4C1824] shadow-xs'
+                          : 'border-[#EADBCC] bg-white text-[#7A5B53] hover:border-[#4C1824]/40'
+                      }`}
+                    >
+                      <Wallet className={`w-5 h-5 ${paymentMethod === 'pay_at_venue' ? 'text-[#4C1824]' : 'text-[#7A5B53]'}`} />
+                      <span className="text-xs font-bold leading-tight">Pay at Dine</span>
+                    </button>
+                  </div>
+
+                  {/* Option 1: Card Form */}
+                  {paymentMethod === 'card' && (
+                    <div className="space-y-4 animate-in fade-in duration-200">
+                      <div>
+                        <label className="block text-xs font-semibold text-[#2B181C] mb-1.5">
+                          Cardholder Name
+                        </label>
+                        <input
+                          type="text"
+                          value={cardName}
+                          onChange={(e) => setCardName(e.target.value)}
+                          placeholder="Name as on card"
+                          className="w-full bg-[#FAF5EE] border border-[#EADBCC] rounded-xl px-4 py-2.5 text-xs sm:text-sm text-[#2B181C] focus:outline-none focus:border-[#4C1824]"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-xs font-semibold text-[#2B181C] mb-1.5">
+                          Card Number
+                        </label>
+                        <div className="relative">
+                          <input
+                            type="text"
+                            maxLength={19}
+                            value={cardNumber}
+                            onChange={(e) => {
+                              const val = e.target.value.replace(/\D/g, '').replace(/(.{4})/g, '$1 ').trim();
+                              setCardNumber(val);
+                            }}
+                            placeholder="4532 •••• •••• 8890"
+                            className="w-full bg-[#FAF5EE] border border-[#EADBCC] rounded-xl px-4 py-2.5 text-xs sm:text-sm text-[#2B181C] focus:outline-none focus:border-[#4C1824] font-mono tracking-wider"
+                          />
+                          <div className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-1.5 pointer-events-none">
+                            <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-blue-100 text-blue-800">VISA</span>
+                            <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-amber-100 text-amber-800">MC</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="grid grid-cols-2 gap-3">
+                        <div>
+                          <label className="block text-xs font-semibold text-[#2B181C] mb-1.5">
+                            Expiry (MM/YY)
+                          </label>
+                          <input
+                            type="text"
+                            maxLength={5}
+                            value={cardExpiry}
+                            onChange={(e) => setCardExpiry(e.target.value)}
+                            placeholder="12/28"
+                            className="w-full bg-[#FAF5EE] border border-[#EADBCC] rounded-xl px-4 py-2.5 text-xs sm:text-sm text-[#2B181C] focus:outline-none focus:border-[#4C1824] font-mono"
+                          />
+                        </div>
+
+                        <div>
+                          <label className="block text-xs font-semibold text-[#2B181C] mb-1.5">
+                            CVV / CVC
+                          </label>
+                          <input
+                            type="password"
+                            maxLength={4}
+                            value={cardCvv}
+                            onChange={(e) => setCardCvv(e.target.value)}
+                            placeholder="•••"
+                            className="w-full bg-[#FAF5EE] border border-[#EADBCC] rounded-xl px-4 py-2.5 text-xs sm:text-sm text-[#2B181C] focus:outline-none focus:border-[#4C1824] font-mono"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Option 2: UPI / QR */}
+                  {paymentMethod === 'upi' && (
+                    <div className="space-y-4 animate-in fade-in duration-200">
+                      <div>
+                        <label className="block text-xs font-semibold text-[#2B181C] mb-1.5">
+                          Enter UPI Virtual Payment Address (VPA)
+                        </label>
+                        <div className="flex items-center gap-2">
+                          <input
+                            type="text"
+                            value={upiId}
+                            onChange={(e) => setUpiId(e.target.value)}
+                            placeholder="yourname@okaxis / mobile@upi"
+                            className="flex-1 bg-[#FAF5EE] border border-[#EADBCC] rounded-xl px-4 py-2.5 text-xs sm:text-sm text-[#2B181C] focus:outline-none focus:border-[#4C1824]"
+                          />
+                          <button
+                            type="button"
+                            className="px-4 py-2.5 rounded-xl bg-[#4C1824] text-white text-xs font-semibold hover:bg-[#38111A] transition-colors"
+                          >
+                            Verify
+                          </button>
+                        </div>
+                      </div>
+
+                      <div className="p-4 rounded-2xl bg-[#FAF5EE] border border-[#EADBCC] flex items-center justify-between gap-4">
+                        <div className="flex items-center gap-3">
+                          <div className="w-12 h-12 rounded-xl bg-white border border-[#EADBCC] flex items-center justify-center p-1 shadow-xs">
+                            <QrCode className="w-8 h-8 text-[#4C1824]" />
+                          </div>
+                          <div>
+                            <p className="text-xs font-bold text-[#2B181C]">Scan & Pay via any UPI App</p>
+                            <p className="text-[11px] text-[#7A5B53]">GPay, PhonePe, Paytm, BHIM supported</p>
+                          </div>
+                        </div>
+                        <span className="text-[11px] font-bold text-[#4C1824] px-2.5 py-1 rounded-full bg-white border border-[#EADBCC]">
+                          Instant
+                        </span>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Option 3: Net Banking */}
+                  {paymentMethod === 'netbanking' && (
+                    <div className="space-y-3 animate-in fade-in duration-200">
+                      <label className="block text-xs font-semibold text-[#2B181C] mb-1.5">
+                        Select Your Bank
+                      </label>
+                      <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                        {['HDFC Bank', 'ICICI Bank', 'State Bank of India', 'Axis Bank', 'Kotak Bank', 'Other Bank'].map((b) => (
+                          <button
+                            key={b}
+                            type="button"
+                            onClick={() => setSelectedBank(b)}
+                            className={`p-2.5 rounded-xl border text-xs font-medium text-center transition-all cursor-pointer ${
+                              selectedBank === b
+                                ? 'border-[#4C1824] bg-[#FAF5EE] text-[#4C1824] font-bold'
+                                : 'border-[#EADBCC] bg-white text-[#7A5B53] hover:border-[#4C1824]/40'
+                            }`}
+                          >
+                            {b}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Option 4: Pay at Restaurant */}
+                  {paymentMethod === 'pay_at_venue' && (
+                    <div className="p-4 rounded-2xl bg-amber-50/70 border border-amber-200/80 text-amber-950 space-y-2 animate-in fade-in duration-200">
+                      <div className="flex items-center gap-2">
+                        <BadgeCheck className="w-4 h-4 text-amber-800 shrink-0" />
+                        <span className="text-xs font-bold">100% Guaranteed Complimentary Table Hold</span>
+                      </div>
+                      <p className="text-[11.5px] text-amber-900 leading-relaxed">
+                        No online deposit charged right now. Your reserved table will be held exclusively for you and your guests for 15 minutes past your arrival time. You can settle your dining bill at Lunar upon checkout.
+                      </p>
+                    </div>
+                  )}
+
+                  {/* Security Assurance */}
+                  <div className="mt-6 pt-4 border-t border-[#F0E5D8] flex items-center justify-between text-[11px] text-[#7A5B53]">
+                    <span className="flex items-center gap-1.5">
+                      <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
+                      <span>Certified PCI-DSS Compliant Payment Gateway</span>
+                    </span>
+                    <span className="font-semibold text-[#4C1824]">Lunar Dining Club</span>
+                  </div>
+                </div>
+
+                {/* Refund & Booking Guarantee Box */}
+                <div className="bg-[#FAF5EE] rounded-2xl border border-[#EADBCC] p-4 flex items-start gap-3">
+                  <Info className="w-4 h-4 text-[#4C1824] shrink-0 mt-0.5" />
+                  <p className="text-xs text-[#7A5B53] leading-relaxed">
+                    <strong className="text-[#2B181C]">Free Cancellation Guarantee:</strong> Any reservation deposit is 100% refundable if cancelled at least 2 hours before scheduled dining. The table deposit amount is fully adjusted into your final food & beverage bill.
+                  </p>
+                </div>
+              </div>
+
+              {/* Right Column: Reservation & Bill Breakdown Card (col-span-5) */}
+              <div className="lg:col-span-5 bg-white rounded-[26px] sm:rounded-[28px] border border-[#EADBCC] p-6 sm:p-7 shadow-xs space-y-6">
+                <div>
+                  <h3 className="font-hanken font-bold text-lg text-[#2B181C] mb-1">
+                    Booking Summary
+                  </h3>
+                  <p className="text-xs text-[#7A5B53]">
+                    Review details before completing payment.
+                  </p>
+                </div>
+
+                {/* Table & Guest Specs */}
+                <div className="p-4 rounded-2xl bg-[#FAF5EE] border border-[#EADBCC] space-y-2.5 text-xs">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[#7A5B53]">Experience</span>
+                    <span className="font-bold text-[#4C1824]">{experience || 'Buffet Dining'}</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-[#7A5B53]">Date & Time</span>
+                    <span className="font-semibold text-[#2B181C]">{date} • {time}</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-[#7A5B53]">Dining Area</span>
+                    <span className="font-semibold text-[#2B181C]">
+                      {diningPreference === 'Outdoor Dining' ? 'Outdoor Sky Terrace' : 'Indoor Hall'}
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-[#7A5B53]">Reserved Table</span>
+                    <span className="font-semibold text-[#2B181C]">
+                      {currentTableObj.id} ({currentTableObj.name})
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-[#7A5B53]">Selected Seats</span>
+                    <span className="font-semibold text-[#2B181C]">
+                      {selectedSeats.length > 0 ? selectedSeats.sort().join(', ') : 'S1, S2'} ({selectedSeats.length || currentTableObj.capacity} Guests)
+                    </span>
+                  </div>
+                </div>
+
+                {/* Price Breakdown */}
+                <div className="space-y-2.5 text-xs sm:text-[13px] border-t border-[#F0E5D8] pt-4">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[#7A5B53]">Table Deposit (Adjustable)</span>
+                    <span className="font-semibold text-[#2B181C]">
+                      {paymentMethod === 'pay_at_venue' ? '₹0.00' : '₹500.00'}
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-[#7A5B53]">GST & Service (5%)</span>
+                    <span className="font-semibold text-[#2B181C]">
+                      {paymentMethod === 'pay_at_venue' ? '₹0.00' : '₹25.00'}
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-[#7A5B53]">Reservation Fee</span>
+                    <span className="font-bold text-emerald-700">COMPLIMENTARY</span>
+                  </div>
+
+                  <div className="border-t border-[#EADBCC] pt-3 flex items-center justify-between">
+                    <div>
+                      <span className="text-xs font-bold uppercase tracking-wider text-[#7A5B53] block">
+                        Total Payable Now
+                      </span>
+                      <span className="text-[11px] text-[#8A6B63]">
+                        {paymentMethod === 'pay_at_venue' ? 'Zero upfront charge' : 'Adjusted against dining bill'}
+                      </span>
+                    </div>
+                    <span className="font-serif text-2xl font-bold text-[#4C1824]">
+                      {paymentMethod === 'pay_at_venue' ? '₹0' : '₹525'}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Bottom Navigation Buttons */}
+                <div className="pt-2 flex items-center gap-3">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      window.scrollTo({ top: 120, behavior: 'smooth' });
+                      setCurrentStep(3);
+                    }}
+                    className="px-5 py-3 rounded-full text-xs font-semibold text-[#2B181C] border border-[#2B181C] hover:bg-[#FAF5EE] flex items-center gap-1.5 cursor-pointer transition-colors"
+                  >
+                    <ArrowLeft className="w-3.5 h-3.5" />
+                    <span>Back</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    disabled={isProcessingPayment}
+                    onClick={handleConfirmReservation}
+                    className="flex-1 bg-[#4C1824] hover:bg-[#38111A] text-white font-medium text-xs sm:text-sm px-5 py-3 rounded-full shadow-md hover:shadow-xl transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-75"
+                  >
+                    {isProcessingPayment ? (
+                      <>
+                        <div className="w-4 h-4 rounded-full border-2 border-white border-t-transparent animate-spin" />
+                        <span>Processing Payment...</span>
+                      </>
+                    ) : (
+                      <>
+                        <span>{paymentMethod === 'pay_at_venue' ? 'Confirm Reservation (₹0)' : 'Pay ₹525 & Confirm'}</span>
+                        <ArrowRight className="w-3.5 h-3.5 text-white" />
+                      </>
+                    )}
+                  </button>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+        )}
+
+        {/* ========================================================
+            6. STEP 5: CONFIRMATION (Requested Step 5)
+           ======================================================== */}
+        {currentStep === 5 && (
           <div className="max-w-5xl mx-auto animate-in fade-in duration-300">
             {/* Center Hero */}
             <div className="text-center max-w-3xl mx-auto mt-2 mb-8">
@@ -3402,6 +3846,21 @@ export const BookTablePage = () => {
                       <span className="text-[#7A5B53]">Phone Number</span>
                       <span className="font-semibold text-[#2B181C]">
                         {guestPhone || '+91 98765 43210'}
+                      </span>
+                    </div>
+
+                    <div className="flex items-center justify-between py-1.5 border-b border-[#F0E5D8]/70">
+                      <span className="text-[#7A5B53]">Payment Method</span>
+                      <span className="font-semibold text-[#2B181C]">
+                        {confirmedBooking?.paymentMethod || (paymentMethod === 'pay_at_venue' ? 'Pay at Restaurant' : 'Credit / Debit Card')}
+                      </span>
+                    </div>
+
+                    <div className="flex items-center justify-between py-1.5 border-b border-[#F0E5D8]/70">
+                      <span className="text-[#7A5B53]">Payment Status</span>
+                      <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-50 text-emerald-800 border border-emerald-200">
+                        <Check className="w-3 h-3 text-emerald-600" />
+                        {confirmedBooking?.paymentStatus || (paymentMethod === 'pay_at_venue' ? 'Pending (Pay at Venue)' : 'Paid (₹525)')}
                       </span>
                     </div>
 
