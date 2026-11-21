@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useAppStore } from '../../store/store';
 import { formatCurrency } from '../../utils/helpers';
 import Button from '../../components/common/Button';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { 
   Search, 
   Sparkles, 
@@ -33,6 +33,18 @@ export const MenuPage = () => {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
   const [addedItemName, setAddedItemName] = useState(null);
+
+  // Table binding from QR Code (?table=T14)
+  const [searchParams] = useSearchParams();
+  const tableParam = searchParams.get('table');
+
+  useEffect(() => {
+    if (tableParam) {
+      sessionStorage.setItem('lunar_active_table', tableParam);
+    }
+  }, [tableParam]);
+
+  const activeTable = tableParam || sessionStorage.getItem('lunar_active_table');
 
   // Exact 11 Categories matching user reference:
   // All, Main Course, Vegetarian, Beverages, Italian, American, Japanese, Chinese, Desserts, Combo, Promo
@@ -335,6 +347,24 @@ export const MenuPage = () => {
 
   return (
     <div className="bg-[#FAF7F2] text-[#38231F] w-full pb-0 font-hanken">
+      {/* Active Table Notification from QR Code Scan */}
+      {activeTable && (
+        <div className="bg-[#FABE24] text-[#2B181C] py-2.5 px-4 text-center font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-sm sticky top-16 z-40 animate-in fade-in">
+          <UtensilsCrossed className="w-4 h-4 text-[#4C1824]" />
+          <span>Ordering for Table {activeTable} • Dishes will be served directly to your table</span>
+          <button
+            type="button"
+            onClick={() => {
+              sessionStorage.removeItem('lunar_active_table');
+              window.location.href = '/menu';
+            }}
+            className="text-[10px] uppercase font-bold tracking-wider underline ml-2 text-[#4C1824] hover:opacity-80 cursor-pointer"
+          >
+            Clear
+          </button>
+        </div>
+      )}
+
       {/* ========================================================
           1. Menu Page Hero Section (Refined Compact Height)
           - Full-width deep burgundy #4C1824 background

@@ -12,6 +12,7 @@ import ServicesPage from '../features/public/ServicesPage';
 import MenuPage from '../features/public/MenuPage';
 import ContactPage from '../features/public/ContactPage';
 import BlogsPage from '../features/public/BlogsPage';
+import TableQRCodesPage from '../features/public/TableQRCodesPage';
 
 // Auth Pages
 import LoginPage from '../features/auth/LoginPage';
@@ -75,6 +76,8 @@ export const AppRoutes = () => {
         <Route path="/menu" element={<MenuPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/blogs" element={<BlogsPage />} />
+        <Route path="/qr" element={<TableQRCodesPage />} />
+        <Route path="/table-qr" element={<TableQRCodesPage />} />
 
         {/* Reservation Routes (Protected for Customer & Admin) */}
         <Route
