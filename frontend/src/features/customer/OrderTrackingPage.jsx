@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
+import CustomerNavTabs from '../../components/layout/CustomerNavTabs';
 import { useAppStore } from '../../store/store';
 import { formatCurrency } from '../../utils/helpers';
 import { 
@@ -130,6 +131,9 @@ export const OrderTrackingPage = () => {
     <div className="bg-[#FAF7F2] min-h-screen pb-16 font-hanken">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 space-y-8">
         
+        {/* Navigation tabs */}
+        <CustomerNavTabs />
+
         {/* Page Top Header */}
         <div className="bg-white rounded-3xl p-6 sm:p-8 border border-[#EADBCC] shadow-xs flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
           <div>

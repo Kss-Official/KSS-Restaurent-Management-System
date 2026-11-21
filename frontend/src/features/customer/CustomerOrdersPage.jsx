@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
+import CustomerNavTabs from '../../components/layout/CustomerNavTabs';
 import { useAppStore } from '../../store/store';
 import { formatCurrency } from '../../utils/helpers';
 import { 
@@ -48,6 +49,9 @@ export const CustomerOrdersPage = () => {
     <div className="bg-[#FAF7F2] min-h-screen pb-16 font-hanken">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 space-y-8">
         
+        {/* Navigation tabs */}
+        <CustomerNavTabs />
+
         {/* Header */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 bg-white p-6 sm:p-8 rounded-3xl border border-[#EADBCC] shadow-xs">
           <div>

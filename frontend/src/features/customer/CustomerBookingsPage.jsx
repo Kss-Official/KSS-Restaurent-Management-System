@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
+import CustomerNavTabs from '../../components/layout/CustomerNavTabs';
 import { useAppStore } from '../../store/store';
 import { formatDate } from '../../utils/helpers';
 import Button from '../../components/common/Button';
@@ -65,32 +66,19 @@ export const CustomerBookingsPage = () => {
   };
 
   return (
-    <div className="bg-[#F4EDE8] py-12 px-4 sm:px-6 lg:px-8 min-h-[85vh]">
-      <div className="max-w-5xl mx-auto space-y-8">
+    <div className="bg-[#FAF7F2] min-h-screen pb-16 font-hanken">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 space-y-8">
         
         {/* Navigation tabs */}
-        <div className="flex items-center justify-between border-b border-[#E8DDD8] pb-4">
-          <div className="flex items-center gap-3">
-            <Link
-              to="/customer/profile"
-              className="px-4 py-2 rounded-xl bg-white text-[#75696B] hover:bg-[#F4EDE8] text-sm font-semibold border border-[#E8DDD8]"
-            >
-              Personal Information
+        <CustomerNavTabs
+          rightElement={
+            <Link to="/book-table">
+              <Button variant="primary" size="sm" icon={Plus}>
+                Book New Table
+              </Button>
             </Link>
-            <Link
-              to="/customer/bookings"
-              className="px-4 py-2 rounded-xl bg-[#873C50] text-white text-sm font-semibold shadow-sm"
-            >
-              My Bookings ({myBookings.length})
-            </Link>
-          </div>
-
-          <Link to="/customer/book-table">
-            <Button variant="primary" size="sm" icon={Plus}>
-              Book New Table
-            </Button>
-          </Link>
-        </div>
+          }
+        />
 
         {/* Section Title */}
         <div>

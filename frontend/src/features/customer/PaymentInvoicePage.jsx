@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { useLocation, Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
+import CustomerNavTabs from '../../components/layout/CustomerNavTabs';
 import { useAppStore } from '../../store/store';
 import { formatCurrency } from '../../utils/helpers';
 import { 
@@ -63,6 +64,9 @@ export const PaymentInvoicePage = () => {
     <div className="bg-[#FAF7F2] min-h-screen pb-16 font-hanken">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 space-y-6">
         
+        {/* Navigation tabs */}
+        <CustomerNavTabs />
+
         {/* Top Action Header */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-white p-6 rounded-3xl border border-[#EADBCC] shadow-xs print:hidden">
           <div>

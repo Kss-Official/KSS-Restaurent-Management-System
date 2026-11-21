@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useAuth } from '../../hooks/useAuth';
 import { Link, useNavigate } from 'react-router-dom';
+import CustomerNavTabs from '../../components/layout/CustomerNavTabs';
 import { 
   User, 
   Mail, 
@@ -99,38 +100,7 @@ export const ProfilePage = () => {
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 space-y-8">
         
         {/* Navigation tabs */}
-        <div className="flex items-center gap-2 border-b border-[#EADBCC] pb-4 flex-wrap">
-          <Link
-            to="/customer/profile"
-            className="px-4 py-2 rounded-full bg-[#4C1824] text-white text-xs font-bold shadow-xs"
-          >
-            Personal Profile
-          </Link>
-          <Link
-            to="/customer/orders"
-            className="px-4 py-2 rounded-full bg-white text-[#754D45] hover:bg-[#FAF7F2] text-xs font-semibold border border-[#EADBCC]"
-          >
-            My Orders
-          </Link>
-          <Link
-            to="/customer/order-tracking"
-            className="px-4 py-2 rounded-full bg-white text-[#754D45] hover:bg-[#FAF7F2] text-xs font-semibold border border-[#EADBCC]"
-          >
-            Order Tracking
-          </Link>
-          <Link
-            to="/customer/invoice"
-            className="px-4 py-2 rounded-full bg-white text-[#754D45] hover:bg-[#FAF7F2] text-xs font-semibold border border-[#EADBCC]"
-          >
-            Invoices & Receipts
-          </Link>
-          <Link
-            to="/customer/bookings"
-            className="px-4 py-2 rounded-full bg-white text-[#754D45] hover:bg-[#FAF7F2] text-xs font-semibold border border-[#EADBCC]"
-          >
-            Table Bookings History
-          </Link>
-        </div>
+        <CustomerNavTabs />
 
         {savedSuccess && (
           <div className="p-4 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs sm:text-sm font-medium flex items-center gap-2">
