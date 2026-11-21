@@ -2736,12 +2736,12 @@ export const BookTablePage = () => {
                   /* Live Populated Selection Details when experience is selected */
                   <div className="flex flex-col justify-between h-full animate-in fade-in duration-300">
                     <div>
-                      {/* Dining Selection Photo */}
-                      <div className="rounded-[20px] overflow-hidden aspect-[16/10] sm:aspect-[4/3] max-h-[250px] bg-[#EFE5DB] mb-5 shadow-xs">
+                      {/* Dining Selection Photo (Centered in Card) */}
+                      <div className="w-full rounded-[20px] overflow-hidden aspect-[16/10] sm:aspect-[16/9] max-h-[240px] bg-[#EFE5DB] mb-5 shadow-xs mx-auto flex items-center justify-center">
                         <img
                           src="/reservation-selection.jpg"
                           alt="Fine dining experience at Lunar"
-                          className="w-full h-full object-cover"
+                          className="w-full h-full object-cover object-center"
                         />
                       </div>
 
