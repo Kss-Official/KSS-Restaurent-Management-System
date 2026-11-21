@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useAuth } from '../../hooks/useAuth';
 import { Link, useNavigate } from 'react-router-dom';
-import CustomerPortalFlowBar from '../../components/common/CustomerPortalFlowBar';
 import { 
   User, 
   Mail, 
@@ -97,9 +96,6 @@ export const ProfilePage = () => {
 
   return (
     <div className="bg-[#FAF7F2] min-h-screen pb-16 font-hanken">
-      {/* 8-Step Customer Portal Flow Navigation */}
-      <CustomerPortalFlowBar currentStep="profile" />
-
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 space-y-8">
         
         {/* Navigation tabs */}
@@ -108,25 +104,25 @@ export const ProfilePage = () => {
             to="/customer/profile"
             className="px-4 py-2 rounded-full bg-[#4C1824] text-white text-xs font-bold shadow-xs"
           >
-            Personal Profile (Step 8)
+            Personal Profile
           </Link>
           <Link
             to="/customer/orders"
             className="px-4 py-2 rounded-full bg-white text-[#754D45] hover:bg-[#FAF7F2] text-xs font-semibold border border-[#EADBCC]"
           >
-            My Orders (Step 5)
+            My Orders
           </Link>
           <Link
             to="/customer/order-tracking"
             className="px-4 py-2 rounded-full bg-white text-[#754D45] hover:bg-[#FAF7F2] text-xs font-semibold border border-[#EADBCC]"
           >
-            Order Tracking (Step 6)
+            Order Tracking
           </Link>
           <Link
             to="/customer/invoice"
             className="px-4 py-2 rounded-full bg-white text-[#754D45] hover:bg-[#FAF7F2] text-xs font-semibold border border-[#EADBCC]"
           >
-            Invoices & Receipts (Step 7)
+            Invoices & Receipts
           </Link>
           <Link
             to="/customer/bookings"

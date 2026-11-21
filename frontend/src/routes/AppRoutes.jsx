@@ -135,14 +135,6 @@ export const AppRoutes = () => {
           }
         />
         <Route
-          path="/orders"
-          element={
-            <ProtectedRoute allowedRoles={[ROLES.CUSTOMER, ROLES.ADMIN]}>
-              <CustomerOrdersPage />
-            </ProtectedRoute>
-          }
-        />
-        <Route
           path="/customer/order-tracking"
           element={
             <ProtectedRoute allowedRoles={[ROLES.CUSTOMER, ROLES.ADMIN]}>
@@ -171,14 +163,6 @@ export const AppRoutes = () => {
           element={
             <ProtectedRoute allowedRoles={[ROLES.CUSTOMER, ROLES.ADMIN]}>
               <PaymentInvoicePage />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/profile"
-          element={
-            <ProtectedRoute allowedRoles={[ROLES.CUSTOMER, ROLES.ADMIN]}>
-              <ProfilePage />
             </ProtectedRoute>
           }
         />

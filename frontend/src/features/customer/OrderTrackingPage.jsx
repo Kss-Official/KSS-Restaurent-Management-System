@@ -3,7 +3,6 @@ import { useLocation, useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
 import { useAppStore } from '../../store/store';
 import { formatCurrency } from '../../utils/helpers';
-import CustomerPortalFlowBar from '../../components/common/CustomerPortalFlowBar';
 import { 
   Navigation, 
   UtensilsCrossed, 
@@ -129,9 +128,6 @@ export const OrderTrackingPage = () => {
 
   return (
     <div className="bg-[#FAF7F2] min-h-screen pb-16 font-hanken">
-      {/* 8-Step Customer Portal Flow Navigation */}
-      <CustomerPortalFlowBar currentStep="tracking" />
-
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 space-y-8">
         
         {/* Page Top Header */}

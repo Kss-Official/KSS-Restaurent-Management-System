@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
 import { useAppStore } from '../../store/store';
 import { formatCurrency } from '../../utils/helpers';
-import CustomerPortalFlowBar from '../../components/common/CustomerPortalFlowBar';
 import { 
   UtensilsCrossed, 
   Clock, 
@@ -47,9 +46,6 @@ export const CustomerOrdersPage = () => {
 
   return (
     <div className="bg-[#FAF7F2] min-h-screen pb-16 font-hanken">
-      {/* 8-Step Customer Portal Flow Navigation */}
-      <CustomerPortalFlowBar currentStep="orders" />
-
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 space-y-8">
         
         {/* Header */}
@@ -57,7 +53,7 @@ export const CustomerOrdersPage = () => {
           <div>
             <div className="flex items-center gap-2 mb-1.5">
               <span className="text-xs font-bold uppercase tracking-wider text-[#754D45]">
-                Step 5 of 8 • Customer Orders & History
+                Customer Orders & History
               </span>
               <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
             </div>

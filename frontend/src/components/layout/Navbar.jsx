@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
 import { ROLES } from '../../utils/constants';
-import { Leaf, Calendar, User, Menu, X, LogOut, LogIn, Receipt } from 'lucide-react';
+import { Leaf, Calendar, User, Menu, X, LogOut, ShoppingBag, Navigation, Receipt, ChevronDown } from 'lucide-react';
 
 export const Navbar = () => {
-  const { isAuthenticated, isCustomer, logout, role } = useAuth();
+  const { currentUser, isAuthenticated, isCustomer, logout, role } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -21,7 +21,24 @@ export const Navbar = () => {
   // Stage 3: Expands horizontally to LHS & RHS into floating light cream glass navbar
   const [animStage, setAnimStage] = useState(() => (isHome ? 1 : (isMenu || isAbout || isReviews || isBlogs) ? 2 : 3));
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [profileDropdownOpen, setProfileDropdownOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const profileDropdownRef = useRef(null);
+
+  // Customer dropdown navigation options matching requested flow:
+  // 1. My Orders
+  // 2. Order Tracking
+  // 3. Table Booking History
+  // 4. Payment & Invoice
+  // 5. My Profile
+  // 6. Logout
+  const customerDropdownItems = [
+    { label: 'My Orders', path: '/customer/orders', icon: ShoppingBag },
+    { label: 'Order Tracking', path: '/customer/order-tracking', icon: Navigation },
+    { label: 'Table Booking History', path: '/customer/bookings', icon: Calendar },
+    { label: 'Payment & Invoice', path: '/customer/invoice', icon: Receipt },
+    { label: 'My Profile', path: '/customer/profile', icon: User },
+  ];
 
   useEffect(() => {
     if (isHome) {
@@ -66,15 +83,34 @@ export const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Close mobile drawer on route change
+  // Close mobile drawer & profile dropdown on route change
   useEffect(() => {
     setMobileMenuOpen(false);
+    setProfileDropdownOpen(false);
   }, [location.pathname]);
+
+  // Click outside listener for profile dropdown
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (profileDropdownRef.current && !profileDropdownRef.current.contains(event.target)) {
+        setProfileDropdownOpen(false);
+      }
+    };
+    if (profileDropdownOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener('touchstart', handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('touchstart', handleClickOutside);
+    };
+  }, [profileDropdownOpen]);
 
   const handleLogout = () => {
     logout();
-    navigate('/');
+    setProfileDropdownOpen(false);
     setMobileMenuOpen(false);
+    navigate('/');
   };
 
   const getPortalRoute = () => {
@@ -89,13 +125,13 @@ export const Navbar = () => {
     }
   };
 
-  // Customer Portal Simple Flow Links
+  // Requested order: Home, About Us, Menu, Reviews, Blogs
   const navLinks = [
     { label: 'Home', path: '/' },
-    { label: 'Food Menu', path: '/menu' },
-    { label: 'Table Booking', path: '/book-table' },
-    { label: 'My Orders', path: '/customer/orders' },
-    { label: 'Order Tracking', path: '/customer/order-tracking' },
+    { label: 'About Us', path: '/about' },
+    { label: 'Menu', path: '/menu' },
+    { label: 'Reviews', path: '/reviews' },
+    { label: 'Blogs', path: '/blogs' },
   ];
 
   const handleReserveClick = () => {
@@ -169,7 +205,9 @@ export const Navbar = () => {
           transition:
             'top 0.85s cubic-bezier(0.22, 1, 0.36, 1), transform 0.85s cubic-bezier(0.22, 1, 0.36, 1), width 0.75s cubic-bezier(0.16, 1, 0.3, 1), height 0.75s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease',
         }}
-        className="fixed left-1/2 z-50 overflow-hidden select-none font-hanken"
+        className={`fixed left-1/2 z-50 select-none font-hanken ${
+          animStage === 3 ? 'overflow-visible' : 'overflow-hidden'
+        }`}
       >
         {/* ========================================================
             STAGE 1 & 2 CONTENT: Centered Lunar Logo Pill
@@ -263,33 +301,97 @@ export const Navbar = () => {
               <span className="sm:hidden font-semibold">Reserve</span>
             </button>
 
-            {/* If Authenticated: Subtle Profile & Logout Controls; If Not: Login / Sign Up */}
-            {isAuthenticated ? (
-              <div className="flex items-center gap-1.5">
-                <Link
-                  to={getPortalRoute()}
-                  title={isCustomer ? "My Profile (Step 8)" : "Staff Dashboard"}
-                  className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white/70 hover:bg-white border border-white/80 flex items-center justify-center text-[#4C1824] transition-all duration-200 hover:scale-105 active:scale-95 cursor-pointer shadow-xs"
-                >
-                  <User className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#4C1824]" />
-                </Link>
+            {/* If Authenticated: Profile Icon with Dropdown Menu */}
+            {isAuthenticated && (
+              <div className="relative" ref={profileDropdownRef}>
                 <button
-                  onClick={handleLogout}
-                  title="Logout"
-                  className="hidden sm:flex w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white/70 hover:bg-white border border-white/80 items-center justify-center text-[#754D45] hover:text-[#4C1824] transition-all duration-200 cursor-pointer shadow-xs"
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setProfileDropdownOpen((prev) => !prev);
+                  }}
+                  title="Profile Menu"
+                  aria-label="User Profile Menu"
+                  aria-expanded={profileDropdownOpen}
+                  className={`w-8 h-8 sm:w-9 sm:h-9 rounded-full border flex items-center justify-center transition-all duration-200 cursor-pointer shadow-xs ${
+                    profileDropdownOpen
+                      ? 'bg-[#4C1824] text-white border-[#4C1824] ring-2 ring-[#FABE24]/60'
+                      : 'bg-white/80 hover:bg-white text-[#4C1824] border-white/90 hover:scale-105 active:scale-95'
+                  }`}
                 >
-                  <LogOut className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                  <User className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                 </button>
+
+                {/* Dropdown Menu */}
+                {profileDropdownOpen && (
+                  <div
+                    onClick={(e) => e.stopPropagation()}
+                    className="absolute right-0 top-full mt-3 w-64 rounded-2xl bg-[#FAF7F2] border border-[#EADBCC] shadow-2xl p-2 z-[100] animate-in fade-in slide-in-from-top-2 duration-150 font-hanken"
+                  >
+                    {/* User Info Header */}
+                    <div className="px-3 py-2.5 mb-1.5 rounded-xl bg-white/90 border border-[#EADBCC] flex items-center gap-2.5">
+                      <div className="w-8 h-8 rounded-full bg-[#4C1824] text-[#FABE24] flex items-center justify-center font-bold text-xs uppercase shadow-xs flex-shrink-0">
+                        {currentUser?.name?.charAt(0) || 'U'}
+                      </div>
+                      <div className="min-w-0 flex-1">
+                        <p className="text-xs font-bold text-[#2B181C] truncate">
+                          {currentUser?.name || 'Customer'}
+                        </p>
+                        <p className="text-[11px] text-[#7A5B53] truncate">
+                          {currentUser?.email || ''}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Staff Portal Link if not customer */}
+                    {role && role !== ROLES.CUSTOMER && (
+                      <Link
+                        to={getPortalRoute()}
+                        onClick={() => setProfileDropdownOpen(false)}
+                        className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold text-[#4C1824] hover:bg-[#4C1824]/10 transition-colors mb-1"
+                      >
+                        <User className="w-3.5 h-3.5 text-[#FABE24]" />
+                        <span>Staff Dashboard</span>
+                      </Link>
+                    )}
+
+                    {/* 1. My Orders, 2. Order Tracking, 3. Table Booking History, 4. Payment & Invoice, 5. My Profile */}
+                    <div className="space-y-0.5">
+                      {customerDropdownItems.map((item) => {
+                        const Icon = item.icon;
+                        const isCurrent = location.pathname === item.path;
+                        return (
+                          <Link
+                            key={item.label}
+                            to={item.path}
+                            onClick={() => setProfileDropdownOpen(false)}
+                            className={`flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-medium transition-all ${
+                              isCurrent
+                                ? 'bg-[#4C1824] text-white font-semibold shadow-xs'
+                                : 'text-[#3B151E] hover:text-[#4C1824] hover:bg-[#4C1824]/5'
+                            }`}
+                          >
+                            <Icon className={`w-3.5 h-3.5 ${isCurrent ? 'text-[#FABE24]' : 'text-[#7A5B53]'}`} />
+                            <span>{item.label}</span>
+                          </Link>
+                        );
+                      })}
+                    </div>
+
+                    {/* 6. Logout */}
+                    <div className="border-t border-[#EADBCC] mt-1.5 pt-1">
+                      <button
+                        type="button"
+                        onClick={handleLogout}
+                        className="w-full flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-medium text-rose-700 hover:text-rose-800 hover:bg-rose-50 transition-colors cursor-pointer text-left"
+                      >
+                        <LogOut className="w-3.5 h-3.5 text-rose-600" />
+                        <span>Logout</span>
+                      </button>
+                    </div>
+                  </div>
+                )}
               </div>
-            ) : (
-              <Link
-                to="/login"
-                className="hidden sm:flex items-center gap-1.5 px-3.5 sm:px-4 py-2 rounded-full bg-white/80 hover:bg-white text-[#4C1824] border border-white/80 text-[13px] font-semibold shadow-xs transition-all duration-200 hover:scale-105 active:scale-95 cursor-pointer"
-                title="Login / Sign Up (Step 2)"
-              >
-                <LogIn className="w-3.5 h-3.5 text-[#4C1824]" />
-                <span>Login / Sign Up</span>
-              </Link>
             )}
 
             {/* Mobile Hamburger Toggle */}
@@ -326,40 +428,45 @@ export const Navbar = () => {
               );
             })}
 
-            <div className="border-t border-black/10 my-2 pt-2 space-y-1">
-              <Link
-                to="/customer/invoice"
-                onClick={() => setMobileMenuOpen(false)}
-                className="font-hanken text-sm font-medium text-[#3B151E] hover:bg-black/5 px-4 py-2 rounded-xl flex items-center gap-2 transition-colors"
-              >
-                <Receipt className="w-4 h-4 text-[#4C1824]" />
-                <span>Payment & Invoice</span>
-              </Link>
-
+            <div className="border-t border-black/10 my-2 pt-2">
               {!isAuthenticated ? (
                 <Link
                   to="/login"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="font-hanken text-sm font-semibold text-[#4C1824] bg-[#4C1824]/10 hover:bg-[#4C1824]/20 px-4 py-2.5 rounded-xl flex items-center gap-2 transition-colors"
+                  className="font-hanken text-sm font-medium text-[#4C1824] hover:bg-black/5 px-4 py-2.5 rounded-xl flex items-center gap-2 transition-colors"
                 >
-                  <LogIn className="w-4 h-4" />
-                  <span>Login / Sign Up</span>
+                  <User className="w-4 h-4" />
+                  <span>Login / Register</span>
                 </Link>
               ) : (
                 <div className="space-y-1">
-                  <Link
-                    to={getPortalRoute()}
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="font-hanken text-sm font-medium text-[#4C1824] hover:bg-black/5 px-4 py-2.5 rounded-xl flex items-center gap-2 transition-colors"
-                  >
-                    <User className="w-4 h-4" />
-                    <span>{isCustomer ? 'My Profile (Step 8)' : 'Portal Dashboard'}</span>
-                  </Link>
+                  <div className="px-4 py-1 text-xs font-bold text-[#754D45] uppercase tracking-wider">
+                    {currentUser?.name || 'Customer Account'}
+                  </div>
+                  {customerDropdownItems.map((item) => {
+                    const Icon = item.icon;
+                    const isCurrent = location.pathname === item.path;
+                    return (
+                      <Link
+                        key={item.label}
+                        to={item.path}
+                        onClick={() => setMobileMenuOpen(false)}
+                        className={`font-hanken text-sm font-medium px-4 py-2 rounded-xl flex items-center gap-2.5 transition-colors ${
+                          isCurrent
+                            ? 'bg-[#4C1824] text-white font-semibold'
+                            : 'text-[#3B151E] hover:bg-black/5'
+                        }`}
+                      >
+                        <Icon className={`w-4 h-4 ${isCurrent ? 'text-[#FABE24]' : 'text-[#754D45]'}`} />
+                        <span>{item.label}</span>
+                      </Link>
+                    );
+                  })}
                   <button
                     onClick={handleLogout}
-                    className="w-full text-left font-hanken text-sm font-medium text-[#754D45] hover:text-[#4C1824] hover:bg-black/5 px-4 py-2 rounded-xl flex items-center gap-2 transition-colors cursor-pointer"
+                    className="w-full text-left font-hanken text-sm font-medium text-rose-700 hover:bg-rose-50 px-4 py-2 rounded-xl flex items-center gap-2.5 transition-colors cursor-pointer"
                   >
-                    <LogOut className="w-4 h-4" />
+                    <LogOut className="w-4 h-4 text-rose-600" />
                     <span>Logout</span>
                   </button>
                 </div>

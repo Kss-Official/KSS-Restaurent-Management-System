@@ -5,7 +5,6 @@ import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
 import { useAppStore } from '../../store/store';
 import { generateBookingId } from '../../utils/helpers';
-import CustomerPortalFlowBar from '../../components/common/CustomerPortalFlowBar';
 import { 
   Calendar, 
   Clock, 
@@ -2069,9 +2068,6 @@ export const BookTablePage = () => {
 
   return (
     <div className="w-full bg-[#FAF7F2] text-[#2B181C] font-hanken min-h-screen flex flex-col justify-between">
-      {/* 8-Step Customer Portal Flow Navigation */}
-      <CustomerPortalFlowBar currentStep="book-table" />
-      
       {/* Main Content Area */}
       <div className="w-full max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
         

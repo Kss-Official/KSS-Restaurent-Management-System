@@ -3,7 +3,6 @@ import { useLocation, Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
 import { useAppStore } from '../../store/store';
 import { formatCurrency } from '../../utils/helpers';
-import CustomerPortalFlowBar from '../../components/common/CustomerPortalFlowBar';
 import { 
   Receipt, 
   Printer, 
@@ -62,16 +61,13 @@ export const PaymentInvoicePage = () => {
 
   return (
     <div className="bg-[#FAF7F2] min-h-screen pb-16 font-hanken">
-      {/* 8-Step Customer Portal Flow Navigation */}
-      <CustomerPortalFlowBar currentStep="invoice" />
-
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 space-y-6">
         
         {/* Top Action Header */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-white p-6 rounded-3xl border border-[#EADBCC] shadow-xs print:hidden">
           <div>
             <span className="text-xs font-bold uppercase tracking-wider text-[#754D45]">
-              Step 7 of 8 • Official Tax Invoice & Receipt
+              Official Tax Invoice & Receipt
             </span>
             <h1 className="font-serif text-2xl sm:text-3xl font-bold text-[#2B181C] mt-1">
               Payment & Digital Invoice
