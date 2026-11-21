@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
 import { ROLES } from '../../utils/constants';
-import { Leaf, Calendar, User, Menu, X, LogOut } from 'lucide-react';
+import { Leaf, Calendar, User, Menu, X, LogOut, LogIn, Receipt } from 'lucide-react';
 
 export const Navbar = () => {
   const { isAuthenticated, isCustomer, logout, role } = useAuth();
@@ -89,13 +89,13 @@ export const Navbar = () => {
     }
   };
 
-  // Requested order: Home, About Us, Menu, Reviews, Blogs
+  // Customer Portal Simple Flow Links
   const navLinks = [
     { label: 'Home', path: '/' },
-    { label: 'About Us', path: '/about' },
-    { label: 'Menu', path: '/menu' },
-    { label: 'Reviews', path: '/reviews' },
-    { label: 'Blogs', path: '/blogs' },
+    { label: 'Food Menu', path: '/menu' },
+    { label: 'Table Booking', path: '/book-table' },
+    { label: 'My Orders', path: '/customer/orders' },
+    { label: 'Order Tracking', path: '/customer/order-tracking' },
   ];
 
   const handleReserveClick = () => {
@@ -263,12 +263,12 @@ export const Navbar = () => {
               <span className="sm:hidden font-semibold">Reserve</span>
             </button>
 
-            {/* If Authenticated: Subtle Profile & Logout Controls */}
-            {isAuthenticated && (
+            {/* If Authenticated: Subtle Profile & Logout Controls; If Not: Login / Sign Up */}
+            {isAuthenticated ? (
               <div className="flex items-center gap-1.5">
                 <Link
                   to={getPortalRoute()}
-                  title={isCustomer ? "My Profile" : "Staff Dashboard"}
+                  title={isCustomer ? "My Profile (Step 8)" : "Staff Dashboard"}
                   className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white/70 hover:bg-white border border-white/80 flex items-center justify-center text-[#4C1824] transition-all duration-200 hover:scale-105 active:scale-95 cursor-pointer shadow-xs"
                 >
                   <User className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#4C1824]" />
@@ -281,6 +281,15 @@ export const Navbar = () => {
                   <LogOut className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                 </button>
               </div>
+            ) : (
+              <Link
+                to="/login"
+                className="hidden sm:flex items-center gap-1.5 px-3.5 sm:px-4 py-2 rounded-full bg-white/80 hover:bg-white text-[#4C1824] border border-white/80 text-[13px] font-semibold shadow-xs transition-all duration-200 hover:scale-105 active:scale-95 cursor-pointer"
+                title="Login / Sign Up (Step 2)"
+              >
+                <LogIn className="w-3.5 h-3.5 text-[#4C1824]" />
+                <span>Login / Sign Up</span>
+              </Link>
             )}
 
             {/* Mobile Hamburger Toggle */}
@@ -317,15 +326,24 @@ export const Navbar = () => {
               );
             })}
 
-            <div className="border-t border-black/10 my-2 pt-2">
+            <div className="border-t border-black/10 my-2 pt-2 space-y-1">
+              <Link
+                to="/customer/invoice"
+                onClick={() => setMobileMenuOpen(false)}
+                className="font-hanken text-sm font-medium text-[#3B151E] hover:bg-black/5 px-4 py-2 rounded-xl flex items-center gap-2 transition-colors"
+              >
+                <Receipt className="w-4 h-4 text-[#4C1824]" />
+                <span>Payment & Invoice</span>
+              </Link>
+
               {!isAuthenticated ? (
                 <Link
                   to="/login"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="font-hanken text-sm font-medium text-[#4C1824] hover:bg-black/5 px-4 py-2.5 rounded-xl flex items-center gap-2 transition-colors"
+                  className="font-hanken text-sm font-semibold text-[#4C1824] bg-[#4C1824]/10 hover:bg-[#4C1824]/20 px-4 py-2.5 rounded-xl flex items-center gap-2 transition-colors"
                 >
-                  <User className="w-4 h-4" />
-                  <span>Login / Register</span>
+                  <LogIn className="w-4 h-4" />
+                  <span>Login / Sign Up</span>
                 </Link>
               ) : (
                 <div className="space-y-1">
@@ -335,11 +353,11 @@ export const Navbar = () => {
                     className="font-hanken text-sm font-medium text-[#4C1824] hover:bg-black/5 px-4 py-2.5 rounded-xl flex items-center gap-2 transition-colors"
                   >
                     <User className="w-4 h-4" />
-                    <span>{isCustomer ? 'My Profile' : 'Portal Dashboard'}</span>
+                    <span>{isCustomer ? 'My Profile (Step 8)' : 'Portal Dashboard'}</span>
                   </Link>
                   <button
                     onClick={handleLogout}
-                    className="w-full text-left font-hanken text-sm font-medium text-[#754D45] hover:text-[#4C1824] hover:bg-black/5 px-4 py-2.5 rounded-xl flex items-center gap-2 transition-colors cursor-pointer"
+                    className="w-full text-left font-hanken text-sm font-medium text-[#754D45] hover:text-[#4C1824] hover:bg-black/5 px-4 py-2 rounded-xl flex items-center gap-2 transition-colors cursor-pointer"
                   >
                     <LogOut className="w-4 h-4" />
                     <span>Logout</span>

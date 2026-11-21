@@ -22,6 +22,8 @@ import BookTablePage from '../features/customer/BookTablePage';
 import ProfilePage from '../features/customer/ProfilePage';
 import CustomerBookingsPage from '../features/customer/CustomerBookingsPage';
 import CustomerOrdersPage from '../features/customer/CustomerOrdersPage';
+import OrderTrackingPage from '../features/customer/OrderTrackingPage';
+import PaymentInvoicePage from '../features/customer/PaymentInvoicePage';
 import CartPage from '../features/customer/CartPage';
 import OffersPage from '../features/customer/OffersPage';
 import WishlistPage from '../features/customer/WishlistPage';
@@ -129,6 +131,54 @@ export const AppRoutes = () => {
           element={
             <ProtectedRoute allowedRoles={[ROLES.CUSTOMER, ROLES.ADMIN]}>
               <CustomerOrdersPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/orders"
+          element={
+            <ProtectedRoute allowedRoles={[ROLES.CUSTOMER, ROLES.ADMIN]}>
+              <CustomerOrdersPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/customer/order-tracking"
+          element={
+            <ProtectedRoute allowedRoles={[ROLES.CUSTOMER, ROLES.ADMIN]}>
+              <OrderTrackingPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/order-tracking"
+          element={
+            <ProtectedRoute allowedRoles={[ROLES.CUSTOMER, ROLES.ADMIN]}>
+              <OrderTrackingPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/customer/invoice"
+          element={
+            <ProtectedRoute allowedRoles={[ROLES.CUSTOMER, ROLES.ADMIN]}>
+              <PaymentInvoicePage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/invoice"
+          element={
+            <ProtectedRoute allowedRoles={[ROLES.CUSTOMER, ROLES.ADMIN]}>
+              <PaymentInvoicePage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <ProtectedRoute allowedRoles={[ROLES.CUSTOMER, ROLES.ADMIN]}>
+              <ProfilePage />
             </ProtectedRoute>
           }
         />

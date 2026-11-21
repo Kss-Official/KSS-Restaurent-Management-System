@@ -3,6 +3,7 @@ import { useAppStore } from '../../store/store';
 import { formatCurrency } from '../../utils/helpers';
 import Button from '../../components/common/Button';
 import { Link } from 'react-router-dom';
+import CustomerPortalFlowBar from '../../components/common/CustomerPortalFlowBar';
 import { 
   Search, 
   Sparkles, 
@@ -335,6 +336,9 @@ export const MenuPage = () => {
 
   return (
     <div className="bg-[#FAF7F2] text-[#38231F] w-full pb-0 font-hanken">
+      {/* 8-Step Customer Portal Flow Navigation */}
+      <CustomerPortalFlowBar currentStep="menu" />
+
       {/* ========================================================
           1. Menu Page Hero Section (Refined Compact Height)
           - Full-width deep burgundy #4C1824 background
