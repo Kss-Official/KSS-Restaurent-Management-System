@@ -5,6 +5,7 @@ import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
 import { useAppStore } from '../../store/store';
 import { generateBookingId } from '../../utils/helpers';
+import CustomerPortalFlowBar from '../../components/common/CustomerPortalFlowBar';
 import { 
   Calendar, 
   Clock, 
@@ -2068,6 +2069,8 @@ export const BookTablePage = () => {
 
   return (
     <div className="w-full bg-[#FAF7F2] text-[#2B181C] font-hanken min-h-screen flex flex-col justify-between">
+      {/* 8-Step Customer Portal Flow Navigation */}
+      <CustomerPortalFlowBar currentStep="book-table" />
       
       {/* Main Content Area */}
       <div className="w-full max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
@@ -3455,33 +3458,39 @@ export const BookTablePage = () => {
               </div>
             </div>
 
-            {/* Bottom Action Buttons in Step 4 */}
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-              <button
-                type="button"
-                onClick={resetBookingFlow}
-                className="bg-[#FABE24] hover:bg-[#E5AC20] text-[#2B181C] font-semibold text-xs sm:text-sm px-7 py-3.5 rounded-full shadow-md hover:shadow-xl transition-all flex items-center gap-2 cursor-pointer hover:scale-105 active:scale-95"
+            {/* Bottom Action Buttons in Step 4: Full Connection into Next Flow Steps */}
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+              <Link
+                to="/menu"
+                className="bg-[#FABE24] hover:bg-[#E5AC20] text-[#2B181C] font-bold text-xs sm:text-sm px-6 py-3.5 rounded-full shadow-md hover:shadow-xl transition-all flex items-center gap-2 cursor-pointer hover:scale-105 active:scale-95"
               >
-                <Calendar className="w-4 h-4 text-[#2B181C]" />
-                <span>Book Another Table</span>
-              </button>
+                <UtensilsCrossed className="w-4 h-4 text-[#2B181C]" />
+                <span>Pre-Order Dishes (Food Menu)</span>
+              </Link>
+
+              <Link
+                to="/customer/orders"
+                className="bg-[#4C1824] hover:bg-[#38111A] text-white font-medium text-xs sm:text-sm px-6 py-3.5 rounded-full shadow-md hover:shadow-xl transition-all flex items-center gap-2 cursor-pointer hover:scale-105 active:scale-95"
+              >
+                <Calendar className="w-4 h-4 text-[#FABE24]" />
+                <span>View in My Orders (Step 5)</span>
+              </Link>
 
               <button
                 type="button"
                 onClick={handleDownloadPDF}
-                className="bg-[#4C1824] hover:bg-[#38111A] text-white font-medium text-xs sm:text-sm px-7 py-3.5 rounded-full shadow-md hover:shadow-xl transition-all flex items-center gap-2 cursor-pointer hover:scale-105 active:scale-95"
+                className="bg-white border border-[#EADBCC] text-[#4C1824] hover:bg-[#FAF7F2] font-medium text-xs sm:text-sm px-5 py-3.5 rounded-full shadow-xs transition-all flex items-center gap-2 cursor-pointer hover:scale-105"
               >
-                <Download className="w-4 h-4 text-white" />
-                <span>Download Reservation (PDF)</span>
+                <Download className="w-4 h-4 text-[#4C1824]" />
+                <span>Download PDF</span>
               </button>
 
               <button
                 type="button"
-                onClick={() => navigate('/')}
-                className="bg-[#4C1824] hover:bg-[#38111A] text-white font-medium text-xs sm:text-sm px-7 py-3.5 rounded-full shadow-md hover:shadow-xl transition-all flex items-center gap-2 cursor-pointer hover:scale-105 active:scale-95"
+                onClick={resetBookingFlow}
+                className="bg-white border border-[#EADBCC] text-[#7A5B53] hover:bg-[#FAF7F2] font-medium text-xs sm:text-sm px-5 py-3.5 rounded-full shadow-xs transition-all flex items-center gap-2 cursor-pointer hover:scale-105"
               >
-                <Home className="w-4 h-4 text-white" />
-                <span>Back to Home</span>
+                <span>Book Another Table</span>
               </button>
             </div>
           </div>

@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
 import { RESTAURANT_IMAGES } from '../../utils/constants';
 import Button from '../../components/common/Button';
+import CustomerPortalFlowBar from '../../components/common/CustomerPortalFlowBar';
 import { 
   Calendar, 
   Utensils, 
@@ -32,7 +33,11 @@ import {
   MapPin,
   Scan,
   ConciergeBell,
-  FileText
+  FileText,
+  Navigation,
+  User,
+  LogIn,
+  ShoppingBag
 } from 'lucide-react';
 
 export const HomePage = () => {
@@ -432,6 +437,143 @@ export const HomePage = () => {
               }`}
             />
           ))}
+        </div>
+      </section>
+
+      {/* Customer Portal Flow Bar */}
+      <CustomerPortalFlowBar currentStep="home" />
+
+      {/* Customer Portal – Simple 8-Step Page Flow Showcase */}
+      <section className="w-full bg-gradient-to-b from-[#231518] to-[#1A0E10] border-b border-[#FABE24]/20 py-12 sm:py-16 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          {/* Header */}
+          <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#FABE24]/10 border border-[#FABE24]/30 text-[#FABE24] text-xs font-bold tracking-widest uppercase mb-3">
+              <Sparkles className="w-3.5 h-3.5" />
+              Customer Portal – Simple Page Flow
+            </div>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight font-sans">
+              Seamless 8-Step Dining Experience
+            </h2>
+            <p className="text-xs sm:text-sm text-[#F2E5DB]/70 mt-2 font-light">
+              Explore every step of your journey with Lunar: from table booking and live kitchen tracking to instant tax invoices and profile management.
+            </p>
+          </div>
+
+          {/* 8 Connected Cards Grid */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3 sm:gap-4">
+            {[
+              {
+                step: 1,
+                title: "Home Page",
+                subtitle: "Luxury Entrance",
+                path: "/",
+                icon: Heart,
+                active: true,
+                badge: "Current"
+              },
+              {
+                step: 2,
+                title: "Login / Sign Up",
+                subtitle: isAuthenticated ? "My Account" : "Access Account",
+                path: isAuthenticated ? "/customer/profile" : "/login",
+                icon: LogIn,
+                active: false,
+                badge: isAuthenticated ? "Signed In" : "Step 2"
+              },
+              {
+                step: 3,
+                title: "Food Menu",
+                subtitle: "Curated Dishes",
+                path: "/menu",
+                icon: UtensilsCrossed,
+                active: false,
+                badge: "Step 3"
+              },
+              {
+                step: 4,
+                title: "Table Booking",
+                subtitle: "3D Terrace & Hall",
+                path: "/book-table",
+                icon: Calendar,
+                active: false,
+                badge: "Step 4"
+              },
+              {
+                step: 5,
+                title: "My Orders",
+                subtitle: "History & Status",
+                path: "/customer/orders",
+                icon: ShoppingBag,
+                active: false,
+                badge: "Step 5"
+              },
+              {
+                step: 6,
+                title: "Order Tracking",
+                subtitle: "Live Chef Stepper",
+                path: "/customer/order-tracking",
+                icon: Navigation,
+                active: false,
+                badge: "Step 6"
+              },
+              {
+                step: 7,
+                title: "Payment & Invoice",
+                subtitle: "Tax Bill & PDF",
+                path: "/customer/invoice",
+                icon: Receipt,
+                active: false,
+                badge: "Step 7"
+              },
+              {
+                step: 8,
+                title: "My Profile",
+                subtitle: "Preferences & Club",
+                path: "/customer/profile",
+                icon: User,
+                active: false,
+                badge: "Step 8"
+              }
+            ].map((item) => {
+              const Icon = item.icon;
+              return (
+                <Link
+                  key={item.step}
+                  to={item.path}
+                  className={`group relative rounded-2xl p-4 flex flex-col items-center text-center transition-all duration-300 border ${
+                    item.active
+                      ? 'bg-[#FABE24]/10 border-[#FABE24] shadow-[0_0_20px_rgba(250,190,36,0.2)] scale-[1.02]'
+                      : 'bg-white/5 border-white/10 hover:border-[#FABE24]/50 hover:bg-white/10 hover:-translate-y-1'
+                  }`}
+                >
+                  {/* Step Number Tag */}
+                  <div className="w-6 h-6 rounded-full bg-[#FABE24]/20 border border-[#FABE24]/40 text-[#FABE24] text-[10px] font-bold flex items-center justify-center mb-3">
+                    {item.step}
+                  </div>
+
+                  {/* Icon */}
+                  <div className="w-10 h-10 rounded-xl bg-black/40 border border-white/10 flex items-center justify-center text-[#FABE24] group-hover:scale-110 transition-transform duration-300 mb-2.5">
+                    <Icon className="w-5 h-5" />
+                  </div>
+
+                  {/* Title & Subtitle */}
+                  <h4 className="text-white text-xs font-bold font-sans line-clamp-1 group-hover:text-[#FABE24] transition-colors">
+                    {item.title}
+                  </h4>
+                  <p className="text-white/50 text-[10px] mt-0.5 font-medium line-clamp-1">
+                    {item.subtitle}
+                  </p>
+
+                  {/* Arrow Indicator */}
+                  <div className="mt-3 text-[10px] font-bold text-[#FABE24] opacity-80 group-hover:opacity-100 flex items-center gap-1">
+                    <span>Open</span>
+                    <ArrowRight className="w-2.5 h-2.5 group-hover:translate-x-0.5 transition-transform" />
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
         </div>
       </section>
 
