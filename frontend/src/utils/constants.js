@@ -48,6 +48,71 @@ export const RESTAURANT_LOCATIONS = [
 
 export const INITIAL_MENU_ITEMS = [
   {
+    id: 101,
+    name: "Paneer Tikka",
+    category: "Starters",
+    price: 320,
+    stock: "2 kg",
+    available: false,
+    status: "Temporarily Unavailable",
+    description: "Tandoori marinated cottage cheese skewered with bell peppers and roasted to smoky perfection.",
+    image: "https://images.unsplash.com/photo-1599488615731-7e5c2823ff28?auto=format&fit=crop&w=400&q=80",
+    signature: true,
+    prepTime: "15 mins"
+  },
+  {
+    id: 102,
+    name: "Margherita Pizza",
+    category: "Pizzas",
+    price: 450,
+    stock: "5 kg",
+    available: true,
+    status: "Active",
+    description: "San Marzano tomato base, fresh buffalo mozzarella, aromatic basil, cold-pressed olive oil.",
+    image: "https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?auto=format&fit=crop&w=400&q=80",
+    signature: true,
+    prepTime: "12 mins"
+  },
+  {
+    id: 103,
+    name: "Caesar Salad",
+    category: "Salads",
+    price: 280,
+    stock: "3 kg",
+    available: true,
+    status: "Active",
+    description: "Crisp romaine hearts, shaved 24-month parmesan, sourdough herb croutons, house dressing.",
+    image: "https://images.unsplash.com/photo-1546793665-c74683f339c1?auto=format&fit=crop&w=400&q=80",
+    signature: false,
+    prepTime: "10 mins"
+  },
+  {
+    id: 104,
+    name: "Butter Naan",
+    category: "Breads",
+    price: 60,
+    stock: "8 kg",
+    available: true,
+    status: "Active",
+    description: "Traditional clay-oven fired flatbread brushed with organic cultured butter.",
+    image: "https://images.unsplash.com/photo-1626074353765-517a681e40be?auto=format&fit=crop&w=400&q=80",
+    signature: false,
+    prepTime: "5 mins"
+  },
+  {
+    id: 105,
+    name: "Chocolate Brownie",
+    category: "Desserts",
+    price: 180,
+    stock: "5 pcs",
+    available: true,
+    status: "Active",
+    description: "Decadent dark chocolate fudge brownie served warm with chocolate drizzle.",
+    image: "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=400&q=80",
+    signature: true,
+    prepTime: "8 mins"
+  },
+  {
     id: 1,
     name: "Dry-Aged Mocha Ribeye",
     category: "Mains",

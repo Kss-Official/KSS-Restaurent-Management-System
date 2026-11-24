@@ -11,7 +11,8 @@ import {
 } from 'lucide-react';
 
 export const Sidebar = ({ 
-  title, 
+  brandTitle = 'L U N A R',
+  title = 'RESTAURANT MANAGEMENT SYSTEM', 
   subtitle, 
   links = [], 
   isOpen = true, 
@@ -52,11 +53,11 @@ export const Sidebar = ({
                 <UtensilsCrossed className="w-5 h-5 text-[#C8A66B]" />
               </div>
               <div className="overflow-hidden">
-                <h1 className="font-serif text-xl font-bold tracking-tight text-[#FFFFFF] leading-none truncate">
-                  Aura Dining
+                <h1 className="font-serif text-xl font-bold tracking-wider text-[#FFFFFF] leading-none truncate">
+                  {brandTitle}
                 </h1>
-                <p className="text-[10px] font-semibold uppercase tracking-widest text-[#E8D9DD] mt-1 truncate">
-                  {title || 'Management System'}
+                <p className="text-[9px] font-semibold uppercase tracking-widest text-[#E8D9DD] mt-1 truncate">
+                  {title}
                 </p>
               </div>
             </Link>
