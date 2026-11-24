@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { AppProvider } from './store/store';
 import AppRoutes from './routes/AppRoutes';
+import ErrorBoundary from './components/common/ErrorBoundary';
 
 export function App() {
   // Global modal background scroll lock across all sections and portals
@@ -36,11 +37,13 @@ export function App() {
   }, []);
 
   return (
-    <AppProvider>
-      <BrowserRouter>
-        <AppRoutes />
-      </BrowserRouter>
-    </AppProvider>
+    <ErrorBoundary>
+      <AppProvider>
+        <BrowserRouter>
+          <AppRoutes />
+        </BrowserRouter>
+      </AppProvider>
+    </ErrorBoundary>
   );
 }
 

@@ -136,18 +136,32 @@ const TableSixSeaterIcon = ({ className = "w-4 h-4 text-[#500F1D]" }) => (
 );
 
 export const ManagerPortal = () => {
-  // Navigation Section (Food & Menu or Dashboard, preserved in localStorage)
+  // Normalize section IDs to prevent blank screen across legacy or custom state
+  const normalizeSection = (sec) => {
+    if (!sec) return 'pos';
+    if (sec === 'pos-transactions' || sec === 'pos') return 'pos';
+    if (sec === 'reports-complaints' || sec === 'reports') return 'reports';
+    if (sec === 'pos-reports') return 'pos';
+    if (sec === 'orders' || sec === 'kitchen') return 'orders-kitchen';
+    if (sec === 'tables' || sec === 'table') return 'tables-reservations';
+    if (sec === 'menu' || sec === 'food') return 'food-menu';
+    const valid = ['dashboard', 'food-menu', 'orders-kitchen', 'tables-reservations', 'pos', 'reports', 'settings'];
+    if (valid.includes(sec)) return sec;
+    return 'pos';
+  };
+
+  // Navigation Section (Default to POS, preserved in localStorage and URL query)
   const [activeSection, setActiveSection] = useState(() => {
     if (typeof window !== 'undefined') {
       try {
         const params = new URLSearchParams(window.location.search);
         const sec = params.get('section');
-        if (sec) return sec;
+        if (sec) return normalizeSection(sec);
         const saved = localStorage.getItem('manager_active_section');
-        if (saved) return saved;
+        if (saved) return normalizeSection(saved);
       } catch (e) { }
     }
-    return 'food-menu';
+    return 'pos';
   });
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [salesTimeRange, setSalesTimeRange] = useState('1D'); // 1D, 7D, 30D, Custom
@@ -157,13 +171,16 @@ export const ManagerPortal = () => {
   const [notificationOpen, setNotificationOpen] = useState(false);
 
   const handleSectionSelect = (section) => {
-    setActiveSection(section);
+    const norm = normalizeSection(section);
+    setActiveSection(norm);
+    if (norm === 'pos') setPosReportViewMode('pos');
+    if (norm === 'reports') setPosReportViewMode('reports');
     setSidebarOpen(false);
     if (typeof window !== 'undefined') {
       try {
-        localStorage.setItem('manager_active_section', section);
+        localStorage.setItem('manager_active_section', norm);
         const url = new URL(window.location.href);
-        url.searchParams.set('section', section);
+        url.searchParams.set('section', norm);
         window.history.replaceState(null, '', url.toString());
       } catch (e) { }
     }
@@ -2201,28 +2218,28 @@ export const ManagerPortal = () => {
 
               {/* 5. POS */}
               <button
-                onClick={() => { handleSectionSelect('pos-reports'); setPosReportViewMode('pos'); }}
-                className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all text-left ${(activeSection === 'pos-reports' && posReportViewMode === 'pos') || activeSection === 'pos'
+                onClick={() => handleSectionSelect('pos')}
+                className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all text-left ${activeSection === 'pos' || activeSection === 'pos-transactions' || (activeSection === 'pos-reports' && posReportViewMode === 'pos')
                   ? 'bg-gradient-to-r from-[#F7E19A] via-[#E8BF55] to-[#D5A73F] text-[#4A0E17] font-bold shadow-md shadow-[#D5A73F]/30'
                   : 'text-white hover:bg-white/10 font-medium'
                   }`}
               >
-                <CreditCard className={`w-4 h-4 shrink-0 ${(activeSection === 'pos-reports' && posReportViewMode === 'pos') || activeSection === 'pos' ? 'text-[#4A0E17]' : 'text-white'}`} strokeWidth={2} />
-                <span className={`text-xs ${(activeSection === 'pos-reports' && posReportViewMode === 'pos') || activeSection === 'pos' ? 'font-bold text-[#4A0E17]' : 'font-medium text-white'}`}>
+                <CreditCard className={`w-4 h-4 shrink-0 ${activeSection === 'pos' || activeSection === 'pos-transactions' || (activeSection === 'pos-reports' && posReportViewMode === 'pos') ? 'text-[#4A0E17]' : 'text-white'}`} strokeWidth={2} />
+                <span className={`text-xs ${activeSection === 'pos' || activeSection === 'pos-transactions' || (activeSection === 'pos-reports' && posReportViewMode === 'pos') ? 'font-bold text-[#4A0E17]' : 'font-medium text-white'}`}>
                   POS
                 </span>
               </button>
 
               {/* 6. Reports */}
               <button
-                onClick={() => { handleSectionSelect('pos-reports'); setPosReportViewMode('reports'); }}
-                className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all text-left ${(activeSection === 'pos-reports' && posReportViewMode === 'reports') || activeSection === 'reports'
+                onClick={() => handleSectionSelect('reports')}
+                className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all text-left ${activeSection === 'reports' || activeSection === 'reports-complaints' || (activeSection === 'pos-reports' && posReportViewMode === 'reports')
                   ? 'bg-gradient-to-r from-[#F7E19A] via-[#E8BF55] to-[#D5A73F] text-[#4A0E17] font-bold shadow-md shadow-[#D5A73F]/30'
                   : 'text-white hover:bg-white/10 font-medium'
                   }`}
               >
-                <FileText className={`w-4 h-4 shrink-0 ${(activeSection === 'pos-reports' && posReportViewMode === 'reports') || activeSection === 'reports' ? 'text-[#4A0E17]' : 'text-white'}`} strokeWidth={2} />
-                <span className={`text-xs ${(activeSection === 'pos-reports' && posReportViewMode === 'reports') || activeSection === 'reports' ? 'font-bold text-[#4A0E17]' : 'font-medium text-white'}`}>
+                <FileText className={`w-4 h-4 shrink-0 ${activeSection === 'reports' || activeSection === 'reports-complaints' || (activeSection === 'pos-reports' && posReportViewMode === 'reports') ? 'text-[#4A0E17]' : 'text-white'}`} strokeWidth={2} />
+                <span className={`text-xs ${activeSection === 'reports' || activeSection === 'reports-complaints' || (activeSection === 'pos-reports' && posReportViewMode === 'reports') ? 'font-bold text-[#4A0E17]' : 'font-medium text-white'}`}>
                   Reports
                 </span>
               </button>
@@ -4765,7 +4782,7 @@ export const ManagerPortal = () => {
           {/* ====================================================================
               5. POS (Exact Reference Image: media_1795435930375_4f5478d6.png)
              ==================================================================== */}
-          {(activeSection === 'pos' || (activeSection === 'pos-reports' && posReportViewMode === 'pos')) && (
+          {(activeSection === 'pos' || activeSection === 'pos-transactions' || (activeSection === 'pos-reports' && posReportViewMode === 'pos')) && (
             <div className="space-y-6 animate-fadeIn">
               {/* Luxury Header Banner - Displayed on POS Transactions view */}
               {posSubTabActive === 'POS Transactions' && (
@@ -4825,72 +4842,18 @@ export const ManagerPortal = () => {
                   {/* Subtab 1: POS Transactions (Screenshot 1 View) */}
                   {posSubTabActive === 'POS Transactions' && (
                     <div className="space-y-6">
-                      {/* 5 Summary KPI Cards */}
-                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3.5 sm:gap-4">
-                        {/* Card 1: Total Orders */}
-                        <div className="bg-white rounded-3xl p-5 border border-[#E8DDD8] shadow-xs flex items-center gap-4 transition-all duration-300 hover:-translate-y-1 hover:shadow-md cursor-pointer">
-                          <div className="w-12 h-12 rounded-full bg-[#FAF2EB] flex items-center justify-center shrink-0">
-                            <ShoppingCart className="w-5 h-5 text-[#500F1D]" />
-                          </div>
-                          <div>
-                            <p className="text-xs text-[#75696B] font-semibold">Total Orders</p>
-                            <div className="text-2xl font-bold text-[#2D2528] leading-tight mt-0.5">48</div>
-                            <div className="text-xs font-semibold text-[#15803D] flex items-center gap-0.5 mt-0.5">
-                              <span>↑ 12%</span>
-                            </div>
-                          </div>
+                      {/* Summary KPI Card matching Image 10 / media_1795438340465_c3a4cfbc.png */}
+                      <div className="bg-white rounded-3xl p-5 border border-[#E8DDD8] shadow-xs flex items-center gap-4 max-w-xs transition-all duration-300 hover:shadow-md cursor-pointer">
+                        <div className="w-12 h-12 rounded-full bg-[#FAF2EB] flex items-center justify-center shrink-0">
+                          <ShoppingCart className="w-5 h-5 text-[#500F1D]" />
                         </div>
-
-                        {/* Card 2: Total Sales */}
-                        <div className="bg-white rounded-3xl p-5 border border-[#E8DDD8] shadow-xs flex items-center gap-4 transition-all duration-300 hover:-translate-y-1 hover:shadow-md cursor-pointer">
-                          <div className="w-12 h-12 rounded-full bg-[#500F1D] flex items-center justify-center text-[#E5A81E] font-bold text-xl shrink-0 shadow-xs">
-                            ₹
-                          </div>
-                          <div>
-                            <p className="text-xs text-[#75696B] font-semibold">Total Sales</p>
-                            <div className="text-2xl font-bold text-[#2D2528] leading-tight mt-0.5">₹48,650</div>
-                          </div>
-                        </div>
-
-                        {/* Card 3: Total Payments */}
-                        <div className="bg-white rounded-3xl p-5 border border-[#E8DDD8] shadow-xs flex items-center gap-4 transition-all duration-300 hover:-translate-y-1 hover:shadow-md cursor-pointer">
-                          <div className="w-12 h-12 rounded-full bg-[#FAF2EB] flex items-center justify-center shrink-0">
-                            <CreditCard className="w-5 h-5 text-[#500F1D]" />
-                          </div>
-                          <div>
-                            <p className="text-xs text-[#75696B] font-semibold">Total Payments</p>
-                            <div className="text-2xl font-bold text-[#2D2528] leading-tight mt-0.5">₹48,650</div>
-                            <div className="text-xs font-semibold text-[#15803D] flex items-center gap-0.5 mt-0.5">
-                              <span>↑ 15%</span>
-                            </div>
-                          </div>
-                        </div>
-
-                        {/* Card 4: Refunds */}
-                        <div className="bg-white rounded-3xl p-5 border border-[#E8DDD8] shadow-xs flex items-center gap-4 transition-all duration-300 hover:-translate-y-1 hover:shadow-md cursor-pointer">
-                          <div className="w-12 h-12 rounded-full bg-[#FAF2EB] flex items-center justify-center shrink-0">
-                            <RotateCcw className="w-5 h-5 text-[#500F1D]" />
-                          </div>
-                          <div>
-                            <p className="text-xs text-[#75696B] font-semibold">Refunds</p>
-                            <div className="text-2xl font-bold text-[#2D2528] leading-tight mt-0.5">₹1,250</div>
-                            <div className="text-xs font-semibold text-[#DC2626] flex items-center gap-0.5 mt-0.5">
-                              <span>↓ 5%</span>
-                            </div>
-                          </div>
-                        </div>
-
-                        {/* Card 5: Net Revenue */}
-                        <div className="bg-white rounded-3xl p-5 border border-[#E8DDD8] shadow-xs flex items-center gap-4 transition-all duration-300 hover:-translate-y-1 hover:shadow-md cursor-pointer">
-                          <div className="w-12 h-12 rounded-full bg-[#FAF2EB] flex items-center justify-center shrink-0">
-                            <TrendingUp className="w-5 h-5 text-[#500F1D]" />
-                          </div>
-                          <div>
-                            <p className="text-xs text-[#75696B] font-semibold">Net Revenue</p>
-                            <div className="text-2xl font-bold text-[#2D2528] leading-tight mt-0.5">₹47,400</div>
-                            <div className="text-xs font-semibold text-[#15803D] flex items-center gap-0.5 mt-0.5">
-                              <span>↑ 14%</span>
-                            </div>
+                        <div>
+                          <p className="text-xs text-[#75696B] font-semibold">Total Orders</p>
+                          <div className="flex items-baseline gap-2 mt-0.5">
+                            <span className="text-2xl font-bold text-[#2D2528] leading-tight">48</span>
+                            <span className="text-xs font-semibold text-[#15803D] flex items-center gap-0.5">
+                              ↑ 12%
+                            </span>
                           </div>
                         </div>
                       </div>
@@ -7014,7 +6977,7 @@ export const ManagerPortal = () => {
           {/* ==============================================================
               6. REPORTS & ANALYTICS
               ============================================================== */}
-          {(activeSection === 'reports' || (activeSection === 'pos-reports' && posReportViewMode === 'reports')) && (
+          {(activeSection === 'reports' || activeSection === 'reports-complaints' || (activeSection === 'pos-reports' && posReportViewMode === 'reports')) && (
             <div className="space-y-6 animate-fadeIn">
               {/* Reports Header Banner */}
               <div className="rounded-3xl bg-[#500F1D] p-6 sm:p-7 text-white shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4">
